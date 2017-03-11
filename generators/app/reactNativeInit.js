@@ -1,9 +1,9 @@
 const spawn = require('child_process').spawn;
 
-module.exports = function(name, options) {
+module.exports = function(projectName, options) {
   console.log('Setting up react-native...'.cyan);
   return new Promise(function (resolve, reject) {
-    const command = spawn('react-native', ['init', name]);
+    const command = spawn('react-native', ['init', projectName]);
 
     command.stdout.on('data', (data) => {
       if (options.verbose) {

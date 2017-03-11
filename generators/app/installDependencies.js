@@ -29,10 +29,10 @@ const DEV_DEPENDENCIES = [
   'reactotron-redux'
 ];
 
-function installDependencies(deps, options, dev) {
+function installDependencies(projectName, deps, options, dev) {
   return new Promise(function (resolve, reject) {
     const args = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps)
-    const command = spawn('yarn', args);
+    const command = spawn('yarn', args, { cwd: `${process.cwd()}/${projectName}` });
 
     command.stdout.on('data', (data) => {
       if (options.verbose && data) {
@@ -58,10 +58,10 @@ function installDependencies(deps, options, dev) {
   });
 }
 
-module.exports = function(options) {
+module.exports = function(projectName, options) {
   console.log('Fetching dependencies...'.cyan);
-  return installDependencies(DEPENDENCIES, options).then(() => {
-    return installDependencies(DEV_DEPENDENCIES, options, true)
+  return installDependencies(projectName, DEPENDENCIES, options).then(() => {
+    return installDependencies(projectName, DEV_DEPENDENCIES, options, true)
   }).then(() => {
     console.log('Dependencies installation finished successfully'.green);
   });

@@ -24,11 +24,13 @@ class ReactNativeBootstrap extends Generator {
       message: 'What\'s your project name?',
       validate: (val) => val && !/ /.test(val) ? true : 'The project name is required and can\'t contain spaces'
     }]).then((answers) => {
-      return reactNativeCliInstall(this.options).then(() => answers);
-    }).then((answers) => {
-      return reactNativeInit(answers.name, this.options)
+      this.projectName = answers.name;
     }).then(() => {
-      return installDependencies(this.options)
+      return reactNativeCliInstall(this.options);
+    }).then(() => {
+      return reactNativeInit(this.projectName, this.options)
+    }).then(() => {
+      return installDependencies(this.projectName, this.options)
     });
   }
 };
