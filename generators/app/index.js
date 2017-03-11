@@ -1,8 +1,8 @@
 const Generator = require('yeoman-generator');
 
-const reactNativeCliInstall = require('./reactNativeCliInstall')
-const reactNativeInit = require('./reactNativeInit');
-const installDependencies = require('./installDependencies');
+const reactNativeCliInstall = require('./tasks/reactNativeCliInstall')
+const reactNativeInit = require('./tasks/reactNativeInit');
+const installDependencies = require('./tasks/installDependencies');
 
 class ReactNativeBootstrap extends Generator {
 
@@ -25,13 +25,24 @@ class ReactNativeBootstrap extends Generator {
       validate: (val) => val && !/ /.test(val) ? true : 'The project name is required and can\'t contain spaces'
     }]).then((answers) => {
       this.projectName = answers.name;
-    }).then(() => {
+    });
+  }
+
+  configuring() {
+    return Promise.resolve().then(() => {
       return reactNativeCliInstall(this.options);
     }).then(() => {
       return reactNativeInit(this.projectName, this.options)
     }).then(() => {
       return installDependencies(this.projectName, this.options)
     });
+  }
+
+  writing() {
+    this.fs.copyTpl(
+      this.templatePath('index.html'),
+      this.destinationPath('public/index.html')
+    );
   }
 };
 
