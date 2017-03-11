@@ -1,10 +1,9 @@
-require('colors');
 const spawn = require('child_process').spawn;
 
-module.exports = function(options) {
-  console.log('Installing react-native-cli...'.cyan);
+module.exports = function(name, options) {
+  console.log('Setting up react-native...'.cyan);
   return new Promise(function (resolve, reject) {
-    const ls = spawn('yarn', ['global', 'add', 'react-native-cli']);
+    const ls = spawn('react-native', ['init', name]);
 
     ls.stdout.on('data', (data) => {
       if (options.verbose) {
@@ -20,10 +19,10 @@ module.exports = function(options) {
 
     ls.on('close', (code) => {
       if (code === 0) {
-        console.log('Latest react-native-cli installed'.green);
+        console.log('react-native set up finished successfully'.green);
         resolve();
       } else {
-        console.log('react-native-cli install failed. Turn verbose mode on for detailed logging'.red);
+        console.log('react-native set up failed. Turn verbose mode on for detailed logging'.red);
         reject();
       }
     });
