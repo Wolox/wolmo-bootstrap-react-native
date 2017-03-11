@@ -3,21 +3,22 @@ const spawn = require('child_process').spawn;
 module.exports = function(name, options) {
   console.log('Setting up react-native...'.cyan);
   return new Promise(function (resolve, reject) {
-    const ls = spawn('react-native', ['init', name]);
+    const command = spawn('react-native', ['init', name]);
 
-    ls.stdout.on('data', (data) => {
+    command.stdout.on('data', (data) => {
       if (options.verbose) {
-        console.log(data);
+        console.log(data.toString());
       }
     });
 
-    ls.stderr.on('data', (data) => {
-      if (options.verbose) {
-        console.log(data.red);
+    command.stderr.on('data', (data) => {
+      if (options.verbose && data) {
+        const msg = data.toString();
+        console.log(/warning/.test(msg) ? msg.yellow : msg.red);
       }
     });
 
-    ls.on('close', (code) => {
+    command.on('close', (code) => {
       if (code === 0) {
         console.log('react-native set up finished successfully'.green);
         resolve();

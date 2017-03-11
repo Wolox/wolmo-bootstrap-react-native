@@ -2,6 +2,7 @@ const Generator = require('yeoman-generator');
 
 const reactNativeCliInstall = require('./reactNativeCliInstall')
 const reactNativeInit = require('./reactNativeInit');
+const installDependencies = require('./installDependencies');
 
 class ReactNativeBootstrap extends Generator {
 
@@ -26,6 +27,8 @@ class ReactNativeBootstrap extends Generator {
       return reactNativeCliInstall(this.options).then(() => answers);
     }).then((answers) => {
       return reactNativeInit(answers.name, this.options)
+    }).then(() => {
+      return installDependencies(this.options)
     });
   }
 };

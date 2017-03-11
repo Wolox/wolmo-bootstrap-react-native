@@ -4,21 +4,22 @@ const spawn = require('child_process').spawn;
 module.exports = function(options) {
   console.log('Installing react-native-cli...'.cyan);
   return new Promise(function (resolve, reject) {
-    const ls = spawn('yarn', ['global', 'add', 'react-native-cli']);
+    const command = spawn('yarn', ['global', 'add', 'react-native-cli']);
 
-    ls.stdout.on('data', (data) => {
+    command.stdout.on('data', (data) => {
       if (options.verbose) {
-        console.log(data);
+        console.log(data.toString());
       }
     });
 
-    ls.stderr.on('data', (data) => {
-      if (options.verbose) {
-        console.log(data.red);
+    command.stderr.on('data', (data) => {
+      if (options.verbose && data) {
+        const msg = data.toString();
+        console.log(/warning/.test(msg) ? msg.yellow : msg.red);
       }
     });
 
-    ls.on('close', (code) => {
+    command.on('close', (code) => {
       if (code === 0) {
         console.log('Latest react-native-cli installed'.green);
         resolve();
