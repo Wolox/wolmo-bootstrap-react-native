@@ -3,6 +3,7 @@ const Generator = require('yeoman-generator');
 const reactNativeCliInstall = require('./tasks/reactNativeCliInstall')
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
+const setupEslint = require('./tasks/setupEslint');
 
 class ReactNativeBootstrap extends Generator {
 
@@ -15,6 +16,8 @@ class ReactNativeBootstrap extends Generator {
       type: Boolean,
       default: false
     });
+
+    this.conflicter.force = true;
   }
 
   prompting() {
@@ -39,10 +42,7 @@ class ReactNativeBootstrap extends Generator {
   }
 
   writing() {
-    this.fs.copyTpl(
-      this.templatePath('index.html'),
-      this.destinationPath('public/index.html')
-    );
+    setupEslint.bind(this)(this.projectName);
   }
 };
 
