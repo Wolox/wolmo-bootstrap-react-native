@@ -1,9 +1,28 @@
 const ora = require('ora');
 
-// function to be binded to yeoman context
 module.exports = function () {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
 
+  // ----------------     add package.json scripts     ----------------
+  const package = this.fs.readJSON(this.destinationPath(this.projectName, 'package.json'));
+  package.scripts = package.scripts || {};
+  package.scripts['lint'] = 'eslint .';
+  package.scripts['lint-fix'] = 'eslint . --fix';
+  package.scripts['clean'] = "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean";
+  package.scripts['clean:android'] = "cd android/ && ./gradlew clean";
+  package.scripts['force-clean'] = "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && npm cache clean && npm i";
+  package.scripts['coverage'] = "jest --coverage";
+  package.scripts['android:build'] = "cd android && ./gradlew assembleRelease";
+  package.scripts['android:install'] = "cd android && ./gradlew assembleRelease && ./gradlew installRelease";
+  this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), package);
+
+  // ----------------     eslint config file     ----------------
+  this.fs.copy(
+    this.templatePath('.eslintrc.js'),
+    this.destinationPath(this.projectName, '.eslintrc.js')
+  );
+
+  // ----------------     base app files     ----------------
   this.fs.copy(
     this.templatePath('src', 'config', 'api.js'),
     this.destinationPath(this.projectName, 'src', 'config', 'api.js')
@@ -20,7 +39,6 @@ module.exports = function () {
     this.templatePath('main.js'),
     this.destinationPath(this.projectName, 'main.js')
   );
-
   this.fs.copyTpl(
     this.templatePath('src', 'config', 'ReactotronConfig.ejs'),
     this.destinationPath(this.projectName, 'src', 'config', 'ReactotronConfig.js'),
@@ -42,5 +60,5 @@ module.exports = function () {
     { projectName: this.projectName }
   );
 
-  spinner.succeed('Project boilerplate created!');
+  spinner.succeed('Boilerplate ready!');
 }

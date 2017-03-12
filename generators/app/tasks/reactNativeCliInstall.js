@@ -22,7 +22,7 @@ module.exports = function(options) {
 
     command.on('close', (code) => {
       if (code === 0) {
-        spinner.succeed('Latest react-native-cli installed');
+        spinner.succeed('react-native-cli ready!');
         resolve();
       } else {
         spinner.fail('react-native-cli install failed. Turn verbose mode on for detailed logging');

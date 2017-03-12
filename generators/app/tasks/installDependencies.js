@@ -64,7 +64,7 @@ module.exports = function(projectName, options) {
   return installDependencies(projectName, DEPENDENCIES, options).then(() => {
     return installDependencies(projectName, DEV_DEPENDENCIES, options, true)
   }).then(() => {
-    spinner.succeed('Dependencies installation finished successfully');
+    spinner.succeed('Dependencies ready!');
   }).catch(() => {
     spinner.fail('Dependencies installation failed. Turn verbose mode on for detailed logging');
     process.exit(1);
