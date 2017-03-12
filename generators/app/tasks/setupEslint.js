@@ -1,18 +1,18 @@
 
 // function to be binded to yeoman context
-module.exports = function (projectName) {
+module.exports = function () {
   console.log('Setting up eslint config...'.cyan);
 
   this.fs.copy(
     this.templatePath('.eslintrc.js'),
-    this.destinationPath(projectName, '.eslintrc.js')
+    this.destinationPath(this.projectName, '.eslintrc.js')
   );
 
-  const package = this.fs.readJSON(this.destinationPath(projectName, 'package.json'));
+  const package = this.fs.readJSON(this.destinationPath(this.projectName, 'package.json'));
 
   package.scripts = package.scripts || {};
   package.scripts.lint = 'eslint .';
   package.scripts['lint-fix'] = 'eslint . --fix';
 
-  this.fs.writeJSON(this.destinationPath(projectName, 'package.json'), package);
+  this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), package);
 }

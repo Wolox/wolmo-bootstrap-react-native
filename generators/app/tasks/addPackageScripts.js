@@ -1,9 +1,9 @@
 
 // function to be binded to yeoman context
-module.exports = function (projectName) {
+module.exports = function () {
   console.log('Adding package.json scripts...'.cyan);
 
-  const package = this.fs.readJSON(this.destinationPath(projectName, 'package.json'));
+  const package = this.fs.readJSON(this.destinationPath(this.projectName, 'package.json'));
 
   package.scripts = package.scripts || {};
   package.scripts['clean'] = "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean";
@@ -13,5 +13,5 @@ module.exports = function (projectName) {
   package.scripts['android:build'] = "cd android && ./gradlew assembleRelease";
   package.scripts['android:install'] = "cd android && ./gradlew assembleRelease && ./gradlew installRelease";
 
-  this.fs.writeJSON(this.destinationPath(projectName, 'package.json'), package);
+  this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), package);
 }

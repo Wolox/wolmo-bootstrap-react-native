@@ -5,6 +5,7 @@ const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const setupEslint = require('./tasks/setupEslint');
 const addPackageScripts = require('./tasks/addPackageScripts');
+const appSetup = require('./tasks/appSetup');
 
 class ReactNativeBootstrap extends Generator {
 
@@ -22,13 +23,28 @@ class ReactNativeBootstrap extends Generator {
   }
 
   prompting() {
-    return this.prompt([{
-      type: 'input',
-      name: 'name',
-      message: 'What\'s your project name?',
-      validate: (val) => val && !/ /.test(val) ? true : 'The project name is required and can\'t contain spaces'
-    }]).then((answers) => {
+    return this.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What\'s your project name?',
+        validate: (val) => val && !/ /.test(val) ? true : 'The project name is required and can\'t contain spaces'
+      },
+      {
+        type: 'checkbox',
+        name: 'features',
+        message: 'What\'s features should this project include?',
+        choices: [ 'Login', 'Tabs', 'Drawer', 'Push Notifications' ],
+        filter: (values) => {
+          return values.reduce((answer, val) => {
+            answer[val.replace(/ /g, '').toLowerCase()] = true;
+            return answer;
+          }, {});
+        }
+      }
+    ]).then((answers) => {
       this.projectName = answers.name;
+      this.features = answers.features;
     });
   }
 
@@ -43,8 +59,9 @@ class ReactNativeBootstrap extends Generator {
   }
 
   writing() {
-    setupEslint.bind(this)(this.projectName);
-    addPackageScripts.bind(this)(this.projectName);
+    setupEslint.bind(this)();
+    addPackageScripts.bind(this)();
+    appSetup.bind(this)();
   }
 };
 
