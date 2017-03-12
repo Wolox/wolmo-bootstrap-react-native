@@ -8,9 +8,28 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "scripts": {
+    "lint" : "eslint .",
+    "lint-fix" : "eslint . --fix",
+    "precommit" : "npm run lint"
+  },
   "dependencies": {
     "colors": "^1.1.2",
     "ora": "^1.1.0",
     "yeoman-generator": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-prettier": "^1.5.0",
+    "eslint-plugin-flowtype": "^2.30.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "^6.10.0",
+    "husky": "^0.13.2",
+    "prettier": "^0.22.0",
+    "prettier-eslint": "^4.2.1"
   }
 }
