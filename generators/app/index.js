@@ -4,6 +4,7 @@ const reactNativeCliInstall = require('./tasks/reactNativeCliInstall')
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
+const gitInitialization = require('./tasks/gitInitialization')
 
 class ReactNativeBootstrap extends Generator {
 
@@ -58,6 +59,10 @@ class ReactNativeBootstrap extends Generator {
 
   writing() {
     appSetup.bind(this)();
+  }
+
+  end() {
+    return gitInitialization.bind(this)();
   }
 };
 

@@ -4,16 +4,16 @@ const spawn = require('child_process').spawn;
 
 /**
  * Receives only one argument which is an object of options:
- * - (mandatory) command: list of paramaters to send to child_process.spawn
- * - (mandatory) loadingMessage: Message shown while the command is running
- * - (mandatory) successMessage: Message shown when the command finishes successfuly
- * - (mandatory) failureMessage: Message shown when the command fails
- * - context: Yeoman context options and arguments
+ * - (mandatory) command {array}: list of paramaters to send to child_process.spawn
+ * - loadingMessage {string}: Message shown while the command is running
+ * - successMessage {string}: Message shown when the command finishes successfuly
+ * - failureMessage {string}: Message shown when the command fails
+ * - context {obj}: Yeoman context options and arguments
  *
- * Returns a promise
+ * Returns a promise that resolves to the loading spinner if the loading message is present
  */
 module.exports = function(options) {
-  const spinner = ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
+  const spinner = options.loadingMessage && ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
   return new Promise(function (resolve, reject) {
     const command = spawn(...options.command);
 
@@ -32,11 +32,15 @@ module.exports = function(options) {
 
     command.on('close', (code) => {
       if (code === 0) {
-        spinner.succeed(options.successMessage);
-        resolve();
+        if (spinner && options.successMessage) {
+          spinner.succeed(options.successMessage);
+        }
+        resolve(spinner);
       } else {
-        spinner.fail(options.failureMessage);
-        reject();
+        if (spinner && options.failureMessage) {
+          spinner.fail(options.failureMessage);
+        }
+        reject(spinner);
       }
     });
   });
