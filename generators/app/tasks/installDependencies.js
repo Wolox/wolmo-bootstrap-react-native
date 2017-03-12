@@ -1,3 +1,4 @@
+require('colors');
 const ora = require('ora');
 const spawn = require('child_process').spawn;
 
@@ -31,42 +32,24 @@ const DEV_DEPENDENCIES = [
 ];
 
 function installDependencies(projectName, deps, options, dev) {
-  return new Promise(function (resolve, reject) {
-    const args = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps)
-    const command = spawn('yarn', args, { cwd: `${process.cwd()}/${projectName}` });
 
-    command.stdout.on('data', (data) => {
-      if (options.verbose && data) {
-        console.log(data.toString());
-      }
-    });
+  var runCommand = require('./runCommand');
 
-    command.stderr.on('data', (data) => {
-      if (options.verbose && data) {
-        const msg = data.toString();
-        console.log(/warning/.test(msg) ? msg.yellow : msg.red);
-      }
-    });
+    const yarnArgs = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps)
 
-    command.on('close', (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        console.log('Dependencies installation failed. Turn verbose mode on for detailed logging'.red);
-        reject();
-      }
+    return runCommand({
+      command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
+      loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
+      successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
+      failureMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+      context: options
     });
-  });
-}
+  }
 
 module.exports = function(projectName, options) {
-  const spinner = ora({ spinner: 'bouncingBall', text: 'Fetching dependencies' }).start();
   return installDependencies(projectName, DEPENDENCIES, options).then(() => {
-    return installDependencies(projectName, DEV_DEPENDENCIES, options, true)
-  }).then(() => {
-    spinner.succeed('Dependencies ready!');
+    return installDependencies(projectName, DEV_DEPENDENCIES, options, true);
   }).catch(() => {
-    spinner.fail('Dependencies installation failed. Turn verbose mode on for detailed logging');
     process.exit(1);
   });
 }

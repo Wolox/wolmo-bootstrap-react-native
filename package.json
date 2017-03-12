@@ -9,6 +9,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "colors": "^1.1.2",
     "ora": "^1.1.0",
     "yeoman-generator": "^1.1.1"
   }
