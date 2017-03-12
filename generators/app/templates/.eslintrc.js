@@ -25,8 +25,11 @@ module.exports = {
     "prettier/flowtype",
     "prettier/react"
   ],
+  "globals": {
+    "__DEV__": true,
+  },
   "rules": {
-    "prettier/prettier": ["error", { printWidth: 110 }],
+    "prettier/prettier": ["error", { printWidth: 110, singleQuote: true }],
     "no-invalid-this": "off",
     "no-return-assign": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],

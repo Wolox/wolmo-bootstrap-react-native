@@ -7,6 +7,9 @@ const DEPENDENCIES = [
   'react-native-fabric',
   'react-native-renavigate',
   'react-redux',
+  'reactotron-apisauce',
+  'reactotron-react-native',
+  'reactotron-redux',
   'redux',
   'redux-thunk',
   'reselect',
@@ -25,10 +28,7 @@ const DEV_DEPENDENCIES = [
   'eslint-plugin-react',
   'prettier',
   'prettier-eslint',
-  'jest-react-native',
-  'reactotron-apisauce',
-  'reactotron-react-native',
-  'reactotron-redux'
+  'jest-react-native'
 ];
 
 function installDependencies(projectName, deps, options, dev) {

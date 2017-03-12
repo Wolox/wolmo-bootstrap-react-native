@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
-import Immutable from 'seamless-immutable';
 import thunk from 'redux-thunk';
 import { reducer as navigation } from 'react-native-renavigate';
 

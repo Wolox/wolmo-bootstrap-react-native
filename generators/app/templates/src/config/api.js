@@ -1,4 +1,3 @@
-import { Alert } from 'react-native';
 import Reactotron from 'reactotron-react-native';
 import { create } from 'apisauce';
 
@@ -15,15 +14,15 @@ const api = create({
 
 api.addMonitor(Reactotron.apisauce);
 
-export const apiSetUp = (dispatch) => {
-  api.addMonitor((response) => {
+export const apiSetUp = dispatch => { // eslint-disable-line no-unused-vars, prettier/prettier
+  api.addMonitor(response => {
     if (response.status === 401) {
       // dispatch(actions.sessionExpired());
       console.warn('Unhandled session expiration');
     }
   });
 
-  api.addMonitor((response) => {
+  api.addMonitor(response => {
     if (response.problem === 'NETWORK_ERROR') {
       // dispatch(actions.noInternetConnection());
       console.warn('Unhandled request without connection');

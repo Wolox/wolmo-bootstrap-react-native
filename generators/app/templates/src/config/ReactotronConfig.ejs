@@ -4,12 +4,9 @@ import apisaucePlugin from 'reactotron-apisauce';
 import { reactotronRedux } from 'reactotron-redux';
 
 if (__DEV__) {
-  Reactotron
-    .configure({ name: '<%= projectName %>' })
+  Reactotron.configure({ name: '<%= projectName %>' })
     .use(trackGlobalErrors())
     .use(apisaucePlugin())
-    .use(reactotronRedux({
-      onRestore: (state) => Immutable(state)
-    }))
+    .use(reactotronRedux({ onRestore: state => Immutable(state) }))
     .connect();
 }

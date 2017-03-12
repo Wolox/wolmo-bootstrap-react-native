@@ -4,8 +4,15 @@ module.exports = function() {
   return runCommand({
     command: ['react-native', ['init', this.projectName]],
     loadingMessage: 'Initializing react-native',
-    successMessage: 'react-native ready!',
-    failureMessage: 'react-native set up failed. Turn verbose mode on for detailed logging',
     context: this.options
+  }).then((spinner) => {
+    return runCommand({
+      command: ['rm', ['-rf', '__tests__'], { cwd: `${process.cwd()}/${this.projectName}` }],
+      context: this.options
+    }).then(() => {
+      spinner.succeed('react-native ready!');
+    }).catch(() => {
+      spinner.fail('react-native set up failed. Turn verbose mode on for detailed logging');
+    });
   });
 }
