@@ -12,25 +12,27 @@ const spawn = require('child_process').spawn;
  *
  * Returns a promise that resolves to the loading spinner if the loading message is present
  */
-module.exports = function(options) {
-  const spinner = options.loadingMessage && ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
-  return new Promise(function (resolve, reject) {
+module.exports = function runCommand(options) {
+  const spinner = options.loadingMessage &&
+    ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
+
+  return new Promise((resolve, reject) => {
     const command = spawn(...options.command);
 
-    command.stdout.on('data', (data) => {
+    command.stdout.on('data', data => {
       if (options.context && options.context.verbose && data) {
         console.log(data.toString());
       }
     });
 
-    command.stderr.on('data', (data) => {
+    command.stderr.on('data', data => {
       if (options.context && options.context.verbose && data) {
         const msg = data.toString();
         console.log(/warning/.test(msg) ? msg.yellow : msg.red);
       }
     });
 
-    command.on('close', (code) => {
+    command.on('close', code => {
       if (code === 0) {
         if (spinner && options.successMessage) {
           spinner.succeed(options.successMessage);
@@ -44,4 +46,4 @@ module.exports = function(options) {
       }
     });
   });
-}
+};

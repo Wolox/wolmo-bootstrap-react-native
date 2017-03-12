@@ -1,6 +1,3 @@
-module.exports = function () {
-  this.fs.copy(
-    this.templatePath('.eslintrc.js'),
-    this.destinationPath(this.projectName, '.eslintrc.js')
-  );
-}
+module.exports = function eslintSetup() {
+  this.fs.copy(this.templatePath('.eslintrc.ejs'), this.destinationPath(this.projectName, '.eslintrc.js'));
+};

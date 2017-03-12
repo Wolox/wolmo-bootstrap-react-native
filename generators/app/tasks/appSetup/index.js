@@ -2,10 +2,10 @@ const ora = require('ora');
 
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
-const baseFiles = require('./baseFiles');
+const baseFilesTemplate = require('./baseFilesTemplate');
 const fixBundleIdentifier = require('./fixBundleIdentifier');
 
-module.exports = function () {
+module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
 
   // ----------------     add package.json scripts     ----------------
@@ -15,10 +15,10 @@ module.exports = function () {
   eslintSetup.bind(this)();
 
   // ----------------     base app files     ----------------
-  baseFiles.bind(this)();
+  baseFilesTemplate.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
   fixBundleIdentifier.bind(this)();
 
   spinner.succeed('Boilerplate ready!');
-}
+};

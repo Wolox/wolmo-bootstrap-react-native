@@ -1,6 +1,7 @@
-module.exports = function () {
-
-  const iosProjectContent = this.fs.read(`${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`);
+module.exports = function fixBundleIndentifier() {
+  const iosProjectContent = this.fs.read(
+    `${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`
+  );
   const replaceRegex = new RegExp(`PRODUCT_NAME = ${this.projectName};`, 'g');
   const fixedProjectContent = iosProjectContent.replace(
     replaceRegex,
@@ -14,6 +15,4 @@ module.exports = function () {
     '<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>'
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}/Info.plist`, fixedInfoContent);
-
-
-}
+};

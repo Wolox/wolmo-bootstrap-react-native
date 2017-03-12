@@ -1,13 +1,12 @@
 const Generator = require('yeoman-generator');
 
-const reactNativeCliInstall = require('./tasks/reactNativeCliInstall')
+const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
-const gitInitialization = require('./tasks/gitInitialization')
+const gitInitialization = require('./tasks/gitInitialization');
 
 class ReactNativeBootstrap extends Generator {
-
   constructor(args, opts) {
     super(args, opts);
 
@@ -26,37 +25,37 @@ class ReactNativeBootstrap extends Generator {
       {
         type: 'input',
         name: 'name',
-        message: 'What\'s your project name?',
-        validate: (val) => !!String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
-          ? true
-          : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
+        message: "What's your project name?",
+        validate: val =>
+          String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
+            ? true
+            : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
       },
       {
         type: 'checkbox',
         name: 'features',
-        message: 'What\'s features should this project include?',
-        choices: [ 'Login', 'Tabs', 'Drawer', 'Push Notifications' ],
-        filter: (values) => {
-          return values.reduce((answer, val) => {
-            answer[val.replace(/ /g, '').toLowerCase()] = true;
-            return answer;
-          }, {});
-        }
+        message: "What's features should this project include?",
+        choices: ['Login', 'Tabs', 'Drawer', 'Push Notifications'],
+        filter: values =>
+          values.reduce(
+            (answer, val) => {
+              answer[val.replace(/ /g, '').toLowerCase()] = true;
+              return answer;
+            },
+            {}
+          )
       }
-    ]).then((answers) => {
+    ]).then(answers => {
       this.projectName = answers.name;
       this.features = answers.features;
     });
   }
 
   configuring() {
-    return Promise.resolve().then(() => {
-      return reactNativeCliInstall.bind(this)();
-    }).then(() => {
-      return reactNativeInit.bind(this)();
-    }).then(() => {
-      return installDependencies.bind(this)();
-    });
+    return Promise.resolve()
+      .then(() => reactNativeCliInstall.bind(this)())
+      .then(() => reactNativeInit.bind(this)())
+      .then(() => installDependencies.bind(this)());
   }
 
   writing() {
@@ -66,6 +65,6 @@ class ReactNativeBootstrap extends Generator {
   end() {
     return gitInitialization.bind(this)();
   }
-};
+}
 
 module.exports = ReactNativeBootstrap;

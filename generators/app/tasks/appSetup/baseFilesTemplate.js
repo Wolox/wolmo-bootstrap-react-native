@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function baseFilesTemplate() {
   this.fs.copy(
     this.templatePath('src', 'config', 'api.js'),
     this.destinationPath(this.projectName, 'src', 'config', 'api.js')
@@ -11,10 +11,7 @@ module.exports = function () {
     this.templatePath('src', 'redux', 'store.js'),
     this.destinationPath(this.projectName, 'src', 'redux', 'store.js')
   );
-  this.fs.copy(
-    this.templatePath('main.js'),
-    this.destinationPath(this.projectName, 'main.js')
-  );
+  this.fs.copy(this.templatePath('main.js'), this.destinationPath(this.projectName, 'main.js'));
   this.fs.copyTpl(
     this.templatePath('src', 'config', 'ReactotronConfig.ejs'),
     this.destinationPath(this.projectName, 'src', 'config', 'ReactotronConfig.js'),
@@ -35,4 +32,4 @@ module.exports = function () {
     this.destinationPath(this.projectName, 'src', 'App.js'),
     { projectName: this.projectName }
   );
-}
+};

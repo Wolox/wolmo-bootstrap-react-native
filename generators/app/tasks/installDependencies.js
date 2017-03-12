@@ -1,6 +1,4 @@
-require('colors');
-const ora = require('ora');
-const spawn = require('child_process').spawn;
+const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   'apisauce',
@@ -33,24 +31,20 @@ const DEV_DEPENDENCIES = [
 ];
 
 function installDependencies(projectName, deps, options, dev) {
+  const yarnArgs = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps);
 
-  var runCommand = require('./runCommand');
-
-    const yarnArgs = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps)
-
-    return runCommand({
-      command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
-      loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
-      successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-      failureMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
-      context: options
-    });
-  }
-
-module.exports = function() {
-  return installDependencies(this.projectName, DEPENDENCIES, this.options).then(() => {
-    return installDependencies(this.projectName, DEV_DEPENDENCIES, this.options, true);
-  }).catch(() => {
-    process.exit(1);
+  return runCommand({
+    command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
+    loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
+    successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
+    failureMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+    context: options
   });
 }
+
+module.exports = () =>
+  installDependencies(this.projectName, DEPENDENCIES, this.options)
+    .then(() => installDependencies(this.projectName, DEV_DEPENDENCIES, this.options, true))
+    .catch(() => {
+      process.exit(1);
+    });
