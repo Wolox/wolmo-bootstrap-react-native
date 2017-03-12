@@ -14,6 +14,7 @@ module.exports = function () {
   package.scripts['coverage'] = "jest --coverage";
   package.scripts['android:build'] = "cd android && ./gradlew assembleRelease";
   package.scripts['android:install'] = "cd android && ./gradlew assembleRelease && ./gradlew installRelease";
+  package.scripts['precommit'] = "npm run lint";
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), package);
 
   // ----------------     eslint config file     ----------------
