@@ -46,9 +46,9 @@ function installDependencies(projectName, deps, options, dev) {
     });
   }
 
-module.exports = function(projectName, options) {
-  return installDependencies(projectName, DEPENDENCIES, options).then(() => {
-    return installDependencies(projectName, DEV_DEPENDENCIES, options, true);
+module.exports = function() {
+  return installDependencies(this.projectName, DEPENDENCIES, this.options).then(() => {
+    return installDependencies(this.projectName, DEV_DEPENDENCIES, this.options, true);
   }).catch(() => {
     process.exit(1);
   });

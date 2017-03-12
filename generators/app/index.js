@@ -27,7 +27,9 @@ class ReactNativeBootstrap extends Generator {
         type: 'input',
         name: 'name',
         message: 'What\'s your project name?',
-        validate: (val) => val && !/ /.test(val) ? true : 'The project name is required and can\'t contain spaces'
+        validate: (val) => !!String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
+          ? true
+          : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
       },
       {
         type: 'checkbox',
@@ -49,11 +51,11 @@ class ReactNativeBootstrap extends Generator {
 
   configuring() {
     return Promise.resolve().then(() => {
-      return reactNativeCliInstall(this.options);
+      return reactNativeCliInstall.bind(this)();
     }).then(() => {
-      return reactNativeInit(this.projectName, this.options)
+      return reactNativeInit.bind(this)();
     }).then(() => {
-      return installDependencies(this.projectName, this.options)
+      return installDependencies.bind(this)();
     });
   }
 

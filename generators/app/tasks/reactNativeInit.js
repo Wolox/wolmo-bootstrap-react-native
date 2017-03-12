@@ -1,11 +1,11 @@
 var runCommand = require('./runCommand');
 
-module.exports = function(projectName, options) {
+module.exports = function() {
   return runCommand({
-    command: ['react-native', ['init', projectName]],
+    command: ['react-native', ['init', this.projectName]],
     loadingMessage: 'Initializing react-native',
     successMessage: 'react-native ready!',
     failureMessage: 'react-native set up failed. Turn verbose mode on for detailed logging',
-    context: options
+    context: this.options
   });
 }
