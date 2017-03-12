@@ -4,6 +4,7 @@ const reactNativeCliInstall = require('./tasks/reactNativeCliInstall')
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const setupEslint = require('./tasks/setupEslint');
+const addPackageScripts = require('./tasks/addPackageScripts');
 
 class ReactNativeBootstrap extends Generator {
 
@@ -43,6 +44,7 @@ class ReactNativeBootstrap extends Generator {
 
   writing() {
     setupEslint.bind(this)(this.projectName);
+    addPackageScripts.bind(this)(this.projectName);
   }
 };
 
