@@ -1,7 +1,8 @@
+const ora = require('ora');
 
 // function to be binded to yeoman context
 module.exports = function () {
-  console.log('Creating project boilerplate...'.cyan);
+  const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
 
   this.fs.copy(
     this.templatePath('src', 'config', 'api.js'),
@@ -41,4 +42,5 @@ module.exports = function () {
     { projectName: this.projectName }
   );
 
+  spinner.succeed('Project boilerplate created!');
 }

@@ -1,3 +1,4 @@
+const ora = require('ora');
 const spawn = require('child_process').spawn;
 
 const DEPENDENCIES = [
@@ -59,10 +60,13 @@ function installDependencies(projectName, deps, options, dev) {
 }
 
 module.exports = function(projectName, options) {
-  console.log('Fetching dependencies...'.cyan);
+  const spinner = ora({ spinner: 'bouncingBall', text: 'Fetching dependencies' }).start();
   return installDependencies(projectName, DEPENDENCIES, options).then(() => {
     return installDependencies(projectName, DEV_DEPENDENCIES, options, true)
   }).then(() => {
-    console.log('Dependencies installation finished successfully'.green);
+    spinner.succeed('Dependencies installation finished successfully');
+  }).catch(() => {
+    spinner.fail('Dependencies installation failed. Turn verbose mode on for detailed logging');
+    process.exit(1);
   });
 }

@@ -1,7 +1,8 @@
+const ora = require('ora');
 
 // function to be binded to yeoman context
 module.exports = function () {
-  console.log('Adding package.json scripts...'.cyan);
+  const spinner = ora({ spinner: 'bouncingBall', text: 'Adding package.json scripts' }).start();
 
   const package = this.fs.readJSON(this.destinationPath(this.projectName, 'package.json'));
 
@@ -14,4 +15,6 @@ module.exports = function () {
   package.scripts['android:install'] = "cd android && ./gradlew assembleRelease && ./gradlew installRelease";
 
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), package);
+
+  spinner.succeed('package.json ready!');
 }

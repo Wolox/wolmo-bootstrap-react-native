@@ -1,7 +1,8 @@
+const ora = require('ora');
 const spawn = require('child_process').spawn;
 
 module.exports = function(projectName, options) {
-  console.log('Setting up react-native...'.cyan);
+  const spinner = ora({ spinner: 'bouncingBall', text: 'Setting up react-native' }).start();
   return new Promise(function (resolve, reject) {
     const command = spawn('react-native', ['init', projectName]);
 
@@ -20,10 +21,10 @@ module.exports = function(projectName, options) {
 
     command.on('close', (code) => {
       if (code === 0) {
-        console.log('react-native set up finished successfully'.green);
+        spinner.succeed('react-native set up finished successfully');
         resolve();
       } else {
-        console.log('react-native set up failed. Turn verbose mode on for detailed logging'.red);
+        spinner.fail('react-native set up failed. Turn verbose mode on for detailed logging');
         reject();
       }
     });

@@ -1,8 +1,9 @@
-require('colors');
+const ora = require('ora');
 const spawn = require('child_process').spawn;
 
 module.exports = function(options) {
-  console.log('Installing react-native-cli...'.cyan);
+  const spinner = ora({ spinner: 'bouncingBall', text: 'Installing react-native-cli' }).start();
+
   return new Promise(function (resolve, reject) {
     const command = spawn('yarn', ['global', 'add', 'react-native-cli']);
 
@@ -21,10 +22,10 @@ module.exports = function(options) {
 
     command.on('close', (code) => {
       if (code === 0) {
-        console.log('Latest react-native-cli installed'.green);
+        spinner.succeed('Latest react-native-cli installed');
         resolve();
       } else {
-        console.log('react-native-cli install failed. Turn verbose mode on for detailed logging'.red);
+        spinner.fail('react-native-cli install failed. Turn verbose mode on for detailed logging');
         reject();
       }
     });
