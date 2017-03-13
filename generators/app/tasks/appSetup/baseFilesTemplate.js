@@ -10,9 +10,10 @@ module.exports = function baseFilesTemplate() {
     this.destinationPath(this.projectName, 'src', 'config', 'index.js')
   );
   // src/redux/store.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'store.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'store.js')
+  this.fs.copyTpl(
+    this.templatePath('src', 'redux', 'store.ejs'),
+    this.destinationPath(this.projectName, 'src', 'redux', 'store.js'),
+    { features: this.features }
   );
   // main.js
   this.fs.copy(this.templatePath('main.js'), this.destinationPath(this.projectName, 'main.js'));
@@ -38,7 +39,7 @@ module.exports = function baseFilesTemplate() {
   this.fs.copyTpl(
     this.templatePath('src', 'App.ejs'),
     this.destinationPath(this.projectName, 'src', 'App.js'),
-    { projectName: this.projectName }
+    { projectName: this.projectName, features: this.features }
   );
   // src/utils/constants.js
   this.fs.copy(

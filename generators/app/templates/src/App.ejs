@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 
-export default function App() {
-  return (
-    <View style={{ padding: 40 }}>
-      <Text>
-        <%= projectName %>
-      </Text>
-    </View>
-  );
+import { apiSetUp } from './config/api';
+<%_ if(features.pushnotifications) { _%>
+import configPushNotifications from './config/PushNotifications';
+<%_ } _%>
+
+class App extends Component {
+  componentWillMount() {
+    <%_ if(features.pushnotifications) { _%>
+    configPushNotifications(this.props.dispatch);
+    <%_ } _%>
+    apiSetUp(this.props.dispatch);
+  }
+
+  render() {
+    return (
+      <View style={{ padding: 40 }}>
+        <Text>
+          <%= projectName %>
+        </Text>
+      </View>
+    );
+  }
 }
+
+export default connect()(App);

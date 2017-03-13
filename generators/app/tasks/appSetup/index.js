@@ -4,6 +4,7 @@ const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const fixBundleIdentifier = require('./fixBundleIdentifier');
+const pushNotificationsSetup = require('./pushNotificationsSetup');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -19,6 +20,11 @@ module.exports = function index() {
 
   // ----------------     fix bundle identifier     ----------------
   fixBundleIdentifier.bind(this)();
+
+  // ----------------     features     ----------------
+  if (this.features.pushnotifications) {
+    pushNotificationsSetup.bind(this)();
+  }
 
   spinner.succeed('Boilerplate ready!');
 };

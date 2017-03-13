@@ -29,7 +29,7 @@ const DEV_DEPENDENCIES = [
   'jest-react-native'
 ];
 
-function installDependencies(projectName, deps, options, dev) {
+function yarnInstall(projectName, deps, options, dev) {
   const yarnArgs = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps);
 
   return runCommand({
@@ -41,9 +41,13 @@ function installDependencies(projectName, deps, options, dev) {
   });
 }
 
-module.exports = () =>
-  installDependencies(this.projectName, DEPENDENCIES, this.options)
-    .then(() => installDependencies(this.projectName, DEV_DEPENDENCIES, this.options, true))
+module.exports = function installDependencies() {
+  if (this.features.pushnotifications) {
+    DEPENDENCIES.push('react-native-push-notification');
+  }
+  return yarnInstall(this.projectName, DEPENDENCIES, this.options)
+    .then(() => yarnInstall(this.projectName, DEV_DEPENDENCIES, this.options, true))
     .catch(() => {
       process.exit(1);
     });
+};

@@ -11,6 +11,5 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts[
     'android:install'
   ] = 'cd android && ./gradlew assembleRelease && ./gradlew installRelease';
-  packageJson.scripts.precommit = 'npm run lint';
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };

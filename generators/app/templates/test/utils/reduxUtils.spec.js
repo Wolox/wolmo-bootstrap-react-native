@@ -1,4 +1,4 @@
-import { stringArrayToObject } from '../../src/redux/reduxUtils';
+import { stringArrayToObject } from '../../src/utils/reduxUtils';
 
 describe('#ReduxUtils', () => {
   describe('#stringArrayToObject', () => {

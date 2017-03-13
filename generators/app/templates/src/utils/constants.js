@@ -1,19 +1,19 @@
 import { Platform, StatusBar, Dimensions } from 'react-native';
 
-exports.isAndroid = Platform.OS === 'android';
-exports.isIos = Platform.OS === 'ios';
+export const isAndroid = Platform.OS === 'android';
+export const isIos = Platform.OS === 'ios';
 
 const IOS_STATUS_BAR_HEIGHT = 20;
-exports.STATUS_BAR_HEIGHT = exports.isIos ? IOS_STATUS_BAR_HEIGHT : StatusBar.currentHeight;
-exports.STATUS_BAR_IS_FIXED = exports.isAndroid && Platform.Version < 21;
-exports.ACTION_BAR_HEIGHT = exports.STATUS_BAR_IS_FIXED ? 74 : 64;
-exports.TABBAR_HEIGHT = 50;
+export const STATUS_BAR_HEIGHT = isIos ? IOS_STATUS_BAR_HEIGHT : StatusBar.currentHeight;
+export const STATUS_BAR_IS_FIXED = isAndroid && Platform.Version < 21;
+export const ACTION_BAR_HEIGHT = STATUS_BAR_IS_FIXED ? 74 : 64;
+export const TABBAR_HEIGHT = 50;
 
 const windowDimensions = Dimensions.get('window');
-exports.WINDOW_HEIGHT = windowDimensions.height;
-exports.WINDOW_WIDTH = windowDimensions.width;
+export const WINDOW_HEIGHT = windowDimensions.height;
+export const WINDOW_WIDTH = windowDimensions.width;
 
-exports.VIEWPORT_HEIGHT = exports.WINDOW_HEIGHT -
-  exports.TABBAR_HEIGHT -
-  exports.ACTION_BAR_HEIGHT -
-  (exports.STATUS_BAR_IS_FIXED ? exports.STATUS_BAR_HEIGHT : 0);
+export const VIEWPORT_HEIGHT = WINDOW_HEIGHT -
+  TABBAR_HEIGHT -
+  ACTION_BAR_HEIGHT -
+  (STATUS_BAR_IS_FIXED ? STATUS_BAR_HEIGHT : 0);

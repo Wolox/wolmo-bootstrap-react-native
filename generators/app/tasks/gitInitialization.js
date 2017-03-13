@@ -8,19 +8,20 @@ module.exports = function gitInitialization() {
     context: this.options
   })
     .then(spinner =>
-    // git commit -m 'Kickoff!'
+    // git add .
       runCommand({
         command: ['git', ['add', '.'], { cwd: `${process.cwd()}/${this.projectName}` }],
         context: this.options
       })
-        .then(() => {
+        .then(() =>
+          // git commit -m 'Kickoff!'
           runCommand({
             command: ['git', ['commit', '-m', '"Kickoff!"'], { cwd: `${process.cwd()}/${this.projectName}` }],
             context: this.options
           }).then(() => {
             // check if the user wants to initialiaze the remote repository too
             spinner.stop();
-            this.prompt([
+            return this.prompt([
               {
                 type: 'confirm',
                 name: 'pushToRepo',
@@ -39,6 +40,7 @@ module.exports = function gitInitialization() {
                     validate: val => val ? true : 'Repository url is required to initialize it'
                   }
                 ]).then(({ repoUrl }) => {
+                  this.repoUrl = repoUrl;
                   spinner.start();
                   // git remote add origin <url>
                   return runCommand({
@@ -63,8 +65,7 @@ module.exports = function gitInitialization() {
                 });
               }
             });
-          });
-        })
+          }))
         .catch(() => {
           spinner.fail('Some git command failed. Turn verbose mode on for detailed logging');
         }))
