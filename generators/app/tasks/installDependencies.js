@@ -2,7 +2,6 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   'apisauce',
-  'react-native-fabric',
   'react-native-renavigate',
   'react-redux',
   'reactotron-apisauce',
