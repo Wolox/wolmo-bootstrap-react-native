@@ -9,6 +9,7 @@ const spawn = require('child_process').spawn;
  * - successMessage {string}: Message shown when the command finishes successfuly
  * - failureMessage {string}: Message shown when the command fails
  * - context {obj}: Yeoman context options and arguments
+ * - timeout {int}: Time in millis that will be waited after the last console output to kill the process
  *
  * Returns a promise that resolves to the loading spinner if the loading message is present
  */
@@ -19,13 +20,35 @@ module.exports = function runCommand(options) {
   return new Promise((resolve, reject) => {
     const command = spawn(...options.command);
 
+    let killTimeout;
+    let processKilled;
+    function killProcess() {
+      command.kill();
+      processKilled = true;
+      clearTimeout(killTimeout);
+    }
+    function refreshKillTimeout() {
+      clearTimeout(killTimeout);
+      killTimeout = setTimeout(killProcess, options.timeout);
+    }
+
+    if (options.timeout) {
+      refreshKillTimeout();
+    }
+
     command.stdout.on('data', data => {
+      if (options.timeout) {
+        refreshKillTimeout();
+      }
       if (options.context && options.context.verbose && data) {
         console.log(data.toString());
       }
     });
 
     command.stderr.on('data', data => {
+      if (options.timeout) {
+        refreshKillTimeout();
+      }
       if (options.context && options.context.verbose && data) {
         const msg = data.toString();
         console.log(/warning/.test(msg) ? msg.yellow : msg.red);
@@ -33,7 +56,10 @@ module.exports = function runCommand(options) {
     });
 
     command.on('close', code => {
-      if (code === 0) {
+      if (options.timeout) {
+        clearTimeout(killTimeout);
+      }
+      if (code === 0 || processKilled) {
         if (spinner && options.successMessage) {
           spinner.succeed(options.successMessage);
         }
