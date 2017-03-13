@@ -1,6 +1,6 @@
 {
   "name": "generator-wolmo-bootstrap-rn",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "",
   "files": [
     "generators"
@@ -10,8 +10,9 @@
   ],
   "scripts": {
     "lint" : "eslint .",
+    "lint-diff" : "git diff --name-only --cached --relative | grep \\.js$ | xargs eslint",
     "lint-fix" : "eslint . --fix",
-    "precommit" : "npm run lint"
+    "precommit" : "npm run lint-diff"
   },
   "dependencies": {
     "colors": "^1.1.2",
