@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { apiSetUp } from './config/api';
+import { apiSetup } from './config/api';
 <%_ if(features.pushnotifications) { _%>
 import configPushNotifications from './config/PushNotifications';
+<%_ } _%>
+<%_ if(features.login) { _%>
+import { authSetup } from './services/AuthService';
 <%_ } _%>
 
 class App extends Component {
@@ -12,9 +15,23 @@ class App extends Component {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(this.props.dispatch);
     <%_ } _%>
-    apiSetUp(this.props.dispatch);
+    <%_ if(features.login) { _%>
+    authSetup(this.props.dispatch);
+    <%_ } _%>
+    apiSetup(this.props.dispatch);
   }
 
+  <%_ if(features.login) { _%>
+  render() {
+    const loadingComponent = <View style={{ padding: 40 }}><Text>Loading...</Text></View>;
+    const loginComponent = <View style={{ padding: 40 }}><Text>Login...</Text></View>;
+    const appComponent = <View style={{ padding: 40 }}><Text>App...</Text></View>;
+
+    return this.props.initialLoading
+      ? loadingComponent
+      : this.props.currentUser ? appComponent : loginComponent;
+  }
+  <%_ } else { _%>
   render() {
     return (
       <View style={{ padding: 40 }}>
@@ -24,6 +41,23 @@ class App extends Component {
       </View>
     );
   }
+  <%_ } _%>
 }
 
+<%_ if(features.login) { _%>
+App.propTypes = {
+  initialLoading: React.PropTypes.bool,
+  currentUser: React.PropTypes.shape({
+    sessionToken: React.PropTypes.string.isRequired
+  })
+};
+
+const mapStateToProps = store => ({
+  currentUser: store.auth.currentUser,
+  initialLoading: store.auth.initialLoading
+});
+
+export default connect(mapStateToProps)(App);
+<%_ } else { _%>
 export default connect()(App);
+<%_ } _%>

@@ -14,7 +14,7 @@ const api = create({
 
 api.addMonitor(Reactotron.apisauce);
 
-export const apiSetUp = dispatch => { // eslint-disable-line no-unused-vars, prettier/prettier
+export const apiSetup = dispatch => { // eslint-disable-line no-unused-vars, prettier/prettier
   api.addMonitor(response => {
     if (response.status === 401) {
       // dispatch(actions.sessionExpired());
