@@ -30,4 +30,5 @@ module.exports = function reactNativeLink() {
       `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`.cyan
     );
   }
+  console.log('\n\n');
 };
