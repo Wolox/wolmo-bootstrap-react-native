@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "lint" : "eslint .",
-    "lint-diff" : "git diff --name-only --cached --relative | grep \\.js$ | xargs eslint",
+    "lint-diff" : "git diff --name-only --cached --relative | grep \\\\.js$ | xargs eslint",
     "lint-fix" : "eslint . --fix",
     "precommit" : "npm run lint-diff"
   },
