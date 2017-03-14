@@ -51,6 +51,11 @@ module.exports = function baseFilesTemplate() {
     this.templatePath('src', 'utils', 'reduxUtils.js'),
     this.destinationPath(this.projectName, 'src', 'utils', 'reduxUtils.js')
   );
+  // src/utils/colors.js
+  this.fs.copy(
+    this.templatePath('src', 'utils', 'colors.js'),
+    this.destinationPath(this.projectName, 'src', 'utils', 'colors.js')
+  );
   // test/utils/reduxUtils.spec.js
   this.fs.copy(
     this.templatePath('test', 'utils', 'reduxUtils.spec.js'),
