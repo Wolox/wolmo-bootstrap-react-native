@@ -30,5 +30,14 @@ module.exports = function reactNativeLink() {
       `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`.cyan
     );
   }
+
+  if (this.features.login) {
+    // login next steps
+    console.log('● A basic login feature has been added. The probably next steps there are:'.cyan);
+    console.log('  Add proper validations and styles to the login form'.cyan);
+    console.log('  Integrate login and logout with API'.cyan);
+    console.log('  Sign up?'.cyan);
+  }
+
   console.log('\n\n');
 };
