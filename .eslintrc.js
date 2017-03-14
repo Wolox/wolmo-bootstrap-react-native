@@ -34,6 +34,8 @@ module.exports = {
     "consistent-return": "off",
     "no-return-assign": "off",
     "no-param-reassign": "off",
+    "no-nested-ternary": "off",
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
     "react/prop-types": [2, { ignore: ["style", "children", "dispatch"] } ],
     "import/prefer-default-export": "off",
