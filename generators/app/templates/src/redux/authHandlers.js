@@ -7,10 +7,10 @@ import { stringArrayToObject } from '../utils/reduxUtils';
 /* ------------- Auth actions ------------- */
 
 export const actions = stringArrayToObject([
-  'SIGN_IN',
-  'SIGN_IN_SUCCESS',
-  'SIGN_IN_FAILURE',
-  'SIGN_OUT',
+  'LOGIN',
+  'LOGIN_SUCCESS',
+  'LOGIN_FAILURE',
+  'LOGOUT',
   'AUTH_INIT'
 ]);
 
@@ -21,31 +21,37 @@ export const actionCreators = {
       payload: { user }
     };
   },
-  signIn(authData) {
+  login(authData) {
     return async dispatch => {
-      dispatch({ type: actions.SIGN_IN });
+      // TODO: Call api here
+      authData = authData || {};
+      authData.sessionToken = 'token';
+
+      dispatch({ type: actions.LOGIN });
       try {
         await setCurrentUser(authData);
-        dispatch(actionCreators.signInSuccess(authData));
+        await new Promise(resolve => setTimeout(resolve, 750));
+        dispatch(actionCreators.loginSuccess(authData));
       } catch (e) {
-        dispatch(actionCreators.signInFailure());
+        dispatch(actionCreators.loginFailure(e));
       }
     };
   },
-  signInSuccess(authData) {
+  loginSuccess(authData) {
     return {
-      type: actions.SIGN_IN_SUCCESS,
+      type: actions.LOGIN_SUCCESS,
       payload: { authData }
     };
   },
-  signInFailure() {
+  loginFailure(err) {
     return {
-      type: actions.SIGN_IN_FAILURE
+      type: actions.LOGIN_FAILURE,
+      payload: { err }
     };
   },
-  signOut() {
+  logout() {
     return {
-      type: actions.SIGN_OUT
+      type: actions.LOGOUT
     };
   }
 };
@@ -63,14 +69,17 @@ export function reducer(state = Immutable(defaultState), action) {
     case actions.AUTH_INIT: {
       return state.merge({ initialLoading: false, currentUser: Immutable(action.payload.user) });
     }
-    case actions.SIGN_IN: {
+    case actions.LOGIN: {
       return state.merge({ loading: true });
     }
-    case actions.SIGN_IN_SUCCESS: {
+    case actions.LOGIN_SUCCESS: {
       return state.merge({ loading: false, currentUser: Immutable(action.payload.authData) });
     }
-    case actions.SIGN_IN_FAILURE: {
-      return state.merge({ loading: false, currentUser: null, err: true });
+    case actions.LOGIN_FAILURE: {
+      return state.merge({ loading: false, currentUser: null, err: Immutable(action.payload.err) });
+    }
+    case actions.LOGOUT: {
+      return state.merge({ loading: false, currentUser: null });
     }
     default: {
       return state;
