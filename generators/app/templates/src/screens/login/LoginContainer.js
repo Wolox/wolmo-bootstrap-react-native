@@ -14,16 +14,8 @@ class LoginContainer extends Component {
   };
 
   render() {
-    return <Login onLogin={this.handleLogin} loading={this.props.loading} />;
+    return <Login onLogin={this.handleLogin} />;
   }
 }
 
-LoginContainer.propTypes = {
-  loading: React.PropTypes.bool
-};
-
-const mapStateToProps = store => ({
-  loading: store.auth.loading
-});
-
-export default connect(mapStateToProps)(LoginContainer);
+export default connect()(LoginContainer);

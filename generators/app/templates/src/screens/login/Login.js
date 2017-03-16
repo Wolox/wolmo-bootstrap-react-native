@@ -1,37 +1,25 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
-import { green, blue, transparent } from '../../utils/colors';
+import { transparent } from '../../utils/colors';
+import styles from './Login.styles';
 
-export default function Login({ onLogin, loading }) {
+export default function Login({ onLogin }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <View style={{ backgroundColor: transparent, borderBottomColor: blue, borderBottomWidth: 1 }}>
-        <TextInput
-          underlineColorAndroid={'transparent'}
-          placeholder={'Username'}
-          style={{ padding: 3, margin: 5, backgroundColor: transparent, height: 30, width: 200 }}
-        />
+    <View style={styles.container}>
+      <View style={styles.formElementContainer}>
+        <TextInput underlineColorAndroid={transparent} placeholder={'Username'} style={styles.formElement} />
       </View>
-      <View style={{ backgroundColor: transparent, borderBottomColor: blue, borderBottomWidth: 1 }}>
-        <TextInput
-          underlineColorAndroid={'transparent'}
-          placeholder={'Password'}
-          style={{ padding: 3, margin: 5, backgroundColor: transparent, height: 30, width: 200 }}
-        />
+      <View style={styles.formElementContainer}>
+        <TextInput underlineColorAndroid={transparent} placeholder={'Password'} style={styles.formElement} />
       </View>
-      <TouchableOpacity
-        onPress={onLogin}
-        style={{ backgroundColor: green, padding: 10, borderRadius: 3, margin: 20 }}
-      >
+      <TouchableOpacity onPress={onLogin} style={styles.formButton}>
         <Text>Login!</Text>
       </TouchableOpacity>
-      {loading ? <Text>Loading...</Text> : null}
     </View>
   );
 }
 
 Login.propTypes = {
-  loading: React.PropTypes.bool,
   onLogin: React.PropTypes.func.isRequired
 };

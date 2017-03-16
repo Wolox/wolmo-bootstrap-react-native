@@ -59,6 +59,12 @@ module.exports = function baseFilesTemplate() {
     this.destinationPath(this.projectName, 'src', 'screens', 'dashboard', 'Dashboard.js'),
     { projectName: this.projectName, features: this.features }
   );
+  // src/screens/dashboard/Dashboard.styles.js
+  this.fs.copyTpl(
+    this.templatePath('src', 'screens', 'dashboard', 'Dashboard.styles.js'),
+    this.destinationPath(this.projectName, 'src', 'screens', 'dashboard', 'Dashboard.styles.js'),
+    { projectName: this.projectName, features: this.features }
+  );
   // src/utils/constants.js
   this.fs.copy(
     this.templatePath('src', 'utils', 'constants.js'),

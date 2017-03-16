@@ -24,4 +24,9 @@ module.exports = function pushNotificationsSetup() {
     this.templatePath('src', 'screens', 'login', 'Login.js'),
     this.destinationPath(this.projectName, 'src', 'screens', 'login', 'Login.js')
   );
+  // src/screens/login/Login.styles.js
+  this.fs.copy(
+    this.templatePath('src', 'screens', 'login', 'Login.styles.js'),
+    this.destinationPath(this.projectName, 'src', 'screens', 'login', 'Login.styles.js')
+  );
 };
