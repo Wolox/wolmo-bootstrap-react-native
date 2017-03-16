@@ -9,11 +9,6 @@ module.exports = function pushNotificationsSetup() {
     this.templatePath('src', 'services', 'AuthService.js'),
     this.destinationPath(this.projectName, 'src', 'services', 'AuthService.js')
   );
-  // src/screens/dashboard/Dashboard.js
-  this.fs.copy(
-    this.templatePath('src', 'screens', 'dashboard', 'Dashboard.js'),
-    this.destinationPath(this.projectName, 'src', 'screens', 'dashboard', 'Dashboard.js')
-  );
   // src/screens/dashboard/DashboardContainer.js
   this.fs.copy(
     this.templatePath('src', 'screens', 'dashboard', 'DashboardContainer.js'),

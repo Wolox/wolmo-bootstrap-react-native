@@ -1,0 +1,63 @@
+// https://github.com/react-community/react-navigation/issues/458
+// once that issue is resolved, the initial loading screen is no longer needed and should be removed
+//  in favour of setting the initialRoute as a prop of the navigator
+
+import React from 'react';
+import { connect } from 'react-redux';
+import { <% if(features.login) { %>NavigationActions, <% } %>addNavigationHelpers, StackNavigator } from 'react-navigation';
+
+import screens from './screens';
+
+<%_ if(features.login) { _%>
+// ------------------ Initial loading screen
+const InitialLoadingScreen = props => {
+  if (!props.initialLoading) {
+    props.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: props.currentUser ? 'Dashboard' : 'Login' })]
+      })
+    );
+  }
+  return null;
+};
+InitialLoadingScreen.propTypes = {
+  initialLoading: React.PropTypes.bool,
+  currentUser: React.PropTypes.shape({
+    sessionToken: React.PropTypes.string.isRequired
+  })
+};
+const loadingScreenMapStateToProps = store => ({
+  currentUser: store.auth.currentUser,
+  initialLoading: store.auth.initialLoading
+});
+const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(InitialLoadingScreen);
+// ------------------ Initial loading screen end
+
+export const Navigator = StackNavigator(
+  {
+    ...screens,
+    InitialLoading: {
+      screen: InitialLoadingScreenContainer
+    }
+  },
+  {
+    initialRouteName: 'InitialLoading'
+  }
+);
+<%_ } else { _%>
+export const Navigator = StackNavigator(screens);
+<%_ } _%>
+
+const AppNavigator = props => {
+  const { dispatch, nav, ...navigatorProps } = props;
+  return <Navigator {...navigatorProps} navigation={addNavigationHelpers({ dispatch, state: nav })} />;
+};
+
+AppNavigator.propTypes = {
+  nav: React.PropTypes.any // eslint-disable-line react/forbid-prop-types
+};
+
+const mapStateToProps = store => ({ nav: store.nav });
+
+export default connect(mapStateToProps)(AppNavigator);

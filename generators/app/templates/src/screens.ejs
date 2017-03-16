@@ -1,0 +1,15 @@
+<%_ if(features.login) { _%>
+import LoginContainer from './screens/login/LoginContainer';
+import DashboardContainer from './screens/dashboard/DashboardContainer';
+<%_ } else { _%>
+import Dashboard from './screens/dashboard/Dashboard';
+<%_ } _%>
+
+export default {
+  <%_ if(features.login) { _%>
+  Login: { screen: LoginContainer },
+  Dashboard: { screen: DashboardContainer }
+  <%_ } else { _%>
+  Dashboard: { screen: Dashboard }
+  <%_ } _%>
+};

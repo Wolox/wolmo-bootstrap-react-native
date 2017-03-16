@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { actionCreators as authActions } from '../../redux/authHandlers';
 import Dashboard from './Dashboard';
 
-class LogoutContainer extends Component {
+class DashboardContainer extends Component {
+  static navigationOptions = {
+    title: 'Dashboard'
+  };
+
   handleLogout = () => {
     this.props.dispatch(authActions.logout());
   };
@@ -14,4 +18,4 @@ class LogoutContainer extends Component {
   }
 }
 
-export default connect()(LogoutContainer);
+export default connect()(DashboardContainer);

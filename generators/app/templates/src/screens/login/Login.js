@@ -8,14 +8,16 @@ export default function Login({ onLogin, loading }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={{ backgroundColor: transparent, borderBottomColor: blue, borderBottomWidth: 1 }}>
         <TextInput
+          underlineColorAndroid={'transparent'}
           placeholder={'Username'}
-          style={{ padding: 5, backgroundColor: transparent, height: 24, width: 200 }}
+          style={{ padding: 3, margin: 5, backgroundColor: transparent, height: 30, width: 200 }}
         />
       </View>
       <View style={{ backgroundColor: transparent, borderBottomColor: blue, borderBottomWidth: 1 }}>
         <TextInput
+          underlineColorAndroid={'transparent'}
           placeholder={'Password'}
-          style={{ padding: 5, backgroundColor: transparent, height: 24, width: 200 }}
+          style={{ padding: 3, margin: 5, backgroundColor: transparent, height: 30, width: 200 }}
         />
       </View>
       <TouchableOpacity

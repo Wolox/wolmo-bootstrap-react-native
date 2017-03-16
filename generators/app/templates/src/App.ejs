@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { apiSetup } from './config/api';
+import AppNavigator from './AppNavigator';
 <%_ if(features.pushnotifications) { _%>
 import configPushNotifications from './config/PushNotifications';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { authSetup } from './services/AuthService';
-import LoginContainer from './screens/login/LoginContainer';
-import DashboardContainer from './screens/dashboard/DashboardContainer';
 <%_ } _%>
 
 class App extends Component {
@@ -23,43 +21,9 @@ class App extends Component {
     apiSetup(this.props.dispatch);
   }
 
-  <%_ if(features.login) { _%>
   render() {
-    const loadingComponent = <View style={{ padding: 40 }}><Text>Loading...</Text></View>;
-    const loginComponent = <LoginContainer />;
-    const appComponent = <DashboardContainer />;
-
-    return this.props.initialLoading
-      ? loadingComponent
-      : this.props.currentUser ? appComponent : loginComponent;
+    return <AppNavigator />;
   }
-  <%_ } else { _%>
-  render() {
-    return (
-      <View style={{ padding: 40 }}>
-        <Text>
-          <%= projectName %>
-        </Text>
-      </View>
-    );
-  }
-  <%_ } _%>
 }
 
-<%_ if(features.login) { _%>
-App.propTypes = {
-  initialLoading: React.PropTypes.bool,
-  currentUser: React.PropTypes.shape({
-    sessionToken: React.PropTypes.string.isRequired
-  })
-};
-
-const mapStateToProps = store => ({
-  currentUser: store.auth.currentUser,
-  initialLoading: store.auth.initialLoading
-});
-
-export default connect(mapStateToProps)(App);
-<%_ } else { _%>
 export default connect()(App);
-<%_ } _%>

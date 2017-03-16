@@ -1,17 +1,17 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
-import { reducer as navigation } from 'react-native-renavigate';
 
+import { Navigator } from '../AppNavigator';
 <%_ if(features.login) { _%>
 import { reducer as auth } from './authHandlers';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
 import { reducer as pushNotifications } from './pushNotificationHandlers';
 <%_ } _%>
-<%_ if(features.pushnotifications || features.login) { _%>
 
-<%_ } _%>
+const nav = (state, action) => Navigator.router.getStateForAction(action, state) || state;
+
 const reducers = combineReducers({
   <%_ if(features.pushnotifications) { _%>
   pushNotifications,
@@ -19,7 +19,7 @@ const reducers = combineReducers({
   <%_ if(features.login) { _%>
   auth,
   <%_ } _%>
-  navigation
+  nav
 });
 
 const middlewares = [];

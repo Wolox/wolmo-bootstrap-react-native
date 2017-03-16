@@ -1,7 +1,8 @@
 import React from 'react';
 import Immutable from 'seamless-immutable';
+import { NavigationActions } from 'react-navigation';
 
-import { setCurrentUser } from '../services/AuthService';
+import { setCurrentUser, removeCurrentUser } from '../services/AuthService';
 import { stringArrayToObject } from '../utils/reduxUtils';
 
 /* ------------- Auth actions ------------- */
@@ -32,6 +33,12 @@ export const actionCreators = {
         await setCurrentUser(authData);
         await new Promise(resolve => setTimeout(resolve, 750));
         dispatch(actionCreators.loginSuccess(authData));
+        dispatch(
+          NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Dashboard' })]
+          })
+        );
       } catch (e) {
         dispatch(actionCreators.loginFailure(e));
       }
@@ -50,8 +57,15 @@ export const actionCreators = {
     };
   },
   logout() {
-    return {
-      type: actions.LOGOUT
+    return async dispatch => {
+      await removeCurrentUser();
+      dispatch({ type: actions.LOGOUT });
+      dispatch(
+        NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Login' })]
+        })
+      );
     };
   }
 };

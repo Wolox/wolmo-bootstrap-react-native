@@ -7,7 +7,7 @@ export const setCurrentUser = async currentUser => {
   api.setHeader('Authorization', currentUser.sessionToken);
   return AsyncStorage.setItem('@Auth:currentUser', JSON.stringify(currentUser));
 };
-export const getCurrentUser = async () => AsyncStorage.getItem('@Auth:currentUser');
+export const getCurrentUser = async () => AsyncStorage.getItem('@Auth:currentUser').then(JSON.parse);
 export const removeCurrentUser = async () => AsyncStorage.removeItem('@Auth:currentUser');
 
 export const authSetup = async dispatch => {

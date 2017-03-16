@@ -1,0 +1,32 @@
+import React from 'react';
+import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
+
+import { green } from '../../utils/colors';
+
+<%_ if(features.login) { _%>
+export default function Dashboard({ onLogout }) {
+<%_ } else { _%>
+export default function Dashboard() {
+<%_ } _%>
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <%_ if(features.login) { _%>
+      <TouchableOpacity onPress={onLogout} style={{ backgroundColor: green, padding: 10, borderRadius: 3 }}>
+        <Text>Logout!</Text>
+      </TouchableOpacity>
+      <%_ } else { _%>
+      <Text style={{ backgroundColor: green, padding: 10, borderRadius: 3 }}><%= projectName %></Text>
+      <%_ } _%>
+    </View>
+  );
+}
+
+<%_ if(!features.login) { _%>
+Dashboard.navigationOptions = {
+  title: 'Dashboard'
+};
+
+<%_ } _%>
+Dashboard.propTypes = {
+  onLogout: React.PropTypes.func.isRequired
+};
