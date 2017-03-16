@@ -36,7 +36,7 @@ module.exports = {
     "no-param-reassign": "off",
     "no-nested-ternary": "off",
     "react/require-default-props": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".ejs"] }],
     "react/prop-types": [2, { ignore: ["style", "children", "dispatch"] } ],
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",

@@ -21,12 +21,12 @@ export default function Dashboard() {
   );
 }
 
-<%_ if(!features.login) { _%>
-Dashboard.navigationOptions = {
-  title: 'Dashboard'
-};
-
-<%_ } _%>
+<%_ if (features.login) { _%>
 Dashboard.propTypes = {
   onLogout: React.PropTypes.func.isRequired
 };
+<%_ } else { _%>
+Dashboard.navigationOptions = {
+  title: 'Dashboard'
+};
+<%_ } _%>

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 
-import { Navigator } from '../AppNavigator';
+import Navigator from '../screens';
 <%_ if(features.login) { _%>
 import { reducer as auth } from './authHandlers';
 <%_ } _%>

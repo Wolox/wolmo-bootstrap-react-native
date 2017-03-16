@@ -43,7 +43,7 @@ module.exports = function baseFilesTemplate() {
   );
   // src/AppNavigator.js
   this.fs.copyTpl(
-    this.templatePath('src', 'AppNavigator.ejs'),
+    this.templatePath('src', 'AppNavigator.js'),
     this.destinationPath(this.projectName, 'src', 'AppNavigator.js'),
     { projectName: this.projectName, features: this.features }
   );

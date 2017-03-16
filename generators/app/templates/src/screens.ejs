@@ -1,3 +1,13 @@
+// https://github.com/react-community/react-navigation/issues/458
+// once that issue is resolved, the initial loading screen is no longer needed and should be removed
+//  in favour of setting the initialRoute as a prop of the navigator
+
+<%_ if(features.login) { _%>
+import React from 'react';
+import { connect } from 'react-redux';
+<%_ } _%>
+import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
+
 <%_ if(features.login) { _%>
 import LoginContainer from './screens/login/LoginContainer';
 import DashboardContainer from './screens/dashboard/DashboardContainer';
@@ -5,11 +15,39 @@ import DashboardContainer from './screens/dashboard/DashboardContainer';
 import Dashboard from './screens/dashboard/Dashboard';
 <%_ } _%>
 
-export default {
+<%_ if(features.login) { _%>
+// ------------------ Initial loading screen
+const InitialLoadingScreen = props => {
+  if (!props.initialLoading) {
+    props.dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: props.currentUser ? 'Dashboard' : 'Login' })]
+      })
+    );
+  }
+  return null;
+};
+InitialLoadingScreen.propTypes = {
+  initialLoading: React.PropTypes.bool,
+  currentUser: React.PropTypes.shape({
+    sessionToken: React.PropTypes.string.isRequired
+  })
+};
+const loadingScreenMapStateToProps = store => ({
+  currentUser: store.auth.currentUser,
+  initialLoading: store.auth.initialLoading
+});
+const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(InitialLoadingScreen);
+// ------------------ Initial loading screen end
+
+<%_ } _%>
+export default StackNavigator({
   <%_ if(features.login) { _%>
   Login: { screen: LoginContainer },
-  Dashboard: { screen: DashboardContainer }
+  Dashboard: { screen: DashboardContainer },
+  InitialLoading: { screen: InitialLoadingScreenContainer }
   <%_ } else { _%>
   Dashboard: { screen: Dashboard }
   <%_ } _%>
-};
+});
