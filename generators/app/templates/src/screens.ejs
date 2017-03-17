@@ -43,10 +43,38 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 
 <%_ } _%>
 export default StackNavigator({
-  <%_ if(features.login) { _%>
+  <%_ if (features.login) { _%>
   Login: { screen: LoginContainer },
+  <%_ if (features.tabs) { _%>
+  Dashboard: {
+    screen: TabNavigator({
+      Tab1: {
+        screen: DashboardContainer,
+        navigationOptions: { title: 'Tab 1' }
+      },
+      Tab2: {
+        screen: DashboardContainer,
+        navigationOptions: { title: 'Tab 2' }
+      }
+    })
+  },
+  <%_ } else { _%>
   Dashboard: { screen: DashboardContainer },
+  <%_ } _%>
   InitialLoading: { screen: InitialLoadingScreenContainer }
+  <%_ } else if (features.tabs) { _%>
+  Dashboard: {
+    screen: TabNavigator({
+      Tab1: {
+        screen: Dashboard,
+        navigationOptions: { title: 'Tab 1' }
+      },
+      Tab2: {
+        screen: Dashboard,
+        navigationOptions: { title: 'Tab 2' }
+      }
+    })
+  }
   <%_ } else { _%>
   Dashboard: { screen: Dashboard }
   <%_ } _%>
