@@ -1,4 +1,4 @@
-module.exports = function pushNotificationsSetup() {
+module.exports = function drawerFeatureFiles() {
   // src/components/Drawer/DrawerContainer.js
   this.fs.copy(
     this.templatePath('src', 'components', 'Drawer', 'DrawerContainer.js'),

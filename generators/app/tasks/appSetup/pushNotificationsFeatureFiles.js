@@ -1,4 +1,4 @@
-module.exports = function pushNotificationsSetup() {
+module.exports = function pushNotificationsFeatureFiles() {
   // src/redux/pushNotificationHandlers.js
   this.fs.copy(
     this.templatePath('src', 'redux', 'pushNotificationHandlers.js'),

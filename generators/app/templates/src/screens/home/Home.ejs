@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text<%_ if(features.drawerandroid || features.drawerios) { _%>, Button<%_ } %><%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
+import { View, Text<%_ if((features.drawerandroid || features.drawerios) && !features.login) { _%>, Button<%_ } %><%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
 
 import styles from './Home.styles';
-<%_ if (features.drawerandroid || features.drawerios) { _%>
+<%_ if ((features.drawerandroid || features.drawerios) && !features.login) { _%>
 import { actionCreators as drawerActions } from '../../redux/drawerHandlers';
 <%_ } _%>
 
