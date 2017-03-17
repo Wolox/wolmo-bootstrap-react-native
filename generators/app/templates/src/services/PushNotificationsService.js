@@ -1,7 +1,11 @@
 import { Platform, Alert } from 'react-native';
-import PushNotification from 'react-native-push-notification';
 
-import api from '../config/api';
+let PushNotification;
+try {
+  PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
+} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
+
+import api from '../config/api'; // eslint-disable-line import/first
 
 const PUSH_NOTIFICATION_HANDLERS = {
   hello() {
@@ -23,7 +27,16 @@ export default {
     return apiEndpoint ? api.put('/users/sessions/device_token', data) : Promise.reject();
   },
   triggerLocalNotification(data) {
-    PushNotification.localNotification(data);
+    if (PushNotification) {
+      PushNotification.localNotification(data);
+      console.warn(
+        'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/services/PushNotificationsService.js'
+      );
+    } else {
+      console.warn(
+        'PushNotificationIOS has not been linked and will not work. Read more here: https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking'
+      );
+    }
   },
   getPushNotificationHandler(pushType) {
     let handler = PUSH_NOTIFICATION_HANDLERS[pushType];

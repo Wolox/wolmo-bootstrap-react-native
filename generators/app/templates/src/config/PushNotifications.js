@@ -1,6 +1,9 @@
-import PushNotification from 'react-native-push-notification';
+let PushNotification;
+try {
+  PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
+} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
 
-import { actionCreators as notificationActions } from '../redux/pushNotificationHandlers';
+import { actionCreators as notificationActions } from '../redux/pushNotificationHandlers'; // eslint-disable-line import/first
 
 const formatReceivedNotification = push => {
   if (push.alert && push.alert.APNS_SANDBOX) {
@@ -18,24 +21,32 @@ export default function setUp(dispatch, isLoggedIn) {
   if (!senderID) {
     console.warn('Push notifications senderID has not been set. Make sure to setup your google project');
   }
-
-  PushNotification.configure({
-    onRegister(data) {
-      dispatch(notificationActions.register(data.token));
-      if (isLoggedIn) {
-        dispatch(notificationActions.updateToken());
-      }
-    },
-    onNotification(notification) {
-      dispatch(notificationActions.notificationReceived(formatReceivedNotification(notification)));
-    },
-    senderID,
-    permissions: {
-      alert: true,
-      badge: true,
-      sound: true
-    },
-    popInitialNotification: true,
-    requestPermissions: true
-  });
+  if (PushNotification) {
+    PushNotification.configure({
+      onRegister(data) {
+        dispatch(notificationActions.register(data.token));
+        if (isLoggedIn) {
+          dispatch(notificationActions.updateToken());
+        }
+      },
+      onNotification(notification) {
+        dispatch(notificationActions.notificationReceived(formatReceivedNotification(notification)));
+      },
+      senderID,
+      permissions: {
+        alert: true,
+        badge: true,
+        sound: true
+      },
+      popInitialNotification: true,
+      requestPermissions: true
+    });
+    console.warn(
+      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/PushNotifications.js'
+    );
+  } else {
+    console.warn(
+      'PushNotificationIOS has not been linked and will not work. Read more here: https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking'
+    );
+  }
 }
