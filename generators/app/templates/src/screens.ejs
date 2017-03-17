@@ -10,9 +10,9 @@ import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.ta
 
 <%_ if(features.login) { _%>
 import LoginContainer from './screens/login/LoginContainer';
-import DashboardContainer from './screens/dashboard/DashboardContainer';
+import HomeContainer from './screens/home/HomeContainer';
 <%_ } else { _%>
-import Dashboard from './screens/dashboard/Dashboard';
+import Home from './screens/home/Home';
 <%_ } _%>
 
 <%_ if(features.login) { _%>
@@ -22,7 +22,7 @@ const InitialLoadingScreen = props => {
     props.dispatch(
       NavigationActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: props.currentUser ? 'Dashboard' : 'Login' })]
+        actions: [NavigationActions.navigate({ routeName: props.currentUser ? 'Home' : 'Login' })]
       })
     );
   }
@@ -46,36 +46,36 @@ export default StackNavigator({
   <%_ if (features.login) { _%>
   Login: { screen: LoginContainer },
   <%_ if (features.tabs) { _%>
-  Dashboard: {
+  Home: {
     screen: TabNavigator({
       Tab1: {
-        screen: DashboardContainer,
+        screen: HomeContainer,
         navigationOptions: { title: 'Tab 1' }
       },
       Tab2: {
-        screen: DashboardContainer,
+        screen: HomeContainer,
         navigationOptions: { title: 'Tab 2' }
       }
     })
   },
   <%_ } else { _%>
-  Dashboard: { screen: DashboardContainer },
+  Home: { screen: HomeContainer },
   <%_ } _%>
   InitialLoading: { screen: InitialLoadingScreenContainer }
   <%_ } else if (features.tabs) { _%>
-  Dashboard: {
+  Home: {
     screen: TabNavigator({
       Tab1: {
-        screen: Dashboard,
+        screen: Home,
         navigationOptions: { title: 'Tab 1' }
       },
       Tab2: {
-        screen: Dashboard,
+        screen: Home,
         navigationOptions: { title: 'Tab 2' }
       }
     })
   }
   <%_ } else { _%>
-  Dashboard: { screen: Dashboard }
+  Home: { screen: Home }
   <%_ } _%>
 });

@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
 
-import styles from './Dashboard.styles';
+import styles from './Home.styles';
 
 <%_ if(features.login) { _%>
-export default function Dashboard({ onLogout }) {
+export default function Home({ onLogout }) {
 <%_ } else { _%>
-export default function Dashboard() {
+export default function Home() {
 <%_ } _%>
   return (
     <View style={styles.container}>
@@ -22,11 +22,11 @@ export default function Dashboard() {
 }
 
 <%_ if (features.login) { _%>
-Dashboard.propTypes = {
+Home.propTypes = {
   onLogout: React.PropTypes.func.isRequired
 };
 <%_ } else { _%>
-Dashboard.navigationOptions = {
-  title: 'Dashboard'
+Home.navigationOptions = {
+  title: 'Home'
 };
 <%_ } _%>

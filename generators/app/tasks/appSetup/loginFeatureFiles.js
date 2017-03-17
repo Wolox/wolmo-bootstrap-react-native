@@ -9,10 +9,10 @@ module.exports = function pushNotificationsSetup() {
     this.templatePath('src', 'services', 'AuthService.js'),
     this.destinationPath(this.projectName, 'src', 'services', 'AuthService.js')
   );
-  // src/screens/dashboard/DashboardContainer.js
+  // src/screens/home/HomeContainer.js
   this.fs.copy(
-    this.templatePath('src', 'screens', 'dashboard', 'DashboardContainer.js'),
-    this.destinationPath(this.projectName, 'src', 'screens', 'dashboard', 'DashboardContainer.js')
+    this.templatePath('src', 'screens', 'home', 'HomeContainer.js'),
+    this.destinationPath(this.projectName, 'src', 'screens', 'home', 'HomeContainer.js')
   );
   // src/screens/login/LoginContainer.js
   this.fs.copy(

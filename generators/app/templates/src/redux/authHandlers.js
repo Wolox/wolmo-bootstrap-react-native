@@ -36,7 +36,7 @@ export const actionCreators = {
         dispatch(
           NavigationActions.reset({
             index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Dashboard' })]
+            actions: [NavigationActions.navigate({ routeName: 'Home' })]
           })
         );
       } catch (e) {

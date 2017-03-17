@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { actionCreators as authActions } from '../../redux/authHandlers';
-import Dashboard from './Dashboard';
+import Home from './Home';
 
-class DashboardContainer extends Component {
+class HomeContainer extends Component {
   static navigationOptions = {
-    title: 'Dashboard'
+    title: 'Home'
   };
 
   handleLogout = () => {
@@ -14,8 +14,8 @@ class DashboardContainer extends Component {
   };
 
   render() {
-    return <Dashboard onLogout={this.handleLogout} />;
+    return <Home onLogout={this.handleLogout} />;
   }
 }
 
-export default connect()(DashboardContainer);
+export default connect()(HomeContainer);
