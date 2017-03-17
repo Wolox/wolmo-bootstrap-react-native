@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { apiSetup } from './config/api';
+<%_ if(features.drawerios && features.drawerandroid) { _%>
+import DrawerContainer from './components/Drawer/DrawerContainer';
+<%_ } else if (features.drawerios || features.drawerandroid) { _%>
+import DrawerContainer from './components/Drawer/DrawerContainer';
+import { isAndroid } from './utils/constants';
+<%_ } else { _%>
 import AppNavigator from './AppNavigator';
+<%_ } _%>
+import { apiSetup } from './config/api';
 <%_ if(features.pushnotifications) { _%>
 import configPushNotifications from './config/PushNotifications';
 <%_ } _%>
@@ -22,7 +29,15 @@ class App extends Component {
   }
 
   render() {
+    <%_ if(features.drawerios && features.drawerandroid) { _%>
+    return <DrawerContainer />;
+    <%_ } else if (features.drawerios) { _%>
+    return isAndroid ? <AppNavigator /> : <DrawerContainer />;
+    <%_ } else if (features.drawerandroid) { _%>
+    return isAndroid ? <DrawerContainer /> : <AppNavigator />;
+    <%_ } else { _%>
     return <AppNavigator />;
+    <%_ } _%>
   }
 }
 

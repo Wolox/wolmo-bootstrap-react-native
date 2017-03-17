@@ -37,7 +37,7 @@ class ReactNativeBootstrap extends Generator {
         type: 'checkbox',
         name: 'features',
         message: "What's features should this project include?",
-        choices: ['Login', 'Tabs', 'Drawer', 'Push Notifications'],
+        choices: ['Login', 'Tabs', 'DrawerAndroid', 'DrawerIOS', 'Push Notifications'],
         filter: values =>
           values.reduce(
             (answer, val) => {

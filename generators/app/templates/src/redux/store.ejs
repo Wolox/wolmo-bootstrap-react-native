@@ -9,6 +9,9 @@ import { reducer as auth } from './authHandlers';
 <%_ if(features.pushnotifications) { _%>
 import { reducer as pushNotifications } from './pushNotificationHandlers';
 <%_ } _%>
+<%_ if(features.drawerios || features.drawerandroid) { _%>
+import { reducer as drawer } from './drawerHandlers';
+<%_ } _%>
 
 const nav = (state, action) => Navigator.router.getStateForAction(action, state) || state;
 
@@ -18,6 +21,9 @@ const reducers = combineReducers({
   <%_ } _%>
   <%_ if(features.login) { _%>
   auth,
+  <%_ } _%>
+  <%_ if(features.drawerios || features.drawerandroid) { _%>
+  drawer,
   <%_ } _%>
   nav
 });

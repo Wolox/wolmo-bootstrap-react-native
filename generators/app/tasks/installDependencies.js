@@ -45,6 +45,9 @@ module.exports = function installDependencies() {
   if (this.features.pushnotifications) {
     DEPENDENCIES.push('react-native-push-notification');
   }
+  if (this.features.drawerios || this.features.drawerandroid) {
+    DEPENDENCIES.push('react-native-drawer');
+  }
   return yarnInstall(this.projectName, DEPENDENCIES, this.options)
     .then(() => yarnInstall(this.projectName, DEV_DEPENDENCIES, this.options, true))
     .catch(() => {

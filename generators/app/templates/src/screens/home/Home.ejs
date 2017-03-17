@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
+import { View, Text<%_ if(features.drawerandroid || features.drawerios) { _%>, Button<%_ } %><%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
 
 import styles from './Home.styles';
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+import { actionCreators as drawerActions } from '../../redux/drawerHandlers';
+<%_ } _%>
 
 <%_ if(features.login) { _%>
 export default function Home({ onLogout }) {
@@ -27,6 +30,11 @@ Home.propTypes = {
 };
 <%_ } else { _%>
 Home.navigationOptions = {
+  <%_ if (features.drawerandroid || features.drawerios) { _%>
+  header: ({ dispatch }) => ({
+    right: <Button onPress={() => dispatch(drawerActions.drawerToggled())} title="Drawer" />
+  }),
+  <%_ } _%>
   title: 'Home'
 };
 <%_ } _%>
