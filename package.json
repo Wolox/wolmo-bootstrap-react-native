@@ -9,10 +9,10 @@
     "yeoman-generator"
   ],
   "scripts": {
-    "lint" : "eslint .",
-    "lint-diff" : "git diff --name-only --cached --relative | grep \\\\.js$ | xargs eslint",
-    "lint-fix" : "eslint . --fix",
-    "precommit" : "npm run lint-diff"
+    "lint": "eslint .",
+    "lint-diff": "git diff --name-only --cached --relative | grep \\\\.js$ | xargs eslint",
+    "lint-fix": "eslint . --fix",
+    "precommit": "npm run lint-diff"
   },
   "dependencies": {
     "colors": "^1.1.2",
@@ -30,7 +30,7 @@
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "^6.10.0",
     "husky": "^0.13.2",
-    "prettier": "^0.22.0",
-    "prettier-eslint": "^4.2.1"
+    "prettier": "^1.1.0",
+    "prettier-eslint": "^5.1.0"
   }
 }
