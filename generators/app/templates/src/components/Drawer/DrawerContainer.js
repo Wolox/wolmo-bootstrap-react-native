@@ -27,15 +27,14 @@ class DrawerContainer extends Component {
     StatusBar.setHidden(!STATUS_BAR_IS_FIXED, 'slide');
   };
 
-  wrapOnPress = onPress =>
-    () => {
-      if (!this.state.isHandlingUserInput) {
-        if (onPress) {
-          onPress();
-        }
-        this.setState({ isHandlingUserInput: true });
+  wrapOnPress = onPress => () => {
+    if (!this.state.isHandlingUserInput) {
+      if (onPress) {
+        onPress();
       }
-    };
+      this.setState({ isHandlingUserInput: true });
+    }
+  };
 
   render() {
     return (

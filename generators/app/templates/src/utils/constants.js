@@ -13,7 +13,5 @@ const windowDimensions = Dimensions.get('window');
 export const WINDOW_HEIGHT = windowDimensions.height;
 export const WINDOW_WIDTH = windowDimensions.width;
 
-export const VIEWPORT_HEIGHT = WINDOW_HEIGHT -
-  TABBAR_HEIGHT -
-  ACTION_BAR_HEIGHT -
-  (STATUS_BAR_IS_FIXED ? STATUS_BAR_HEIGHT : 0);
+export const VIEWPORT_HEIGHT =
+  WINDOW_HEIGHT - TABBAR_HEIGHT - ACTION_BAR_HEIGHT - (STATUS_BAR_IS_FIXED ? STATUS_BAR_HEIGHT : 0);

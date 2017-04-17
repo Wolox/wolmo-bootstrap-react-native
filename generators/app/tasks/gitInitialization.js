@@ -8,7 +8,7 @@ module.exports = function gitInitialization() {
     context: this.options
   })
     .then(spinner =>
-    // git add .
+      // git add .
       runCommand({
         command: ['git', ['add', '.'], { cwd: `${process.cwd()}/${this.projectName}` }],
         context: this.options
@@ -37,7 +37,7 @@ module.exports = function gitInitialization() {
                     type: 'input',
                     name: 'repoUrl',
                     message: "What's your repository url? (ssh or https)",
-                    validate: val => val ? true : 'Repository url is required to initialize it'
+                    validate: val => (val ? true : 'Repository url is required to initialize it')
                   }
                 ]).then(({ repoUrl }) => {
                   this.repoUrl = repoUrl;
@@ -61,14 +61,17 @@ module.exports = function gitInitialization() {
                       context: this.options
                     }).then(() => {
                       spinner.succeed('git ready');
-                    }));
+                    })
+                  );
                 });
               }
             });
-          }))
+          })
+        )
         .catch(() => {
           spinner.fail('Some git command failed. Turn verbose mode on for detailed logging');
-        }))
+        })
+    )
     .catch(spinner => {
       spinner.fail('Some git command failed. Turn verbose mode on for detailed logging');
     });

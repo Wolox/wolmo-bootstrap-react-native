@@ -14,8 +14,8 @@ const spawn = require('child_process').spawn;
  * Returns a promise that resolves to the loading spinner if the loading message is present
  */
 module.exports = function runCommand(options) {
-  const spinner = options.loadingMessage &&
-    ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
+  const spinner =
+    options.loadingMessage && ora({ spinner: 'bouncingBall', text: options.loadingMessage }).start();
 
   return new Promise((resolve, reject) => {
     const command = spawn(...options.command);

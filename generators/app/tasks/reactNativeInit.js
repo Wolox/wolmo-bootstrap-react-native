@@ -15,5 +15,6 @@ module.exports = function reactNativeInit() {
       })
       .catch(() => {
         spinner.fail('react-native set up failed. Turn verbose mode on for detailed logging');
-      }));
+      })
+  );
 };

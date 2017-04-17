@@ -4,7 +4,8 @@ module.exports = function reactNativeLink() {
   console.log(`\n       ${'NEXT STEPS!'.bold.underline.white}       \n`);
   // introduction message
   console.log(
-    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this.projectName}/`.italic}`.cyan
+    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this.projectName}/`.italic}`
+      .cyan
   );
   if (this.repoUrl) {
     // remote repository initialized
@@ -13,7 +14,8 @@ module.exports = function reactNativeLink() {
 
   // fabric
   console.log(
-    `● Fabric and crashlytics are two ${'MANDATORY'.bold.underline} tools in every react-native project in Wolox.`.cyan
+    `● Fabric and crashlytics are two ${'MANDATORY'.bold.underline} tools in every react-native project in Wolox.`
+      .cyan
   );
   console.log('  Follow these guides in order to complete their installation:'.cyan);
   console.log(`    ${'https://fabric.io/kits/ios/crashlytics/manual-install'.cyan.underline}`);
@@ -24,10 +26,12 @@ module.exports = function reactNativeLink() {
   if (this.features.pushnotifications) {
     // push notifications setup
     console.log(
-      '● The push notification config has been added to the project but you still need to manually link the ios library.'.cyan
+      '● The push notification config has been added to the project but you still need to manually link the ios library.'
+        .cyan
     );
     console.log(
-      `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`.cyan
+      `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`
+        .cyan
     );
   }
 

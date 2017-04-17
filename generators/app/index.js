@@ -29,9 +29,9 @@ class ReactNativeBootstrap extends Generator {
         name: 'name',
         message: "What's your project name?",
         validate: val =>
-          String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
+          (String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
             ? true
-            : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
+            : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`)
       },
       {
         type: 'checkbox',
@@ -39,13 +39,10 @@ class ReactNativeBootstrap extends Generator {
         message: "What's features should this project include?",
         choices: ['Login', 'Tabs', 'DrawerAndroid', 'DrawerIOS', 'Push Notifications'],
         filter: values =>
-          values.reduce(
-            (answer, val) => {
-              answer[val.replace(/ /g, '').toLowerCase()] = true;
-              return answer;
-            },
-            {}
-          )
+          values.reduce((answer, val) => {
+            answer[val.replace(/ /g, '').toLowerCase()] = true;
+            return answer;
+          }, {})
       }
     ]).then(answers => {
       this.projectName = answers.name;

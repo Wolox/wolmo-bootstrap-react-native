@@ -70,21 +70,19 @@ export default StackNavigator({
         navigationOptions: { title: 'Tab 2' }
       }
     }),
-    navigationOptions: ({ navigation }) => {
-      return {
-        <%_ if (features.drawerandroid || features.drawerios) { _%>
-        headerRight: (
-          <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-        ),
-        <%_ } _%>
-        title: 'Home'
-      };
-    }
+    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
+      <%_ if (features.drawerandroid || features.drawerios) { _%>
+      headerRight: (
+        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+      ),
+      <%_ } _%>
+      title: 'Home'
+    })
   },
   <%_ } else { _%>
   Home: {
     screen: HomeContainer,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>
       headerRight: (
         <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
@@ -107,7 +105,7 @@ export default StackNavigator({
         navigationOptions: { title: 'Tab 2' }
       }
     }),
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>
       headerRight: (
         <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
@@ -119,7 +117,7 @@ export default StackNavigator({
   <%_ } else { _%>
   Home: {
     screen: Home,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>
       headerRight: (
         <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
