@@ -9,9 +9,9 @@ module.exports = function loginFeatureFiles() {
     this.templatePath('src', 'services', 'AuthService.js'),
     this.destinationPath(this.projectName, 'src', 'services', 'AuthService.js')
   );
-  // src/screens/home/HomeContainer.ejs
+  // src/screens/home/HomeContainer.js
   this.fs.copyTpl(
-    this.templatePath('src', 'screens', 'home', 'HomeContainer.ejs'),
+    this.templatePath('src', 'screens', 'home', 'HomeContainer.js'),
     this.destinationPath(this.projectName, 'src', 'screens', 'home', 'HomeContainer.js'),
     { projectName: this.projectName, features: this.features }
   );

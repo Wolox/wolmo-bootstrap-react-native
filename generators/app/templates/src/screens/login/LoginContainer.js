@@ -5,10 +5,6 @@ import { actionCreators as authActions } from '../../redux/authHandlers';
 import Login from './Login';
 
 class LoginContainer extends Component {
-  static navigationOptions = {
-    title: 'Login'
-  };
-
   handleLogin = () => {
     this.props.dispatch(authActions.login());
   };

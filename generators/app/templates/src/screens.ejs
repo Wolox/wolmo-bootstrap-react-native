@@ -2,9 +2,14 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-<%_ if(features.login) { _%>
+<%_ if(features.login || features.drawerandroid || features.drawerios) { _%>
 import React from 'react';
+<%_ } _%>
+<%_ if(features.login) { _%>
 import { connect } from 'react-redux';
+<%_ } _%>
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+import { Button } from 'react-native';
 <%_ } _%>
 import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
@@ -13,6 +18,9 @@ import LoginContainer from './screens/login/LoginContainer';
 import HomeContainer from './screens/home/HomeContainer';
 <%_ } else { _%>
 import Home from './screens/home/Home';
+<%_ } _%>
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+import { actionCreators as drawerActions } from './redux/drawerHandlers';
 <%_ } _%>
 
 <%_ if(features.login) { _%>
@@ -44,7 +52,12 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 <%_ } _%>
 export default StackNavigator({
   <%_ if (features.login) { _%>
-  Login: { screen: LoginContainer },
+  Login: {
+    screen: LoginContainer,
+    navigationOptions: {
+      title: 'Login'
+    }
+  },
   <%_ if (features.tabs) { _%>
   Home: {
     screen: TabNavigator({
@@ -56,10 +69,30 @@ export default StackNavigator({
         screen: HomeContainer,
         navigationOptions: { title: 'Tab 2' }
       }
-    })
+    }),
+    navigationOptions: ({ navigation }) => {
+      return {
+        <%_ if (features.drawerandroid || features.drawerios) { _%>
+        headerRight: (
+          <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+        ),
+        <%_ } _%>
+        title: 'Home'
+      };
+    }
   },
   <%_ } else { _%>
-  Home: { screen: HomeContainer },
+  Home: {
+    screen: HomeContainer,
+    navigationOptions: ({ navigation }) => ({
+      <%_ if (features.drawerandroid || features.drawerios) { _%>
+      headerRight: (
+        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+      ),
+      <%_ } _%>
+      title: 'Home'
+    })
+  },
   <%_ } _%>
   InitialLoading: { screen: InitialLoadingScreenContainer }
   <%_ } else if (features.tabs) { _%>
@@ -73,9 +106,27 @@ export default StackNavigator({
         screen: Home,
         navigationOptions: { title: 'Tab 2' }
       }
+    }),
+    navigationOptions: ({ navigation }) => ({
+      <%_ if (features.drawerandroid || features.drawerios) { _%>
+      headerRight: (
+        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+      ),
+      <%_ } _%>
+      title: 'Home'
     })
   }
   <%_ } else { _%>
-  Home: { screen: Home }
+  Home: {
+    screen: Home,
+    navigationOptions: ({ navigation }) => ({
+      <%_ if (features.drawerandroid || features.drawerios) { _%>
+      headerRight: (
+        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+      ),
+      <%_ } _%>
+      title: 'Home'
+    })
+  }
   <%_ } _%>
 });
