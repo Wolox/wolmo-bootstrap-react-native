@@ -12,6 +12,7 @@ system_has() {
 if ! system_has git; then
   echo "git is mandatory to continue"
   echo "Check this guide to complete the installation: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+  exit 1
 elif ! system_has node; then
   echo "Installing node"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash > /dev/null 2>&1
@@ -24,7 +25,7 @@ elif ! system_has yarn; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-yarn global add yeoman generator-wolmo-bootstrap-rn > /dev/null 2>&1
+yarn global add yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
 yo wolmo-bootstrap-rn
 
 wait $!
