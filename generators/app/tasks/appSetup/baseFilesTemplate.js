@@ -1,4 +1,11 @@
 module.exports = function baseFilesTemplate() {
+  // circle.yml
+  this.fs.copy(this.templatePath('circle.yml'), this.destinationPath(this.projectName, 'circle.yml'));
+  // pull_request_template.md
+  this.fs.copy(
+    this.templatePath('pull_request_template.md'),
+    this.destinationPath(this.projectName, 'pull_request_template.md')
+  );
   // src/config/api.js
   this.fs.copy(
     this.templatePath('src', 'config', 'api.js'),
