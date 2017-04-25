@@ -3,6 +3,7 @@ const ora = require('ora');
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
+const iosAppIcons = require('./iosAppIcons');
 const fixBundleIdentifier = require('./fixBundleIdentifier');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
@@ -19,6 +20,9 @@ module.exports = function index() {
 
   // ----------------     base app files     ----------------
   baseFilesTemplate.bind(this)();
+
+  // ----------------     ios app icons     ----------------
+  iosAppIcons.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
   fixBundleIdentifier.bind(this)();
