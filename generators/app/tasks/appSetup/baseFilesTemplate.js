@@ -1,6 +1,10 @@
 module.exports = function baseFilesTemplate() {
   // circle.yml
   this.fs.copy(this.templatePath('circle.yml'), this.destinationPath(this.projectName, 'circle.yml'));
+  // README.md
+  this.fs.copyTpl(this.templatePath('README.ejs'), this.destinationPath(this.projectName, 'README.md'), {
+    projectName: this.projectName
+  });
   // pull_request_template.md
   this.fs.copy(
     this.templatePath('pull_request_template.md'),

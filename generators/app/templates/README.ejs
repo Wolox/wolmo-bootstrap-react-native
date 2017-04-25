@@ -1,0 +1,70 @@
+<%= projectName %>
+====================================
+
+## Prerequisites
+
+Follow the [official guide](https://facebook.github.io/react-native/docs/getting-started.html) to properly setup your environment.
+We highly recommend using [nvm](https://github.com/creationix/nvm) instead of brew or aptitude to install nodejs.
+
+## Outputs
+
+### Android
+
+#### One time setup
+
+Follow [this](https://facebook.github.io/react-native/releases/next/docs/signed-apk-android.html) guide to setup the android release signing config.
+
+#### Generating apk
+Use the the command in the rootpath to generate the APK:
+```
+yarn run android:build
+```
+It will generate the apk file in the path `android/app/build/outputs/apk/app-release.apk`
+
+If you want to test that file in a plugged devise use the command `yarn run android:install` to install it.
+
+### iOS
+We use [FastLane](https://fastlane.tools/) to automate many ios tasks:
+- Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
+- Creating IPAs ([gym](https://github.com/fastlane/fastlane/tree/master/gym))
+- Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
+
+All these tasks can be found in our [FastFile](fastlane/Fastfile)
+
+#### Fastlane setup
+
+Make sure you have the latest version of the Xcode command line tools installed:
+
+```
+xcode-select --install
+```
+Follow this guides to properly install rbenv and ruby-build. These are tools that will easily allow you to install and change different ruby versions.
+1- [Rbenv](https://github.com/rbenv/rbenv#installation)
+2- [Ruby build](https://github.com/rbenv/ruby-build#installing-as-an-rbenv-plugin-recommended)
+
+Then run the following command to install the desired ruby version
+```bash
+rbenv install 2.4.1
+rbenv global 2.4.1
+rbenv local 2.4.1
+```
+Run `ruby -v` to check that it was successfully installed.
+
+The last step is installing Fastlane gems:
+```bash
+gem install bundler
+bundle install
+```
+
+#### Creating an IPA
+Use the following command from the project rootpath:
+```bash
+fastlane dev
+```
+
+#### Uploading build to testflight
+Use the following command from the project rootpath:
+```bash
+fastlane testflight
+```
+This command only uploads a new build. You still need to go to itunes connect to make this build available for testers and complete the build description.
