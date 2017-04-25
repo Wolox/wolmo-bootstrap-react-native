@@ -1,7 +1,10 @@
 machine:
   node:
     version: 6
+dependencies:
+  override:
+    - yarn
 test:
   override:
-    - npm run test
-    - npm run lint
+    - yarn run lint
+    - yarn test
