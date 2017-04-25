@@ -8,4 +8,5 @@ module.exports = function eslintSetup() {
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 
   this.fs.copy(this.templatePath('.eslintrc.ejs'), this.destinationPath(this.projectName, '.eslintrc.js'));
+  this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath(this.projectName, '.eslintignore'));
 };
