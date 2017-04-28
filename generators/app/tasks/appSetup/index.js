@@ -5,6 +5,7 @@ const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
 const fixBundleIdentifier = require('./fixBundleIdentifier');
+const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
@@ -26,6 +27,11 @@ module.exports = function index() {
 
   // ----------------     fix bundle identifier     ----------------
   fixBundleIdentifier.bind(this)();
+
+  if (this.features.landscape) {
+    // ----------------     disable landscape orientiation for both android and ios     ----------------
+    disableLandscapeOrientation.bind(this)();
+  }
 
   // ----------------     features     ----------------
   if (this.features.pushnotifications) {

@@ -43,10 +43,17 @@ class ReactNativeBootstrap extends Generator {
             answer[val.replace(/ /g, '').toLowerCase()] = true;
             return answer;
           }, {})
+      },
+      {
+        type: 'confirm',
+        name: 'landscape',
+        message: "Would you like to enable landscape orientation? Psst! You probably don't want this!",
+        default: false
       }
     ]).then(answers => {
       this.projectName = answers.name;
       this.features = answers.features;
+      this.features.landscape = answers.landscape;
     });
   }
 
