@@ -1,5 +1,11 @@
 # Wolmo Bootstrap: React Native
 
+## Prerequisites
+- React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
+- node & npm: https://github.com/creationix/nvm#install-script
+- yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
+- ruby (for Fastlane): https://github.com/rbenv/rbenv#installation
+
 ## TL;DR
 You don't need to clone this repository. Just run the following in your terminal:
 ```bash

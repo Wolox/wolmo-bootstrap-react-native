@@ -14,15 +14,21 @@ if ! system_has git; then
   echo "Check this guide to complete the installation: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
   exit 1
 elif ! system_has node; then
-  echo "Installing node"
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash > /dev/null 2>&1
-  sh "$HOME/.nvm/nvm.sh" > /dev/null 2>&1
-  nvm install 7 > /dev/null 2>&1
-  nvm use 7 > /dev/null 2>&1
+  echo "node is mandatory to continue"
+  echo "We recommend using nvm to install node. Check these guides to install nvm and node:"
+  echo "- https://github.com/creationix/nvm#install-script"
+  echo "- https://github.com/creationix/nvm#usage"
+  exit 1
 elif ! system_has yarn; then
-  echo "Installing yarn"
-  curl -o- -L https://yarnpkg.com/install.sh | bash > /dev/null 2>&1
-  export PATH="$HOME/.yarn/bin:$PATH"
+  echo "Yarn is mandatory to continue"
+  echo "Check this guide to complete the installation: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab"
+  exit 1
+elif ! system_has ruby; then
+  echo "Ruby is mandatory to continue. Fastlane needs it =)"
+  echo "We recommend using rbenv to install ruby. Check these guides to install rbenv and ruby:"
+  echo "- https://github.com/rbenv/rbenv#basic-github-checkout"
+  echo "- https://github.com/rbenv/rbenv#installing-ruby-versions"
+  exit 1
 fi
 
 yarn global add yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
