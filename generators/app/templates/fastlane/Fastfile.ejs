@@ -5,7 +5,7 @@ default_platform :ios
 platform :ios do
 
   desc "Increments the build number, submits this new version to TestFlight and commits the version bump"
-  lane :testflight do
+  lane :beta do
     # Sync certificates and provisioning profiles for Release
     match(type: "appstore")
     # Increase by 1 the build number
