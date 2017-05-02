@@ -5,14 +5,6 @@ module.exports = function fastlane() {
   this.fs.copyTpl(this.templatePath('Gemfile'), this.destinationPath(this.projectName, 'Gemfile'));
 
   this.fs.copyTpl(
-    this.templatePath('fastlane', 'Appfile.ejs'),
-    this.destinationPath(this.projectName, 'fastlane', 'Appfile'),
-    {
-      projectName: this.projectName
-    }
-  );
-
-  this.fs.copyTpl(
     this.templatePath('fastlane', 'Fastfile.ejs'),
     this.destinationPath(this.projectName, 'fastlane', 'Fastfile'),
     {
@@ -20,11 +12,8 @@ module.exports = function fastlane() {
     }
   );
 
-  this.fs.copyTpl(
-    this.templatePath('fastlane', 'Matchfile.ejs'),
-    this.destinationPath(this.projectName, 'fastlane', 'Matchfile'),
-    {
-      projectName: this.projectName
-    }
+  this.fs.copy(
+    this.templatePath('fastlane', 'Matchfile'),
+    this.destinationPath(this.projectName, 'fastlane', 'Matchfile')
   );
 };
