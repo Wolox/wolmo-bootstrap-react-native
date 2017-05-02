@@ -1,6 +1,6 @@
 require('colors');
 
-module.exports = function reactNativeLink() {
+module.exports = function nextSteps() {
   console.log(`\n       ${'NEXT STEPS!'.bold.underline.white}       \n`);
   // introduction message
   console.log(

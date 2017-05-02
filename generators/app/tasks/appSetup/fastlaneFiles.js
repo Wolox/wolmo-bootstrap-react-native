@@ -1,4 +1,4 @@
-module.exports = function fastlane() {
+module.exports = function fastlaneFiles() {
   const gitIgnoreContent = this.fs.read(`${this.projectName}/.gitignore`);
   this.fs.write(`${this.projectName}/.gitignore`, gitIgnoreContent.concat('\n*.dSYM.zip'));
 
