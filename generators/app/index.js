@@ -54,6 +54,17 @@ class ReactNativeBootstrap extends Generator {
       this.projectName = answers.name;
       this.features = answers.features;
       this.features.landscape = answers.landscape;
+
+      return this.prompt([
+        {
+          type: 'input',
+          name: 'bundleId',
+          message: 'Enter the bundle id for your ios app',
+          default: `com.wolox.${this.projectName}`
+        }
+      ]).then(answer => {
+        this.bundleId = answer.bundleId;
+      });
     });
   }
 
