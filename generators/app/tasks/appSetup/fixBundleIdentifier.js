@@ -5,7 +5,7 @@ module.exports = function fixBundleIndentifier() {
   const replaceRegex = new RegExp(`PRODUCT_NAME = ${this.projectName};`, 'g');
   const fixedProjectContent = iosProjectContent.replace(
     replaceRegex,
-    `PRODUCT_BUNDLE_IDENTIFIER = com.${this.projectName};\n\t\t\t\tPRODUCT_NAME = ${this.projectName};`
+    `PRODUCT_BUNDLE_IDENTIFIER = com.wolox.${this.projectName};\n\t\t\t\tPRODUCT_NAME = ${this.projectName};`
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`, fixedProjectContent);
 

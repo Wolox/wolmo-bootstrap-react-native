@@ -4,6 +4,7 @@ const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
+const fastlane = require('./fastlane');
 const fixBundleIdentifier = require('./fixBundleIdentifier');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
@@ -24,6 +25,9 @@ module.exports = function index() {
 
   // ----------------     ios app icons     ----------------
   iosAppIcons.bind(this)();
+
+  // ----------------     fastlane setup     ----------------
+  fastlane.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
   fixBundleIdentifier.bind(this)();
