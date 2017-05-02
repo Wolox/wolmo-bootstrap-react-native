@@ -1,37 +1,22 @@
 <%= projectName %>
 ====================================
 
-## Prerequisites
+# Prerequisites
 
 Follow the [official guide](https://facebook.github.io/react-native/docs/getting-started.html) to properly setup your environment.
 We highly recommend using [nvm](https://github.com/creationix/nvm) instead of brew or aptitude to install nodejs.
 
-## Outputs
+# Set up
 
-### Android
+## iOS
 
-#### One time setup
-
-Follow [this](https://facebook.github.io/react-native/releases/next/docs/signed-apk-android.html) guide to setup the android release signing config.
-
-#### Generating apk
-Use the the command in the rootpath to generate the APK:
-```
-yarn run android:build
-```
-It will generate the apk file in the path `android/app/build/outputs/apk/app-release.apk`
-
-If you want to test that file in a plugged devise use the command `yarn run android:install` to install it.
-
-### iOS
-We use [FastLane](https://fastlane.tools/) to automate many ios tasks:
+We use [FastLane](https://fastlane.tools/) and few of its plugins to automate many ios tasks:
+- Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
 - Creating IPAs ([gym](https://github.com/fastlane/fastlane/tree/master/gym))
 - Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
 
-All these tasks can be found in our [FastFile](fastlane/Fastfile)
-
-#### Fastlane setup
+### Fastlane setup
 
 Make sure you have the latest version of the Xcode command line tools installed:
 
@@ -56,15 +41,66 @@ gem install bundler
 bundle install
 ```
 
-#### Creating an IPA
+### Create app on both Apple Developer Portal and iTunes Connect
+To interact with Apple Developer Portal and iTunes Connect we use [Produce](https://github.com/fastlane/fastlane/tree/master/produce).
+Run the following command from the project rootpath:
+```bash
+fastlane produce
+```
+
+### Create provisioning profiles and signing certificates
+
+To manage certificates and profiles we use [Match](https://github.com/fastlane/fastlane/tree/master/match).
+Run the following command from the project rootpath:
+```bash
+fastlane match --git_url <project repository url> --git_branch certificates
+```
+
+### Create push notification certificates
+To create push notification certificates we use [Pem](https://github.com/fastlane/fastlane/tree/master/pem).
+Run the following commands from the project rootpath:
+```bash
+fastlane pem --development
+fastlane pem
+```
+These two commands do the following:
+- Create a new signing request
+- Create a new push certification
+- Downloads the certificate
+- Generates a new .pem file in the current working directory, which you can upload to your server
+
+## Android
+
+Follow [this](https://facebook.github.io/react-native/releases/next/docs/signed-apk-android.html) guide to setup the android release signing config.
+
+
+# Outputs
+
+## Android
+Use the the command in the rootpath to generate the APK:
+```
+yarn run android:build
+```
+It will generate the apk file in the path `android/app/build/outputs/apk/app-release.apk`
+
+If you want to test that file in a plugged devise use the command `yarn run android:install` to install it.
+
+
+## iOS
+
+Fastlane is required here. Check the iOS
+
+### Creating an IPA for development (QA)
 Use the following command from the project rootpath:
 ```bash
 fastlane dev
 ```
+`dev` task is defined in our Fastfile.
 
-#### Uploading build to testflight
+### Uploading build to testflight
 Use the following command from the project rootpath:
 ```bash
 fastlane beta
 ```
+`beta` task is defined in our Fastfile.
 This command only uploads a new build. You still need to go to itunes connect to make this build available for testers and complete the build description.
