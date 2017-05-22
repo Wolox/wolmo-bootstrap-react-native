@@ -10,6 +10,7 @@ const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
+const enableFullscreen = require('./tabletSetup');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -47,6 +48,9 @@ module.exports = function index() {
   if (this.features.drawerios || this.features.drawerandroid) {
     drawerFeatureFiles.bind(this)();
   }
+
+  // --------------- Enables fullscreen on iPad ----------------------------
+  enableFullscreen.bind(this)();
 
   spinner.succeed('Boilerplate ready!');
 };
