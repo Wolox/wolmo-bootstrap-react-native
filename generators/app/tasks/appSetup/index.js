@@ -5,7 +5,7 @@ const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
 const fastlaneFiles = require('./fastlaneFiles');
-const fixBundleIdentifier = require('./fixBundleIdentifier');
+const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
@@ -31,7 +31,7 @@ module.exports = function index() {
   fastlaneFiles.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
-  fixBundleIdentifier.bind(this)();
+  iosProjectSetup.bind(this)();
 
   if (this.features.landscape) {
     // ----------------     disable landscape orientiation for both android and ios     ----------------
