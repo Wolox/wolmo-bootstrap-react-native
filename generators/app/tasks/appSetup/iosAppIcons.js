@@ -106,4 +106,28 @@ module.exports = function iosAppIcons() {
       'Icon-60@3x.png'
     )
   );
+
+  this.fs.copy(
+    this.templatePath('iosIcons', 'Icon-76.png'),
+    this.destinationPath(
+      this.projectName,
+      'ios',
+      this.projectName,
+      'Images.xcassets',
+      'AppIcon.appiconset',
+      'Icon-76.png'
+    )
+  );
+
+  this.fs.copy(
+    this.templatePath('iosIcons', 'Icon-152@2x.png'),
+    this.destinationPath(
+      this.projectName,
+      'ios',
+      this.projectName,
+      'Images.xcassets',
+      'AppIcon.appiconset',
+      'Icon-152@2x.png'
+    )
+  );
 };

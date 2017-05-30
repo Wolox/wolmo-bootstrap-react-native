@@ -5,11 +5,12 @@ const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
 const fastlaneFiles = require('./fastlaneFiles');
-const fixBundleIdentifier = require('./fixBundleIdentifier');
+const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
+const enableFullscreen = require('./tabletSetup');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -30,7 +31,7 @@ module.exports = function index() {
   fastlaneFiles.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
-  fixBundleIdentifier.bind(this)();
+  iosProjectSetup.bind(this)();
 
   if (this.features.landscape) {
     // ----------------     disable landscape orientiation for both android and ios     ----------------
@@ -47,6 +48,9 @@ module.exports = function index() {
   if (this.features.drawerios || this.features.drawerandroid) {
     drawerFeatureFiles.bind(this)();
   }
+
+  // --------------- Enables fullscreen on iPad ----------------------------
+  enableFullscreen.bind(this)();
 
   spinner.succeed('Boilerplate ready!');
 };
