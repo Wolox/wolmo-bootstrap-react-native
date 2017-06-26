@@ -10,11 +10,13 @@ const DEPENDENCIES = [
   'redux',
   'redux-thunk',
   'reselect',
-  'seamless-immutable'
+  'seamless-immutable',
+  'react-native-dotenv'
 ];
 
 const DEV_DEPENDENCIES = [
   'babel-eslint',
+  'babel-preset-react-native',
   'eslint',
   'eslint-config-airbnb',
   'eslint-config-prettier',
