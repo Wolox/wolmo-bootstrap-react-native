@@ -101,6 +101,4 @@ module.exports = function baseFilesTemplate() {
     this.templatePath('test', '.eslintrc.js'),
     this.destinationPath(this.projectName, 'test', '.eslintrc.js')
   );
-  // .babelrc
-  this.fs.copy(this.templatePath('.babelrc'), this.destinationPath(this.projectName, '.babelrc'));
 };
