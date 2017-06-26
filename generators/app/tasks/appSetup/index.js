@@ -11,6 +11,7 @@ const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles')
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
+const babelrcSetup = require('./babelrcSetup');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -29,6 +30,9 @@ module.exports = function index() {
 
   // ----------------     fastlane setup     ----------------
   fastlaneFiles.bind(this)();
+
+  // ----------------     babelrc setup     ----------------
+  babelrcSetup.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
   iosProjectSetup.bind(this)();
