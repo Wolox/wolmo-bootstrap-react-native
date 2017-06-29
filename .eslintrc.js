@@ -38,6 +38,7 @@ module.exports = {
     "react/require-default-props": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".ejs"] }],
     "react/prop-types": [2, { ignore: ["style", "children", "dispatch"] } ],
+    "import/order": ["error", {"newlines-between": "always"}],
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "import/named": "off",
