@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<%_ if(features.pushnotifications) { _%>
+import HuaweiProtectedApps from 'react-native-huawei-protected-apps';
+<%_ } _%>
 
 <%_ if(features.drawerios && features.drawerandroid) { _%>
 import DrawerContainer from './components/Drawer/DrawerContainer';
@@ -21,6 +24,14 @@ class App extends Component {
   componentWillMount() {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(this.props.dispatch);
+    const config = {
+      title: "Huawei Protected Apps",
+      text: "This app requires to be enabled in 'Protected Apps' in order to receive push notifications",
+      doNotShowAgainText: "Do not show again",
+      positiveText: "PROTECTED APPS",
+      negativeText: "CANCEL"
+    };
+    HuaweiProtectedApps.AlertIfHuaweiDevice(config);
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(this.props.dispatch);

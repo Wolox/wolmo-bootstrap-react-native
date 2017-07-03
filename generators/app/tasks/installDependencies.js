@@ -11,7 +11,8 @@ const DEPENDENCIES = [
   'redux-thunk',
   'reselect',
   'seamless-immutable',
-  'react-native-dotenv'
+  'react-native-dotenv',
+  'react-native-huawei-protected-apps'
 ];
 
 const DEV_DEPENDENCIES = [
@@ -38,7 +39,9 @@ function yarnInstall(projectName, deps, options, dev) {
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
     successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-    failureMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+    failureMessage: `${dev
+      ? 'Dev dependencies'
+      : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
     context: options
   });
 }
