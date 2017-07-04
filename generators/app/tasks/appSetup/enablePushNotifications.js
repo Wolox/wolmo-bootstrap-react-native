@@ -4,6 +4,11 @@ module.exports = function enablePushNotifications() {
     this.templatePath('src', 'config', 'PushNotifications.js'),
     this.destinationPath(this.projectName, 'src', 'config', 'PushNotifications.js')
   );
+  // src/config/Huawei.js
+  this.fs.copy(
+    this.templatePath('src', 'config', 'Huawei.js'),
+    this.destinationPath(this.projectName, 'src', 'config', 'Huawei.js')
+  );
   // src/services/PushNotificationsService.js
   this.fs.copy(
     this.templatePath('src', 'services', 'PushNotificationsService.js'),
