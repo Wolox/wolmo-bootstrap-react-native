@@ -16,7 +16,7 @@ module.exports = function pushNotificationsFeatureFiles() {
   );
   // src/config/Huawei.js
   this.fs.copy(
-    this.templatePath('src', 'config', 'Huawei.js'),
-    this.destinationPath(this.projectName, 'src', 'config', 'Huawei.js')
+    this.templatePath('src', 'config', 'HuaweiPushNotifications.js'),
+    this.destinationPath(this.projectName, 'src', 'config', 'HuaweiPushNotifications.js')
   );
 };
