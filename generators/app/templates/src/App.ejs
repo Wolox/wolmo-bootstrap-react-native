@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<%_ if(features.pushnotifications) { _%>
+import alertIfHuaweiDevice from './config/HuaweiPushNotifications';
+<%_ } _%>
 
 <%_ if(features.drawerios && features.drawerandroid) { _%>
 import DrawerContainer from './components/Drawer/DrawerContainer';
@@ -21,6 +24,7 @@ class App extends Component {
   componentWillMount() {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(this.props.dispatch);
+    alertIfHuaweiDevice();
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(this.props.dispatch);

@@ -38,7 +38,9 @@ function yarnInstall(projectName, deps, options, dev) {
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
     successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-    failureMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+    failureMessage: `${dev
+      ? 'Dev dependencies'
+      : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
     context: options
   });
 }
@@ -46,6 +48,7 @@ function yarnInstall(projectName, deps, options, dev) {
 module.exports = function installDependencies() {
   if (this.features.pushnotifications) {
     DEPENDENCIES.push('react-native-push-notification');
+    DEPENDENCIES.push('react-native-huawei-protected-apps');
   }
   if (this.features.drawerios || this.features.drawerandroid) {
     DEPENDENCIES.push('react-native-drawer');
