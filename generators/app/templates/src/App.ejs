@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 <%_ if(features.pushnotifications) { _%>
 import alertIfHuaweiDevice from './config/HuaweiPushNotifications';
 <%_ } _%>
-
 <%_ if(features.drawerios && features.drawerandroid) { _%>
 import DrawerContainer from './components/Drawer/DrawerContainer';
 <%_ } else if (features.drawerios || features.drawerandroid) { _%>

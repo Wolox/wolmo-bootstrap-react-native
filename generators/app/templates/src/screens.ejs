@@ -3,10 +3,11 @@
 //  in favour of setting the initialRoute as a prop of the navigator
 
 <%_ if(features.login || features.drawerandroid || features.drawerios) { _%>
-import PropTypes from 'prop-types';
+import React from 'react';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 <%_ } _%>
 <%_ if (features.drawerandroid || features.drawerios) { _%>
 import { Button } from 'react-native';

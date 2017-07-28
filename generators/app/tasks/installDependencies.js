@@ -32,9 +32,37 @@ const DEV_DEPENDENCIES = [
   'jest-react-native'
 ];
 
+/**
+ * The eslint config we use may have issues between the different plugins we use.
+ * The solution for this is installing the proper version of each plugin declared in the eslint config package
+ * More info here: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb#usage
+ */
+const getLinterPluginVersions = (projectName, options) =>
+  // Get peer dependencies of eslint-config-airbnb and its versions
+  // This command will return something like the following:
+  // { eslint: '^3.19.0 || ^4.3.0', 'eslint-plugin-jsx-a11y': '^5.1.1', 'eslint-plugin-import': '^2.7.0', 'eslint-plugin-react': '^7.1.0' }
+  runCommand({
+    command: [
+      'npm',
+      ['info', 'eslint-config-airbnb@latest', 'peerDependencies', '--json'],
+      { cwd: `${process.cwd()}/${projectName}` }
+    ],
+    loadingMessage: `Getting eslint plugins' versions`,
+    successMessage: `Successfuly download plugins version info`,
+    failureMessage: `Error getting info of eslint plugins. Turn verbose mode on for detailed logging`,
+    context: options
+  }).then(({ result }) => {
+    const dependencies = JSON.parse(result);
+    // keep latest if the dependency has different versions. e.g: eslint: '^3.19.0 || ^4.3.0'
+    Object.keys(dependencies).forEach(eachDependency => {
+      const versions = dependencies[eachDependency].split('||');
+      dependencies[eachDependency] = versions.slice(-1)[0].trim();
+    });
+    return dependencies;
+  });
+
 function yarnInstall(projectName, deps, options, dev) {
   const yarnArgs = dev ? ['add', '--dev'].concat(deps) : ['add'].concat(deps);
-
   return runCommand({
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
@@ -54,9 +82,15 @@ module.exports = function installDependencies() {
   if (this.features.drawerios || this.features.drawerandroid) {
     DEPENDENCIES.push('react-native-drawer');
   }
-  return yarnInstall(this.projectName, DEPENDENCIES, this.options)
-    .then(() => yarnInstall(this.projectName, DEV_DEPENDENCIES, this.options, true))
-    .catch(() => {
-      process.exit(1);
-    });
+  return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
+    const pluginNames = Object.keys(plugins);
+    const fixedDevDeps = DEV_DEPENDENCIES.map(
+      dependency => (pluginNames.includes(dependency) ? `${dependency}@${plugins[dependency]}` : dependency)
+    );
+    return yarnInstall(this.projectName, DEPENDENCIES, this.options)
+      .then(() => yarnInstall(this.projectName, fixedDevDeps, this.options, true))
+      .catch(() => {
+        process.exit(1);
+      });
+  });
 };
