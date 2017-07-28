@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import './src/config';
 import store from './src/redux/store';
-import App from './src/App';
+import App from './src/app';
 
 export default function index() {
   return (

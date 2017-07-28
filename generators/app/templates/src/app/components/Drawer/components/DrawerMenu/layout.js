@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 
-import styles from './DrawerMenu.styles';
+import styles from './styles';
 
 export default function DrawerMenu({ wrapOnPress, onCloseDrawer }) {
   return (
@@ -16,6 +17,6 @@ export default function DrawerMenu({ wrapOnPress, onCloseDrawer }) {
 }
 
 DrawerMenu.propTypes = {
-  onCloseDrawer: React.PropTypes.func.isRequired,
-  wrapOnPress: React.PropTypes.func.isRequired
+  onCloseDrawer: PropTypes.func.isRequired,
+  wrapOnPress: PropTypes.func.isRequired
 };

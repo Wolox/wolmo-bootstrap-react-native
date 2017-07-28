@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { actionCreators as authActions } from '../../redux/authHandlers';
+import { actionCreators as authActions } from '../../../redux/authHandlers';
 
-import Login from './Login';
+import Login from './layout';
 
 class LoginContainer extends Component {
   handleLogin = () => {

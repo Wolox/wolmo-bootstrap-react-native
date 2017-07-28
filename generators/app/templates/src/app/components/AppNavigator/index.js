@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import Navigator from './screens';
+import Navigator from '../../screens';
 
 const AppNavigator = props => {
   const { dispatch, nav, ...navigatorProps } = props;

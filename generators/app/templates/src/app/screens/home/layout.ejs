@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 <%_ } _%>
 import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
 
-import styles from './Home.styles';
+import styles from './styles';
 
 <%_ if(features.login) { _%>
 export default function Home({ onLogout }) {
