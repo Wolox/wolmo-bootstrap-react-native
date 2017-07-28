@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import DrawerMenu from './DrawerMenu';
 import { actionCreators as drawerActions } from '../../redux/drawerHandlers';
+
+import DrawerMenu from './DrawerMenu';
 
 class DrawerMenuContainer extends Component {
   handleCloseDrawer = () => {

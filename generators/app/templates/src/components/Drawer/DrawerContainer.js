@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
 import { StatusBar } from 'react-native';
 
-import DrawerMenuContainer from './DrawerMenuContainer';
-import DrawerOverlay from './DrawerOverlay';
 import { actionCreators as drawerActions, propTypes as drawerPropTypes } from '../../redux/drawerHandlers';
 import { STATUS_BAR_IS_FIXED } from '../../utils/constants';
 import AppNavigator from '../../AppNavigator';
+
+import DrawerMenuContainer from './DrawerMenuContainer';
+import DrawerOverlay from './DrawerOverlay';
 
 class DrawerContainer extends Component {
   state = { isHandlingUserInput: false };

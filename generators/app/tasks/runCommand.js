@@ -1,6 +1,8 @@
 require('colors');
-const ora = require('ora');
+
 const spawn = require('child_process').spawn;
+
+const ora = require('ora');
 
 /**
  * Receives only one argument which is an object of options:

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { actionCreators as authActions } from '../../redux/authHandlers';
+
 import Home from './Home';
 
 class HomeContainer extends Component {

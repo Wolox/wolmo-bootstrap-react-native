@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { transparent } from '../../utils/colors';
+
 import styles from './Login.styles';
 
 export default function Login({ onLogin }) {
