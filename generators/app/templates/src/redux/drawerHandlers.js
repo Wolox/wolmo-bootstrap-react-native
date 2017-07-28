@@ -21,9 +21,8 @@ export const actionCreators = {
 export function reducer(state = Immutable({ present: false }), action) {
   switch (action.type) {
     case actions.DRAWER_TOGGLED: {
-      const present = !action.payload || action.payload.present === undefined
-        ? !state.present
-        : action.payload.present;
+      const present =
+        !action.payload || action.payload.present === undefined ? !state.present : action.payload.present;
       return state.merge({ present });
     }
     default: {

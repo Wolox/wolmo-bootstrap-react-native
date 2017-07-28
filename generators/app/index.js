@@ -30,9 +30,9 @@ class ReactNativeBootstrap extends Generator {
         name: 'name',
         message: "What's your project name?",
         validate: val =>
-          (String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
+          String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
             ? true
-            : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`)
+            : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
       },
       {
         type: 'checkbox',

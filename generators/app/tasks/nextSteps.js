@@ -4,8 +4,8 @@ module.exports = function nextSteps() {
   console.log(`\n       ${'NEXT STEPS!'.bold.underline.white}       \n`);
   // introduction message
   console.log(
-    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this.projectName}/`.italic}`
-      .cyan
+    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this
+      .projectName}/`.italic}`.cyan
   );
   if (this.repoUrl) {
     // remote repository initialized
@@ -14,8 +14,8 @@ module.exports = function nextSteps() {
 
   // fabric
   console.log(
-    `● Fabric and crashlytics are two ${'MANDATORY'.bold.underline} tools in every react-native project in Wolox.`
-      .cyan
+    `● Fabric and crashlytics are two ${'MANDATORY'.bold
+      .underline} tools in every react-native project in Wolox.`.cyan
   );
   console.log('  Follow these guides in order to complete their installation:'.cyan);
   console.log(`    ${'https://fabric.io/kits/ios/crashlytics/manual-install'.cyan.underline}`);
@@ -30,8 +30,8 @@ module.exports = function nextSteps() {
         .cyan
     );
     console.log(
-      `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`
-        .cyan
+      `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'
+        .underline}`.cyan
     );
   }
 

@@ -8,9 +8,7 @@ export default function DrawerMenu({ wrapOnPress, onCloseDrawer }) {
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={wrapOnPress} style={styles.clickWrapper}>
         <TouchableOpacity onPress={onCloseDrawer} style={styles.closeButton}>
-          <Text>
-            Close drawer!
-          </Text>
+          <Text>Close drawer!</Text>
         </TouchableOpacity>
       </TouchableWithoutFeedback>
     </View>
