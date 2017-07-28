@@ -5,7 +5,7 @@ module.exports = function reactNativeInit() {
     command: ['react-native', ['init', this.projectName]],
     loadingMessage: 'Initializing react-native',
     context: this.options
-  }).then(spinner =>
+  }).then(({ spinner }) =>
     runCommand({
       command: ['rm', ['-rf', '__tests__'], { cwd: `${process.cwd()}/${this.projectName}` }],
       context: this.options

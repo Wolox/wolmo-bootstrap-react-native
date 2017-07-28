@@ -21,6 +21,7 @@ module.exports = function runCommand(options) {
 
   return new Promise((resolve, reject) => {
     const command = spawn(...options.command);
+    let result = '';
 
     let killTimeout;
     let processKilled;
@@ -42,6 +43,7 @@ module.exports = function runCommand(options) {
       if (options.timeout) {
         refreshKillTimeout();
       }
+      result += data ? `\n${data.toString()}` : '';
       if (options.context && options.context.verbose && data) {
         console.log(data.toString());
       }
@@ -65,7 +67,7 @@ module.exports = function runCommand(options) {
         if (spinner && options.successMessage) {
           spinner.succeed(options.successMessage);
         }
-        resolve(spinner);
+        resolve({ spinner, result });
       } else {
         if (spinner && options.failureMessage) {
           spinner.fail(options.failureMessage);
