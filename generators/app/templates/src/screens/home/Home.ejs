@@ -1,4 +1,7 @@
 import React from 'react';
+<%_ if(features.login) { _%>
+import PropTypes from 'prop-types';
+<%_ } _%>
 import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
 
 import styles from './Home.styles';
@@ -23,6 +26,6 @@ export default function Home() {
 <%_ if (features.login) { _%>
 
 Home.propTypes = {
-  onLogout: React.PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired
 };
 <%_ } _%>

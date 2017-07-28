@@ -10,6 +10,7 @@ const DEPENDENCIES = [
   'redux',
   'redux-thunk',
   'reselect',
+  'prop-types',
   'seamless-immutable',
   'react-native-dotenv'
 ];

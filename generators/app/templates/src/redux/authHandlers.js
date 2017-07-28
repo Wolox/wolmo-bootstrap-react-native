@@ -1,6 +1,6 @@
-import React from 'react';
-import Immutable from 'seamless-immutable';
 import { NavigationActions } from 'react-navigation';
+import Immutable from 'seamless-immutable';
+import PropTypes from 'prop-types';
 
 import { setCurrentUser, removeCurrentUser } from '../services/AuthService';
 import { stringArrayToObject } from '../utils/reduxUtils';
@@ -106,10 +106,10 @@ export function reducer(state = Immutable(defaultState), action) {
 
 export function propTypes() {
   return {
-    loading: React.PropTypes.bool.isRequired,
-    initialLoading: React.PropTypes.bool.isRequired,
-    currentUser: React.PropTypes.shape({
-      email: React.PropTypes.string.isRequired
+    loading: PropTypes.bool.isRequired,
+    initialLoading: PropTypes.bool.isRequired,
+    currentUser: PropTypes.shape({
+      email: PropTypes.string.isRequired
     })
   };
 }

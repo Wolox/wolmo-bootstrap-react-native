@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import React from 'react';
+import PropTypes from 'prop-types';
 
 import { stringArrayToObject } from '../utils/reduxUtils';
 
@@ -35,5 +35,5 @@ export function reducer(state = Immutable({ present: false }), action) {
 /* ------------- Drawer propTypes ------------- */
 
 export const propTypes = {
-  present: React.PropTypes.bool.isRequired
+  present: PropTypes.bool.isRequired
 };

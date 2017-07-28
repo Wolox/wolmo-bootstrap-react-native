@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Animated } from 'react-native';
+import PropTypes from 'prop-types';
 
 import styles from './DrawerOverlay.styles';
 
@@ -35,5 +36,5 @@ export default class DrawerOverlay extends Component {
 }
 
 DrawerOverlay.propTypes = {
-  drawerPresent: React.PropTypes.bool.isRequired
+  drawerPresent: PropTypes.bool.isRequired
 };
