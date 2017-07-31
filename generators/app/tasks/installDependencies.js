@@ -58,8 +58,8 @@ function getLinterPluginVersions(projectName, options) {
     // keep latest if the dependency has different versions. e.g: eslint: '^3.19.0 || ^4.3.0'
     const dependencies = JSON.parse(result);
     Object.keys(dependencies).forEach(eachDependency => {
-      const latest = latestSemver(dependencies[eachDependency].match(semverRegex()));
-      dependencies[eachDependency] = `^${latest}`;
+      const latestDependencyVersion = latestSemver(dependencies[eachDependency].match(semverRegex()));
+      dependencies[eachDependency] = `^${latestDependencyVersion}`;
     });
     return dependencies;
   });
