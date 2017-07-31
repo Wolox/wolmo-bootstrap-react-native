@@ -1,11 +1,13 @@
 require('colors');
 
+const { CRASHLYTICS_LINKS, PUSH_NOTIFICATIONS_SETUP_LINK } = require('../constants');
+
 module.exports = function nextSteps() {
   console.log(`\n       ${'NEXT STEPS!'.bold.underline.white}       \n`);
   // introduction message
   console.log(
-    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this.projectName}/`.italic}`
-      .cyan
+    `● Your project folder has been created and it already includes the kickoff commit. ${`cd ${this
+      .projectName}/`.italic}`.cyan
   );
   if (this.repoUrl) {
     // remote repository initialized
@@ -14,13 +16,13 @@ module.exports = function nextSteps() {
 
   // fabric
   console.log(
-    `● Fabric and crashlytics are two ${'MANDATORY'.bold.underline} tools in every react-native project in Wolox.`
-      .cyan
+    `● Fabric and crashlytics are two ${'MANDATORY'.bold
+      .underline} tools in every react-native project in Wolox.`.cyan
   );
   console.log('  Follow these guides in order to complete their installation:'.cyan);
-  console.log(`    ${'https://fabric.io/kits/ios/crashlytics/manual-install'.cyan.underline}`);
-  console.log(`    ${'https://fabric.io/kits/android/crashlytics/install'.cyan.underline}`);
-  console.log(`    ${'https://github.com/corymsmith/react-native-fabric#installation'.cyan.underline}`);
+  console.log(`    ${CRASHLYTICS_LINKS.IOS_INSTALL.cyan.underline}`);
+  console.log(`    ${CRASHLYTICS_LINKS.ANDROID_INSTALL.cyan.underline}`);
+  console.log(`    ${CRASHLYTICS_LINKS.RN_INSTALL.cyan.underline}`);
   console.log('  (*) Remember to ask your team lead for the Fabric token'.cyan);
 
   if (this.features.pushnotifications) {
@@ -29,10 +31,7 @@ module.exports = function nextSteps() {
       '● The push notification config has been added to the project but you still need to manually link the ios library.'
         .cyan
     );
-    console.log(
-      `  Further instructions can be found here: ${'https://facebook.github.io/react-native/docs/pushnotificationios.html'.underline}`
-        .cyan
-    );
+    console.log(`  Further instructions can be found here: ${PUSH_NOTIFICATIONS_SETUP_LINK.underline}`.cyan);
   }
 
   if (this.features.login) {

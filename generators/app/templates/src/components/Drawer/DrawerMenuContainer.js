@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { actionCreators as drawerActions } from '../../redux/drawerHandlers';
 
 import DrawerMenu from './DrawerMenu';
-import { actionCreators as drawerActions } from '../../redux/drawerHandlers';
 
 class DrawerMenuContainer extends Component {
   handleCloseDrawer = () => {
@@ -15,7 +17,7 @@ class DrawerMenuContainer extends Component {
 }
 
 DrawerMenuContainer.propTypes = {
-  wrapOnPress: React.PropTypes.func.isRequired
+  wrapOnPress: PropTypes.func.isRequired
 };
 
 export default connect()(DrawerMenuContainer);

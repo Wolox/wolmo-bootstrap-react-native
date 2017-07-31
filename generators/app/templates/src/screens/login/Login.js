@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { transparent } from '../../utils/colors';
+
 import styles from './Login.styles';
 
 export default function Login({ onLogin }) {
@@ -21,5 +23,5 @@ export default function Login({ onLogin }) {
 }
 
 Login.propTypes = {
-  onLogin: React.PropTypes.func.isRequired
+  onLogin: PropTypes.func.isRequired
 };

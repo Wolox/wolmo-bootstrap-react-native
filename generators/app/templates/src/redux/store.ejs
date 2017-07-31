@@ -3,6 +3,7 @@ import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 
 import Navigator from '../screens';
+
 <%_ if(features.login) { _%>
 import { reducer as auth } from './authHandlers';
 <%_ } _%>
@@ -12,7 +13,9 @@ import { reducer as pushNotifications } from './pushNotificationHandlers';
 <%_ if(features.drawerios || features.drawerandroid) { _%>
 import { reducer as drawer } from './drawerHandlers';
 <%_ } _%>
+<%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login) { _%>
 
+<%_ } _%>
 const nav = (state, action) => Navigator.router.getStateForAction(action, state) || state;
 
 const reducers = combineReducers({

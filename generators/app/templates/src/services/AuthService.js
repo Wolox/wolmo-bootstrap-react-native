@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
-import api from '../config/api';
 
+import api from '../config/api';
 import { actionCreators as authActions } from '../redux/authHandlers';
 
 export const setCurrentUser = async currentUser => {

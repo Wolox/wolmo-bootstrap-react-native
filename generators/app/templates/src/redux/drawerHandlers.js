@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import React from 'react';
+import PropTypes from 'prop-types';
 
 import { stringArrayToObject } from '../utils/reduxUtils';
 
@@ -21,9 +21,8 @@ export const actionCreators = {
 export function reducer(state = Immutable({ present: false }), action) {
   switch (action.type) {
     case actions.DRAWER_TOGGLED: {
-      const present = !action.payload || action.payload.present === undefined
-        ? !state.present
-        : action.payload.present;
+      const present =
+        !action.payload || action.payload.present === undefined ? !state.present : action.payload.present;
       return state.merge({ present });
     }
     default: {
@@ -35,5 +34,5 @@ export function reducer(state = Immutable({ present: false }), action) {
 /* ------------- Drawer propTypes ------------- */
 
 export const propTypes = {
-  present: React.PropTypes.bool.isRequired
+  present: PropTypes.bool.isRequired
 };

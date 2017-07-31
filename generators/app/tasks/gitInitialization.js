@@ -7,7 +7,7 @@ module.exports = function gitInitialization() {
     loadingMessage: 'Doing some git stuff...',
     context: this.options
   })
-    .then(spinner =>
+    .then(({ spinner }) =>
       // git add .
       runCommand({
         command: ['git', ['add', '.'], { cwd: `${process.cwd()}/${this.projectName}` }],
