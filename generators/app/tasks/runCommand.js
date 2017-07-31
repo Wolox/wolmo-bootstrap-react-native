@@ -21,7 +21,7 @@ module.exports = function runCommand(options) {
 
   return new Promise((resolve, reject) => {
     const command = spawn(...options.command);
-    let result = '';
+    const result = [];
 
     let killTimeout;
     let processKilled;
@@ -43,9 +43,11 @@ module.exports = function runCommand(options) {
       if (options.timeout) {
         refreshKillTimeout();
       }
-      result += data ? `\n${data.toString()}` : '';
-      if (options.context && options.context.verbose && data) {
-        console.log(data.toString());
+      if (data) {
+        result.push(data);
+        if (options.context && options.context.verbose) {
+          console.log(data.toString()); // eslint-disable-line no-console
+        }
       }
     });
 
@@ -55,7 +57,7 @@ module.exports = function runCommand(options) {
       }
       if (options.context && options.context.verbose && data) {
         const msg = data.toString();
-        console.log(/warning/.test(msg) ? msg.yellow : msg.red);
+        console.log(/warning/.test(msg) ? msg.yellow : msg.red); // eslint-disable-line no-console
       }
     });
 
@@ -67,7 +69,7 @@ module.exports = function runCommand(options) {
         if (spinner && options.successMessage) {
           spinner.succeed(options.successMessage);
         }
-        resolve({ spinner, result });
+        resolve({ spinner, result: result.join('\n') });
       } else {
         if (spinner && options.failureMessage) {
           spinner.fail(options.failureMessage);
