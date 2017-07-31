@@ -2,7 +2,7 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-<%_ if(features.login || features.drawerandroid || features.drawerios) { _%>
+<%_ if(features.drawerandroid || features.drawerios) { _%>
 import React from 'react';
 <%_ } _%>
 <%_ if(features.login) { _%>
@@ -15,12 +15,12 @@ import { Button } from 'react-native';
 import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
 <%_ if (features.drawerandroid || features.drawerios) { _%>
-import { actionCreators as drawerActions } from '../redux/drawerHandlers';
+import { actionCreators as drawerActions } from '../redux/drawer/actions';
 
 <%_ } _%>
 <%_ if(features.login) { _%>
 import Login from './screens/login';
-import Home from './screens/home'; ACA REVISAR QUE SI HAY LOGIN SE INCLUYA EL CONTAINER COMO INDEX, SINO EL LAYOUT COMO INDEX
+import Home from './screens/home';
 <%_ } else { _%>
 import Home from './screens/home';
 <%_ } _%>

@@ -11,13 +11,16 @@ import configPushNotifications from '../config/PushNotifications';
 <%_ if(features.login) { _%>
 import { authSetup } from '../services/AuthService';
 <%_ } _%>
-
 <%_ if(features.drawerios && features.drawerandroid) { _%>
+
 import Drawer from './components/Drawer';
 <%_ } else if (features.drawerios || features.drawerandroid) { _%>
+import { isAndroid } from '../utils/constants';
+
 import Drawer from './components/Drawer';
-import { isAndroid } from './utils/constants';
+import AppNavigator from './components/AppNavigator';
 <%_ } else { _%>
+
 import AppNavigator from './components/AppNavigator';
 <%_ } _%>
 

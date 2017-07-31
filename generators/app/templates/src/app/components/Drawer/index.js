@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Drawer from 'react-native-drawer';
 import { StatusBar } from 'react-native';
 
-import { actionCreators as drawerActions, propTypes as drawerPropTypes } from '../../../redux/drawerHandlers';
+import { actionCreators as drawerActions } from '../../../redux/drawer/actions';
+import { propTypes as drawerPropTypes } from '../../../redux/drawer/reducer';
 import { STATUS_BAR_IS_FIXED } from '../../../utils/constants';
 import AppNavigator from '../AppNavigator';
 

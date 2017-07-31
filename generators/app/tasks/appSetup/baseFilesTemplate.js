@@ -46,34 +46,34 @@ module.exports = function baseFilesTemplate() {
     this.destinationPath(this.projectName, 'index.ios.js'),
     { projectName: this.projectName }
   );
-  // src/App.js
+  // src/app/index.js
   this.fs.copyTpl(
-    this.templatePath('src', 'App.ejs'),
-    this.destinationPath(this.projectName, 'src', 'App.js'),
+    this.templatePath('src', 'app', 'index.ejs'),
+    this.destinationPath(this.projectName, 'src', 'app', 'index.js'),
     { projectName: this.projectName, features: this.features }
   );
-  // src/AppNavigator.js
+  // src/app/components/AppNavigator/index.js
   this.fs.copyTpl(
-    this.templatePath('src', 'AppNavigator.js'),
-    this.destinationPath(this.projectName, 'src', 'AppNavigator.js'),
+    this.templatePath('src', 'app', 'components', 'AppNavigator', 'index.js'),
+    this.destinationPath(this.projectName, 'src', 'app', 'components', 'AppNavigator', 'index.js'),
     { projectName: this.projectName, features: this.features }
   );
-  // src/screens.ejs
+  // src/app/screens.js
   this.fs.copyTpl(
-    this.templatePath('src', 'screens.ejs'),
-    this.destinationPath(this.projectName, 'src', 'screens.js'),
+    this.templatePath('src', 'app', 'screens.ejs'),
+    this.destinationPath(this.projectName, 'src', 'app', 'screens.js'),
     { projectName: this.projectName, features: this.features }
   );
-  // src/screens/home/Home.js
+  // src/app/screens/home/index.js
   this.fs.copyTpl(
-    this.templatePath('src', 'screens', 'home', 'Home.ejs'),
-    this.destinationPath(this.projectName, 'src', 'screens', 'home', 'Home.js'),
+    this.templatePath('src', 'app', 'screens', 'home', this.features.login ? 'index.js' : 'layout.ejs'),
+    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'index.js'),
     { projectName: this.projectName, features: this.features }
   );
-  // src/screens/home/Home.styles.js
+  // src/app/screens/home/styles.js
   this.fs.copyTpl(
-    this.templatePath('src', 'screens', 'home', 'Home.styles.js'),
-    this.destinationPath(this.projectName, 'src', 'screens', 'home', 'Home.styles.js'),
+    this.templatePath('src', 'app', 'screens', 'home', 'styles.js'),
+    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'styles.js'),
     { projectName: this.projectName, features: this.features }
   );
   // src/utils/constants.js

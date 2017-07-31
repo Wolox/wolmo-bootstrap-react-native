@@ -1,8 +1,13 @@
 module.exports = function pushNotificationsFeatureFiles() {
-  // src/redux/pushNotificationHandlers.js
+  // src/redux/pushNotifications/reducer.js
   this.fs.copy(
-    this.templatePath('src', 'redux', 'pushNotificationHandlers.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'pushNotificationHandlers.js')
+    this.templatePath('src', 'redux', 'pushNotifications', 'reducer.js'),
+    this.destinationPath(this.projectName, 'src', 'redux', 'pushNotifications', 'reducer.js')
+  );
+  // src/redux/pushNotifications/actions.js
+  this.fs.copy(
+    this.templatePath('src', 'redux', 'pushNotifications', 'actions.js'),
+    this.destinationPath(this.projectName, 'src', 'redux', 'pushNotifications', 'actions.js')
   );
   // src/services/PushNotificationsService.js
   this.fs.copy(
@@ -14,7 +19,7 @@ module.exports = function pushNotificationsFeatureFiles() {
     this.templatePath('src', 'config', 'PushNotifications.js'),
     this.destinationPath(this.projectName, 'src', 'config', 'PushNotifications.js')
   );
-  // src/config/Huawei.js
+  // src/config/HuaweiPushNotifications.js
   this.fs.copy(
     this.templatePath('src', 'config', 'HuaweiPushNotifications.js'),
     this.destinationPath(this.projectName, 'src', 'config', 'HuaweiPushNotifications.js')

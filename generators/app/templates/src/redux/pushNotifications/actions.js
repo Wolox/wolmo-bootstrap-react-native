@@ -1,11 +1,11 @@
-import Immutable from 'seamless-immutable';
+import { stringArrayToObject } from '../../utils/reduxUtils';
+import { isAndroid } from '../../utils/constants';
+import PushNotificationsService from '../../services/PushNotificationsService';
 
-import { stringArrayToObject } from '../utils/reduxUtils';
-import PushNotificationsService from '../services/PushNotificationsService';
-import { isAndroid } from '../utils/constants';
-
-/* ------------- Notifications actions ------------- */
-export const actions = stringArrayToObject(['REGISTER', 'UPDATE_TOKEN', 'NOTIFICATION_RECEIVED']);
+export const actions = stringArrayToObject(
+  ['REGISTER', 'UPDATE_TOKEN', 'NOTIFICATION_RECEIVED'],
+  '@@PUSH_NOTIFICATIONS'
+);
 
 export const actionCreators = {
   register(token) {
@@ -56,37 +56,3 @@ export const actionCreators = {
     };
   }
 };
-
-/* ------------- Notifications reducer ------------- */
-const defaultState = {
-  unreadNotifications: [],
-  readNotifications: [],
-  token: null
-};
-
-/* eslint-disable complexity */
-export function reducer(state = Immutable(defaultState), action) {
-  switch (action.type) {
-    case actions.REGISTER: {
-      return state.merge({ token: action.payload.token }, { deep: true });
-    }
-    case actions.NOTIFICATION_RECEIVED: {
-      const push = action.payload.notification;
-      return state.merge(
-        {
-          unreadNotifications: push.userInteraction
-            ? state.unreadNotifications.filter(unreadPush => push.id !== unreadPush.id)
-            : state.unreadNotifications.concat([push]),
-          readNotifications: push.userInteraction
-            ? state.readNotifications.concat([push])
-            : state.readNotifications
-        },
-        { deep: true }
-      );
-    }
-    default: {
-      return state;
-    }
-  }
-}
-/* eslint-enable complexity */

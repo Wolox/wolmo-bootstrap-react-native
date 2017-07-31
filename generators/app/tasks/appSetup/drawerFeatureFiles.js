@@ -1,37 +1,46 @@
+const DRAWER_FEATURE_PATH = ['src', 'app', 'components', 'Drawer'];
+const DRAWER_MENU_FEATURE_PATH = ['src', 'app', 'components', 'Drawer', 'components', 'DrawerMenu'];
+const DRAWER_OVERLAY_FEATURE_PATH = ['src', 'app', 'components', 'Drawer', 'components', 'DrawerOverlay'];
+
 module.exports = function drawerFeatureFiles() {
-  // src/components/Drawer/DrawerContainer.js
+  // src/app/components/Drawer/index.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerContainer.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerContainer.js')
+    this.templatePath(...DRAWER_FEATURE_PATH, 'index.js'),
+    this.destinationPath(this.projectName, ...DRAWER_FEATURE_PATH, 'index.js')
   );
-  // src/components/Drawer/DrawerMenu.js
+  // src/app/components/Drawer/components/DrawerMenu/index.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenu.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenu.js')
+    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'index.js'),
+    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'index.js')
   );
-  // src/components/Drawer/DrawerMenu.styles.js
+  // src/app/components/Drawer/components/DrawerMenu/styles.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenu.styles.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenu.styles.js')
+    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'styles.js'),
+    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'styles.js')
   );
-  // src/components/Drawer/DrawerMenuContainer.js
+  // src/app/components/Drawer/components/DrawerMenu/layout.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenuContainer.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenuContainer.js')
+    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'layout.js'),
+    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'layout.js')
   );
-  // src/components/Drawer/DrawerOverlay.js
+  // src/app/components/Drawer/components/DrawerOverlay/index.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerOverlay.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerOverlay.js')
+    this.templatePath(...DRAWER_OVERLAY_FEATURE_PATH, 'index.js'),
+    this.destinationPath(this.projectName, ...DRAWER_OVERLAY_FEATURE_PATH, 'index.js')
   );
-  // src/components/Drawer/DrawerOverlay.styles.js
+  // src/app/components/Drawer/components/DrawerOverlay/styles.js
   this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerOverlay.styles.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerOverlay.styles.js')
+    this.templatePath(...DRAWER_OVERLAY_FEATURE_PATH, 'styles.js'),
+    this.destinationPath(this.projectName, ...DRAWER_OVERLAY_FEATURE_PATH, 'styles.js')
   );
-  // src/redux/drawerHandlers.js
+  // src/redux/drawer/actions.js
   this.fs.copy(
-    this.templatePath('src', 'redux', 'drawerHandlers.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'drawerHandlers.js')
+    this.templatePath('src', 'redux', 'drawer', 'actions.js'),
+    this.destinationPath(this.projectName, 'src', 'redux', 'drawer', 'actions.js')
+  );
+  // src/redux/drawer/reducer.js
+  this.fs.copy(
+    this.templatePath('src', 'redux', 'drawer', 'reducer.js'),
+    this.destinationPath(this.projectName, 'src', 'redux', 'drawer', 'reducer.js')
   );
 };

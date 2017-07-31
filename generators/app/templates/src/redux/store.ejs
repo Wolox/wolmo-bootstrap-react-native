@@ -2,16 +2,16 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 
-import Navigator from '../screens';
+import Navigator from '../app/screens';
 
 <%_ if(features.login) { _%>
-import { reducer as auth } from './authHandlers';
+import auth from './auth/reducer';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
-import { reducer as pushNotifications } from './pushNotificationHandlers';
+import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
 <%_ if(features.drawerios || features.drawerandroid) { _%>
-import { reducer as drawer } from './drawerHandlers';
+import drawer from './drawer/reducer';
 <%_ } _%>
 <%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login) { _%>
 
