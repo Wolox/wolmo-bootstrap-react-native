@@ -94,8 +94,6 @@ module.exports = function installDependencies() {
       // Use a specific version of a dependency to avoid conflicts with other dependencies.
       dependency => (pluginNames.includes(dependency) ? `${dependency}@${plugins[dependency]}` : dependency)
     );
-    console.log('fixedDevDeps');
-    console.log(fixedDevDeps);
     return yarnInstall(this.projectName, DEPENDENCIES, this.options)
       .then(() => yarnInstall(this.projectName, fixedDevDeps, this.options, true))
       .catch(() => {
