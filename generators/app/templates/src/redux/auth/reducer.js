@@ -13,16 +13,16 @@ const defaultState = {
 export default function reducer(state = Immutable(defaultState), action) {
   switch (action.type) {
     case actions.AUTH_INIT: {
-      return state.merge({ initialLoading: false, currentUser: Immutable(action.payload.user) });
+      return state.merge({ initialLoading: false, currentUser: action.payload.user });
     }
     case actions.LOGIN: {
       return state.merge({ loading: true });
     }
     case actions.LOGIN_SUCCESS: {
-      return state.merge({ loading: false, currentUser: Immutable(action.payload.authData) });
+      return state.merge({ loading: false, currentUser: action.payload.authData });
     }
     case actions.LOGIN_FAILURE: {
-      return state.merge({ loading: false, currentUser: null, err: Immutable(action.payload.err) });
+      return state.merge({ loading: false, currentUser: null, err: action.payload.err });
     }
     case actions.LOGOUT: {
       return state.merge({ loading: false, currentUser: null });
