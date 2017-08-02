@@ -1,38 +1,23 @@
+const { copyFile, copyTemplateFile } = require('../../utils');
+
+const REDUX_PATH = 'src/redux';
+const SERVICES_PATH = 'src/services';
+const SCREENS_PATH = 'src/app/screens';
+const LOGIN_PATH = 'src/app/screens/login';
+
+const AUTH_REDUCER = `${REDUX_PATH}/auth/reducer.js`;
+const AUTH_ACTIONS = `${REDUX_PATH}/auth/actions.js`;
+const AUTH_SERVICE = `${SERVICES_PATH}/AuthService.js`;
+const LOGIN = `${LOGIN_PATH}/index.js`;
+const LOGIN_LAYOUT = `${LOGIN_PATH}/layout.js`;
+const LOGIN_STYLE = `${LOGIN_PATH}/style.js`;
+
+const HOME = `${SCREENS_PATH}/home/layout.js`;
+
+const FILES = [AUTH_REDUCER, AUTH_ACTIONS, AUTH_SERVICE, LOGIN, LOGIN_LAYOUT, LOGIN_STYLE];
+const TEMPLATE_FILES = [HOME];
+
 module.exports = function loginFeatureFiles() {
-  // src/redux/auth/reducer.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'auth', 'reducer.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'auth', 'reducer.js')
-  );
-  // src/redux/auth/actions.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'auth', 'actions.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'auth', 'actions.js')
-  );
-  // src/services/AuthService.js
-  this.fs.copy(
-    this.templatePath('src', 'services', 'AuthService.js'),
-    this.destinationPath(this.projectName, 'src', 'services', 'AuthService.js')
-  );
-  // src/screens/home/layout.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'screens', 'home', 'layout.ejs'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'layout.js'),
-    { projectName: this.projectName, features: this.features }
-  );
-  // src/app/screens/login/index.js
-  this.fs.copy(
-    this.templatePath('src', 'app', 'screens', 'login', 'index.js'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'login', 'index.js')
-  );
-  // src/app/screens/login/layout.js
-  this.fs.copy(
-    this.templatePath('src', 'app', 'screens', 'login', 'layout.js'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'login', 'layout.js')
-  );
-  // src/app/screens/login/styles.js
-  this.fs.copy(
-    this.templatePath('src', 'app', 'screens', 'login', 'styles.js'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'login', 'styles.js')
-  );
+  TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));
+  FILES.forEach(copyFile.bind(this));
 };
