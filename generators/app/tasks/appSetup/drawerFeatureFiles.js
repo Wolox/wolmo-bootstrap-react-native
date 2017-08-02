@@ -1,46 +1,33 @@
-const DRAWER_FEATURE_PATH = ['src', 'app', 'components', 'Drawer'];
-const DRAWER_MENU_FEATURE_PATH = ['src', 'app', 'components', 'Drawer', 'components', 'DrawerMenu'];
-const DRAWER_OVERLAY_FEATURE_PATH = ['src', 'app', 'components', 'Drawer', 'components', 'DrawerOverlay'];
+const DRAWER_PATH = 'src/app/components/Drawer';
+const DRAWER_REDUX_PATH = 'src/redux/drawer';
+const DRAWER_MENU_PATH = `${DRAWER_PATH}/components/DrawerMenu`;
+const DRAWER_OVERLAY_PATH = `${DRAWER_PATH}/components/DrawerOverlay`;
+
+const DRAWER_INDEX = `${DRAWER_PATH}/index.js`;
+const DRAWER_MENU_INDEX = `${DRAWER_MENU_PATH}/index.js`;
+const DRAWER_MENU_STYLES = `${DRAWER_MENU_PATH}/styles.js`;
+const DRAWER_MENU_LAYOUT = `${DRAWER_MENU_PATH}/layout.js`;
+const DRAWER_OVERLAY_INDEX = `${DRAWER_OVERLAY_PATH}/index.js`;
+const DRAWER_OVERLAY_STYLES = `${DRAWER_OVERLAY_PATH}/styles.js`;
+const DRAWER_REDUX_ACTIONS = `${DRAWER_REDUX_PATH}/actions.js`;
+const DRAWER_REDUX_REDUCER = `${DRAWER_REDUX_PATH}/reducer.js`;
+
+const FILES = [
+  DRAWER_INDEX,
+  DRAWER_MENU_INDEX,
+  DRAWER_MENU_STYLES,
+  DRAWER_MENU_LAYOUT,
+  DRAWER_OVERLAY_INDEX,
+  DRAWER_OVERLAY_STYLES,
+  DRAWER_REDUX_ACTIONS,
+  DRAWER_REDUX_REDUCER
+];
 
 module.exports = function drawerFeatureFiles() {
-  // src/app/components/Drawer/index.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_FEATURE_PATH, 'index.js'),
-    this.destinationPath(this.projectName, ...DRAWER_FEATURE_PATH, 'index.js')
-  );
-  // src/app/components/Drawer/components/DrawerMenu/index.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'index.js'),
-    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'index.js')
-  );
-  // src/app/components/Drawer/components/DrawerMenu/styles.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'styles.js'),
-    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'styles.js')
-  );
-  // src/app/components/Drawer/components/DrawerMenu/layout.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_MENU_FEATURE_PATH, 'layout.js'),
-    this.destinationPath(this.projectName, ...DRAWER_MENU_FEATURE_PATH, 'layout.js')
-  );
-  // src/app/components/Drawer/components/DrawerOverlay/index.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_OVERLAY_FEATURE_PATH, 'index.js'),
-    this.destinationPath(this.projectName, ...DRAWER_OVERLAY_FEATURE_PATH, 'index.js')
-  );
-  // src/app/components/Drawer/components/DrawerOverlay/styles.js
-  this.fs.copy(
-    this.templatePath(...DRAWER_OVERLAY_FEATURE_PATH, 'styles.js'),
-    this.destinationPath(this.projectName, ...DRAWER_OVERLAY_FEATURE_PATH, 'styles.js')
-  );
-  // src/redux/drawer/actions.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'drawer', 'actions.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'drawer', 'actions.js')
-  );
-  // src/redux/drawer/reducer.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'drawer', 'reducer.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'drawer', 'reducer.js')
-  );
+  FILES.forEach(filepath => {
+    this.fs.copy(
+      this.templatePath(...filepath.split('/')),
+      this.destinationPath(this.projectName, ...filepath.split('/'))
+    );
+  });
 };
