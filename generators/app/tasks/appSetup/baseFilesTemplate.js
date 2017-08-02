@@ -1,104 +1,71 @@
+const CONFIG_PATH = 'src/config';
+const REDUX_PATH = 'src/redux';
+const APP_PATH = 'src/app';
+const UTILS_PATH = 'src/utils';
+const APP_NAVIGATOR_PATH = 'src/app/components/AppNavigator';
+const SCREENS_PATH = 'src/app/screens';
+const TEST_PATH = 'test';
+const HOME_PATH = `${SCREENS_PATH}/home`;
+
+const CIRCLE_CONFIG = 'circle.yml';
+const PULL_REQUEST_TEMPLATE = 'pull_request_template.md';
+const API_CONFIG = `${CONFIG_PATH}/api.js`;
+const CONFIG = `${CONFIG_PATH}/index.js`;
+const MAIN = 'main.js';
+const APP_NAVIGATOR = `${APP_NAVIGATOR_PATH}/index.js`;
+const CONSTANTS = `${UTILS_PATH}/constants.js`;
+const REDUX_UTILS = `${UTILS_PATH}/reduxUtils.js`;
+const COLORS = `${UTILS_PATH}/colors.js`;
+const REDUX_UTILS_TESTS = `${TEST_PATH}/utils/reduxUtils.spec.js`;
+const TEST_ESLINT_CONFIG = `${TEST_PATH}/.eslintrc.js`;
+
+const README = 'README.md';
+const REDUX_STORE = `${REDUX_PATH}/store.js`;
+const REACTOTRON_CONFIG = `${CONFIG_PATH}/ReactotronConfig.js`;
+const ANDROID_INDEX = 'index.android.js';
+const IOS_INDEX = 'index.ios.js';
+const APP = `${APP_PATH}/index.js`;
+const SCREENS = `${APP_PATH}/screens.js`;
+const HOME_STYLES = `${HOME_PATH}/styles.js`;
+
+const FILES = [
+  CIRCLE_CONFIG,
+  PULL_REQUEST_TEMPLATE,
+  API_CONFIG,
+  CONFIG,
+  MAIN,
+  APP_NAVIGATOR,
+  CONSTANTS,
+  REDUX_UTILS,
+  COLORS,
+  REDUX_UTILS_TESTS,
+  TEST_ESLINT_CONFIG,
+  HOME_STYLES
+];
+
+const TEMPLATE_FILES = [README, REDUX_STORE, REACTOTRON_CONFIG, ANDROID_INDEX, IOS_INDEX, APP, SCREENS];
+
 module.exports = function baseFilesTemplate() {
-  // circle.yml
-  this.fs.copy(this.templatePath('circle.yml'), this.destinationPath(this.projectName, 'circle.yml'));
-  // README.md
-  this.fs.copyTpl(this.templatePath('README.ejs'), this.destinationPath(this.projectName, 'README.md'), {
-    projectName: this.projectName
+  TEMPLATE_FILES.forEach(filepath => {
+    const filepathWithoutExtension = filepath.substring(0, filepath.lastIndexOf('.'));
+    const templatePath = `${filepathWithoutExtension}.ejs`;
+    this.fs.copyTpl(
+      this.templatePath(...templatePath.split('/')),
+      this.destinationPath(this.projectName, ...filepath.split('/')),
+      { projectName: this.projectName, features: this.features }
+    );
   });
-  // pull_request_template.md
-  this.fs.copy(
-    this.templatePath('pull_request_template.md'),
-    this.destinationPath(this.projectName, 'pull_request_template.md')
-  );
-  // src/config/api.js
-  this.fs.copy(
-    this.templatePath('src', 'config', 'api.js'),
-    this.destinationPath(this.projectName, 'src', 'config', 'api.js')
-  );
-  // src/config/index.js
-  this.fs.copy(
-    this.templatePath('src', 'config', 'index.js'),
-    this.destinationPath(this.projectName, 'src', 'config', 'index.js')
-  );
-  // src/redux/store.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'redux', 'store.ejs'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'store.js'),
-    { features: this.features }
-  );
-  // main.js
-  this.fs.copy(this.templatePath('main.js'), this.destinationPath(this.projectName, 'main.js'));
-  // src/config/ReactotronConfig.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'config', 'ReactotronConfig.ejs'),
-    this.destinationPath(this.projectName, 'src', 'config', 'ReactotronConfig.js'),
-    { projectName: this.projectName }
-  );
-  // index.android.js
-  this.fs.copyTpl(
-    this.templatePath('index.android.ejs'),
-    this.destinationPath(this.projectName, 'index.android.js'),
-    { projectName: this.projectName }
-  );
-  // index.ios.js
-  this.fs.copyTpl(
-    this.templatePath('index.ios.ejs'),
-    this.destinationPath(this.projectName, 'index.ios.js'),
-    { projectName: this.projectName }
-  );
-  // src/app/index.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'index.ejs'),
-    this.destinationPath(this.projectName, 'src', 'app', 'index.js'),
-    { projectName: this.projectName, features: this.features }
-  );
-  // src/app/components/AppNavigator/index.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'components', 'AppNavigator', 'index.js'),
-    this.destinationPath(this.projectName, 'src', 'app', 'components', 'AppNavigator', 'index.js'),
-    { projectName: this.projectName, features: this.features }
-  );
-  // src/app/screens.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'screens.ejs'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens.js'),
-    { projectName: this.projectName, features: this.features }
-  );
-  // src/app/screens/home/index.js
+
+  FILES.forEach(filepath => {
+    this.fs.copy(
+      this.templatePath(...filepath.split('/')),
+      this.destinationPath(this.projectName, ...filepath.split('/'))
+    );
+  });
+
   this.fs.copyTpl(
     this.templatePath('src', 'app', 'screens', 'home', this.features.login ? 'index.js' : 'layout.ejs'),
     this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'index.js'),
     { projectName: this.projectName, features: this.features }
-  );
-  // src/app/screens/home/styles.js
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'screens', 'home', 'styles.js'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'styles.js'),
-    { projectName: this.projectName, features: this.features }
-  );
-  // src/utils/constants.js
-  this.fs.copy(
-    this.templatePath('src', 'utils', 'constants.js'),
-    this.destinationPath(this.projectName, 'src', 'utils', 'constants.js')
-  );
-  // src/utils/reduxUtils.js
-  this.fs.copy(
-    this.templatePath('src', 'utils', 'reduxUtils.js'),
-    this.destinationPath(this.projectName, 'src', 'utils', 'reduxUtils.js')
-  );
-  // src/utils/colors.js
-  this.fs.copy(
-    this.templatePath('src', 'utils', 'colors.js'),
-    this.destinationPath(this.projectName, 'src', 'utils', 'colors.js')
-  );
-  // test/utils/reduxUtils.spec.js
-  this.fs.copy(
-    this.templatePath('test', 'utils', 'reduxUtils.spec.js'),
-    this.destinationPath(this.projectName, 'test', 'utils', 'reduxUtils.spec.js')
-  );
-  // test/.eslintrc.js
-  this.fs.copy(
-    this.templatePath('test', '.eslintrc.js'),
-    this.destinationPath(this.projectName, 'test', '.eslintrc.js')
   );
 };
