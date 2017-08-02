@@ -10,7 +10,7 @@ const AUTH_ACTIONS = `${REDUX_PATH}/auth/actions.js`;
 const AUTH_SERVICE = `${SERVICES_PATH}/AuthService.js`;
 const LOGIN = `${LOGIN_PATH}/index.js`;
 const LOGIN_LAYOUT = `${LOGIN_PATH}/layout.js`;
-const LOGIN_STYLE = `${LOGIN_PATH}/style.js`;
+const LOGIN_STYLE = `${LOGIN_PATH}/styles.js`;
 
 const HOME = `${SCREENS_PATH}/home/layout.js`;
 
