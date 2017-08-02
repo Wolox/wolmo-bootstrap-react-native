@@ -1,3 +1,5 @@
+const { copyFile, copyTemplateFile } = require('../../utils');
+
 const CONFIG_PATH = 'src/config';
 const REDUX_PATH = 'src/redux';
 const APP_PATH = 'src/app';
@@ -46,22 +48,8 @@ const FILES = [
 const TEMPLATE_FILES = [README, REDUX_STORE, REACTOTRON_CONFIG, ANDROID_INDEX, IOS_INDEX, APP, SCREENS];
 
 module.exports = function baseFilesTemplate() {
-  TEMPLATE_FILES.forEach(filepath => {
-    const filepathWithoutExtension = filepath.substring(0, filepath.lastIndexOf('.'));
-    const templatePath = `${filepathWithoutExtension}.ejs`;
-    this.fs.copyTpl(
-      this.templatePath(...templatePath.split('/')),
-      this.destinationPath(this.projectName, ...filepath.split('/')),
-      { projectName: this.projectName, features: this.features }
-    );
-  });
-
-  FILES.forEach(filepath => {
-    this.fs.copy(
-      this.templatePath(...filepath.split('/')),
-      this.destinationPath(this.projectName, ...filepath.split('/'))
-    );
-  });
+  TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));
+  FILES.forEach(copyFile.bind(this));
 
   this.fs.copyTpl(
     this.templatePath('src', 'app', 'screens', 'home', this.features.login ? 'index.js' : 'layout.ejs'),

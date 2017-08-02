@@ -1,3 +1,5 @@
+const { copyFile } = require('../../utils');
+
 const DRAWER_PATH = 'src/app/components/Drawer';
 const DRAWER_REDUX_PATH = 'src/redux/drawer';
 const DRAWER_MENU_PATH = `${DRAWER_PATH}/components/DrawerMenu`;
@@ -24,10 +26,5 @@ const FILES = [
 ];
 
 module.exports = function drawerFeatureFiles() {
-  FILES.forEach(filepath => {
-    this.fs.copy(
-      this.templatePath(...filepath.split('/')),
-      this.destinationPath(this.projectName, ...filepath.split('/'))
-    );
-  });
+  FILES.forEach(copyFile.bind(this));
 };
