@@ -1,0 +1,84 @@
+// BASE PATHS
+module.exports.APP_PATH = 'src/app';
+module.exports.CONFIG_PATH = 'src/config';
+module.exports.REDUX_PATH = 'src/redux';
+module.exports.SERVICES_PATH = 'src/services';
+module.exports.UTILS_PATH = 'src/utils';
+module.exports.TEST_PATH = 'test';
+
+// BASE FILES
+module.exports.CIRCLE_CONFIG = 'circle.yml';
+module.exports.PULL_REQUEST_TEMPLATE = 'pull_request_template.md';
+module.exports.MAIN = 'main.js';
+module.exports.README = 'README.md';
+module.exports.ANDROID_INDEX = 'index.android.js';
+module.exports.IOS_INDEX = 'index.ios.js';
+module.exports.APP = `${module.exports.APP_PATH}/index.js`;
+
+// SCREENS
+module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
+module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
+
+// SCREENS - HOME
+module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/home`;
+module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.js`;
+module.exports.HOME = `${module.exports.HOME_PATH}/layout.js`;
+
+// SCREENS - LOGIN
+module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/login`;
+module.exports.LOGIN = `${module.exports.LOGIN_PATH}/index.js`;
+module.exports.LOGIN_LAYOUT = `${module.exports.LOGIN_PATH}/layout.js`;
+module.exports.LOGIN_STYLE = `${module.exports.LOGIN_PATH}/styles.js`;
+
+// COMPONENTS
+module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
+
+// COMPONENTS - APP NAVIGATOR
+module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
+module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
+
+// COMPONENTS - DRAWER
+module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
+module.exports.DRAWER_INDEX = `${module.exports.DRAWER_PATH}/index.js`;
+module.exports.DRAWER_MENU_PATH = `${module.exports.DRAWER_PATH}/components/DrawerMenu`;
+module.exports.DRAWER_MENU_INDEX = `${module.exports.DRAWER_MENU_PATH}/index.js`;
+module.exports.DRAWER_MENU_STYLES = `${module.exports.DRAWER_MENU_PATH}/styles.js`;
+module.exports.DRAWER_MENU_LAYOUT = `${module.exports.DRAWER_MENU_PATH}/layout.js`;
+module.exports.DRAWER_OVERLAY_PATH = `${module.exports.DRAWER_PATH}/components/DrawerOverlay`;
+module.exports.DRAWER_OVERLAY_INDEX = `${module.exports.DRAWER_OVERLAY_PATH}/index.js`;
+module.exports.DRAWER_OVERLAY_STYLES = `${module.exports.DRAWER_OVERLAY_PATH}/styles.js`;
+
+// REDUX
+module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
+
+// REDUX - PUSH NOTIFICATIONS
+module.exports.PUSH_NOTIFICATIONS_REDUCER = `${module.exports.REDUX_PATH}/pushNotifications/reducer.js`;
+module.exports.PUSH_NOTIFICATIONS_ACTIONS = `${module.exports.REDUX_PATH}/pushNotifications/actions.js`;
+
+// REDUX - DRAWER
+module.exports.DRAWER_REDUX_ACTIONS = `${module.exports.REDUX_PATH}/drawer/actions.js`;
+module.exports.DRAWER_REDUX_REDUCER = `${module.exports.REDUX_PATH}/drawer/reducer.js`;
+
+// REDUX - AUTH
+module.exports.AUTH_REDUCER = `${module.exports.REDUX_PATH}/auth/reducer.js`;
+module.exports.AUTH_ACTIONS = `${module.exports.REDUX_PATH}/auth/actions.js`;
+
+// SERVICES
+module.exports.PUSH_NOTIFICATIONS_SERVICE = `${module.exports.SERVICES_PATH}/PushNotificationsService.js`;
+module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
+
+// CONFIG
+module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/PushNotifications.js`;
+module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/HuaweiPushNotifications.js`;
+module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
+module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
+module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
+
+// UTILS
+module.exports.CONSTANTS = `${module.exports.UTILS_PATH}/constants.js`;
+module.exports.REDUX_UTILS = `${module.exports.UTILS_PATH}/reduxUtils.js`;
+module.exports.COLORS = `${module.exports.UTILS_PATH}/colors.js`;
+
+// TEST
+module.exports.REDUX_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/reduxUtils.spec.js`;
+module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;
