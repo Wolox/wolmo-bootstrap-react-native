@@ -32,21 +32,21 @@ export const actionCreators = {
   },
   login(authData) {
     return async dispatch => {
-      // TODO: Call api here
-      authData = authData || {};
-      authData.sessionToken = 'token';
-
       dispatch({ type: actions.LOGIN });
       try {
-        await AuthService.setCurrentUser(authData);
-        await new Promise(resolve => setTimeout(resolve, 750));
-        dispatch(privateActionCreators.loginSuccess(authData));
-        dispatch(
-          NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Home' })]
-          })
-        );
+        const response = await AuthService.login(authData);
+        if (response.ok) {
+          await AuthService.setCurrentUser(response.data);
+          dispatch(privateActionCreators.loginSuccess(response.data));
+          dispatch(
+            NavigationActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: 'Home' })]
+            })
+          );
+        } else {
+          throw new Error('Invalid credentials');
+        }
       } catch (e) {
         dispatch(privateActionCreators.loginFailure(e));
       }
