@@ -2,7 +2,7 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-<%_ if(features.login || features.drawerandroid || features.drawerios) { _%>
+<%_ if(features.drawerandroid || features.drawerios) { _%>
 import React from 'react';
 <%_ } _%>
 <%_ if(features.login) { _%>
@@ -14,14 +14,15 @@ import { Button } from 'react-native';
 <%_ } _%>
 import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
-<%_ if(features.login) { _%>
-import LoginContainer from './screens/login/LoginContainer';
-import HomeContainer from './screens/home/HomeContainer';
-<%_ } else { _%>
-import Home from './screens/home/Home';
-<%_ } _%>
 <%_ if (features.drawerandroid || features.drawerios) { _%>
-import { actionCreators as drawerActions } from './redux/drawerHandlers';
+import { actionCreators as drawerActions } from '../redux/drawer/actions';
+
+<%_ } _%>
+<%_ if(features.login) { _%>
+import Login from './screens/login';
+import Home from './screens/home';
+<%_ } else { _%>
+import Home from './screens/home';
 <%_ } _%>
 
 <%_ if(features.login) { _%>
@@ -54,7 +55,7 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 export default StackNavigator({
   <%_ if (features.login) { _%>
   Login: {
-    screen: LoginContainer,
+    screen: Login,
     navigationOptions: {
       title: 'Login'
     }
@@ -63,11 +64,11 @@ export default StackNavigator({
   Home: {
     screen: TabNavigator({
       Tab1: {
-        screen: HomeContainer,
+        screen: Home,
         navigationOptions: { title: 'Tab 1' }
       },
       Tab2: {
-        screen: HomeContainer,
+        screen: Home,
         navigationOptions: { title: 'Tab 2' }
       }
     }),
@@ -82,7 +83,7 @@ export default StackNavigator({
   },
   <%_ } else { _%>
   Home: {
-    screen: HomeContainer,
+    screen: Home,
     navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>
       headerRight: (

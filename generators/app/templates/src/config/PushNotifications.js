@@ -3,7 +3,7 @@ try {
   PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
 } catch (e) {} // eslint-disable-line no-empty, prettier/prettier
 
-import { actionCreators as notificationActions } from '../redux/pushNotificationHandlers'; // eslint-disable-line import/first
+import { actionCreators as notificationActions } from '../redux/pushNotifications/actions'; // eslint-disable-line import/first
 
 const formatReceivedNotification = push => {
   if (push.alert && push.alert.APNS_SANDBOX) {

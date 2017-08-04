@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { apiSetup } from '../config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from './config/HuaweiPushNotifications';
+import alertIfHuaweiDevice from '../config/HuaweiPushNotifications';
 <%_ } _%>
-<%_ if(features.drawerios && features.drawerandroid) { _%>
-import DrawerContainer from './components/Drawer/DrawerContainer';
-<%_ } else if (features.drawerios || features.drawerandroid) { _%>
-import DrawerContainer from './components/Drawer/DrawerContainer';
-import { isAndroid } from './utils/constants';
-<%_ } else { _%>
-import AppNavigator from './AppNavigator';
-<%_ } _%>
-import { apiSetup } from './config/api';
 <%_ if(features.pushnotifications) { _%>
-import configPushNotifications from './config/PushNotifications';
+import configPushNotifications from '../config/PushNotifications';
 <%_ } _%>
 <%_ if(features.login) { _%>
-import { authSetup } from './services/AuthService';
+import { authSetup } from '../services/AuthService';
+<%_ } _%>
+<%_ if(features.drawerios && features.drawerandroid) { _%>
+
+import Drawer from './components/Drawer';
+<%_ } else if (features.drawerios || features.drawerandroid) { _%>
+import { isAndroid } from '../utils/constants';
+
+import Drawer from './components/Drawer';
+import AppNavigator from './components/AppNavigator';
+<%_ } else { _%>
+
+import AppNavigator from './components/AppNavigator';
 <%_ } _%>
 
 class App extends Component {
@@ -34,11 +38,11 @@ class App extends Component {
 
   render() {
     <%_ if(features.drawerios && features.drawerandroid) { _%>
-    return <DrawerContainer />;
+    return <Drawer />;
     <%_ } else if (features.drawerios) { _%>
-    return isAndroid ? <AppNavigator /> : <DrawerContainer />;
+    return isAndroid ? <AppNavigator /> : <Drawer />;
     <%_ } else if (features.drawerandroid) { _%>
-    return isAndroid ? <DrawerContainer /> : <AppNavigator />;
+    return isAndroid ? <Drawer /> : <AppNavigator />;
     <%_ } else { _%>
     return <AppNavigator />;
     <%_ } _%>

@@ -1,22 +1,20 @@
+const { copyFile } = require('../../utils');
+const {
+  PUSH_NOTIFICATIONS_REDUCER,
+  PUSH_NOTIFICATIONS_ACTIONS,
+  PUSH_NOTIFICATIONS_SERVICE,
+  PUSH_NOTIFICATIONS_CONFIG,
+  HUAWEI_DEVICES_CONFIG
+} = require('../../files');
+
+const FILES = [
+  PUSH_NOTIFICATIONS_REDUCER,
+  PUSH_NOTIFICATIONS_ACTIONS,
+  PUSH_NOTIFICATIONS_SERVICE,
+  PUSH_NOTIFICATIONS_CONFIG,
+  HUAWEI_DEVICES_CONFIG
+];
+
 module.exports = function pushNotificationsFeatureFiles() {
-  // src/redux/pushNotificationHandlers.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'pushNotificationHandlers.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'pushNotificationHandlers.js')
-  );
-  // src/services/PushNotificationsService.js
-  this.fs.copy(
-    this.templatePath('src', 'services', 'PushNotificationsService.js'),
-    this.destinationPath(this.projectName, 'src', 'services', 'PushNotificationsService.js')
-  );
-  // src/config/PushNotifications.js
-  this.fs.copy(
-    this.templatePath('src', 'config', 'PushNotifications.js'),
-    this.destinationPath(this.projectName, 'src', 'config', 'PushNotifications.js')
-  );
-  // src/config/Huawei.js
-  this.fs.copy(
-    this.templatePath('src', 'config', 'HuaweiPushNotifications.js'),
-    this.destinationPath(this.projectName, 'src', 'config', 'HuaweiPushNotifications.js')
-  );
+  FILES.forEach(copyFile.bind(this));
 };

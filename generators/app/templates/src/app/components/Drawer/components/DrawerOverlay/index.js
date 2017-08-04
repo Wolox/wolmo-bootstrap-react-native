@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
-import styles from './DrawerOverlay.styles';
+import styles from './styles';
 
 export default class DrawerOverlay extends Component {
   state = { fadeAnimation: new Animated.Value(0), present: false };

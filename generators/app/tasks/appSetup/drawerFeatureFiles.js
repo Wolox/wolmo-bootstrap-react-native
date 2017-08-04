@@ -1,37 +1,26 @@
+const { copyFile } = require('../../utils');
+const {
+  DRAWER_INDEX,
+  DRAWER_MENU_INDEX,
+  DRAWER_MENU_STYLES,
+  DRAWER_MENU_LAYOUT,
+  DRAWER_OVERLAY_INDEX,
+  DRAWER_OVERLAY_STYLES,
+  DRAWER_REDUX_ACTIONS,
+  DRAWER_REDUX_REDUCER
+} = require('../../files');
+
+const FILES = [
+  DRAWER_INDEX,
+  DRAWER_MENU_INDEX,
+  DRAWER_MENU_STYLES,
+  DRAWER_MENU_LAYOUT,
+  DRAWER_OVERLAY_INDEX,
+  DRAWER_OVERLAY_STYLES,
+  DRAWER_REDUX_ACTIONS,
+  DRAWER_REDUX_REDUCER
+];
+
 module.exports = function drawerFeatureFiles() {
-  // src/components/Drawer/DrawerContainer.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerContainer.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerContainer.js')
-  );
-  // src/components/Drawer/DrawerMenu.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenu.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenu.js')
-  );
-  // src/components/Drawer/DrawerMenu.styles.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenu.styles.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenu.styles.js')
-  );
-  // src/components/Drawer/DrawerMenuContainer.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerMenuContainer.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerMenuContainer.js')
-  );
-  // src/components/Drawer/DrawerOverlay.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerOverlay.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerOverlay.js')
-  );
-  // src/components/Drawer/DrawerOverlay.styles.js
-  this.fs.copy(
-    this.templatePath('src', 'components', 'Drawer', 'DrawerOverlay.styles.js'),
-    this.destinationPath(this.projectName, 'src', 'components', 'Drawer', 'DrawerOverlay.styles.js')
-  );
-  // src/redux/drawerHandlers.js
-  this.fs.copy(
-    this.templatePath('src', 'redux', 'drawerHandlers.js'),
-    this.destinationPath(this.projectName, 'src', 'redux', 'drawerHandlers.js')
-  );
+  FILES.forEach(copyFile.bind(this));
 };
