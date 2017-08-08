@@ -3,7 +3,7 @@
 //  in favour of setting the initialRoute as a prop of the navigator
 
 <%_ if(features.drawerandroid || features.drawerios) { _%>
-import React from 'react';
+import React, { PureComponent } from 'react';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { connect } from 'react-redux';
@@ -27,17 +27,21 @@ import Home from './screens/home';
 
 <%_ if(features.login) { _%>
 // ------------------ Initial loading screen
-const InitialLoadingScreen = props => {
-  if (!props.initialLoading) {
-    props.dispatch(
-      NavigationActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: props.currentUser ? 'Home' : 'Login' })]
-      })
-    );
+class InitialLoadingScreen extends PureComponent {
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.initialLoading) {
+      nextProps.dispatch(
+        NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: nextProps.currentUser ? 'Home' : 'Login' })]
+        })
+      );
+    }
   }
-  return null;
-};
+  render() {
+    return null;
+  }
+}
 InitialLoadingScreen.propTypes = {
   initialLoading: PropTypes.bool,
   currentUser: PropTypes.shape({
