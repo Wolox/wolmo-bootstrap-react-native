@@ -3,7 +3,13 @@
 //  in favour of setting the initialRoute as a prop of the navigator
 
 <%_ if(features.drawerandroid || features.drawerios) { _%>
+<%_ if(features.login) { _%>
 import React, { PureComponent } from 'react';
+<%_ } else { _%>
+import React from 'react';
+<%_ } _%>
+<%_ } else if(features.login) { _%>
+import { PureComponent } from 'react';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { connect } from 'react-redux';
@@ -58,6 +64,7 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 <%_ } _%>
 export default StackNavigator({
   <%_ if (features.login) { _%>
+  InitialLoading: { screen: InitialLoadingScreenContainer },
   Login: {
     screen: Login,
     navigationOptions: {
@@ -84,7 +91,7 @@ export default StackNavigator({
       <%_ } _%>
       title: 'Home'
     })
-  },
+  }
   <%_ } else { _%>
   Home: {
     screen: Home,
@@ -96,9 +103,8 @@ export default StackNavigator({
       <%_ } _%>
       title: 'Home'
     })
-  },
+  }
   <%_ } _%>
-  InitialLoading: { screen: InitialLoadingScreenContainer }
   <%_ } else if (features.tabs) { _%>
   Home: {
     screen: TabNavigator({
