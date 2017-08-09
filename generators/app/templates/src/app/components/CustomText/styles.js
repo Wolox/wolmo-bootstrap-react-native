@@ -5,9 +5,13 @@ import { IS_SMALL_DEVICE } from '../../../utils/constants';
 
 const amountToResize = 2 * IS_SMALL_DEVICE;
 
+// Custom Text Style
+// You can add styles to Base like Family Font to be the Text styles base!
+// If you wanna a particular style you can add this like colors or sizes and then you have to
+// add the prop into index.js
+
 export default StyleSheet.create({
   base: {
-    fontFamily: 'poppins',
     fontSize: 16 - amountToResize,
     backgroundColor: transparent,
     color: black
