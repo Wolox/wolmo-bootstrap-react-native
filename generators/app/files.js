@@ -37,6 +37,11 @@ module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
 
+// COMPONENTS - CUSTOM TEXT
+module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
+module.exports.CUSTOM_TEXT = `${module.exports.CUSTOM_TEXT_PATH}/index.js`;
+module.exports.CUSTOM_TEXT_STYLES = `${module.exports.CUSTOM_TEXT_PATH}/styles.js`;
+
 // COMPONENTS - DRAWER
 module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
 module.exports.DRAWER_INDEX = `${module.exports.DRAWER_PATH}/index.js`;
