@@ -5,10 +5,6 @@ import { IS_SMALL_DEVICE } from '../../../utils/constants';
 
 const amountToResize = 2 * IS_SMALL_DEVICE;
 
-// Custom Text Style
-// You can add styles to Base like Family Font to be the Text styles base!
-// if you want to add a custom style, you need to add it here and in VARIANTS Array in index.js
-
 export default StyleSheet.create({
   base: {
     fontSize: 16 - amountToResize,
