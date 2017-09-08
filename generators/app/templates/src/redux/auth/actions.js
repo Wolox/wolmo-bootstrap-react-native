@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation';
 
 import * as AuthService from '../../services/AuthService';
-import { stringArrayToObject } from '../../utils/reduxUtils';
+import { stringArrayToObject } from '../../utils/arrayUtils';
 
 export const actions = stringArrayToObject(
   ['LOGIN', 'LOGIN_SUCCESS', 'LOGIN_FAILURE', 'LOGOUT', 'AUTH_INIT'],

@@ -28,7 +28,7 @@ The boilerplate includes
 - [Basic routes configuration for React Navigation](/generators/app/templates/src/screens.ejs)
 - [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
 - [Reactotron config](/generators/app/templates/src/config/ReactotronConfig.ejs)
-- [Basic](/generators/app/templates/src/utils/colors.js)  [constants](/generators/app/templates/src/utils/constants.js)
+- [Basic constants](/generators/app/templates/src/constants)
 - [Http client config](/generators/app/templates/src/config/api.js)
 
 ### Tech Stack

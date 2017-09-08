@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { transparent } from '../../../utils/colors';
+import { transparent } from '../../../constants/colors';
 
 import styles from './styles';
 
