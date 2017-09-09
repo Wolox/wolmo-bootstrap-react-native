@@ -83,6 +83,7 @@ module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConf
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.js`;
 module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.js`;
+module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
