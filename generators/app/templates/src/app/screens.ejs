@@ -22,8 +22,9 @@ import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.ta
 
 <%_ if (features.drawerandroid || features.drawerios) { _%>
 import { actionCreators as drawerActions } from '../redux/drawer/actions';
-
 <%_ } _%>
+import * as Routes from '../constants/routes';
+
 <%_ if(features.login) { _%>
 import Login from './screens/login';
 import Home from './screens/home';
@@ -64,21 +65,21 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 <%_ } _%>
 export default StackNavigator({
   <%_ if (features.login) { _%>
-  InitialLoading: { screen: InitialLoadingScreenContainer },
-  Login: {
+  [Routes.InitialLoading]: { screen: InitialLoadingScreenContainer },
+  [Routes.Login]: {
     screen: Login,
     navigationOptions: {
       title: 'Login'
     }
   },
   <%_ if (features.tabs) { _%>
-  Home: {
+  [Routes.Home]: {
     screen: TabNavigator({
-      Tab1: {
+      [Routes.Tab1]: {
         screen: Home,
         navigationOptions: { title: 'Tab 1' }
       },
-      Tab2: {
+      [Routes.Tab2]: {
         screen: Home,
         navigationOptions: { title: 'Tab 2' }
       }
@@ -93,7 +94,7 @@ export default StackNavigator({
     })
   }
   <%_ } else { _%>
-  Home: {
+  [Routes.Home]: {
     screen: Home,
     navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>
@@ -106,13 +107,13 @@ export default StackNavigator({
   }
   <%_ } _%>
   <%_ } else if (features.tabs) { _%>
-  Home: {
+  [Routes.Home]: {
     screen: TabNavigator({
-      Tab1: {
+      [Routes.Tab1]: {
         screen: Home,
         navigationOptions: { title: 'Tab 1' }
       },
-      Tab2: {
+      [Routes.Tab2]: {
         screen: Home,
         navigationOptions: { title: 'Tab 2' }
       }
@@ -127,7 +128,7 @@ export default StackNavigator({
     })
   }
   <%_ } else { _%>
-  Home: {
+  [Routes.Home]: {
     screen: Home,
     navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
       <%_ if (features.drawerandroid || features.drawerios) { _%>

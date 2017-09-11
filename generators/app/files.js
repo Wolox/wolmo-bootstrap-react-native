@@ -4,6 +4,7 @@ module.exports.CONFIG_PATH = 'src/config';
 module.exports.REDUX_PATH = 'src/redux';
 module.exports.SERVICES_PATH = 'src/services';
 module.exports.UTILS_PATH = 'src/utils';
+module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.TEST_PATH = 'test';
 
 // BASE FILES
@@ -79,11 +80,14 @@ module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
 
+// CONSTANTS
+module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.js`;
+module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.js`;
+module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
+
 // UTILS
-module.exports.CONSTANTS = `${module.exports.UTILS_PATH}/constants.js`;
-module.exports.REDUX_UTILS = `${module.exports.UTILS_PATH}/reduxUtils.js`;
-module.exports.COLORS = `${module.exports.UTILS_PATH}/colors.js`;
+module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
 
 // TEST
-module.exports.REDUX_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/reduxUtils.spec.js`;
+module.exports.ARRAY_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/arrayUtils.spec.js`;
 module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;

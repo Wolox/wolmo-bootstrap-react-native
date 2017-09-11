@@ -1,4 +1,4 @@
-import { stringArrayToObject } from '../../utils/reduxUtils';
+import { stringArrayToObject } from '../../utils/arrayUtils';
 
 export const actions = stringArrayToObject(['DRAWER_TOGGLED'], '@@DRAWER');
 

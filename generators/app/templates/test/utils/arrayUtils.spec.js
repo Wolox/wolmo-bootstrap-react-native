@@ -1,6 +1,6 @@
-import { stringArrayToObject } from '../../src/utils/reduxUtils';
+import { stringArrayToObject } from '../../src/utils/arrayUtils';
 
-describe('#ReduxUtils', () => {
+describe('#ArrayUtils', () => {
   describe('#stringArrayToObject', () => {
     it('transforms an array of strings to object', () => {
       const input = ['A', 'B', 'C', 'D'];

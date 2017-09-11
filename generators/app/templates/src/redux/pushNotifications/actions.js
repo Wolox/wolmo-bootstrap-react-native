@@ -1,5 +1,5 @@
-import { stringArrayToObject } from '../../utils/reduxUtils';
-import { isAndroid } from '../../utils/constants';
+import { stringArrayToObject } from '../../utils/arrayUtils';
+import { isAndroid } from '../../constants/platform';
 import PushNotificationsService from '../../services/PushNotificationsService';
 
 export const actions = stringArrayToObject(
