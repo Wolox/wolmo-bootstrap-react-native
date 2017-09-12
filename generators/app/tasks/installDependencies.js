@@ -15,7 +15,7 @@ const DEPENDENCIES = [
   'reselect',
   'prop-types',
   'seamless-immutable',
-  'react-native-dotenv'
+  'react-native-config'
 ];
 
 const DEV_DEPENDENCIES = [
