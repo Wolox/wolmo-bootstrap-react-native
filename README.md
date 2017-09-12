@@ -41,6 +41,7 @@ The boilerplate includes
 - [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
 - [Apisauce](https://github.com/skellock/apisauce)
 - [Reselect](https://github.com/reactjs/reselect)
+- [React Native Config](https://github.com/luggit/react-native-config)
 
 ### Tooling
 
