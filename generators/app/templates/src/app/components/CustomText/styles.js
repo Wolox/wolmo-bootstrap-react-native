@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-import { blue, white, green, gray, black, transparent } from '../../../utils/colors';
-import { IS_SMALL_DEVICE } from '../../../utils/constants';
+import { blue, white, green, gray, black, transparent } from '../../../constants/colors';
+import { IS_SMALL_DEVICE } from '../../../constants/platform';
 
 const amountToResize = 2 * IS_SMALL_DEVICE;
 
