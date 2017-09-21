@@ -11,7 +11,7 @@ describe('#ArrayUtils', () => {
     it('transforms an array of strings with namespace to object', () => {
       const namespace = '@@TEST_NAME';
       const input = ['A', 'B', 'C', 'D'];
-      const output = { A: `${namespace}/A`, B: `${namespace}/B`, C: `${namespace}/C`, D: `${namespace}/D` };
+      const output = { A: `${namespace}:A`, B: `${namespace}:B`, C: `${namespace}:C`, D: `${namespace}:D` };
       expect(stringArrayToObject(input, namespace)).toEqual(output);
     });
 

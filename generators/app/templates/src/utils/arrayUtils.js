@@ -11,6 +11,6 @@ export function stringArrayToObject(actionsArray, namespace) {
   }
   return Immutable(actionsArray).asObject(actionName => [
     actionName,
-    namespace ? `${namespace}/${actionName}` : actionName
+    namespace ? `${namespace}:${actionName}` : actionName
   ]);
 }
