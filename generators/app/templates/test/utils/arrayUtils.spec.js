@@ -8,6 +8,13 @@ describe('#ArrayUtils', () => {
       expect(stringArrayToObject(input)).toEqual(output);
     });
 
+    it('transforms an array of strings with namespace to object', () => {
+      const namespace = '@@TEST_NAME';
+      const input = ['A', 'B', 'C', 'D'];
+      const output = { A: `${namespace}:A`, B: `${namespace}:B`, C: `${namespace}:C`, D: `${namespace}:D` };
+      expect(stringArrayToObject(input, namespace)).toEqual(output);
+    });
+
     it('throws error if any action name is empty', () => {
       const input = ['A', 'B', 'C', 'D', ''];
       const input2 = ['A', 'B', 'C', 'D', null];
