@@ -31,7 +31,7 @@ elif ! system_has ruby; then
   exit 1
 fi
 
-yarn global add yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
+npm i -g yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
 yo wolmo-bootstrap-rn
 
 wait $!
