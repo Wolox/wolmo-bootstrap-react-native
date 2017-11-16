@@ -1,4 +1,7 @@
 import Immutable from 'seamless-immutable';
+import flatten from 'lodash/flatten';
+import isObject from 'lodash/isObject';
+import merge from 'lodash/merge';
 
 /**
  * Receives an array of strings, and returns an obj with that strings as properties with that string as value.
@@ -13,4 +16,15 @@ export function stringArrayToObject(actionsArray, namespace) {
     actionName,
     namespace ? `${namespace}:${actionName}` : actionName
   ]);
+}
+
+export function mergeObjects(roles) {
+  const merger = (a, b) => {
+    if (isObject(a)) {
+      return merge({}, a, b, merger);
+    }
+    return a || b;
+  };
+  const args = flatten([{}, roles, merger]);
+  return merge(...args);
 }

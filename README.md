@@ -30,6 +30,7 @@ The boilerplate includes
 - [Reactotron config](/generators/app/templates/src/config/ReactotronConfig.ejs)
 - [Basic constants](/generators/app/templates/src/constants)
 - [Http client config](/generators/app/templates/src/config/api.js)
+- [i18n config](/generators/app/templates/src/config/i18n.js)
 
 ### Tech Stack
 
@@ -42,6 +43,7 @@ The boilerplate includes
 - [Apisauce](https://github.com/skellock/apisauce)
 - [Reselect](https://github.com/reactjs/reselect)
 - [React Native Config](https://github.com/luggit/react-native-config)
+- [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
 
 ### Tooling
 
