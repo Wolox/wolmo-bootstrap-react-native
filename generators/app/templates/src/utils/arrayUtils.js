@@ -28,3 +28,9 @@ export function mergeObjects(roles) {
   const args = flatten([{}, roles, merger]);
   return merge(...args);
 }
+
+export function arrayToObject(arr) {
+  const obj = {};
+  arr.forEach((elem, i) => (obj[i] = elem));
+  return obj;
+}

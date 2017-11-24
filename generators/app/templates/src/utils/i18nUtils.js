@@ -3,16 +3,12 @@ import mapKeys from 'lodash/mapKeys';
 import mapValues from 'lodash/mapValues';
 import { constantCase } from 'change-case';
 
+import { arrayToObject } from './arrayUtils';
+
 const getI18key = (namespace, key) => `${namespace}:${key}`;
 
 export const buildTranslations = (translations, namespace) =>
   mapValues(translations, translation => mapKeys(translation, (_, key) => getI18key(namespace, key)));
-
-const arrayToObject = arr => {
-  const obj = {};
-  arr.forEach((elem, i) => (obj[i] = elem));
-  return obj;
-};
 
 export const buildConstants = (translations, namespace, locale) => {
   const constants = {};
