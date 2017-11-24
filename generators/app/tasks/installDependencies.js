@@ -5,6 +5,8 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   'apisauce',
+  'change-case',
+  'lodash',
   'react-navigation',
   'react-redux',
   'reactotron-apisauce',
@@ -15,11 +17,13 @@ const DEPENDENCIES = [
   'reselect',
   'prop-types',
   'seamless-immutable',
-  'react-native-config'
+  'react-native-config',
+  'react-native-i18n'
 ];
 
 const DEV_DEPENDENCIES = [
   'babel-eslint',
+  'babel-plugin-import-glob',
   'babel-preset-react-native',
   'eslint',
   'eslint-config-airbnb',
@@ -71,9 +75,9 @@ function yarnInstall(projectName, deps, options, dev) {
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
     successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-    failureMessage: `${dev
-      ? 'Dev dependencies'
-      : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+    failureMessage: `${
+      dev ? 'Dev dependencies' : 'Dependencies'
+    } installation failed. Turn verbose mode on for detailed logging`,
     context: options
   });
 }

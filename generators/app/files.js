@@ -30,6 +30,7 @@ module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/login`;
 module.exports.LOGIN = `${module.exports.LOGIN_PATH}/index.js`;
 module.exports.LOGIN_LAYOUT = `${module.exports.LOGIN_PATH}/layout.js`;
 module.exports.LOGIN_STYLE = `${module.exports.LOGIN_PATH}/styles.js`;
+module.exports.LOGIN_I18N = `${module.exports.LOGIN_PATH}/i18n.js`;
 
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
@@ -79,6 +80,7 @@ module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/HuaweiPush
 module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
+module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.js`;
@@ -87,6 +89,7 @@ module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
+module.exports.I18N_UTILS = `${module.exports.UTILS_PATH}/i18nUtils.js`;
 
 // TEST
 module.exports.ARRAY_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/arrayUtils.spec.js`;

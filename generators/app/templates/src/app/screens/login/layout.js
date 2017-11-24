@@ -4,19 +4,28 @@ import PropTypes from 'prop-types';
 
 import { transparent } from '../../../constants/colors';
 
+import { strings } from './i18n';
 import styles from './styles';
 
 export default function Login({ onLogin }) {
   return (
     <View style={styles.container}>
       <View style={styles.formElementContainer}>
-        <TextInput underlineColorAndroid={transparent} placeholder={'Username'} style={styles.formElement} />
+        <TextInput
+          underlineColorAndroid={transparent}
+          placeholder={strings.USER()}
+          style={styles.formElement}
+        />
       </View>
       <View style={styles.formElementContainer}>
-        <TextInput underlineColorAndroid={transparent} placeholder={'Password'} style={styles.formElement} />
+        <TextInput
+          underlineColorAndroid={transparent}
+          placeholder={strings.PASSWORD()}
+          style={styles.formElement}
+        />
       </View>
       <TouchableOpacity onPress={onLogin} style={styles.formButton}>
-        <Text>Login!</Text>
+        <Text>{strings.LOGIN_MESSAGE('Wolox')}</Text>
       </TouchableOpacity>
     </View>
   );
