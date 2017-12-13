@@ -47,5 +47,16 @@ module.exports = {
     "import/default": "off",
     "import/namespace": "off",
     "import/no-absolute-path": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".android.js",
+          ".ios.js"
+        ]
+      }
+    }
   }
 };
