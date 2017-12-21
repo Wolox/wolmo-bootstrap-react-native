@@ -73,6 +73,7 @@ module.exports.AUTH_ACTIONS = `${module.exports.REDUX_PATH}/auth/actions.js`;
 // SERVICES
 module.exports.PUSH_NOTIFICATIONS_SERVICE = `${module.exports.SERVICES_PATH}/PushNotificationsService.js`;
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
+module.exports.ANALYTICS_SERVICE = `${module.exports.SERVICES_PATH}/AnalyticsService.js`;
 
 // CONFIG
 module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/PushNotifications.js`;

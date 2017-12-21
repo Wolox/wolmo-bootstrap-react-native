@@ -3,6 +3,9 @@ import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 
 import Navigator from '../app/screens';
+<%_ if(features.googleanalytics) { _%>
+import reduxBeaconMiddleware from '../services/AnalyticsService';
+<%_ } _%>
 
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
@@ -37,6 +40,11 @@ const enhancers = [];
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
 
+<%_ if(features.googleanalytics) { _%>
+/* ------------- Analytics Middleware ------------- */
+middlewares.push(reduxBeaconMiddleware);
+
+<%_ } _%>
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
