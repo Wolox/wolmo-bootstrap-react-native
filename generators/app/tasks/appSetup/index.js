@@ -9,6 +9,7 @@ const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles')
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
@@ -51,6 +52,9 @@ module.exports = function index() {
   }
   if (this.features.drawerios || this.features.drawerandroid) {
     drawerFeatureFiles.bind(this)();
+  }
+  if (this.features.googleanalytics) {
+    googleAnalyticsFeatureFiles.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------

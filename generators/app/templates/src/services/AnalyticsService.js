@@ -1,12 +1,13 @@
+import Config from 'react-native-config';
 import { NavigationActions } from 'react-navigation';
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 import { GoogleAnalytics } from 'redux-beacon/targets/react-native';
 import { createMiddleware } from 'redux-beacon';
+
 import { getCurrentRouteName } from '../utils/navUtils';
 
-const ANALYTICS_TRACKING_ID = Config.ANALYTICS_TRACKING_ID; // TODO: Declare this var in .env
-
-const target = GoogleAnalytics(ANALYTICS_TRACKING_ID, GoogleAnalyticsTracker);
+// TODO: Declare ANALYTICS_TRACKING_ID in .env
+const target = GoogleAnalytics(Config.ANALYTICS_TRACKING_ID, GoogleAnalyticsTracker);
 
 const pageView = (action, prevState) => ({
   hitType: 'pageview',

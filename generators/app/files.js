@@ -91,6 +91,7 @@ module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
 module.exports.I18N_UTILS = `${module.exports.UTILS_PATH}/i18nUtils.js`;
+module.exports.NAV_UTILS = `${module.exports.UTILS_PATH}/navUtils.js`;
 
 // TEST
 module.exports.ARRAY_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/arrayUtils.spec.js`;
