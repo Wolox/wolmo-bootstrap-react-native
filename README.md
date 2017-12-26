@@ -31,6 +31,7 @@ The boilerplate includes
 - [Basic constants](/generators/app/templates/src/constants)
 - [Http client config](/generators/app/templates/src/config/api.js)
 - [i18n config](/generators/app/templates/src/config/i18n.js)
+- [Analytics Tracking](/generators/app/templates/src/services/AnalyticsService.js)
 
 ### Tech Stack
 
@@ -44,6 +45,7 @@ The boilerplate includes
 - [Reselect](https://github.com/reactjs/reselect)
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+- [Redux Beacon](For Google Analytics) (https://rangle.github.io/redux-beacon)
 
 ### Tooling
 
