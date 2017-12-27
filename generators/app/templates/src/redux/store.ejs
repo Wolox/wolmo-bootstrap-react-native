@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
+import { isEqual } from 'lodash';
 
+import { getCurrentRouteName } from '../utils/navUtils';
 import Navigator from '../app/screens';
 <%_ if(features.googleanalytics) { _%>
 import reduxBeaconMiddleware from '../services/AnalyticsService';
@@ -19,7 +21,23 @@ import drawer from './drawer/reducer';
 <%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login) { _%>
 
 <%_ } _%>
-const nav = (state, action) => Navigator.router.getStateForAction(action, state) || state;
+const nav = (state, action) => {
+  const nextState = Navigator.router.getStateForAction(action, state);
+  // Prevents navigating twice to the same route but allow navigate if same routes with different params
+  if (state && nextState) {
+    // Getting routes and params
+    const currentParams = Navigator.router.getPathAndParamsForState(state).params;
+    const nextParams = action.params;
+    const stateRouteName = getCurrentRouteName(state);
+    const nextStateRouteName = getCurrentRouteName(nextState);
+    // Check if has same route and return original state if have same routes with same params and next state in other case
+    if (stateRouteName === nextStateRouteName) {
+      return isEqual(currentParams, nextParams) ? state : nextState;
+    }
+  }
+  // Simply return the original `state` if `nextState` is null or undefined.
+  return nextState || state;
+};
 
 const reducers = combineReducers({
   <%_ if(features.pushnotifications) { _%>
