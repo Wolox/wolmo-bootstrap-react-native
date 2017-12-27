@@ -27,15 +27,10 @@ const nav = (state, action) => {
     const nextParams = action.params;
     const stateRouteName = getCurrentRouteName(state);
     const nextStateRouteName = getCurrentRouteName(nextState);
-    // Check if has same params
-    const hasSameParams = isEqual(currentParams, nextParams);
-    // Check if has same route
-    const hasSameRoute = stateRouteName === nextStateRouteName;
-    // Return original state if have same routes with same params and next state in other case
-    if (hasSameRoute) {
-      return hasSameParams ? state : nextState;
+    // Check if has same route and return original state if have same routes with same params and next state in other case
+    if (stateRouteName === nextStateRouteName) {
+      return isEqual(currentParams, nextParams) ? state : nextState;
     }
-    return nextState;
   }
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
