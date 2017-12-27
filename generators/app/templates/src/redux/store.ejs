@@ -5,10 +5,10 @@ import { isEqual } from 'lodash';
 
 import { getCurrentRouteName } from '../utils/navUtils';
 import Navigator from '../app/screens';
-<%_ if(features.googleanalytics) { _%>
-import reduxBeaconMiddleware from '../services/AnalyticsService';
-<%_ } _%>
 
+<%_ if(features.googleanalytics) { _%>
+import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
+<%_ } _%>
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
 <%_ } _%>
@@ -18,7 +18,7 @@ import pushNotifications from './pushNotifications/reducer';
 <%_ if(features.drawerios || features.drawerandroid) { _%>
 import drawer from './drawer/reducer';
 <%_ } _%>
-<%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login) { _%>
+<%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login || features.googleanalytics) { _%>
 
 <%_ } _%>
 const nav = (state, action) => {
@@ -60,7 +60,7 @@ middlewares.push(thunk);
 
 <%_ if(features.googleanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
-middlewares.push(reduxBeaconMiddleware);
+middlewares.push(AnalyticsMiddleware);
 
 <%_ } _%>
 /* ------------- Assemble Middleware ------------- */

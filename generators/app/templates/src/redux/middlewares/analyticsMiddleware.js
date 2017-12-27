@@ -4,7 +4,7 @@ import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 import { GoogleAnalytics } from 'redux-beacon/targets/react-native';
 import { createMiddleware } from 'redux-beacon';
 
-import { getCurrentRouteName } from '../utils/navUtils';
+import { getCurrentRouteName } from '../../utils/navUtils';
 
 // TODO: Declare ANALYTICS_TRACKING_ID in .env
 const target = GoogleAnalytics(Config.ANALYTICS_TRACKING_ID, GoogleAnalyticsTracker);
