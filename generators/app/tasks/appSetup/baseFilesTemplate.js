@@ -1,5 +1,6 @@
 const { copyFile, copyTemplateFile } = require('../../utils');
 const {
+  BABEL_CONFIG,
   CIRCLE_CONFIG,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
@@ -28,6 +29,7 @@ const {
 } = require('../../files');
 
 const FILES = [
+  BABEL_CONFIG,
   CIRCLE_CONFIG,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
