@@ -20,6 +20,7 @@ The following optional features can be added out of the box to the new projects:
 - Drawer
 - Tabs
 - Push notifications
+- Google Analytics
 
 ### Boilerplate
 
@@ -31,7 +32,7 @@ The boilerplate includes
 - [Basic constants](/generators/app/templates/src/constants)
 - [Http client config](/generators/app/templates/src/config/api.js)
 - [i18n config](/generators/app/templates/src/config/i18n.js)
-- [Analytics Tracking](/generators/app/templates/src/services/AnalyticsService.js)
+- [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 
 ### Tech Stack
 
