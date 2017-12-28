@@ -6,7 +6,12 @@ import { createMiddleware } from 'redux-beacon';
 
 import { getCurrentRouteName } from '../../utils/navUtils';
 
-// TODO: Declare ANALYTICS_TRACKING_ID in .env
+export const checkAnalyticsTrackingID = () => {
+  if (!Config.ANALYTICS_TRACKING_ID) {
+    console.warn('Google Analytics Tracking ID has not been properly initialized');
+  }
+};
+
 const target = GoogleAnalytics(Config.ANALYTICS_TRACKING_ID, GoogleAnalyticsTracker);
 
 const pageView = (action, prevState) => ({
