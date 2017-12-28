@@ -70,6 +70,9 @@ module.exports.DRAWER_REDUX_REDUCER = `${module.exports.REDUX_PATH}/drawer/reduc
 module.exports.AUTH_REDUCER = `${module.exports.REDUX_PATH}/auth/reducer.js`;
 module.exports.AUTH_ACTIONS = `${module.exports.REDUX_PATH}/auth/actions.js`;
 
+// REDUX - MIDDLEWARES
+module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
+
 // SERVICES
 module.exports.PUSH_NOTIFICATIONS_SERVICE = `${module.exports.SERVICES_PATH}/PushNotificationsService.js`;
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;

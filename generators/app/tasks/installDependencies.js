@@ -92,6 +92,11 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-native-drawer');
   }
 
+  if (this.features.googleanalytics) {
+    DEPENDENCIES.push('react-native-google-analytics-bridge');
+    DEPENDENCIES.push('redux-beacon');
+  }
+
   return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
     const pluginNames = Object.keys(plugins);
     const fixedDevDeps = DEV_DEPENDENCIES.map(
