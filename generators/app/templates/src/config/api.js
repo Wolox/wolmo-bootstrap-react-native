@@ -3,10 +3,6 @@ import { create } from 'apisauce';
 
 const baseURL = 'http://wolox.com';
 
-if (baseURL === 'http://wolox.com') {
-  console.warn('API baseURL has not been properly initialized');
-}
-
 const api = create({
   baseURL,
   timeout: 5000
@@ -15,6 +11,10 @@ const api = create({
 api.addMonitor(Reactotron.apisauce);
 
 export const apiSetup = dispatch => { // eslint-disable-line no-unused-vars, prettier/prettier
+  if (baseURL === 'http://wolox.com') {
+    console.warn('API baseURL has not been properly initialized');
+  }
+
   api.addMonitor(response => {
     if (response.status === 401) {
       // dispatch(actions.sessionExpired());

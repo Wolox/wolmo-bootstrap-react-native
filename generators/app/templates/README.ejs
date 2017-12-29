@@ -16,6 +16,9 @@ We highly recommend using [nvm](https://github.com/creationix/nvm) instead of br
 create the `.env` file on the root.
 ```
 API_BASE_URL=https://XXXXXXXX
+<%_ if(features.googleanalytics) { _%>
+ANALYTICS_TRACKING_ID=UA-XXXXX-Y
+<%_ } _%>
 
 OTHER_ENV_VARs=XXXXXXXXXX
 
