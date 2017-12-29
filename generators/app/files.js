@@ -8,7 +8,6 @@ module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.TEST_PATH = 'test';
 
 // BASE FILES
-module.exports.BABEL_CONFIG = '.babelrc';
 module.exports.CIRCLE_CONFIG = 'circle.yml';
 module.exports.PULL_REQUEST_TEMPLATE = 'pull_request_template.md';
 module.exports.MAIN = 'main.js';
