@@ -54,6 +54,11 @@ module.exports.DRAWER_OVERLAY_PATH = `${module.exports.DRAWER_PATH}/components/D
 module.exports.DRAWER_OVERLAY_INDEX = `${module.exports.DRAWER_OVERLAY_PATH}/index.js`;
 module.exports.DRAWER_OVERLAY_STYLES = `${module.exports.DRAWER_OVERLAY_PATH}/styles.js`;
 
+// COMPONENTS - LOADABLE
+module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
+module.exports.LOADABLE = `${module.exports.LOADABLE_PATH}/index.js`;
+module.exports.LOADABLE_STYLES = `${module.exports.LOADABLE_PATH}/styles.js`;
+
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
 
