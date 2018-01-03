@@ -20,12 +20,12 @@ module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
 module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
 
 // SCREENS - HOME
-module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/home`;
+module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
 module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.js`;
 module.exports.HOME = `${module.exports.HOME_PATH}/layout.js`;
 
 // SCREENS - LOGIN
-module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/login`;
+module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 module.exports.LOGIN = `${module.exports.LOGIN_PATH}/index.js`;
 module.exports.LOGIN_LAYOUT = `${module.exports.LOGIN_PATH}/layout.js`;
 module.exports.LOGIN_STYLE = `${module.exports.LOGIN_PATH}/styles.js`;
