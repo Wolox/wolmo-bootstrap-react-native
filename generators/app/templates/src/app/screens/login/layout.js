@@ -3,11 +3,12 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { transparent } from '../../../constants/colors';
+import Loadable from '../../components/Loadable';
 
 import { strings } from './i18n';
 import styles from './styles';
 
-export default function Login({ onLogin }) {
+function Login({ onLogin }) {
   return (
     <View style={styles.container}>
       <View style={styles.formElementContainer}>
@@ -34,3 +35,5 @@ export default function Login({ onLogin }) {
 Login.propTypes = {
   onLogin: PropTypes.func.isRequired
 };
+
+export default Loadable(props => props.loading)(Login);

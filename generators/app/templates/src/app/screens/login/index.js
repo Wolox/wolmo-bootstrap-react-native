@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { actionCreators as authActions } from '../../../redux/auth/actions';
 
@@ -11,8 +12,16 @@ class LoginContainer extends Component {
   };
 
   render() {
-    return <Login onLogin={this.handleLogin} />;
+    return <Login onLogin={this.handleLogin} loading={this.props.loading} />;
   }
 }
 
-export default connect()(LoginContainer);
+LoginContainer.propTypes = {
+  loading: PropTypes.bool
+}
+
+const mapStateToProps = store => ({
+  loading: store.auth.loading
+});
+
+export default connect(mapStateToProps)(LoginContainer);
