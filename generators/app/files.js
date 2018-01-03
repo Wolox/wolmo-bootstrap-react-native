@@ -10,10 +10,9 @@ module.exports.TEST_PATH = 'test';
 // BASE FILES
 module.exports.CIRCLE_CONFIG = 'circle.yml';
 module.exports.PULL_REQUEST_TEMPLATE = 'pull_request_template.md';
-module.exports.MAIN = 'main.js';
+module.exports.MAIN = 'App.js';
 module.exports.README = 'README.md';
-module.exports.ANDROID_INDEX = 'index.android.js';
-module.exports.IOS_INDEX = 'index.ios.js';
+module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 
 // SCREENS

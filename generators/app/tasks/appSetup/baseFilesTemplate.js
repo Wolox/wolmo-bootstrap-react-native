@@ -21,8 +21,7 @@ const {
   I18N_CONFIG,
   I18N_UTILS,
   NAV_UTILS,
-  ANDROID_INDEX,
-  IOS_INDEX,
+  INDEX,
   APP,
   SCREENS
 } = require('../../files');
@@ -47,16 +46,7 @@ const FILES = [
   HOME_STYLES
 ];
 
-const TEMPLATE_FILES = [
-  README,
-  REDUX_STORE,
-  ROUTES_CONSTANTS,
-  REACTOTRON_CONFIG,
-  ANDROID_INDEX,
-  IOS_INDEX,
-  APP,
-  SCREENS
-];
+const TEMPLATE_FILES = [README, REDUX_STORE, ROUTES_CONSTANTS, REACTOTRON_CONFIG, INDEX, APP, SCREENS];
 
 module.exports = function baseFilesTemplate() {
   TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));
