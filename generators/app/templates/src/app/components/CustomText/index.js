@@ -25,9 +25,9 @@ export default class CustomText extends PureComponent {
   ];
 
   customStyles = () =>
-    CustomText.VARIANTS
-      .map(variant => (this.props[variant] ? styles[variant] : null))
-      .filter(style => style !== null);
+    CustomText.VARIANTS.map(variant => (this.props[variant] ? styles[variant] : null)).filter(
+      style => style !== null
+    );
 
   render() {
     return (

@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { transparent } from '../../../constants/colors';
 import Loadable from '../../components/Loadable';
 import CustomTextInput from '../../components/CustomTextInput';
+import CustomButton from '../../components/CustomButton';
 
 import { strings } from './i18n';
 import styles from './styles';
@@ -29,9 +30,13 @@ function Login({ onLogin }) {
           showEye
         />
       </View>
-      <TouchableOpacity onPress={onLogin} style={styles.formButton}>
-        <Text>{strings.LOGIN_MESSAGE('Wolox')}</Text>
-      </TouchableOpacity>
+      <CustomButton
+        green
+        onPress={onLogin}
+        style={styles.formButton}
+        title={strings.LOGIN_MESSAGE('Wolox')}
+        activeOpacity={0.7}
+      />
     </View>
   );
 }

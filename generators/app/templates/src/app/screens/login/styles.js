@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { green, blue, transparent } from '../../../constants/colors';
+import { blue, transparent } from '../../../constants/colors';
 
 export default StyleSheet.create({
   container: {
@@ -21,7 +21,6 @@ export default StyleSheet.create({
     width: 200
   },
   formButton: {
-    backgroundColor: green,
     padding: 10,
     borderRadius: 3,
     margin: 20
