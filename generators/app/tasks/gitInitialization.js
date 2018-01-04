@@ -50,19 +50,52 @@ module.exports = function gitInitialization() {
                       { cwd: `${process.cwd()}/${this.projectName}` }
                     ],
                     context: this.options
-                  }).then(() =>
-                    // git push origin master
-                    runCommand({
-                      command: [
-                        'git',
-                        ['push', 'origin', 'master'],
-                        { cwd: `${process.cwd()}/${this.projectName}` }
-                      ],
-                      context: this.options
-                    }).then(() => {
-                      spinner.succeed('git ready');
+                  })
+                    .then(() => {
+                      spinner.stop();
+                      return this.prompt([
+                        {
+                          type: 'confirm',
+                          name: 'pushToMaster',
+                          message: 'Do you want to push to master?'
+                        }
+                      ]);
                     })
-                  );
+                    .then(({ pushToMaster }) => {
+                      spinner.start();
+                      if (!pushToMaster) {
+                        // git push origin kickoff
+                        return runCommand({
+                          command: [
+                            'git',
+                            ['checkout', '-b', 'kickoff'],
+                            { cwd: `${process.cwd()}/${this.projectName}` }
+                          ],
+                          context: this.options
+                        }).then(() => {
+                          runCommand({
+                            command: [
+                              'git',
+                              ['push', 'origin', 'kickoff'],
+                              { cwd: `${process.cwd()}/${this.projectName}` }
+                            ],
+                            context: this.options
+                          });
+                        });
+                      }
+                      // git push origin master
+                      return runCommand({
+                        command: [
+                          'git',
+                          ['push', 'origin', 'master'],
+                          { cwd: `${process.cwd()}/${this.projectName}` }
+                        ],
+                        context: this.options
+                      });
+                    })
+                    .then(() => {
+                      spinner.succeed('git ready');
+                    });
                 });
               }
             });
