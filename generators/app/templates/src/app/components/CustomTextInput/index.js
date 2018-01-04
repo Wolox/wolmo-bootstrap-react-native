@@ -8,7 +8,7 @@ import { transparent, blue } from '../../../constants/colors';
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
 
-// Known issue: in iOS, showing/hiding the text with secureTextEntry changes the cursor position
+// Known issue: showing/hiding the text with secureTextEntry changes the cursor position
 // https://github.com/facebook/react-native/issues/5859
 
 class CustomTextInput extends React.Component {
