@@ -43,6 +43,29 @@ module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`
 module.exports.CUSTOM_TEXT = `${module.exports.CUSTOM_TEXT_PATH}/index.js`;
 module.exports.CUSTOM_TEXT_STYLES = `${module.exports.CUSTOM_TEXT_PATH}/styles.js`;
 
+// COMPONENTS - CUSTOM TEXT INPUT
+module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
+module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.js`;
+module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.js`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/assets`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_eye.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE_2X = `${module.exports
+  .CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_eye@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE_3X = `${module.exports
+  .CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_eye@3x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE = `${module.exports
+  .CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_noeye.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE_2X = `${module.exports
+  .CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_noeye@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE_3X = `${module.exports
+  .CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_noeye@3x.png`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH = `${module.exports
+  .CUSTOM_TEXT_INPUT_PATH}/components/ShowPassword`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD = `${module.exports
+  .CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH}/index.js`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_STYLES = `${module.exports
+  .CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH}/styles.js`;
+
 // COMPONENTS - DRAWER
 module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
 module.exports.DRAWER_INDEX = `${module.exports.DRAWER_PATH}/index.js`;
