@@ -18,7 +18,7 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
   loading: PropTypes.bool
-}
+};
 
 const mapStateToProps = store => ({
   loading: store.auth.loading
