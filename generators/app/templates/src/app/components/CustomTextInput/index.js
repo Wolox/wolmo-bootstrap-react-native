@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ import styles from './styles';
 // Known issue: showing/hiding the text with secureTextEntry changes the cursor position
 // https://github.com/facebook/react-native/issues/5859
 
-class CustomTextInput extends React.Component {
+class CustomTextInput extends PureComponent {
   state = { showPassword: false };
 
   handleShowPassword = () => {
@@ -31,7 +31,7 @@ class CustomTextInput extends React.Component {
         <View
           style={[
             this.props.multiline ? styles.multilineContainer : styles.container,
-            this.props.bottomBorder ? styles.bottomBorder : {},
+            this.props.bottomBorder && styles.bottomBorder,
             this.props.style
           ]}
         >
@@ -89,8 +89,8 @@ CustomTextInput.propTypes = {
   autoCorrect: PropTypes.bool,
   multiline: PropTypes.bool,
   placeholder: PropTypes.string,
-  titleStyles: Text.propTypes.style, // eslint-disable-line react/no-typos
-  textStyles: Text.propTypes.style, // eslint-disable-line react/no-typos
+  titleStyles: Text.propTypes.style,
+  textStyles: Text.propTypes.style,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,

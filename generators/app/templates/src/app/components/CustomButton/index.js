@@ -6,7 +6,7 @@ import CustomText from '../CustomText';
 
 import styles from './styles';
 
-export default class CustomButton extends PureComponent {
+class CustomButton extends PureComponent {
   static VARIANTS = ['borderless', 'radial', 'black', 'green', 'small', 'white', 'gray'];
 
   customStyles = () =>
@@ -58,9 +58,11 @@ CustomButton.propTypes = {
   activeOpacity: PropTypes.number,
   disabled: PropTypes.bool,
   icon: PropTypes.number,
-  iconStyle: ViewPropTypes.style, // eslint-disable-line react/no-typos
+  iconStyle: ViewPropTypes.style,
   onPress: PropTypes.func.isRequired,
-  style: ViewPropTypes.style, // eslint-disable-line react/no-typos
+  style: ViewPropTypes.style,
   textStyle: PropTypes.number,
   title: PropTypes.string
 };
+
+export default CustomButton;

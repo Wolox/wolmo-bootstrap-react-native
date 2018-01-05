@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 
 import styles from './styles';
 
-export default class CustomText extends PureComponent {
+class CustomText extends PureComponent {
   /*
   ** You can add styles to Base like Family Font to be the Text styles base!
   ** if you want to add a custom style, you need to add it here and in VARIANTS
@@ -50,3 +50,5 @@ CustomText.propTypes = {
 CustomText.VARIANTS.forEach(variant => {
   CustomText.propTypes[variant] = PropTypes.bool;
 });
+
+export default CustomText;
