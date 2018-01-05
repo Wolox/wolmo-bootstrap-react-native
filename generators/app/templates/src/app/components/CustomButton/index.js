@@ -3,21 +3,16 @@ import { TouchableOpacity, Image, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CustomText from '../CustomText';
+import { getCustomStyles } from '../../../utils/styleUtils';
 
 import styles from './styles';
 
 class CustomButton extends PureComponent {
   static VARIANTS = ['borderless', 'radial', 'black', 'green', 'small', 'white', 'gray'];
 
-  customStyles = () =>
-    CustomButton.VARIANTS.map(variant => (this.props[variant] ? styles[variant] : null)).filter(
-      style => style !== null
-    );
+  customStyles = () => getCustomStyles(CustomButton.VARIANTS, this.props, styles);
 
-  customTextStyles = () =>
-    CustomButton.VARIANTS.map(variant => (this.props[variant] ? styles[`${variant}Content`] : null)).filter(
-      style => style !== null
-    );
+  customTextStyles = () => getCustomStyles(CustomButton.VARIANTS, this.props, styles, 'Content');
 
   render() {
     const {
