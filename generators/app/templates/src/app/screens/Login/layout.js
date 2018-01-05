@@ -25,7 +25,9 @@ export default function Login({ onLogin }) {
         />
       </View>
       <TouchableOpacity onPress={onLogin} style={styles.formButton}>
-        <Text>{strings.LOGIN_MESSAGE('Wolox')}</Text>
+        <Text>
+          {strings.LOGIN_MESSAGE('Wolox')}
+        </Text>
       </TouchableOpacity>
     </View>
   );
