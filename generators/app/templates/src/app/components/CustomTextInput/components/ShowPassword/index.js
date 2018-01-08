@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image } from 'react-native';
 
-import icEyePng from '../../assets/ic_eye.png';
-import icNoeyePng from '../../assets/ic_noeye.png';
+import icVisible from '../../assets/ic_visibility.png';
+import icVisibleOff from '../../assets/ic_visibility_off.png';
 
 import styles from './styles';
 
 const ShowPassword = ({ onShowPassword, passwordVisible }) => (
   <TouchableOpacity onPress={onShowPassword} style={styles.container}>
-    <Image source={passwordVisible ? icEyePng : icNoeyePng} resizeMode="contain" style={styles.icon} />
+    <Image source={passwordVisible ? icVisible : icVisibleOff} resizeMode="contain" style={styles.icon} />
   </TouchableOpacity>
 );
 

@@ -1,16 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import { blue } from '../../../../../constants/colors';
-
 export default StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    bottom: -4
+    alignItems: 'center'
   },
   icon: {
-    width: 30,
-    tintColor: blue
+    width: 20,
+    marginLeft: 8
   }
 });

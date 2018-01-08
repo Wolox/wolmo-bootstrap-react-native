@@ -48,22 +48,24 @@ module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/Custo
 module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.js`;
 module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.js`;
 module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/assets`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_eye.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE_2X = `${
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY = `${
   module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_eye@2x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_EYE_3X = `${
+}/ic_visibility.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_2X = `${
   module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_eye@3x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE = `${
+}/ic_visibility@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_3X = `${
   module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_noeye.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE_2X = `${
+}/ic_visibility@3x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF = `${
   module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_noeye@2x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_NOEYE_3X = `${
+}/ic_visibility_off.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_2X = `${
   module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_noeye@3x.png`;
+}/ic_visibility_off@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_3X = `${
+  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
+}/ic_visibility_off@3x.png`;
 module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH = `${
   module.exports.CUSTOM_TEXT_INPUT_PATH
 }/components/ShowPassword`;
