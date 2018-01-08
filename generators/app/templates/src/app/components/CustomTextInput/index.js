@@ -80,10 +80,10 @@ CustomTextInput.defaultProps = {
 
 CustomTextInput.propTypes = {
   bottomBorder: PropTypes.bool,
-  autoCapitalize: PropTypes.oneOf('none', 'sentences', 'words', 'characters'),
-  clearButtonMode: PropTypes.oneOf('never', 'while-editing', 'unless-editing', 'always'),
-  returnKeyType: PropTypes.oneOf('done', 'go', 'next', 'search'),
-  keyboardType: PropTypes.oneOf('default', 'numeric', 'email-address', 'phone-pad'),
+  autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
+  clearButtonMode: PropTypes.oneOf(['never', 'while-editing', 'unless-editing', 'always']),
+  returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search']),
+  keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
   underlineColorAndroid: PropTypes.string,
   maxHeight: PropTypes.number,
   autoCorrect: PropTypes.bool,
