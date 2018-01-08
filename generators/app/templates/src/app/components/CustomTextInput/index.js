@@ -3,7 +3,7 @@ import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CustomText from '../CustomText';
-import { transparent, blue } from '../../../constants/colors';
+import { transparent } from '../../../constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
@@ -24,7 +24,7 @@ class CustomTextInput extends PureComponent {
     return (
       <View>
         {this.props.title && (
-          <CustomText darkGray style={[styles.title, this.props.titleStyles]}>
+          <CustomText gray small style={[styles.title, this.props.titleStyles]}>
             {this.props.title}
           </CustomText>
         )}
@@ -48,7 +48,6 @@ class CustomTextInput extends PureComponent {
               this.props.textStyles
             ]}
             placeholderTextColor={placeholderTextColor}
-            selectionColor={blue}
             secureTextEntry={this.props.secureTextEntry && !this.state.showPassword}
             autoComplete={!this.props.secureTextEntry}
           />

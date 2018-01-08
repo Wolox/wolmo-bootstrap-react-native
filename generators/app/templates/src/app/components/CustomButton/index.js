@@ -8,7 +8,7 @@ import { getCustomStyles } from '../../../utils/styleUtils';
 import styles from './styles';
 
 class CustomButton extends PureComponent {
-  static VARIANTS = ['borderless', 'radial', 'black', 'green', 'small', 'white', 'gray'];
+  static VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
 
   customStyles = () => getCustomStyles(CustomButton.VARIANTS, this.props, styles);
 

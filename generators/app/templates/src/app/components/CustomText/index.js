@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
+import { getCustomStyles } from '../../../utils/styleUtils';
+
 import styles from './styles';
 
 class CustomText extends PureComponent {
@@ -24,10 +26,7 @@ class CustomText extends PureComponent {
     'gray'
   ];
 
-  customStyles = () =>
-    CustomText.VARIANTS.map(variant => (this.props[variant] ? styles[variant] : null)).filter(
-      style => style !== null
-    );
+  customStyles = () => getCustomStyles(CustomText.VARIANTS, this.props, styles);
 
   render() {
     return (

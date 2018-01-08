@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { transparent, black, green, gray } from '../../../constants/colors';
+import { transparent, black, green, gray, white } from '../../../constants/colors';
 
 const iconSize = 20;
 
@@ -27,8 +27,17 @@ export default StyleSheet.create({
   black: {
     backgroundColor: black
   },
+  blackContent: {
+    color: white
+  },
+  white: {
+    backgroundColor: white
+  },
   whiteContent: {
     color: black
+  },
+  gray: {
+    backgroundColor: gray
   },
   grayContent: {
     color: black
