@@ -5,10 +5,9 @@ import { reactotronRedux } from 'reactotron-redux';
 import { NativeModules } from 'react-native';
 
 // If you want to use a physical device and connect it to reactotron, execute first `adb reverse tcp:9090 tcp:9090`
-let scriptHostname;
 if (__DEV__) {
   const scriptURL = NativeModules.SourceCode.scriptURL;
-  scriptHostname = scriptURL.split('://')[1].split(':')[0];
+  const scriptHostname = scriptURL.split('://')[1].split(':')[0];
   Reactotron.configure({ name: '<%= projectName %>', host: scriptHostname })
     .use(trackGlobalErrors())
     .use(apisaucePlugin())
