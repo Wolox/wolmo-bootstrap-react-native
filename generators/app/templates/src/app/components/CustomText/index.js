@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
+import { getCustomStyles } from '../../../utils/styleUtils';
+
 import styles from './styles';
 
-export default class CustomText extends PureComponent {
+class CustomText extends PureComponent {
   /*
   ** You can add styles to Base like Family Font to be the Text styles base!
   ** if you want to add a custom style, you need to add it here and in VARIANTS
@@ -24,10 +26,7 @@ export default class CustomText extends PureComponent {
     'gray'
   ];
 
-  customStyles = () =>
-    CustomText.VARIANTS
-      .map(variant => (this.props[variant] ? styles[variant] : null))
-      .filter(style => style !== null);
+  customStyles = () => getCustomStyles(CustomText.VARIANTS, this.props, styles);
 
   render() {
     return (
@@ -50,3 +49,5 @@ CustomText.propTypes = {
 CustomText.VARIANTS.forEach(variant => {
   CustomText.propTypes[variant] = PropTypes.bool;
 });
+
+export default CustomText;

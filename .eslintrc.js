@@ -46,7 +46,8 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "import/default": "off",
     "import/namespace": "off",
-    "import/no-absolute-path": "error"
+    "import/no-absolute-path": "error",
+    "react/no-typos": "off"
   },
   "settings": {
     "import/resolver": {

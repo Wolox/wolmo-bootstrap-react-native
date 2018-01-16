@@ -48,7 +48,7 @@ class DrawerContainer extends Component {
         openDrawerOffset={0.15}
         tapToClose
         panOpenMask={-1}
-        type={'overlay'}
+        type="overlay"
       >
         <AppNavigator />
         <DrawerOverlay drawerPresent={this.props.drawerPresent} />

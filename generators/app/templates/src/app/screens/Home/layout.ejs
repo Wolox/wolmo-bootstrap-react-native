@@ -2,7 +2,13 @@ import React from 'react';
 <%_ if(features.login) { _%>
 import PropTypes from 'prop-types';
 <%_ } _%>
-import { View, Text<%_ if(features.login) { _%>, TouchableOpacity<%_ } %> } from 'react-native';
+import { View } from 'react-native';
+
+<%_ if(features.login) { _%>
+import CustomButton from '../../components/CustomButton';
+<%_ } else { _%>
+import CustomText from '../../components/CustomText';
+<%_ } _%>
 
 import styles from './styles';
 
@@ -14,11 +20,9 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <%_ if(features.login) { _%>
-      <TouchableOpacity onPress={onLogout} style={styles.mainButton}>
-        <Text>Logout!</Text>
-      </TouchableOpacity>
+      <CustomButton onPress={onLogout} green title="Logout!" style={styles.mainButton} />
       <%_ } else { _%>
-      <Text style={styles.mainButton}><%= projectName %></Text>
+      <CustomText style={styles.mainButton}><%= projectName %></CustomText>
       <%_ } _%>
     </View>
   );
