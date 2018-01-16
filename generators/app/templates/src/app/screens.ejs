@@ -26,11 +26,9 @@ import { actionCreators as drawerActions } from '../redux/drawer/actions';
 import * as Routes from '../constants/routes';
 
 <%_ if(features.login) { _%>
-import Login from './screens/login';
-import Home from './screens/home';
-<%_ } else { _%>
-import Home from './screens/home';
+import Login from './screens/Login';
 <%_ } _%>
+import Home from './screens/Home';
 
 <%_ if(features.login) { _%>
 // ------------------ Initial loading screen
