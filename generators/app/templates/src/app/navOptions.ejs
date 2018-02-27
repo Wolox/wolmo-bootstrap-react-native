@@ -1,8 +1,8 @@
 <%_ if (features.drawerandroid || features.drawerios) { _%>
 import React from 'react';
 import { Button } from 'react-native';
-<%_ } _%>
 
+<%_ } _%>
 import I18n from '../config/i18n';
 import * as Routes from '../constants/routes';
 import { blue, white } from '../constants/colors';
@@ -51,13 +51,14 @@ export const screensNavOptions = {
       elevation: 0,
       shadowOpacity: 0
     }
-  },<%_ } _%>
+  <%_ } _%>
   <%_ if (features.drawerandroid || features.drawerios) { _%>
+  },
   [Routes.Home]: {
     headerRight: <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-  }<%_ } _%>
-<%_ if (features.drawerandroid || features.drawerios) { _%>
+  }
 });
-<%_ } else { _%>
-}
+  <%_ } else { _%>
+  }
+};
 <%_ } _%>
