@@ -2,7 +2,9 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 import { isEqual } from 'lodash';
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 
+import { ROOT } from '../constants/platform';
 import { getCurrentRouteName } from '../utils/navUtils';
 import Navigator from '../app/screens';
 
@@ -54,6 +56,9 @@ const reducers = combineReducers({
 
 const middlewares = [];
 const enhancers = [];
+
+/* ------------- React Navigation Middleware ------------- */
+middlewares.push(createReactNavigationReduxMiddleware(ROOT, state => state.nav));
 
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
