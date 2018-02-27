@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
+import { ROOT } from '../../../constants/platform';
 import Navigator from '../../screens';
 
 class AppNavigator extends Component {
@@ -23,7 +24,7 @@ class AppNavigator extends Component {
     return true;
   };
 
-  addListener = createReduxBoundAddListener('root');
+  addListener = createReduxBoundAddListener(ROOT);
 
   render() {
     const { dispatch, nav, ...navigatorProps } = this.props;

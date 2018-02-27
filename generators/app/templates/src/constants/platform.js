@@ -1,5 +1,7 @@
 import { Platform, StatusBar, Dimensions } from 'react-native';
 
+export const ROOT = 'root';
+
 export const isAndroid = Platform.OS === 'android';
 export const isIos = Platform.OS === 'ios';
 

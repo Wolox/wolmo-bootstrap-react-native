@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import { isEqual } from 'lodash';
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 
+import { ROOT } from '../constants/platform';
 import { getCurrentRouteName } from '../utils/navUtils';
 import Navigator from '../app/screens';
 
@@ -57,7 +58,7 @@ const middlewares = [];
 const enhancers = [];
 
 /* ------------- React Navigation Middleware ------------- */
-middlewares.push(createReactNavigationReduxMiddleware('root', state => state.nav));
+middlewares.push(createReactNavigationReduxMiddleware(ROOT, state => state.nav));
 
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
