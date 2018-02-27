@@ -8,6 +8,7 @@ const DEPENDENCIES = [
   'change-case',
   'lodash',
   'react-navigation',
+  'react-navigation-redux-helpers',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
@@ -75,9 +76,9 @@ function yarnInstall(projectName, deps, options, dev) {
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
     successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-    failureMessage: `${
-      dev ? 'Dev dependencies' : 'Dependencies'
-    } installation failed. Turn verbose mode on for detailed logging`,
+    failureMessage: `${dev
+      ? 'Dev dependencies'
+      : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
     context: options
   });
 }
