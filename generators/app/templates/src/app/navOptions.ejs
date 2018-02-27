@@ -1,0 +1,63 @@
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+import React from 'react';
+import { Button } from 'react-native';
+<%_ } _%>
+
+import I18n from '../config/i18n';
+import * as Routes from '../constants/routes';
+import { blue, white } from '../constants/colors';
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+import { actionCreators as drawerActions } from '../redux/drawer/actions';
+<%_ } _%>
+
+export const defaultNavOptions = ({ navigation }) => ({
+  title: I18n.t(`app:${navigation.state.routeName}`), // Change screen title from i18n traslates files
+  // TODO: The following options are examples. Change them to your need
+  headerStyle: {
+    backgroundColor: blue
+  },
+  headerBackTitleStyle: {
+    color: white
+  },
+  headerTitleStyle: {
+    color: white
+    // TODO: If you want to change the header font, apply these options
+    // Replace the font with the need
+    // fontWeight: 'normal',
+    // fontFamily: 'Lato-Bold'
+  },
+  headerTintColor: white
+});
+
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+export const screensNavOptions = ({ navigation }) => ({
+<%_ } else { _%>
+export const screensNavOptions = {
+<%_ } _%>
+  /*
+    TODO: Add here the screens nav options that changes with respect to
+          the default ones defined in DefaultNavOptions, for example...
+    [Routes.Home]: {
+      title: 'Home'
+    },
+    [Routes.Login]: {
+      header: null
+    }
+  */
+  <%_ if (features.login) { _%>
+  [Routes.InitialLoading]: {
+    header: null,
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0
+    }
+  },<%_ } _%>
+  <%_ if (features.drawerandroid || features.drawerios) { _%>
+  [Routes.Home]: {
+    headerRight: <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
+  }<%_ } _%>
+<%_ if (features.drawerandroid || features.drawerios) { _%>
+});
+<%_ } else { _%>
+}
+<%_ } _%>

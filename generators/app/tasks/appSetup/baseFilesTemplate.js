@@ -38,7 +38,9 @@ const {
   STYLE_UTILS,
   INDEX,
   APP,
-  SCREENS
+  SCREENS,
+  NAV_OPTIONS,
+  APP_I18N
 } = require('../../files');
 
 const FILES = [
@@ -76,7 +78,17 @@ const FILES = [
   HOME_STYLES
 ];
 
-const TEMPLATE_FILES = [README, REDUX_STORE, ROUTES_CONSTANTS, REACTOTRON_CONFIG, INDEX, APP, SCREENS];
+const TEMPLATE_FILES = [
+  README,
+  REDUX_STORE,
+  ROUTES_CONSTANTS,
+  REACTOTRON_CONFIG,
+  INDEX,
+  APP,
+  SCREENS,
+  NAV_OPTIONS,
+  APP_I18N
+];
 
 module.exports = function baseFilesTemplate() {
   TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));

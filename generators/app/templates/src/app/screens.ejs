@@ -2,29 +2,16 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-<%_ if(features.drawerandroid || features.drawerios) { _%>
 <%_ if(features.login) { _%>
-import React, { PureComponent } from 'react';
-<%_ } else { _%>
-import React from 'react';
-<%_ } _%>
-<%_ } else if(features.login) { _%>
 import { PureComponent } from 'react';
-<%_ } _%>
-<%_ if(features.login) { _%>
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 <%_ } _%>
-<%_ if (features.drawerandroid || features.drawerios) { _%>
-import { Button } from 'react-native';
-<%_ } _%>
 import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
-<%_ if (features.drawerandroid || features.drawerios) { _%>
-import { actionCreators as drawerActions } from '../redux/drawer/actions';
-<%_ } _%>
 import * as Routes from '../constants/routes';
 
+import { defaultNavOptions, screensNavOptions } from './navOptions';
 <%_ if(features.login) { _%>
 import Login from './screens/Login';
 <%_ } _%>
@@ -38,7 +25,7 @@ class InitialLoadingScreen extends PureComponent {
       nextProps.dispatch(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName: nextProps.currentUser ? 'Home' : 'Login' })]
+          actions: [NavigationActions.navigate({ routeName: nextProps.currentUser ? Routes.Home : Routes.Login })]
         })
       );
     }
@@ -61,81 +48,35 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 // ------------------ Initial loading screen end
 
 <%_ } _%>
-export default StackNavigator({
-  <%_ if (features.login) { _%>
-  [Routes.InitialLoading]: { screen: InitialLoadingScreenContainer },
-  [Routes.Login]: {
-    screen: Login,
-    navigationOptions: {
-      title: 'Login'
+export default StackNavigator(
+  {
+    <%_ if (features.login) { _%>
+    [Routes.InitialLoading]: {
+      screen: InitialLoadingScreenContainer,
+      navigationOptions: screensNavOptions[Routes.InitialLoading]
+    },
+    [Routes.Login]: {
+      screen: Login,
+      navigationOptions: screensNavOptions[Routes.Login]
+    },
+    <%_ } _%>
+    [Routes.Home]: {
+      <%_ if (features.tabs) { _%>
+      screen: TabNavigator({
+        [Routes.Tab1]: {
+          screen: Home,
+          navigationOptions: screensNavOptions[Routes.Tab1]
+        },
+        [Routes.Tab2]: {
+          screen: Home,
+          navigationOptions: screensNavOptions[Routes.Tab2]
+        }
+      }),
+      <%_ } else { _%>
+      screen: Home,
+      <%_ } _%>
+      navigationOptions: screensNavOptions[Routes.Home]
     }
   },
-  <%_ if (features.tabs) { _%>
-  [Routes.Home]: {
-    screen: TabNavigator({
-      [Routes.Tab1]: {
-        screen: Home,
-        navigationOptions: { title: 'Tab 1' }
-      },
-      [Routes.Tab2]: {
-        screen: Home,
-        navigationOptions: { title: 'Tab 2' }
-      }
-    }),
-    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
-      <%_ if (features.drawerandroid || features.drawerios) { _%>
-      headerRight: (
-        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-      ),
-      <%_ } _%>
-      title: 'Home'
-    })
-  }
-  <%_ } else { _%>
-  [Routes.Home]: {
-    screen: Home,
-    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
-      <%_ if (features.drawerandroid || features.drawerios) { _%>
-      headerRight: (
-        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-      ),
-      <%_ } _%>
-      title: 'Home'
-    })
-  }
-  <%_ } _%>
-  <%_ } else if (features.tabs) { _%>
-  [Routes.Home]: {
-    screen: TabNavigator({
-      [Routes.Tab1]: {
-        screen: Home,
-        navigationOptions: { title: 'Tab 1' }
-      },
-      [Routes.Tab2]: {
-        screen: Home,
-        navigationOptions: { title: 'Tab 2' }
-      }
-    }),
-    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
-      <%_ if (features.drawerandroid || features.drawerios) { _%>
-      headerRight: (
-        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-      ),
-      <%_ } _%>
-      title: 'Home'
-    })
-  }
-  <%_ } else { _%>
-  [Routes.Home]: {
-    screen: Home,
-    navigationOptions: (<%_ if (features.drawerandroid || features.drawerios) { _%>{ navigation }<%_ } _%>) => ({
-      <%_ if (features.drawerandroid || features.drawerios) { _%>
-      headerRight: (
-        <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-      ),
-      <%_ } _%>
-      title: 'Home'
-    })
-  }
-  <%_ } _%>
-});
+  { navigationOptions: defaultNavOptions }
+);

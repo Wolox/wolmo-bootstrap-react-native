@@ -18,6 +18,8 @@ module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
 module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
+module.exports.NAV_OPTIONS = `${module.exports.APP_PATH}/navOptions.js`;
+module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.js`;
 
 // SCREENS - HOME
 module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
