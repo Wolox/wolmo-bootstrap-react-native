@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
 import * as Routes from '../constants/routes';
+import { stackNavConfig, screensNavOptions, <% if (features.tabs) { %>tabNavConfig<% } %> } from '../config/navigation';
 
-import { defaultNavOptions, screensNavOptions } from './navOptions';
 <%_ if(features.login) { _%>
 import Login from './screens/Login';
 <%_ } _%>
@@ -64,21 +64,24 @@ export default StackNavigator(
     <%_ } _%>
     [Routes.Home]: {
       <%_ if (features.tabs) { _%>
-      screen: TabNavigator({
-        [Routes.Tab1]: {
-          screen: Home,
-          navigationOptions: screensNavOptions[Routes.Tab1]
+      screen: TabNavigator(
+        {
+          [Routes.Tab1]: {
+            screen: Home,
+            navigationOptions: screensNavOptions[Routes.Tab1]
+          },
+          [Routes.Tab2]: {
+            screen: Home,
+            navigationOptions: screensNavOptions[Routes.Tab2]
+          }
         },
-        [Routes.Tab2]: {
-          screen: Home,
-          navigationOptions: screensNavOptions[Routes.Tab2]
-        }
-      }),
+        tabNavConfig
+      ),
       <%_ } else { _%>
       screen: Home,
       <%_ } _%>
       navigationOptions: screensNavOptions[Routes.Home]
     }
   },
-  { navigationOptions: defaultNavOptions }
+  stackNavConfig
 );

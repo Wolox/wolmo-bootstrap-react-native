@@ -3,15 +3,19 @@ import React from 'react';
 import { Button } from 'react-native';
 
 <%_ } _%>
-import I18n from '../config/i18n';
 import * as Routes from '../constants/routes';
 import { blue, white } from '../constants/colors';
 <%_ if (features.drawerandroid || features.drawerios) { _%>
 import { actionCreators as drawerActions } from '../redux/drawer/actions';
 <%_ } _%>
 
-export const defaultNavOptions = ({ navigation }) => ({
-  title: I18n.t(`app:${navigation.state.routeName}`), // Change screen title from i18n traslates files
+import I18n from './i18n';
+
+// Default nav options for all screens
+const defaultNavOptions = ({ navigation }) => ({
+  // Change screen title from i18n traslates files
+  title: I18n.t(`app:${navigation.state.routeName}`),
+
   // TODO: The following options are examples. Change them to your need
   headerStyle: {
     backgroundColor: blue
@@ -34,15 +38,15 @@ export const screensNavOptions = ({ navigation }) => ({
 <%_ } else { _%>
 export const screensNavOptions = {
 <%_ } _%>
+  // TODO: Add here the screens nav options that changes with respect to
+  // the default ones defined in defaultNavOptions, for example...
   /*
-    TODO: Add here the screens nav options that changes with respect to
-          the default ones defined in DefaultNavOptions, for example...
-    [Routes.Home]: {
-      title: 'Home'
-    },
-    [Routes.Login]: {
-      header: null
-    }
+  [Routes.Home]: {
+    title: 'Home'
+  },
+  [Routes.Login]: {
+    header: null
+  }
   */
   <%_ if (features.login) { _%>
   [Routes.InitialLoading]: {
@@ -60,5 +64,19 @@ export const screensNavOptions = {
 });
   <%_ } else { _%>
   }
+};
+<%_ } _%>
+
+export const stackNavConfig = {
+  navigationOptions: defaultNavOptions
+  // TODO: Change other options for the router to your need:
+  // See: https://reactnavigation.org/docs/stack-navigator.html#stacknavigatorconfig
+};
+<%_ if (features.tabs) { _%>
+
+export const tabNavConfig = {
+  // TODO: The following options are examples. Change them to your need
+  // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
+  tabBarPosition: 'bottom'
 };
 <%_ } _%>

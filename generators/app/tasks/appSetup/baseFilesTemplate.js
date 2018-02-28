@@ -39,7 +39,7 @@ const {
   INDEX,
   APP,
   SCREENS,
-  NAV_OPTIONS,
+  NAVIGATION_CONFIG,
   APP_I18N
 } = require('../../files');
 
@@ -86,7 +86,7 @@ const TEMPLATE_FILES = [
   INDEX,
   APP,
   SCREENS,
-  NAV_OPTIONS,
+  NAVIGATION_CONFIG,
   APP_I18N
 ];
 

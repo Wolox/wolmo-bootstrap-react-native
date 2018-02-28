@@ -18,7 +18,6 @@ module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
 module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
-module.exports.NAV_OPTIONS = `${module.exports.APP_PATH}/navOptions.js`;
 module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.js`;
 
 // SCREENS - HOME
@@ -128,6 +127,7 @@ module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
 module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
+module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.js`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.js`;
