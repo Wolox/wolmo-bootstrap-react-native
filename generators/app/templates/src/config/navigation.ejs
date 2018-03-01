@@ -33,11 +33,7 @@ const defaultNavOptions = ({ navigation }) => ({
   headerTintColor: white
 });
 
-<%_ if (features.drawerandroid || features.drawerios) { _%>
-export const screensNavOptions = ({ navigation }) => ({
-<%_ } else { _%>
 export const screensNavOptions = {
-<%_ } _%>
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
   /*
@@ -58,14 +54,13 @@ export const screensNavOptions = {
   <%_ } _%>
   <%_ if (features.drawerandroid || features.drawerios) { _%>
   },
-  [Routes.Home]: {
+  [Routes.Home]: ({ navigation }) => ({
     headerRight: <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
-  }
-});
+  })
   <%_ } else { _%>
   }
+  <%_ } _%>
 };
-<%_ } _%>
 
 export const stackNavConfig = {
   navigationOptions: defaultNavOptions
