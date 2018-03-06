@@ -30,7 +30,8 @@ export default StyleSheet.create({
     paddingHorizontal: 0,
     marginHorizontal: 0,
     marginBottom: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    textAlignVertical: 'bottom'
   },
   title: {
     marginTop: 5,

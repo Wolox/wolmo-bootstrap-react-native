@@ -11,12 +11,15 @@ import styles from './styles';
 // Known issue: showing/hiding the text with secureTextEntry changes the cursor position
 // https://github.com/facebook/react-native/issues/5859
 
+const FOCUSED_VALUE = 1;
+const UNFOCUSED_VALUE = 0;
+
 class CustomTextInput extends PureComponent {
   state = {
     showPassword: false,
     focused: false,
     value: this.props.value,
-    focusedAnim: new Animated.Value(this.props.value ? 1 : 0)
+    focusedAnim: new Animated.Value(this.props.value ? FOCUSED_VALUE : UNFOCUSED_VALUE)
   };
 
   handleShowPassword = () => {
@@ -24,20 +27,17 @@ class CustomTextInput extends PureComponent {
   };
 
   toggle = isActive => {
-    const { animationDuration, easing, useNativeDriver } = this.props;
-    this.isActive = isActive;
+    const { animationDuration, easing } = this.props;
     Animated.timing(this.state.focusedAnim, {
       toValue: isActive ? 1 : 0,
       duration: animationDuration,
       easing,
-      useNativeDriver
+      useNativeDriver: false
     }).start();
   };
 
   handleChange = value => {
-    this.setState({
-      value
-    });
+    this.setState({ value });
 
     if (this.props.onChangeText) {
       this.props.onChangeText(value);
@@ -98,8 +98,8 @@ class CustomTextInput extends PureComponent {
                   style={{
                     position: 'absolute',
                     bottom: focusedAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [this.props.titleYUnfocus, this.props.titleYFocus]
+                      inputRange: [UNFOCUSED_VALUE, FOCUSED_VALUE],
+                      outputRange: [this.props.titleYUnfocused, this.props.titleYFocused]
                     })
                   }}
                 >
@@ -110,8 +110,8 @@ class CustomTextInput extends PureComponent {
                       focused && this.props.titleFocusedStyles,
                       {
                         fontSize: focusedAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [this.props.titleSizeUnfocus, this.props.titleSizeFocus]
+                          inputRange: [UNFOCUSED_VALUE, FOCUSED_VALUE],
+                          outputRange: [this.props.titleSizeUnfocused, this.props.titleSizeFocused]
                         })
                       }
                     ]}
@@ -123,9 +123,7 @@ class CustomTextInput extends PureComponent {
             )}
           <TextInput
             {...this.props}
-            ref={textInput => {
-              this.textInput = textInput;
-            }}
+            ref={textInput => (this.textInput = textInput)}
             allowFontScaling={false}
             onChangeText={this.handleChange}
             onBlur={this.handleBlur}
@@ -166,10 +164,10 @@ CustomTextInput.defaultProps = {
   maxHeight: 200,
   animationDuration: 300,
   animated: false,
-  titleYUnfocus: 16,
-  titleYFocus: 26,
-  titleSizeUnfocus: 14,
-  titleSizeFocus: 12
+  titleYUnfocused: 16,
+  titleYFocused: 26,
+  titleSizeUnfocused: 14,
+  titleSizeFocused: 12
 };
 
 CustomTextInput.propTypes = {
@@ -196,12 +194,11 @@ CustomTextInput.propTypes = {
   title: PropTypes.string,
   easing: PropTypes.func,
   animationDuration: PropTypes.number,
-  useNativeDriver: PropTypes.bool,
   animated: PropTypes.bool,
-  titleYUnfocus: PropTypes.number,
-  titleYFocus: PropTypes.number,
-  titleSizeUnfocus: PropTypes.number,
-  titleSizeFocus: PropTypes.number,
+  titleYUnfocused: PropTypes.number,
+  titleYFocused: PropTypes.number,
+  titleSizeUnfocused: PropTypes.number,
+  titleSizeFocused: PropTypes.number,
   focusedStyle: View.propTypes.style
 };
 
