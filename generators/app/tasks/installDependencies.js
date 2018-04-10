@@ -76,9 +76,9 @@ function yarnInstall(projectName, deps, options, dev) {
     command: ['yarn', yarnArgs, { cwd: `${process.cwd()}/${projectName}` }],
     loadingMessage: `Fetching ${dev ? 'dev dependencies' : 'dependencies'}`,
     successMessage: `${dev ? 'Dev dependencies' : 'Dependencies'} ready!`,
-    failureMessage: `${dev
-      ? 'Dev dependencies'
-      : 'Dependencies'} installation failed. Turn verbose mode on for detailed logging`,
+    failureMessage: `${
+      dev ? 'Dev dependencies' : 'Dependencies'
+    } installation failed. Turn verbose mode on for detailed logging`,
     context: options
   });
 }
@@ -96,6 +96,7 @@ module.exports = function installDependencies() {
   if (this.features.googleanalytics) {
     DEPENDENCIES.push('react-native-google-analytics-bridge');
     DEPENDENCIES.push('redux-beacon');
+    DEPENDENCIES.push('@redux-beacon/react-native-google-analytics');
   }
 
   return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
