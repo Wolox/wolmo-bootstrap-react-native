@@ -21,7 +21,7 @@ LoginContainer.propTypes = {
 };
 
 const mapStateToProps = store => ({
-  loading: store.auth.loading
+  loading: store.auth.currentUserLoading
 });
 
 export default connect(mapStateToProps)(LoginContainer);
