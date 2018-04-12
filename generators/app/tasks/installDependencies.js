@@ -19,7 +19,8 @@ const DEPENDENCIES = [
   'prop-types',
   'seamless-immutable',
   'react-native-config',
-  'react-native-i18n'
+  'react-native-i18n',
+  'redux-recompose'
 ];
 
 const DEV_DEPENDENCIES = [
