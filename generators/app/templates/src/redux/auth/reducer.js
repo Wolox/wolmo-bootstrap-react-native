@@ -1,4 +1,4 @@
-import { createReducer, completeReducer, completeState } from 'redux-recompose';
+import { createReducer, completeReducer, completeState, onSuccess } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
 
@@ -16,8 +16,7 @@ const reducerDescription = {
   override: {
     [actions.AUTH_INIT]: (state, action) =>
       state.merge({ initialLoading: false, [action.target]: action.payload }),
-    [actions.LOGOUT]: (state, action) =>
-      state.merge({ [action.target]: null, [`${action.target}Loading`]: false })
+    [actions.LOGOUT]: onSuccess()
   }
 };
 
