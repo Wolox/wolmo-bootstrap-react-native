@@ -1,20 +1,19 @@
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
+import { createReducer } from 'redux-recompose';
 
 import { actions } from './actions';
 
-export default function reducer(state = Immutable({ present: false }), action) {
-  switch (action.type) {
-    case actions.DRAWER_TOGGLED: {
-      const present =
-        !action.payload || action.payload.present === undefined ? !state.present : action.payload.present;
-      return state.merge({ present });
-    }
-    default: {
-      return state;
-    }
-  }
-}
+const initialState = {
+  present: false
+};
+
+const reducerDescription = {
+  [actions.DRAWER_TOGGLED]: (state, action) =>
+    state.merge({ [action.target]: action.payload || !state[action.target] })
+};
+
+export default createReducer(Immutable(initialState), reducerDescription);
 
 export const propTypes = {
   present: PropTypes.bool.isRequired
