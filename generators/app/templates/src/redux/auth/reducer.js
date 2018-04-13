@@ -12,7 +12,7 @@ const stateDescription = {
 const initialState = completeState(stateDescription, ['initialLoading']);
 
 const reducerDescription = {
-  primaryActions: [actions.LOGIN, actions.LOGOUT],
+  primaryActions: [actions.LOGIN],
   override: {
     [actions.AUTH_INIT]: (state, action) =>
       state.merge({ initialLoading: false, [action.target]: action.payload }),

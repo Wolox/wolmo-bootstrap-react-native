@@ -14,7 +14,7 @@ export const actionCreators = {
     type: actions.LOGIN,
     target: loginTarget,
     service: AuthService.login,
-    payload: () => authData,
+    payload: authData,
     injections: [
       withPostSuccess(async (dispatch, response) => {
         await AuthService.setCurrentUser(response.data);
