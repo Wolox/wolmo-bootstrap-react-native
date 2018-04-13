@@ -30,13 +30,11 @@ export const actionCreators = {
       if (isAndroid) {
         PushNotificationsService.triggerLocalNotification(notification);
       } else {
-        PushNotificationsService.displayPushNotificationPrompt(notification.alert)
-          .then()
-          .then(triggerPushAction => {
-            if (triggerPushAction) {
-              handler(dispatch, notification.data);
-            }
-          });
+        PushNotificationsService.displayPushNotificationPrompt(notification.alert).then(triggerPushAction => {
+          if (triggerPushAction) {
+            handler(dispatch, notification.data);
+          }
+        });
       }
     }
 
