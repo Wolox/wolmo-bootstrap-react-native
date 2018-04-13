@@ -18,7 +18,7 @@ export const actionCreators = {
     injections: [
       withPostSuccess(async (dispatch, response) => {
         await AuthService.setCurrentUser(response.data);
-        return dispatch(
+        dispatch(
           NavigationActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: Routes.Home })]
