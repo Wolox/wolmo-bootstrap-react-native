@@ -95,8 +95,11 @@ module.exports = function baseFilesTemplate() {
   FILES.forEach(copyFile.bind(this));
 
   this.fs.copyTpl(
-    this.templatePath('src', 'app', 'screens', 'home', this.features.login ? 'index.js' : 'layout.ejs'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'home', 'index.js'),
-    { projectName: this.projectName, features: this.features }
+    this.templatePath('src', 'app', 'screens', 'Home', this.features.login ? 'index.js' : 'layout.ejs'),
+    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'Home', 'index.js'),
+    {
+      projectName: this.projectName,
+      features: this.features
+    }
   );
 };
