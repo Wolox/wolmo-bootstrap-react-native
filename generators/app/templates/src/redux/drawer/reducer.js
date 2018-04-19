@@ -1,6 +1,6 @@
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
-import { createReducer } from 'redux-recompose';
+import { createReducer, onToggle } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -9,8 +9,7 @@ const initialState = {
 };
 
 const reducerDescription = {
-  [actions.DRAWER_TOGGLED]: (state, action) =>
-    state.merge({ [action.target]: action.payload || !state[action.target] })
+  [actions.DRAWER_TOGGLED]: onToggle()
 };
 
 export default createReducer(Immutable(initialState), reducerDescription);
