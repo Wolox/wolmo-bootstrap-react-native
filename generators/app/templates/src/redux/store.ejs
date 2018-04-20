@@ -3,6 +3,7 @@ import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 import { isEqual } from 'lodash';
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
+import { fetchMiddleware } from 'redux-recompose';
 
 import { ROOT } from '../constants/platform';
 import { getCurrentRouteName } from '../utils/navUtils';
@@ -62,6 +63,9 @@ middlewares.push(createReactNavigationReduxMiddleware(ROOT, state => state.nav))
 
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
+
+/* ------------- Redux-Recompose Middleware ------------- */
+middlewares.push(fetchMiddleware);
 
 <%_ if(features.googleanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
