@@ -1,40 +1,34 @@
+import { createReducer, onReadValue } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
 
 import { actions } from './actions';
 
-const defaultState = {
+const initialState = {
   unreadNotifications: [],
   readNotifications: [],
   token: null
 };
 
-/* eslint-disable complexity */
-export default function reducer(state = Immutable(defaultState), action) {
-  switch (action.type) {
-    case actions.REGISTER: {
-      return state.merge({ token: action.payload.token }, { deep: true });
-    }
-    case actions.NOTIFICATION_RECEIVED: {
-      const push = action.payload.notification;
-      return state.merge(
-        {
-          unreadNotifications: push.userInteraction
-            ? state.unreadNotifications.filter(unreadPush => push.id !== unreadPush.id)
-            : state.unreadNotifications.concat([push]),
-          readNotifications: push.userInteraction
-            ? state.readNotifications.concat([push])
-            : state.readNotifications
-        },
-        { deep: true }
-      );
-    }
-    default: {
-      return state;
-    }
+const reducerDescription = {
+  [actions.REGISTER]: onReadValue(),
+  [actions.NOTIFICATION_RECEIVED]: (state, action) => {
+    const push = action.payload.notification;
+    return state.merge(
+      {
+        unreadNotifications: push.userInteraction
+          ? state.unreadNotifications.filter(unreadPush => push.id !== unreadPush.id)
+          : state.unreadNotifications.concat([push]),
+        readNotifications: push.userInteraction
+          ? state.readNotifications.concat([push])
+          : state.readNotifications
+      },
+      { deep: true }
+    );
   }
-}
-/* eslint-enable complexity */
+};
+
+export default createReducer(Immutable(initialState), reducerDescription);
 
 const notificationPropTypes = PropTypes.shape({
   id: PropTypes.string.isRequired

@@ -1,12 +1,11 @@
-import { stringArrayToObject } from '../../utils/arrayUtils';
+import { createTypes } from 'redux-recompose';
 
-export const actions = stringArrayToObject(['DRAWER_TOGGLED'], '@@DRAWER');
+export const actions = createTypes(['DRAWER_TOGGLED'], '@@DRAWER');
 
 export const actionCreators = {
-  drawerToggled(present) {
-    return {
-      type: actions.DRAWER_TOGGLED,
-      payload: { present }
-    };
-  }
+  drawerToggled: isPresent => ({
+    type: actions.DRAWER_TOGGLED,
+    target: 'present',
+    payload: isPresent
+  })
 };

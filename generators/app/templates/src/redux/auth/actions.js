@@ -1,67 +1,40 @@
 import { StackActions, NavigationActions } from 'react-navigation';
+import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 
 import * as AuthService from '../../services/AuthService';
-import { stringArrayToObject } from '../../utils/arrayUtils';
+import * as Routes from '../../constants/routes';
 
-export const actions = stringArrayToObject(
-  ['LOGIN', 'LOGIN_SUCCESS', 'LOGIN_FAILURE', 'LOGOUT', 'AUTH_INIT'],
-  '@@AUTH'
-);
+export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT']), '@@AUTH');
 
-const privateActionCreators = {
-  loginSuccess(authData) {
-    return {
-      type: actions.LOGIN_SUCCESS,
-      payload: { authData }
-    };
-  },
-  loginFailure(err) {
-    return {
-      type: actions.LOGIN_FAILURE,
-      payload: { err }
-    };
-  }
-};
+const loginTarget = 'currentUser';
 
 export const actionCreators = {
-  init(user) {
-    return {
-      type: actions.AUTH_INIT,
-      payload: { user }
-    };
-  },
-  login(authData) {
-    return async dispatch => {
-      dispatch({ type: actions.LOGIN });
-      try {
-        const response = await AuthService.login(authData);
-        if (response.ok) {
-          await AuthService.setCurrentUser(response.data);
-          dispatch(privateActionCreators.loginSuccess(response.data));
-          dispatch(
-            StackActions.reset({
-              index: 0,
-              actions: [NavigationActions.navigate({ routeName: 'Home' })]
-            })
-          );
-        } else {
-          throw new Error('Invalid credentials');
-        }
-      } catch (e) {
-        dispatch(privateActionCreators.loginFailure(e));
-      }
-    };
-  },
-  logout() {
-    return async dispatch => {
-      await AuthService.removeCurrentUser();
-      dispatch({ type: actions.LOGOUT });
-      dispatch(
-        StackActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: 'Login' })]
-        })
-      );
-    };
+  init: user => ({ type: actions.AUTH_INIT, target: loginTarget, payload: user }),
+  login: authData => ({
+    type: actions.LOGIN,
+    target: loginTarget,
+    service: AuthService.login,
+    payload: authData,
+    injections: [
+      withPostSuccess(async (dispatch, response) => {
+        await AuthService.setCurrentUser(response.data);
+        dispatch(
+          StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: Routes.Home })]
+          })
+        );
+      })
+    ]
+  }),
+  logout: () => async dispatch => {
+    await AuthService.removeCurrentUser();
+    dispatch({ type: actions.LOGOUT, target: loginTarget });
+    dispatch(
+      StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: Routes.Login })]
+      })
+    );
   }
 };

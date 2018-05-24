@@ -141,5 +141,4 @@ module.exports.NAV_UTILS = `${module.exports.UTILS_PATH}/navUtils.js`;
 module.exports.STYLE_UTILS = `${module.exports.UTILS_PATH}/styleUtils.js`;
 
 // TEST
-module.exports.ARRAY_UTILS_TESTS = `${module.exports.TEST_PATH}/utils/arrayUtils.spec.js`;
 module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;
