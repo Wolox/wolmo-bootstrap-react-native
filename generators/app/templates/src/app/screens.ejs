@@ -7,7 +7,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 <%_ } _%>
-import { <% if (features.login) { %>NavigationActions, <% } %><% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
+import { <% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
 
 import * as Routes from '../constants/routes';
 import { stackNavConfig, screensNavOptions, <% if (features.tabs) { %>tabNavConfig<% } %> } from '../config/navigation';
@@ -19,17 +19,12 @@ import Home from './screens/Home';
 
 <%_ if(features.login) { _%>
 // ------------------ Initial loading screen
+// TODO: URGENT! Move this component to a separated file and use it ONLY if the project has login.
+
 class InitialLoadingScreen extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.initialLoading) {
-      nextProps.dispatch(
-        NavigationActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({ routeName: nextProps.currentUser ? Routes.Home : Routes.Login })
-          ]
-        })
-      );
+      nextProps.navigation.replace(nextProps.currentUser ? Routes.Home : Routes.Login);
     }
   }
   render() {
@@ -40,6 +35,9 @@ InitialLoadingScreen.propTypes = {
   initialLoading: PropTypes.bool,
   currentUser: PropTypes.shape({
     sessionToken: PropTypes.string.isRequired
+  }),
+  navigation: PropTypes.shape({
+    replace: PropTypes.func.isRequired
   })
 };
 const loadingScreenMapStateToProps = store => ({
@@ -47,6 +45,7 @@ const loadingScreenMapStateToProps = store => ({
   initialLoading: store.auth.initialLoading
 });
 const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(InitialLoadingScreen);
+// TODO: URGENT! Move this component to a separated file and use it ONLY if the project has login.
 // ------------------ Initial loading screen end
 
 <%_ } _%>

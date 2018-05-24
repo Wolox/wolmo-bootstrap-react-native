@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 import * as AuthService from '../../services/AuthService';
 import { stringArrayToObject } from '../../utils/arrayUtils';
@@ -39,7 +39,7 @@ export const actionCreators = {
           await AuthService.setCurrentUser(response.data);
           dispatch(privateActionCreators.loginSuccess(response.data));
           dispatch(
-            NavigationActions.reset({
+            StackActions.reset({
               index: 0,
               actions: [NavigationActions.navigate({ routeName: 'Home' })]
             })
@@ -57,7 +57,7 @@ export const actionCreators = {
       await AuthService.removeCurrentUser();
       dispatch({ type: actions.LOGOUT });
       dispatch(
-        NavigationActions.reset({
+        StackActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'Login' })]
         })
