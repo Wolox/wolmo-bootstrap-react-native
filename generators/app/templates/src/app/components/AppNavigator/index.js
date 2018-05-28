@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions, addNavigationHelpers } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
 import { ROOT } from '../../../constants/platform';
@@ -27,11 +27,13 @@ class AppNavigator extends Component {
   addListener = createReduxBoundAddListener(ROOT);
 
   render() {
-    const { dispatch, nav, ...navigatorProps } = this.props;
     return (
       <Navigator
-        {...navigatorProps}
-        navigation={addNavigationHelpers({ dispatch, state: nav, addListener: this.addListener })}
+        navigation={{
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+          addListener: this.addListener
+        }}
       />
     );
   }

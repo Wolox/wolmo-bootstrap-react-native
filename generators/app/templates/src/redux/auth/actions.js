@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 
 import * as AuthService from '../../services/AuthService';
@@ -19,7 +19,7 @@ export const actionCreators = {
       withPostSuccess(async (dispatch, response) => {
         await AuthService.setCurrentUser(response.data);
         dispatch(
-          NavigationActions.reset({
+          StackActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: Routes.Home })]
           })
@@ -31,7 +31,7 @@ export const actionCreators = {
     await AuthService.removeCurrentUser();
     dispatch({ type: actions.LOGOUT, target: loginTarget });
     dispatch(
-      NavigationActions.reset({
+      StackActions.reset({
         index: 0,
         actions: [NavigationActions.navigate({ routeName: Routes.Login })]
       })
