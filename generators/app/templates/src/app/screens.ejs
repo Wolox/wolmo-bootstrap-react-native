@@ -7,7 +7,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 <%_ } _%>
-import { <% if (features.tabs) { %>TabNavigator, <% } %>StackNavigator } from 'react-navigation';
+import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator } from 'react-navigation';
 
 import * as Routes from '../constants/routes';
 import { stackNavConfig, screensNavOptions, <% if (features.tabs) { %>tabNavConfig<% } %> } from '../config/navigation';
@@ -49,7 +49,7 @@ const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(Init
 // ------------------ Initial loading screen end
 
 <%_ } _%>
-export default StackNavigator(
+export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
     [Routes.InitialLoading]: {
@@ -63,7 +63,7 @@ export default StackNavigator(
     <%_ } _%>
     [Routes.Home]: {
       <%_ if (features.tabs) { _%>
-      screen: TabNavigator(
+      screen: createBottomTabNavigator(
         {
           [Routes.Tab1]: {
             screen: Home,
