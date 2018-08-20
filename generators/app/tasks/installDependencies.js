@@ -26,7 +26,6 @@ const DEPENDENCIES = [
 const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
-  'babel-preset-react-native',
   'eslint',
   'eslint-config-airbnb',
   'eslint-config-prettier',
