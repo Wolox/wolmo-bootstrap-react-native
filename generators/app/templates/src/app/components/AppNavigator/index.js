@@ -34,8 +34,9 @@ class AppNavigator extends Component {
 }
 
 AppNavigator.propTypes = {
-  // TODO: Declare a correct PropType for nav
-  state: PropTypes.any // eslint-disable-line react/forbid-prop-types
+  state: PropTypes.shape({
+    index: PropTypes.number.isRequired
+  })
 };
 
 const mapStateToProps = store => ({ state: store.nav });
