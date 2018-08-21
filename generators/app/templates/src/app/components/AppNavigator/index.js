@@ -3,47 +3,42 @@ import PropTypes from 'prop-types';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
+import { reduxifyNavigator } from 'react-navigation-redux-helpers';
 
 import { ROOT } from '../../../constants/platform';
 import Navigator from '../../screens';
+
+const AppWithNavigationState = reduxifyNavigator(Navigator, ROOT);
 
 class AppNavigator extends Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
+
   onBackPress = () => {
-    const { dispatch, nav } = this.props;
-    if (nav.index === 0) {
+    const { dispatch, state } = this.props;
+    if (state.index === 0) {
       return false;
     }
     dispatch(NavigationActions.back());
     return true;
   };
 
-  addListener = createReduxBoundAddListener(ROOT);
-
   render() {
-    return (
-      <Navigator
-        navigation={{
-          dispatch: this.props.dispatch,
-          state: this.props.nav,
-          addListener: this.addListener
-        }}
-      />
-    );
+    return <AppWithNavigationState {...this.props} />;
   }
 }
 
 AppNavigator.propTypes = {
-  // TODO: Declare a correct PropType for nav
-  nav: PropTypes.any // eslint-disable-line react/forbid-prop-types
+  state: PropTypes.shape({
+    index: PropTypes.number.isRequired
+  })
 };
 
-const mapStateToProps = store => ({ nav: store.nav });
+const mapStateToProps = store => ({ state: store.nav });
 
 export default connect(mapStateToProps)(AppNavigator);
