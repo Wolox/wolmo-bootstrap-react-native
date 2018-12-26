@@ -19,6 +19,7 @@ const DEPENDENCIES = [
   'prop-types',
   'seamless-immutable',
   'react-native-config',
+  'react-native-gesture-handler',
   'react-native-i18n',
   'redux-recompose'
 ];
