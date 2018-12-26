@@ -35,6 +35,15 @@ platform :ios do
     )
   end
 
+  desc "Update Bundle Identifier"
+  lane :update_bundle_identifier do
+    update_app_identifier(
+      xcodeproj: "./ios/<%= projectName %>.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
+      plist_path: "../ios/<%= projectName %>/Info.plist", # Path to info plist file, relative to xcodeproj
+      app_identifier: "<%= bundleId %>" # The App Identifier
+    )
+  end
+
   # desc "Deploy a new version to the App Store"
   # lane :release do
   #   match(type: "appstore")

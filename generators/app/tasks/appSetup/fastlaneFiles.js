@@ -8,7 +8,8 @@ module.exports = function fastlaneFiles() {
     this.templatePath('fastlane', 'Fastfile.ejs'),
     this.destinationPath(this.projectName, 'fastlane', 'Fastfile'),
     {
-      projectName: this.projectName
+      projectName: this.projectName,
+      bundleId: this.bundleId
     }
   );
 
