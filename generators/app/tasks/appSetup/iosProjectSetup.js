@@ -5,15 +5,7 @@ module.exports = function fixBundleIndentifier() {
   const replaceRegex = new RegExp(`PRODUCT_NAME = ${this.projectName};`, 'g');
   const fixedProjectContent = iosProjectContent.replace(
     replaceRegex,
-    `PRODUCT_BUNDLE_IDENTIFIER = ${this.bundleId};\n\t\t\t\tPRODUCT_NAME = ${this
-      .projectName};\n\t\t\t\tTARGETED_DEVICE_FAMILY = "1,2";`
+    `PRODUCT_NAME = ${this.projectName};\n\t\t\t\tTARGETED_DEVICE_FAMILY = "1,2";`
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`, fixedProjectContent);
-
-  const infoPlistContent = this.fs.read(`${this.projectName}/ios/${this.projectName}/Info.plist`);
-  const fixedInfoContent = infoPlistContent.replace(
-    '<string>org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)</string>',
-    '<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>'
-  );
-  this.fs.write(`${this.projectName}/ios/${this.projectName}/Info.plist`, fixedInfoContent);
 };

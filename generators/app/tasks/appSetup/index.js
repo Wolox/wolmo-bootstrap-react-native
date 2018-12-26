@@ -14,6 +14,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelrcSetup = require('./babelrcSetup');
+const editBundleIdentifier = require('./editBundleIdentifier');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -40,6 +41,7 @@ module.exports = function index() {
   androidProjectSetup.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
+  editBundleIdentifier.bind(this)();
   iosProjectSetup.bind(this)();
 
   if (this.features.landscape) {
