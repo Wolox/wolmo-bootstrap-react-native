@@ -28,7 +28,7 @@ import AppNavigator from './components/AppNavigator';
 <%_ } _%>
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(this.props.dispatch);
     alertIfHuaweiDevice();
