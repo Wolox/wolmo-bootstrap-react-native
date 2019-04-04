@@ -19,45 +19,59 @@ class CustomTextInput extends PureComponent {
   };
 
   render() {
-    const placeholderTextColor = this.props.value ? transparent : this.props.placeholderTextColor;
-
+    const {
+      value,
+      placeholderTextColor,
+      title,
+      titleStyles,
+      multiline,
+      bottomBorder,
+      style,
+      onChange,
+      onBlur,
+      onFocus,
+      textStyles,
+      secureTextEntry,
+      showEye
+    } = this.props;
+    const { showPassword } = this.state;
+    const placeholderTextColor = value ? transparent : placeholderTextColor;
     return (
       <View>
-        {this.props.title && (
-          <CustomText gray small style={[styles.title, this.props.titleStyles]}>
-            {this.props.title}
+        {title && (
+          <CustomText gray small style={[styles.title, titleStyles]}>
+            {title}
           </CustomText>
         )}
         <View
           style={[
-            this.props.multiline ? styles.multilineContainer : styles.container,
-            this.props.bottomBorder && styles.bottomBorder,
-            this.props.style
+            multiline ? styles.multilineContainer : styles.container,
+            bottomBorder && styles.bottomBorder,
+            style
           ]}
         >
           <TextInput
             {...this.props}
             allowFontScaling={false}
-            onChangeText={this.props.onChange}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
-            value={this.props.value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            value={value}
             style={[
               styles.inputStyle,
-              this.props.multiline ? styles.multilineInput : styles.singleInput,
-              this.props.textStyles
+              multiline ? styles.multilineInput : styles.singleInput,
+              textStyles
             ]}
             placeholderTextColor={placeholderTextColor}
-            secureTextEntry={this.props.secureTextEntry && !this.state.showPassword}
-            autoComplete={!this.props.secureTextEntry}
+            secureTextEntry={secureTextEntry && !showPassword}
+            autoComplete={!secureTextEntry  ? 'off' : 'username'}
           />
-          {this.props.secureTextEntry &&
-            this.props.showEye && (
-              <ShowPassword
-                onShowPassword={this.handleShowPassword}
-                passwordVisible={this.state.showPassword}
-              />
-            )}
+          {secureTextEntry && showEye && (
+            <ShowPassword
+              onShowPassword={this.handleShowPassword}
+              passwordVisible={showPassword}
+            />
+          )}
         </View>
       </View>
     );

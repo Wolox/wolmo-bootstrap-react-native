@@ -7,7 +7,8 @@ import Home from './layout';
 
 class HomeContainer extends Component {
   handleLogout = () => {
-    this.props.dispatch(authActions.logout());
+    const { dispatch } = this.props;
+    dispatch(authActions.logout());
   };
 
   render() {

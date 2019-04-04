@@ -19,18 +19,21 @@ class DrawerContainer extends Component {
   }
 
   handleDrawerClosing = () => {
-    this.props.dispatch(drawerActions.drawerToggled(false));
+    const { dispatch } = this.props;
+    dispatch(drawerActions.drawerToggled(false));
     StatusBar.setHidden(false, 'slide');
   };
 
   handleDrawerOpening = () => {
-    this.props.dispatch(drawerActions.drawerToggled(true));
+    const { dispatch } = this.props;
+    dispatch(drawerActions.drawerToggled(true));
     this.setState({ isHandlingUserInput: false });
     StatusBar.setHidden(!STATUS_BAR_IS_FIXED, 'slide');
   };
 
   wrapOnPress = onPress => () => {
-    if (!this.state.isHandlingUserInput) {
+    const { isHandlingUserInput } = this.state;
+    if (!isHandlingUserInput) {
       if (onPress) {
         onPress();
       }
@@ -39,19 +42,20 @@ class DrawerContainer extends Component {
   };
 
   render() {
+    const { drawerPresent } = this.props;
     return (
       <Drawer
         content={<DrawerMenu wrapOnPress={this.wrapOnPress} />}
         onOpenStart={this.handleDrawerOpening}
         onCloseStart={this.handleDrawerClosing}
-        open={this.props.drawerPresent}
+        open={drawerPresent}
         openDrawerOffset={0.15}
         tapToClose
         panOpenMask={-1}
         type="overlay"
       >
         <AppNavigator />
-        <DrawerOverlay drawerPresent={this.props.drawerPresent} />
+        <DrawerOverlay drawerPresent={drawerPresent} />
       </Drawer>
     );
   }
