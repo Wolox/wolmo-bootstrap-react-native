@@ -2,7 +2,7 @@ import { StackActions, NavigationActions } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 
 import * as AuthService from '../../services/AuthService';
-import * as Routes from '../../constants/routes';
+import Routes from '../../constants/routes';
 
 export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT']), '@@AUTH');
 

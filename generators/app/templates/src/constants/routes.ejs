@@ -1,9 +1,13 @@
-exports.InitialLoading = 'InitialLoading';
-<%_ if(features.login) { _%>
-exports.Login = 'Login';
-<%_ } _%>
-exports.Home = 'Home';
-<%_ if(features.tabs) { _%>
-exports.Tab1 = 'Tab1';
-exports.Tab2 = 'Tab2';
-<%_ } _%>
+const Routes = {
+  <%_ if(features.login) { _%>
+  InitialLoading: 'InitialLoading',
+  Login: 'Login',
+  <%_ } _%>
+  <%_ if(features.tabs) { _%>
+  Tab1: 'Tab1',
+  Tab2: 'Tab2',
+  <%_ } _%>
+  Home: 'Home'
+};
+
+export default Routes;

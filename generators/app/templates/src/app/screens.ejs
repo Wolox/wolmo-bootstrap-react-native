@@ -2,58 +2,22 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-<%_ if(features.login) { _%>
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-<%_ } _%>
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator } from 'react-navigation';
 
-import * as Routes from '../constants/routes';
-import { stackNavConfig, screensNavOptions, <% if (features.tabs) { %>tabNavConfig<% } %> } from '../config/navigation';
+import Routes from '../constants/routes';
+import { stackNavConfig, screensNavOptions <% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
 
 <%_ if(features.login) { _%>
+import InitialLoading from './screens/InitialLoading';
 import Login from './screens/Login';
 <%_ } _%>
 import Home from './screens/Home';
 
-<%_ if(features.login) { _%>
-// ------------------ Initial loading screen
-// TODO: URGENT! Move this component to a separated file and use it ONLY if the project has login.
-
-class InitialLoadingScreen extends PureComponent {
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.initialLoading) {
-      nextProps.navigation.replace(nextProps.currentUser ? Routes.Home : Routes.Login);
-    }
-  }
-  render() {
-    return null;
-  }
-}
-InitialLoadingScreen.propTypes = {
-  initialLoading: PropTypes.bool,
-  currentUser: PropTypes.shape({
-    sessionToken: PropTypes.string.isRequired
-  }),
-  navigation: PropTypes.shape({
-    replace: PropTypes.func.isRequired
-  })
-};
-const loadingScreenMapStateToProps = store => ({
-  currentUser: store.auth.currentUser,
-  initialLoading: store.auth.initialLoading
-});
-const InitialLoadingScreenContainer = connect(loadingScreenMapStateToProps)(InitialLoadingScreen);
-// TODO: URGENT! Move this component to a separated file and use it ONLY if the project has login.
-// ------------------ Initial loading screen end
-
-<%_ } _%>
 export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
     [Routes.InitialLoading]: {
-      screen: InitialLoadingScreenContainer,
+      screen: InitialLoading,
       navigationOptions: screensNavOptions[Routes.InitialLoading]
     },
     [Routes.Login]: {

@@ -85,6 +85,10 @@ function yarnInstall(projectName, deps, options, dev) {
 }
 
 module.exports = function installDependencies() {
+  if (this.features.login) {
+    DEPENDENCIES.push('recompose');
+  }
+
   if (this.features.pushnotifications) {
     DEPENDENCIES.push('react-native-push-notification');
     DEPENDENCIES.push('react-native-huawei-protected-apps');
