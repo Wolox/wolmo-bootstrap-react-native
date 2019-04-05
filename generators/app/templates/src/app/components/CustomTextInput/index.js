@@ -32,7 +32,8 @@ class CustomTextInput extends PureComponent {
       onFocus,
       textStyles,
       secureTextEntry,
-      showEye
+      showEye,
+      autoComplete
     } = this.props;
     const { showPassword } = this.state;
     const placeholderTextColor = value ? transparent : placeholderTextColor;
@@ -64,7 +65,7 @@ class CustomTextInput extends PureComponent {
             ]}
             placeholderTextColor={placeholderTextColor}
             secureTextEntry={secureTextEntry && !showPassword}
-            autoComplete={!secureTextEntry  ? 'off' : 'username'}
+            autoComplete={autoComplete}
           />
           {secureTextEntry && showEye && (
             <ShowPassword
@@ -88,7 +89,8 @@ CustomTextInput.defaultProps = {
   keyboardType: 'default',
   multiline: false,
   bottomBorder: false,
-  maxHeight: 200
+  maxHeight: 200,
+  autoComplete: 'off'
 };
 
 CustomTextInput.propTypes = {
@@ -111,7 +113,8 @@ CustomTextInput.propTypes = {
   placeholderTextColor: PropTypes.string,
   showEye: PropTypes.bool,
   secureTextEntry: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
+  autoComplete: PropTypes.string
 };
 
 export default CustomTextInput;
