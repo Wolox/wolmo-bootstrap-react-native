@@ -32,6 +32,10 @@ module.exports.LOGIN_LAYOUT = `${module.exports.LOGIN_PATH}/layout.js`;
 module.exports.LOGIN_STYLE = `${module.exports.LOGIN_PATH}/styles.js`;
 module.exports.LOGIN_I18N = `${module.exports.LOGIN_PATH}/i18n.js`;
 
+// SCREENS - INITIAL LOADING
+module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
+module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
+
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 
