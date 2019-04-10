@@ -7,7 +7,6 @@ import {
 } from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 
-import { ROOT } from '../constants/platform';
 import Navigator from '../app/screens';
 
 <%_ if(features.googleanalytics) { _%>
@@ -46,7 +45,7 @@ const middlewares = [];
 const enhancers = [];
 
 /* ------------- React Navigation Middleware ------------- */
-middlewares.push(createReactNavigationReduxMiddleware(ROOT, state => state.nav));
+middlewares.push(createReactNavigationReduxMiddleware(state => state.nav));
 
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
@@ -63,7 +62,14 @@ middlewares.push(AnalyticsMiddleware);
 enhancers.push(applyMiddleware(...middlewares));
 
 // in dev mode, we'll create the store through Reactotron
-const createAppropriateStore = __DEV__ ? Reactotron.createStore : createStore;
-const store = createAppropriateStore(reducers, compose(...enhancers));
+const store = createStore(
+  reducers,
+  __DEV__
+    ? compose(
+        ...enhancers,
+        Reactotron.createEnhancer()
+      )
+    : compose(...enhancers)
+);
 
 export default store;

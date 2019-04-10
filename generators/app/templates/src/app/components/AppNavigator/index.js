@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { reduxifyNavigator } from 'react-navigation-redux-helpers';
+import { createReduxContainer } from 'react-navigation-redux-helpers';
 
 import { ROOT } from '../../../constants/platform';
 import Navigator from '../../screens';
 
-const AppWithNavigationState = reduxifyNavigator(Navigator, ROOT);
+const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 
 class AppNavigator extends Component {
   componentDidMount() {

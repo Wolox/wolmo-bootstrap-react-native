@@ -8,9 +8,9 @@ import styles from './styles';
 
 class CustomText extends PureComponent {
   /*
-  ** You can add styles to Base like Family Font to be the Text styles base!
-  ** if you want to add a custom style, you need to add it here and in VARIANTS
-  */
+   ** You can add styles to Base like Family Font to be the Text styles base!
+   ** if you want to add a custom style, you need to add it here and in VARIANTS
+   */
   static VARIANTS = [
     'xxsmall',
     'xsmall',
@@ -29,9 +29,10 @@ class CustomText extends PureComponent {
   customStyles = () => getCustomStyles(CustomText.VARIANTS, this.props, styles);
 
   render() {
+    const { textProps, style, children } = this.props;
     return (
-      <Text {...this.props.textProps} style={[styles.base, this.customStyles(), this.props.style]}>
-        {this.props.children}
+      <Text {...textProps} style={[styles.base, this.customStyles(), style]}>
+        {children}
       </Text>
     );
   }

@@ -8,11 +8,13 @@ import DrawerMenu from './layout';
 
 class DrawerMenuContainer extends Component {
   handleCloseDrawer = () => {
-    this.props.dispatch(drawerActions.drawerToggled(false));
+    const { dispatch } = this.props;
+    dispatch(drawerActions.drawerToggled(false));
   };
 
   render() {
-    return <DrawerMenu onCloseDrawer={this.handleCloseDrawer} wrapOnPress={this.props.wrapOnPress} />;
+    const { wrapOnPress } = this.props;
+    return <DrawerMenu onCloseDrawer={this.handleCloseDrawer} wrapOnPress={wrapOnPress} />;
   }
 }
 
