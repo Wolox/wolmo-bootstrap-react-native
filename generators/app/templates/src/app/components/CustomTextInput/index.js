@@ -36,7 +36,7 @@ class CustomTextInput extends PureComponent {
       autoComplete
     } = this.props;
     const { showPassword } = this.state;
-    const placeholderTextColor = value ? transparent : placeholderTextColor;
+    const placeholderColor = value ? transparent : placeholderTextColor;
     return (
       <View>
         {title && (
@@ -58,20 +58,13 @@ class CustomTextInput extends PureComponent {
             onBlur={onBlur}
             onFocus={onFocus}
             value={value}
-            style={[
-              styles.inputStyle,
-              multiline ? styles.multilineInput : styles.singleInput,
-              textStyles
-            ]}
-            placeholderTextColor={placeholderTextColor}
+            style={[styles.inputStyle, multiline ? styles.multilineInput : styles.singleInput, textStyles]}
+            placeholderTextColor={placeholderColor}
             secureTextEntry={secureTextEntry && !showPassword}
             autoComplete={secureTextEntry ? 'off' : autoComplete}
           />
           {secureTextEntry && showEye && (
-            <ShowPassword
-              onShowPassword={this.handleShowPassword}
-              passwordVisible={showPassword}
-            />
+            <ShowPassword onShowPassword={this.handleShowPassword} passwordVisible={showPassword} />
           )}
         </View>
       </View>
