@@ -8,3 +8,10 @@ export const getCurrentRouteName = navigationState => {
   }
   return route.routeName;
 };
+
+export const getPreviousRouteName = navigationState => {
+  if (!navigationState || !navigationState.index) {
+    return null;
+  }
+  return navigationState.routes[navigationState.index - 1].routeName;
+};
