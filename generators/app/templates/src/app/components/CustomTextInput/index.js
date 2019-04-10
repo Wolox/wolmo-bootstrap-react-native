@@ -65,7 +65,7 @@ class CustomTextInput extends PureComponent {
             ]}
             placeholderTextColor={placeholderTextColor}
             secureTextEntry={secureTextEntry && !showPassword}
-            autoComplete={autoComplete}
+            autoComplete={secureTextEntry ? 'off' : autoComplete}
           />
           {secureTextEntry && showEye && (
             <ShowPassword
@@ -89,8 +89,7 @@ CustomTextInput.defaultProps = {
   keyboardType: 'default',
   multiline: false,
   bottomBorder: false,
-  maxHeight: 200,
-  autoComplete: 'off'
+  maxHeight: 200
 };
 
 CustomTextInput.propTypes = {
