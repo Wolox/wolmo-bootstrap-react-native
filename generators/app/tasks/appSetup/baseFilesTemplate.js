@@ -1,6 +1,8 @@
 const { copyFile, copyTemplateFile } = require('../../utils');
 const {
-  CIRCLE_CONFIG,
+  JENKINS_FILE,
+  DOCKER_FILE,
+  CI_CONFIG_FILE,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
@@ -43,7 +45,9 @@ const {
 } = require('../../files');
 
 const FILES = [
-  CIRCLE_CONFIG,
+  JENKINS_FILE,
+  DOCKER_FILE,
+  CI_CONFIG_FILE,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
