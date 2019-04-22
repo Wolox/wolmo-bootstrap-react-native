@@ -47,7 +47,6 @@ const {
 const FILES = [
   JENKINS_FILE,
   DOCKER_FILE,
-  CI_CONFIG_FILE,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
@@ -89,7 +88,8 @@ const TEMPLATE_FILES = [
   APP,
   SCREENS,
   NAVIGATION_CONFIG,
-  APP_I18N
+  APP_I18N,
+  CI_CONFIG_FILE
 ];
 
 module.exports = function baseFilesTemplate() {
