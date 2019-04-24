@@ -1,6 +1,8 @@
 const { copyFile, copyTemplateFile } = require('../../utils');
 const {
-  CIRCLE_CONFIG,
+  JENKINS_FILE,
+  DOCKER_FILE,
+  CI_CONFIG_FILE,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
@@ -43,7 +45,8 @@ const {
 } = require('../../files');
 
 const FILES = [
-  CIRCLE_CONFIG,
+  JENKINS_FILE,
+  DOCKER_FILE,
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
@@ -85,7 +88,8 @@ const TEMPLATE_FILES = [
   APP,
   SCREENS,
   NAVIGATION_CONFIG,
-  APP_I18N
+  APP_I18N,
+  CI_CONFIG_FILE
 ];
 
 module.exports = function baseFilesTemplate() {

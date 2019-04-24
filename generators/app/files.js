@@ -6,9 +6,12 @@ module.exports.SERVICES_PATH = 'src/services';
 module.exports.UTILS_PATH = 'src/utils';
 module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.TEST_PATH = 'test';
+module.exports.CI_PATH = '.woloxci';
 
 // BASE FILES
-module.exports.CIRCLE_CONFIG = 'circle.yml';
+module.exports.JENKINS_FILE = 'Jenkinsfile';
+module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;
+module.exports.CI_CONFIG_FILE = `${module.exports.CI_PATH}/config.yml`;
 module.exports.PULL_REQUEST_TEMPLATE = 'pull_request_template.md';
 module.exports.MAIN = 'App.js';
 module.exports.README = 'README.md';
