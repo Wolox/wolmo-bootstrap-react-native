@@ -1,0 +1,507 @@
+platform :ios do
+
+  desc "Validate project configuration before running a lane."
+  desc "Useful to force validations, to avoid errors in lanes due to misconfigurations."
+  private_lane :validate do
+
+    desc "Validate the project name and main target are properly configured."
+    UI.message "Running lane for project: '#{project_name}'."
+
+    project = Xcodeproj::Project.open(Actions::ProjectNameAction.project_filename)
+
+    desc "Validate the configured schemes exist in project."
+    schemes = Actions::GetSchemeAction.get_all_schemes.values.uniq
+    project_schemes = project.native_targets.map { |target| target.name }.uniq
+    # If the intersection is all the schemes we want, it's okay.
+    unless (project_schemes & schemes).size == schemes.size
+      UI.abort_with_message! "Not all schemes specified in .env files exist in project. Searched for #{schemes}."
+    end
+
+    desc "Validate the configured build configurations exist in project."
+    build_configurations = Actions::GetBuildConfigurationAction.get_all_build_configurations.values.uniq
+    project_build_configs = project.build_configurations.map { |config| config.name }.uniq
+    # If the intersection is all the build configurations we want, it's okay.
+    unless (project_build_configs & build_configurations).size == build_configurations.size
+      UI.abort_with_message! "Not all build configurations specified in .env files exist in project. Searched for #{build_configurations}."
+    end
+
+    UI.success "Project validations succeeded!"
+
+  end
+
+  private_lane :general_config do
+
+    desc "Disabling automatic signing for all targets that are configured with these scripts"
+    project_file = Actions::ProjectNameAction.project_filename
+    automatic_code_signing(
+      path: project_file,
+      use_automatic_signing: false,
+      targets: Actions::GetSchemeAction.get_all_schemes.values.uniq
+    )
+
+  end
+
+  private_lane :environment_config do |options|
+
+    environment = options[:environment]
+    force_setting = options[:force_setting] || false
+
+    desc "Confirm data"
+    build_config = get_build_configuration(environment: environment)
+    file_name = Actions::ProjectNameAction.default_project_filename
+    app_name = get_application_name(environment: environment)
+    bundle_id = infer_bundle_identifier(environment: environment)
+    scheme = get_scheme(environment: environment)
+
+    unless force_setting
+      puts("")
+      puts(Terminal::Table.new(
+           title: "Configurations for environment '#{environment}'".green,
+           headings: [],
+           rows: FastlaneCore::PrintTable.transform_output([
+             ['Project File Name', file_name],
+             ['Application Name', app_name],
+             ['Build Configuration', build_config],
+             ['Scheme', scheme],
+             ['Bundle Identifier', bundle_id]
+          ])
+      ))
+      confirmation = input "If the parameters are correct, proceed: y/N", "y"
+      unless confirmation.downcase == "y"
+        UI.user_error! "Aborting due to parameters misconfiguration. Correct them and run the lane again."
+      end
+    end
+
+    desc "Set bundle identifier"
+    update_project_property(
+      environment: environment,
+      build_setting: "PRODUCT_BUNDLE_IDENTIFIER",
+      build_setting_value: bundle_id
+    )
+
+  end
+
+  private_lane :certificates_config do |options|
+    environment = options[:environment]
+    credentials = get_credentials(environment: environment)
+    certificates_info = get_certificates_info(environment: environment)
+    force_setting = options[:force_setting] || false
+
+    desc "Confirm certificates and credentials information"
+    team_id = credentials[:team]
+    itc_team_id = credentials[:itc_team]
+    apple_account = credentials[:account]
+    git_url = certificates_info[:url]
+    git_branch = certificates_info[:branch]
+
+    unless force_setting
+      puts("")
+      puts(Terminal::Table.new(
+           title: "Configurations for environment '#{environment}'".green,
+           headings: [],
+           rows: FastlaneCore::PrintTable.transform_output([
+             ['Developer Center Team ID', team_id],
+             ['iTunes Connect Team ID', itc_team_id],
+             ['Apple Account', apple_account],
+             ['Git url for certificates', git_url],
+             ['Git branch for team', git_branch]
+          ])
+      ))
+      confirmation = input "If the parameters are correct, proceed: y/N", "y"
+      unless confirmation.downcase == "y"
+        UI.user_error! "Aborting due to parameters misconfiguration. Correct them and run the lane again."
+      end
+    end
+
+    desc "Set Development Team"
+    update_project_property(
+      environment: environment,
+      build_setting: 'DEVELOPMENT_TEAM',
+      build_setting_value: team_id
+    )
+  end
+
+  private_lane :set_config_to_default do
+    default_env_per_build_config = Actions::GetBuildConfigurationAction.get_all_build_configurations.invert
+    default_env_per_build_config.each do |key, value|
+      general_config(environment: value)
+      certificates_config(environment: value, force_setting: true)
+    end
+  end
+
+  private_lane :clean do
+
+    UI.message "Removing all build artifacts created by fastlane."
+    clean_build_artifacts
+
+  end
+
+  desc "Releases a new version to `TestFlight`. This lane must receive the following parameters:"
+  desc "- environment: The environment to deploy to. Can be any of: `%s`" % Actions::GetEnvironmentInfoAction::ENVIRONMENTS_FILES.keys.to_s
+  desc "- bump_type (optional): represents the type of deploy. If not specified, the user will be asked for it. Its allowed values depend on the configuration: '#{Actions::CheckBumpTypeAction::ENVIRONMENT_ALLOWED_BUMP_TYPES.to_s}'."
+  desc ""
+  desc "It has basically 3 main responsabilities: build/version number managing, app building, and deploy."
+  desc ""
+  desc "- Gets the latest version and build number from `TestFlight`"
+  desc "- Sets these version and build values in the `Info.plist` to be used to build the app."
+  desc "- Builds the app using `gym` and `match` to get the signing identity. The provisioning profile in use is the one selected in xcode for the selected configuration"
+  desc "- Uploads the generated `.dsym` file to `Rollbar`."
+  desc "- Discards the changes in `Info.plist`. Given this file is used for every configuration, these values are just reflected in `Info.plist` during building."
+  desc "- Uploads the application to `TestFlight` using `pilot`."
+  desc ""
+  desc "Check [here](http://semver.org/) for reference about versioning."
+  desc "Build is initialized in '#{Actions::CheckBumpTypeAction::FIRST_BUILD}'."
+  desc "Version is initialized in '#{Actions::CheckBumpTypeAction::FIRST_VERSION}'."
+  desc "First deploy must always be a '#{:major}'."
+  private_lane :release do |options|
+
+    environment = options[:environment]
+    build_configuration = get_build_configuration(environment: environment)
+    credentials = get_credentials(environment: environment)
+    env_info = get_environment_info(environment: environment)
+
+    if Actions::CheckBumpTypeAction.bump_type_allowed? environment, options[:bump_type]
+      allowed_bump_types = Actions::CheckBumpTypeAction::ENVIRONMENT_ALLOWED_BUMP_TYPES[environment]
+      UI.user_error! "The bump_type specified for this lane can only be one of '#{allowed_bump_types.to_s}'."
+    end
+
+    desc "Read bundle identifier from project configuration."
+    bundle_identifier = read_project_property(
+      environment: environment,
+      build_setting: 'PRODUCT_BUNDLE_IDENTIFIER'
+    )
+
+    desc "Read current version number from `TestFlight`."
+    current_version_number = latest_testflight_version(
+      bundle_id: bundle_identifier,
+      initial_version_number: Actions::CheckBumpTypeAction::FIRST_VERSION,
+      username: credentials[:account],
+      team_id: credentials[:itc_team]
+    )
+
+    desc "Read current build number from `TestFlight`."
+    current_build_number = latest_testflight_build_number(
+      app_identifier: bundle_identifier,
+      version: current_version_number,
+      initial_build_number: Actions::CheckBumpTypeAction::FIRST_BUILD,
+      username: credentials[:account],
+      team_id: credentials[:itc_team]
+    ).to_i
+
+    desc "Check bump type to use for next build."
+    bump_type = check_bump_type(
+      environment: environment,
+      version: current_version_number,
+      bump_type: options[:bump_type]
+    ).to_s
+
+    UI.message "Will release app increasing bump type: `#{bump_type}`"
+
+    desc "Define next build number depending on bump_type."
+    current_build_number = bump_type == "build" ? current_build_number : Actions::CheckBumpTypeAction::FIRST_BUILD
+    next_build_number = current_build_number + 1
+
+    desc "Set version and build number in Info.plist"
+    set_info_plist_version(
+      environment: environment,
+      version_number: current_version_number,
+      build_number: next_build_number.to_s
+    )
+
+    desc "Update version number in `Info.plist` depending in bump_type."
+    if bump_type != "build"
+      current_version_number = increment_version_number(bump_type: bump_type)
+    end
+
+    begin
+      desc "Build"
+      build_application(
+        environment: environment
+      )
+
+      unless (env_info["ROLLBAR_ACCESS_TOKEN_KEY"] || "").empty?
+        desc "Get rollbar server access token from configuration file."
+        rollbar_server_access_token = read_xcconfig_property(
+          build_configuration: build_configuration,
+          xcconfig_key: env_info["ROLLBAR_ACCESS_TOKEN_KEY"]
+        )
+
+        if rollbar_server_access_token.to_s.empty?
+          UI.abort_with_message "Your rollbar access token is empty in the config file for build configuration #{build_configuration}."
+        end
+        desc "Upload dsym to rollbar."
+        upload_dsym(
+          access_token: rollbar_server_access_token,
+          version: String(next_build_number),
+          bundle_identifier: bundle_identifier,
+        )
+      end
+
+      desc "Upload the built app to TestFlight."
+      UI.message "Uploading version `#{current_version_number}` build `#{next_build_number}`"
+      publish_testflight(environment: environment)
+
+    ensure
+      desc "Put back the default version number and build number in `Info.plist`."
+      set_info_plist_version(
+        environment: environment,
+        version_number: Actions::CheckBumpTypeAction::FIRST_VERSION.to_s,
+        build_number: Actions::CheckBumpTypeAction::FIRST_BUILD.to_s
+      )
+    end
+
+  end
+
+  desc "Executes the tests for the project using `scan`."
+  private_lane :run_application_tests do |options|
+
+    environment = options[:environment]
+    build_configuration = get_build_configuration(environment: environment)
+
+    desc "Run scan with default project and scheme"
+    scan(
+      configuration: build_configuration,
+      # Because of a supposed Apple bug, CI builds fail if it doesn't run in iPhoneSE: travis-ci/travis-ci#6422
+      devices: ['iPhone SE'],
+      clean: false
+    )
+
+  end
+
+  desc "Generates the push notifications certificates for the build configuration provided."
+  desc "It uses the same password stored in keychain for the current user."
+  desc "Make sure to store safely the output of this command in the right `Google Drive` folder."
+  private_lane :generate_push_certificates do |options|
+
+    environment = options[:environment]
+    build_configuration = get_build_configuration(environment: environment)
+    match_type = get_match_type(environment: environment)
+    credentials = get_credentials(environment: environment)
+
+    is_development = match_type == Actions::GetMatchTypeAction::MATCH_TYPES[:dev]
+    output_path = "#{environment.to_s}_push_certificates"
+
+    desc "Bundle identifier from xCode project"
+    bundle_identifier = read_project_property(
+      environment: environment,
+      build_setting: 'PRODUCT_BUNDLE_IDENTIFIER'
+    )
+
+    UI.message "Attempting to create push certificates for build configuration '#{build_configuration}'"
+    UI.message "Creating push certificates as: '#{is_development ? 'development' : 'production'}' and bundle ID: '#{bundle_identifier}'"
+
+    desc "Password for current user from keychain"
+    user = credentials[:account]
+    keychain_entry = CredentialsManager::AccountManager.new(user: user)
+    p12_password = keychain_entry.password
+
+    pem(
+      generate_p12: true,
+      development: is_development,
+      app_identifier: bundle_identifier,
+      force: false,
+      p12_password: p12_password,
+      output_path: output_path,
+      username: credentials[:account],
+      team_id: credentials[:team]
+    )
+
+  end
+
+  desc "Builds the app creating the `.ipa` and `.dsym` files"
+  private_lane :build_application do |options|
+
+    environment = options[:environment]
+    build_configuration = get_build_configuration(environment: environment)
+    scheme = get_scheme(environment: environment)
+    bundle_id = infer_bundle_identifier(environment: environment)
+    project_file = Actions::ProjectNameAction.project_filename
+
+    desc "Download provisioning profile and certificates if not present."
+    prov_profiles = refresh_certificates(
+      environment: environment
+    )
+
+    desc "Set updated provisioning profile"
+    prov_profile = prov_profiles[bundle_id]
+    UI.message "Using updated provisioning profile '#{prov_profile}'".green
+    desc "Set provisioning profile"
+    update_project_property(
+      environment: environment,
+      build_setting: "PROVISIONING_PROFILE_SPECIFIER",
+      build_setting_value: prov_profile
+    )
+
+    desc "Build the app using the project, build configuration and scheme"
+    params = {
+      scheme: scheme,
+      configuration: build_configuration,
+      include_symbols: true,
+      # bitcode is disabled for the dsym file to keep valid after app is uploaded to app store
+      # http://krausefx.com/blog/download-dsym-symbolication-files-from-itunes-connect-for-bitcode-ios-apps
+      include_bitcode: false
+    }
+    if File.exist?("#{ENV['PWD']}/#{project_name}.xcworkspace")
+      params[:workspace] = "#{project_name}.xcworkspace"
+    else
+      params[:project] = project_file
+    end
+    gym(params)
+
+  end
+
+  desc "Create App ID and Provisioning Profile in Member Center"
+  desc "Updates project settings using provisioning profile"
+  desc "Keep these new certificates and profiles in sync with Match repository"
+  private_lane :create_app do |options|
+
+    environment = options[:environment]
+    build_configuration = get_build_configuration(environment: environment)
+    app_name = get_application_name(environment: environment)
+    match_type = get_match_type(environment: environment)
+    credentials = get_credentials(environment: environment)
+    certificates_info = get_certificates_info(environment: environment)
+
+    skip_itc = environment == :dev
+
+    # At least until fastlane does it automatically, it needs to be manual
+    input "Before creating app, please make sure the branch '#{certificates_info[:branch]}' exists in the git repository '#{certificates_info[:url]}'. Then press Enter.", ""
+
+    desc "Bundle identifier from xCode project"
+    bundle_identifier = read_project_property(
+      environment: environment,
+      build_setting: 'PRODUCT_BUNDLE_IDENTIFIER'
+    )
+
+    UI.message "Attempting to create application for build configuration '#{build_configuration}'"
+    UI.message "Creating application using name: '#{app_name}' and bundle ID: '#{bundle_identifier}'"
+    UI.message "The application creation in iTunes Connect will be #{skip_itc ? 'skipped' : 'performed'}"
+    UI.message "Creating profile with match type '#{match_type}' and bundle ID: '#{bundle_identifier}'"
+
+    desc "Create App ID in developer center"
+    produce(
+      app_name: app_name,
+      app_identifier: bundle_identifier,
+      skip_itc: skip_itc,
+      username: credentials[:account],
+      team_id: credentials[:team],
+      itc_team_id: credentials[:itc_team]
+    )
+    ### Make sure apple_id is not necessary, for deliver or something like that
+
+    desc "Generate provisioning profile if not present"
+    match_result = match(
+      app_identifier: bundle_identifier,
+      type: match_type,
+      readonly: false,
+      clone_branch_directly: true,
+      username: credentials[:account],
+      team_id: credentials[:team],
+      git_url: certificates_info[:url],
+      git_branch: certificates_info[:branch]
+    )
+
+    desc "Update project signing identity and provisioning profile"
+    set_project_signing(
+      environment: environment,
+      provisioning_profile: match_result[bundle_identifier],
+      development_team: get_credentials(environment: environment)[:team]
+    )
+
+    UI.success "Project configured successfully. Please commit your changes."
+
+  end
+
+  desc "Updates or downloads the `Certificates` and `Provisioning Profiles`."
+  private_lane :refresh_certificates do |options|
+
+    environment = options[:environment]
+    match_type = get_match_type(environment: environment)
+    credentials = get_credentials(environment: environment)
+    certificates_info = get_certificates_info(environment: environment)
+    bundle_identifier = infer_bundle_identifier(environment: environment)
+    desc "Download provisioning profile and certificates if not present."
+    match(
+      app_identifier: bundle_identifier,
+      type: match_type,
+      readonly: !(options[:force] || false),
+      force: options[:force] || false,
+      clone_branch_directly: true,
+      shallow_clone: true,
+      skip_docs: true,
+      username: credentials[:account],
+      team_id: credentials[:team],
+      git_url: certificates_info[:url],
+      git_branch: certificates_info[:branch],
+    )
+
+  end
+
+  private_lane :recreate_certificates do |options|
+    environment = options[:environment]
+    # At least until solution need to be manual: https://github.com/fastlane/fastlane/issues/10724
+    expiration = input "Has your CERTIFICATE (not provisioning profile) expired? (y/N)", "N"
+    unless expiration.empty? || expiration.downcase == "n"
+      certificates_info = get_certificates_info(environment: environment)
+      input "Before continuing, please delete the old certificate from the certificates repo '#{certificates_info[:url]}' at branch '#{certificates_info[:branch]}'. Then press Enter.", ""
+    end
+    refresh_certificates(environment: environment, force: true)
+  end
+
+  desc "Adds a new device and regenerates the development `Provisioning Profile` to include it."
+  private_lane :add_single_device do
+
+    # Devices are only important for development
+    credentials = get_credentials(environment: :dev)
+    certificates_info = get_certificates_info(environment: :dev)
+    build_configuration = get_build_configuration(build_configuration: :dev)
+    match_type = get_match_type(build_configuration: :dev)
+    bundle_id = infer_bundle_identifier(environment: :dev)
+
+    desc "Ask the user for device name and device UDID"
+    device_name = prompt(text: 'Enter the device name: ')
+    device_udid = prompt(text: 'Enter the device UDID: ')
+
+    desc "Register new device."
+    register_devices(
+      devices: {device_name => device_udid},
+      username: credentials[:account],
+      team_id: credentials[:team]
+    )
+
+    desc "Refresh provisioning profiles adding the new device."
+    match(
+      force_for_new_devices: true,
+      app_identifier: bundle_id,
+      type: match_type,
+      clone_branch_directly: true,
+      username: credentials[:account],
+      team_id: credentials[:team],
+      git_url: certificates_info[:url],
+      git_branch: certificates_info[:branch]
+    )
+
+  end
+
+  desc "Publish to testflight"
+  private_lane :publish_testflight do |options|
+
+    credentials = get_credentials(environment: options[:environment])
+
+    pilot(
+      skip_waiting_for_build_processing: true,
+      username: credentials[:account],
+      team_id: credentials[:itc_team_id]
+    )
+
+  end
+
+  def input(message, default)
+    if ENV["RUNNING_ON_CI"] == "true"
+      default
+    else
+      UI.input message
+    end
+  end
+
+end

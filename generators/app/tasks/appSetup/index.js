@@ -4,7 +4,6 @@ const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
-const fastlaneFiles = require('./fastlaneFiles');
 const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
@@ -30,9 +29,6 @@ module.exports = function index() {
 
   // ----------------     ios app icons     ----------------
   iosAppIcons.bind(this)();
-
-  // ----------------     fastlane setup     ----------------
-  fastlaneFiles.bind(this)();
 
   // ----------------     babelrc setup     ----------------
   babelrcSetup.bind(this)();

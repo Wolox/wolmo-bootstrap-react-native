@@ -39,7 +39,9 @@ const {
   APP,
   SCREENS,
   NAVIGATION_CONFIG,
-  APP_I18N
+  APP_I18N,
+  IOS_PATH,
+  FASTLANE_EV
 } = require('../../files');
 
 const FILES = [
@@ -73,7 +75,9 @@ const FILES = [
   NAV_UTILS,
   STYLE_UTILS,
   TEST_ESLINT_CONFIG,
-  HOME_STYLES
+  HOME_STYLES,
+  IOS_PATH,
+  FASTLANE_EV
 ];
 
 const TEMPLATE_FILES = [

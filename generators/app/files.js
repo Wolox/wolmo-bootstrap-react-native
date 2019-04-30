@@ -6,6 +6,7 @@ module.exports.SERVICES_PATH = 'src/services';
 module.exports.UTILS_PATH = 'src/utils';
 module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.TEST_PATH = 'test';
+module.exports.IOS_PATH = 'ios';
 
 // BASE FILES
 module.exports.CIRCLE_CONFIG = 'circle.yml';
@@ -14,6 +15,7 @@ module.exports.MAIN = 'App.js';
 module.exports.README = 'README.md';
 module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
+module.exports.FASTLANE_EV = `${module.exports.IOS_PATH}/fastlane/config/.env`;
 
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
