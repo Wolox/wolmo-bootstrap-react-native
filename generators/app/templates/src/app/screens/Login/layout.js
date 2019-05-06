@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import i18next from 'i18next';
 
 import { transparent } from '../../../constants/colors';
 import Loadable from '../../components/Loadable';
 import CustomTextInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/CustomButton';
 
-import { strings } from './i18n';
 import styles from './styles';
 
 function Login({ onLogin }) {
@@ -16,14 +16,14 @@ function Login({ onLogin }) {
       <View style={styles.formElementContainer}>
         <CustomTextInput
           underlineColorAndroid={transparent}
-          placeholder={strings.USER()}
+          placeholder={i18next.t('LOGIN:USER')}
           style={styles.formElement}
         />
       </View>
       <View style={styles.formElementContainer}>
         <CustomTextInput
           underlineColorAndroid={transparent}
-          placeholder={strings.PASSWORD()}
+          placeholder={i18next.t('LOGIN:PASSWORD')}
           style={styles.formElement}
           secureTextEntry
           autoCapitalize="none"
@@ -34,7 +34,7 @@ function Login({ onLogin }) {
         green
         onPress={onLogin}
         style={styles.formButton}
-        title={strings.LOGIN_MESSAGE('Wolox')}
+        title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Wolox' })}
         activeOpacity={0.7}
       />
     </View>

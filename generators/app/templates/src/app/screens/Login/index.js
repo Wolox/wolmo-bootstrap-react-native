@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { actionCreators as authActions } from '../../../redux/auth/actions';
 
+import './i18n';
 import Login from './layout';
 
 class LoginContainer extends Component {
