@@ -15,6 +15,7 @@
     "precommit": "npm run lint-diff"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.4.1",
     "colors": "^1.1.2",
     "latest-semver": "^1.0.0",
     "ora": "^1.1.0",
