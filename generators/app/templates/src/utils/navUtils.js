@@ -1,3 +1,6 @@
+import { screensNavOptions } from '../config/navigation ';
+import Routes from '../constants/routes';
+
 export const getCurrentRouteName = navigationState => {
   if (!navigationState) {
     return null;
@@ -15,3 +18,14 @@ export const getPreviousRouteName = navigationState => {
   }
   return navigationState.routes[navigationState.index - 1].routeName;
 };
+
+export function inferRoute(screenObj) {
+  const screenName = Object.keys(screenObj)[0];
+  return {
+    [Routes[screenName]]: {
+      screen: screenObj[screenName],
+      navigationOptions: screensNavOptions[Routes[screenName]],
+      ...screenObj
+    }
+  };
+}
