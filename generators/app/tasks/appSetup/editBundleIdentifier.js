@@ -4,8 +4,14 @@ module.exports = function editBundleIdentifier() {
   return runCommand({
     command: [
       'bundle',
-      ['exec', 'fastlane', 'update_bundle_identifier'],
-      { cwd: `${process.cwd()}/${this.projectName}` }
+      [
+        'exec',
+        'fastlane',
+        'update_bundle_identifier',
+        `project_name:${this.projectName}`,
+        `bundle_identifier:${this.bundleId}`
+      ],
+      { cwd: `${process.cwd()}/${this.projectName}/ios` }
     ],
     loadingMessage: 'Updating bundle identifier...',
     successMessage: 'Bundle identifier updated!',
