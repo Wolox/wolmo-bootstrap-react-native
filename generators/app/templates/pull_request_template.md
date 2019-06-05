@@ -16,7 +16,7 @@
 
 #### Pixel 3XL (or similar)
 
-### Ios
+### iOS
 
 #### Iphone SE (or 5s)
 
