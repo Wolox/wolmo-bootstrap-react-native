@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { green, blue, transparent } from '../../../constants/colors';
+import { green, blue, transparent } from '@constants/colors';
 
 export default StyleSheet.create({
   container: {

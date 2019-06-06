@@ -1,4 +1,4 @@
-import { buildTranslations, buildConstants } from '../../../utils/i18nUtils';
+import { buildTranslations, buildConstants } from '@utils/i18nUtils';
 
 const namespace = 'login';
 const translations = {

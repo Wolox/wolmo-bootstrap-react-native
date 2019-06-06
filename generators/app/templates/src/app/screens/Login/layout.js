@@ -1,11 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-
-import { transparent } from '../../../constants/colors';
-import Loadable from '../../components/Loadable';
-import CustomTextInput from '../../components/CustomTextInput';
-import CustomButton from '../../components/CustomButton';
+import { transparent } from '@constants/colors';
+import Loadable from '@components/Loadable';
+import CustomTextInput from '@components/CustomTextInput';
+import CustomButton from '@components/CustomButton';
 
 import { strings } from './i18n';
 import styles from './styles';

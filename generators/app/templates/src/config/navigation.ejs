@@ -3,10 +3,10 @@ import React from 'react';
 import { Button } from 'react-native';
 
 <%_ } _%>
-import Routes from '../constants/routes';
-import { blue, white } from '../constants/colors';
+import Routes from '@constants/routes';
+import { blue, white } from '@constants/colors';
 <%_ if (features.drawerandroid || features.drawerios) { _%>
-import { actionCreators as drawerActions } from '../redux/drawer/actions';
+import { actionCreators as drawerActions } from '@redux/drawer/actions';
 <%_ } _%>
 
 import I18n from './i18n';

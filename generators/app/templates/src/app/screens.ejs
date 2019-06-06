@@ -4,14 +4,14 @@
 
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator } from 'react-navigation';
 
-import Routes from '../constants/routes';
-import { stackNavConfig, screensNavOptions <% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import Routes from '@constants/routes';
+import { stackNavConfig, screensNavOptions <% if (features.tabs) { %>, tabNavConfig<% } %> } from '@config/navigation';
 
 <%_ if(features.login) { _%>
-import InitialLoading from './screens/InitialLoading';
-import Login from './screens/Login';
+import InitialLoading from '@screens/InitialLoading';
+import Login from '@screens/Login';
 <%_ } _%>
-import Home from './screens/Home';
+import Home from '@screens/Home';
 
 export default createStackNavigator(
   {

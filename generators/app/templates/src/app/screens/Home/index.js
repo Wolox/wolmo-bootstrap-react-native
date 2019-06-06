@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { actionCreators as authActions } from '../../../redux/auth/actions';
+import { actionCreators as authActions } from '@redux/auth/actions';
 
 import Home from './layout';
 

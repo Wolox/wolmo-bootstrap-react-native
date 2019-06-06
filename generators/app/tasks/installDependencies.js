@@ -5,6 +5,7 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   'apisauce',
+  'babel-plugin-module-resolver',
   'change-case',
   'lodash',
   'react-navigation',

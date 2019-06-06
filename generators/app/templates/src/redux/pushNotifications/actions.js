@@ -1,7 +1,7 @@
 import { createTypes } from 'redux-recompose';
+import { isAndroid } from '@constants/platform';
 
-import { isAndroid } from '../../constants/platform';
-import PushNotificationsService from '../../services/PushNotificationsService';
+import PushNotificationsService from '.@services/PushNotificationsService';
 
 export const actions = createTypes(['REGISTER', 'NOTIFICATION_RECEIVED'], '@@PUSH_NOTIFICATIONS');
 

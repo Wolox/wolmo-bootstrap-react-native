@@ -1,8 +1,9 @@
 import I18n from 'react-native-i18n';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
+import { mergeObjects } from '@utils/arrayUtils';
+
 import * as translations from '../**/i18n.js';
-import { mergeObjects } from '../utils/arrayUtils';
 
 const t = mergeObjects(Object.values(translations));
 const APP_LOCALE = 'es';

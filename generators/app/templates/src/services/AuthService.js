@@ -1,7 +1,6 @@
 import { AsyncStorage } from 'react-native';
-
-import api from '../config/api';
-import { actionCreators as authActions } from '../redux/auth/actions';
+import api from '@config/api';
+import { actionCreators as authActions } from '@redux/auth/actions';
 
 // TODO: Adapt returned object to:
 //   sessionToken: usually currentUser.access_token

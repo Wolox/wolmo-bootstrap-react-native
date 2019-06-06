@@ -4,9 +4,9 @@ import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { createReduxContainer } from 'react-navigation-redux-helpers';
+import { ROOT } from '@constants/platform';
 
-import { ROOT } from '../../../constants/platform';
-import Navigator from '../../screens';
+import Navigator from '@screens';
 
 const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 
