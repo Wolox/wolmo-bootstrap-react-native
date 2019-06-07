@@ -18,13 +18,13 @@
 
 ### iOS
 
-#### Iphone SE (or 5s)
+#### iPhone SE (or 5s)
 
-#### Iphone 6/7/8
+#### iPhone 6/7/8
 
-#### Iphone X/XS
+#### iPhone X/XS
 
-#### Iphone XS Max
+#### iPhone XS Max
 
 ## Trello Card
 
