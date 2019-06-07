@@ -1,6 +1,7 @@
 <%_ if (features.drawerandroid || features.drawerios) { _%>
 import React from 'react';
 import { Button } from 'react-native';
+import i18next from 'i18next';
 
 <%_ } _%>
 import Routes from '../constants/routes';
@@ -9,12 +10,10 @@ import { blue, white } from '../constants/colors';
 import { actionCreators as drawerActions } from '../redux/drawer/actions';
 <%_ } _%>
 
-import I18n from './i18n';
-
 // Default nav options for all screens
 const defaultNavOptions = ({ navigation }) => ({
   // Change screen title from i18n traslates files
-  headerTitle: I18n.t(`app:${navigation.state.routeName}`),
+  headerTitle: i18next.t(`app:${navigation.state.routeName}`),
 
   // TODO: The following options are examples. Change them to your need
   headerStyle: {

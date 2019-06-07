@@ -145,7 +145,6 @@ module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
-module.exports.I18N_UTILS = `${module.exports.UTILS_PATH}/i18nUtils.js`;
 module.exports.NAV_UTILS = `${module.exports.UTILS_PATH}/navUtils.js`;
 module.exports.STYLE_UTILS = `${module.exports.UTILS_PATH}/styleUtils.js`;
 
