@@ -21,7 +21,8 @@ const DEPENDENCIES = [
   'react-native-config',
   'react-native-gesture-handler',
   'i18next',
-  'redux-recompose'
+  'redux-recompose',
+  '@react-native-community/async-storage'
 ];
 
 const DEV_DEPENDENCIES = [
