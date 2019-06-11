@@ -5,7 +5,6 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   'apisauce',
-  'babel-plugin-module-resolver',
   'change-case',
   'lodash',
   'react-navigation',
@@ -29,6 +28,7 @@ const DEPENDENCIES = [
 const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
+  'babel-plugin-module-resolver',
   'eslint',
   'eslint-config-airbnb',
   'eslint-config-prettier',
