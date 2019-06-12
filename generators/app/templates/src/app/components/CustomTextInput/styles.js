@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import { gray, black, transparent } from '@constants/colors';
 
 export default StyleSheet.create({
