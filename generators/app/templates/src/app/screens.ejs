@@ -5,7 +5,8 @@
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator } from 'react-navigation';
 
 import Routes from '../constants/routes';
-import { stackNavConfig, screensNavOptions <% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import { inferRoute } from '../utils/navUtils';
 
 <%_ if(features.login) { _%>
 import InitialLoading from './screens/InitialLoading';
@@ -13,30 +14,21 @@ import Login from './screens/Login';
 <%_ } _%>
 import Home from './screens/Home';
 
+const Tab1 = Home;
+const Tab2 = Home;
+
 export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
-    [Routes.InitialLoading]: {
-      screen: InitialLoading,
-      navigationOptions: screensNavOptions[Routes.InitialLoading]
-    },
-    [Routes.Login]: {
-      screen: Login,
-      navigationOptions: screensNavOptions[Routes.Login]
-    },
+    ...inferRoute({ InitialLoading }),
+    ...inferRoute({ Login }),
     <%_ } _%>
     [Routes.Home]: {
       <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
         {
-          [Routes.Tab1]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab1]
-          },
-          [Routes.Tab2]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab2]
-          }
+          ...inferRoute({ Tab1 }),
+          ...inferRoute({ Tab2 })
         },
         tabNavConfig
       ),
