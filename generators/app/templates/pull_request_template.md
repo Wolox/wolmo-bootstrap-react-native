@@ -4,13 +4,27 @@
 
 ## Screenshots
 
-#### Android
-
 [Change!] Show the screenshots of the views you modified.
 
-#### Ios
+### Android
 
-[Change!] Show the screenshots of the views you modified.
+#### Galaxy S (or similar)
+
+#### Pixel 2 (or similar)
+
+#### Pixel 3 (or similar)
+
+#### Pixel 3XL (or similar)
+
+### iOS
+
+#### iPhone SE (or 5s)
+
+#### iPhone 6/7/8
+
+#### iPhone X/XS
+
+#### iPhone XS Max
 
 ## Trello Card
 
