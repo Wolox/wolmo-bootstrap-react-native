@@ -54,6 +54,17 @@ The boilerplate includes
 - [Prettier](https://github.com/prettier/prettier)
 - [Reactotron](https://github.com/infinitered/reactotron)
 
+### Bootstrap Kick off
+
+For bootstraping your own project using the template generator script you'll need to follow these steps:
+
+1. run `yo yourPathToWolmo/generators/app/index.js -v` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this.
+2. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
+3. After the script is finished, your project folder will be successfully generated with all the necessary npm dependencies installed. Do `cd you/project/path`.
+4. It's possible that you'll need to link React Native's libraries using `react-native link` (for push notifications to work for instance).
+5. Run `react-native run-ios` or/and `react-native run-android`.
+6. Start working on your project!
+
 ## Contributing
 
 1. Fork it
