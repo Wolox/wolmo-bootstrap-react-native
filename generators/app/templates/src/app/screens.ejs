@@ -14,8 +14,10 @@ import Login from './screens/Login';
 <%_ } _%>
 import Home from './screens/Home';
 
+<%_ if(features.tabs) { _%>
 const Tab1 = Home;
 const Tab2 = Home;
+<%_ } _%>
 
 export default createStackNavigator(
   {
