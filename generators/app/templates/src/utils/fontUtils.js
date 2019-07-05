@@ -1,28 +1,35 @@
 import { isAndroid } from '@constants/platform';
-import { SOURCE_SANS_PRO, REGULAR, SEMIBOLD, BOLD } from '@constants/fonts';
+import { DEFAULT_FONT, LIGHT, REGULAR, SEMIBOLD, BOLD, BLACK, NORMAL, ITALIC } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
 
+// Here you can replace DEFAULT_FONT with your custom font
 const fonts = {
-  [SOURCE_SANS_PRO]: {
+  [DEFAULT_FONT]: {
     weights: {
+      [LIGHT]: '300',
       [REGULAR]: '400',
       [SEMIBOLD]: '600',
-      [BOLD]: '700'
+      [BOLD]: '700',
+      [BLACK]: '900'
     },
-    styles: {}
+    styles: {
+      [NORMAL]: 'normal',
+      [ITALIC]: 'Italic'
+    }
   }
 };
 
 export const fontMaker = (options = {}) => {
   const { size = null, color = null } = options;
-  let { weight = null, style = null, family = SOURCE_SANS_PRO } = options;
+  // Here you can change it too
+  let { weight = null, style = null, family = DEFAULT_FONT } = options;
 
   let font = {};
   const { weights, styles } = fonts[family];
 
-  if (isAndroid) {
+  if (family !== DEFAULT_FONT && isAndroid) {
     weight = weight !== REGULAR && weights[weight] ? weight : '';
-    style = styles[style] ? style : '';
+    style = style !== NORMAL && styles[style] ? style : '';
 
     family = family.split(' ').join('');
     const suffix = weight + style;
@@ -30,7 +37,7 @@ export const fontMaker = (options = {}) => {
     font = { fontFamily: family + (suffix.length ? `-${suffix}` : '') };
   } else {
     weight = weights[weight] || weights[REGULAR];
-    style = styles[style] || 'normal';
+    style = styles[style] || styles[NORMAL];
 
     font = { fontFamily: family, fontWeight: weight, fontStyle: style };
   }
