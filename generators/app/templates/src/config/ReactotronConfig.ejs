@@ -45,4 +45,24 @@ if (__DEV__) {
     };
   }
 
+/* Here is an example of how to use customCommand
+
+const selfRemoving = console.tron.customCommand({
+  command: "remove",
+  handler: () => {
+    selfRemoving() // Calling it unregisters the command
+  },
+})
+
+This will display a button in Reactotron which will execute the whole handler
+block when clicked.
+
+Is important to know that a customCommand can't be declared/registered twice
+So we have to unregister it if we are going to run the same block again.
+If you use this pattern the customCommand will be unregistered when executed
+to avoid conflics in the future. A good way to register a customCommand is in the 
+ComponentDidMount life cycle method of the desired component
+
+*/
+
 export default Reactotron;
