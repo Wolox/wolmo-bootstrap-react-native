@@ -14,11 +14,6 @@ import Login from './screens/Login';
 <%_ } _%>
 import Home from './screens/Home';
 
-<%_ if(features.tabs) { _%>
-const Tab1 = Home;
-const Tab2 = Home;
-<%_ } _%>
-
 export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
@@ -29,8 +24,8 @@ export default createStackNavigator(
       <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
         {
-          ...inferRoute({ Tab1 }),
-          ...inferRoute({ Tab2 })
+          ...inferRoute({ Tab1: Home }),
+          ...inferRoute({ Tab2: Home })
         },
         tabNavConfig
       ),
