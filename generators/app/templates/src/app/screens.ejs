@@ -6,6 +6,7 @@ import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackN
 
 import Routes from '../constants/routes';
 import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import { inferRoute } from '../utils/navUtils';
 
 <%_ if(features.login) { _%>
 import InitialLoading from './screens/InitialLoading';
@@ -16,27 +17,15 @@ import Home from './screens/Home';
 export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
-    [Routes.InitialLoading]: {
-      screen: InitialLoading,
-      navigationOptions: screensNavOptions[Routes.InitialLoading]
-    },
-    [Routes.Login]: {
-      screen: Login,
-      navigationOptions: screensNavOptions[Routes.Login]
-    },
+    ...inferRoute({ InitialLoading }),
+    ...inferRoute({ Login }),
     <%_ } _%>
     [Routes.Home]: {
       <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
         {
-          [Routes.Tab1]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab1]
-          },
-          [Routes.Tab2]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab2]
-          }
+          ...inferRoute({ Tab1: Home }),
+          ...inferRoute({ Tab2: Home })
         },
         tabNavConfig
       ),
