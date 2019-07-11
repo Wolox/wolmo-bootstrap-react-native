@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { baseFont } from '@config/fonts';
+import fonts from '@config/fonts';
 
 import { gray, transparent } from '../../../constants/colors';
 
@@ -14,7 +14,7 @@ export default StyleSheet.create({
     flex: 1
   },
   inputStyle: {
-    ...baseFont,
+    ...fonts.baseFont,
     padding: 0,
     marginHorizontal: 0,
     marginBottom: 0

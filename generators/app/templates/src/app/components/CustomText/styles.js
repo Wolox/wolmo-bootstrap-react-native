@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { baseFont } from '@config/fonts';
+import fonts from '@config/fonts';
 
 import { blue, white, green, gray, transparent } from '../../../constants/colors';
 import { IS_SMALL_DEVICE } from '../../../constants/platform';
@@ -8,7 +8,7 @@ const amountToResize = 2 * IS_SMALL_DEVICE;
 
 export default StyleSheet.create({
   base: {
-    ...baseFont,
+    ...fonts.baseFont,
     backgroundColor: transparent
   },
   gray: {
