@@ -4,8 +4,8 @@ import { moderateScale } from '@utils/scalingUtils';
 
 // Here you can replace DEFAULT_FONT with your custom font.
 // Also, you can add or remove some weights or styles that don't apply with your custom font.
-// If you want to read more about font linking and configuration,
-// this is the original post https://medium.com/@lewie9021/custom-fonts-in-react-native-85d814ca084
+// If you want to read more about making and configuring custom fonts,
+// this is the original post: https://medium.com/@lewie9021/custom-fonts-in-react-native-85d814ca084
 const fonts = {
   [DEFAULT_FONT]: {
     weights: {
@@ -24,7 +24,7 @@ const fonts = {
 
 export const fontMaker = (options = {}) => {
   const { size = null, color = null } = options;
-  // Here you can replace it too
+  // Here you can replace it too => family = YOUR_CUSTOM_FONT
   let { weight = null, style = null, family = DEFAULT_FONT } = options;
 
   let font = {};
