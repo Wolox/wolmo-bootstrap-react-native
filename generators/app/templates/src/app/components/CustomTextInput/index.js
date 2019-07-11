@@ -14,9 +14,7 @@ import styles from './styles';
 class CustomTextInput extends PureComponent {
   state = { showPassword: false };
 
-  handleShowPassword = () => {
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
-  };
+  handleShowPassword = () => this.setState(prevState => ({ showPassword: !prevState.showPassword }));
 
   render() {
     const {
@@ -63,9 +61,10 @@ class CustomTextInput extends PureComponent {
             secureTextEntry={secureTextEntry && !showPassword}
             autoComplete={secureTextEntry ? 'off' : autoComplete}
           />
-          {secureTextEntry && showEye && (
-            <ShowPassword onShowPassword={this.handleShowPassword} passwordVisible={showPassword} />
-          )}
+          {secureTextEntry &&
+            showEye && (
+              <ShowPassword onShowPassword={this.handleShowPassword} passwordVisible={showPassword} />
+            )}
         </View>
       </View>
     );
