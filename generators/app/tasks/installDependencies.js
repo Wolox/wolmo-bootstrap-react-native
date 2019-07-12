@@ -8,6 +8,7 @@ const DEPENDENCIES = [
   'change-case',
   'lodash',
   'react-navigation',
+  'react-navigation-drawer',
   'react-navigation-redux-helpers',
   'react-redux',
   'reactotron-apisauce',
@@ -94,8 +95,9 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-native-huawei-protected-apps');
   }
 
-  if (this.features.drawerios || this.features.drawerandroid) {
-    DEPENDENCIES.push('react-native-drawer');
+  if (this.features.drawer) {
+    DEPENDENCIES.push('react-navigation-drawer');
+    DEPENDENCIES.push('react-native-reanimated');
   }
 
   if (this.features.googleanalytics) {

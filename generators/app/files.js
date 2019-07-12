@@ -91,17 +91,6 @@ module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomBut
 module.exports.CUSTOM_BUTTON = `${module.exports.CUSTOM_BUTTON_PATH}/index.js`;
 module.exports.CUSTOM_BUTTON_STYLES = `${module.exports.CUSTOM_BUTTON_PATH}/styles.js`;
 
-// COMPONENTS - DRAWER
-module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
-module.exports.DRAWER_INDEX = `${module.exports.DRAWER_PATH}/index.js`;
-module.exports.DRAWER_MENU_PATH = `${module.exports.DRAWER_PATH}/components/DrawerMenu`;
-module.exports.DRAWER_MENU_INDEX = `${module.exports.DRAWER_MENU_PATH}/index.js`;
-module.exports.DRAWER_MENU_STYLES = `${module.exports.DRAWER_MENU_PATH}/styles.js`;
-module.exports.DRAWER_MENU_LAYOUT = `${module.exports.DRAWER_MENU_PATH}/layout.js`;
-module.exports.DRAWER_OVERLAY_PATH = `${module.exports.DRAWER_PATH}/components/DrawerOverlay`;
-module.exports.DRAWER_OVERLAY_INDEX = `${module.exports.DRAWER_OVERLAY_PATH}/index.js`;
-module.exports.DRAWER_OVERLAY_STYLES = `${module.exports.DRAWER_OVERLAY_PATH}/styles.js`;
-
 // COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
 module.exports.LOADABLE = `${module.exports.LOADABLE_PATH}/index.js`;
@@ -113,10 +102,6 @@ module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
 // REDUX - PUSH NOTIFICATIONS
 module.exports.PUSH_NOTIFICATIONS_REDUCER = `${module.exports.REDUX_PATH}/pushNotifications/reducer.js`;
 module.exports.PUSH_NOTIFICATIONS_ACTIONS = `${module.exports.REDUX_PATH}/pushNotifications/actions.js`;
-
-// REDUX - DRAWER
-module.exports.DRAWER_REDUX_ACTIONS = `${module.exports.REDUX_PATH}/drawer/actions.js`;
-module.exports.DRAWER_REDUX_REDUCER = `${module.exports.REDUX_PATH}/drawer/reducer.js`;
 
 // REDUX - AUTH
 module.exports.AUTH_REDUCER = `${module.exports.REDUX_PATH}/auth/reducer.js`;

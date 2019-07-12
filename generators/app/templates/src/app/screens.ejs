@@ -2,16 +2,114 @@
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
 
-import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator } from 'react-navigation';
+import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator<% if (features.drawer) { %>, createDrawerNavigator<% } %> } from 'react-navigation';
 
 import Routes from '../constants/routes';
-import { stackNavConfig, screensNavOptions <% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
 
 <%_ if(features.login) { _%>
 import InitialLoading from './screens/InitialLoading';
 import Login from './screens/Login';
 <%_ } _%>
+<%_ if(features.drawer) { _%>
+  import Drawer from './components/Drawer';
+<%_ } _%>  
 import Home from './screens/Home';
+
+<%_ if(features.drawer) { _%>
+const drawerScreens = createDrawerNavigator(
+  {
+    [Routes.Home]: {
+      <%_ if (features.tabs) { _%>
+        screen: createBottomTabNavigator(
+          {
+            [Routes.Tab1]: {
+              screen: Home,
+              navigationOptions: screensNavOptions[Routes.Tab1]
+            },
+            [Routes.Tab2]: {
+              screen: Home,
+              navigationOptions: screensNavOptions[Routes.Tab2]
+            }
+          },
+          tabNavConfig
+        ),
+        <%_ } else { _%>
+        screen: Home,
+        <%_ } _%>
+        navigationOptions: screensNavOptions[Routes.Home]
+    }
+    /*
+  This is where you should add screens to the Drawer, here is an example how to.
+  NewScreenExample: {
+    screen: NewScreenExample
+  }, */
+  },
+  {
+    drawerWidth: () => 300,
+    contentComponent: Drawer
+  }
+);
+
+const noDrawerScreens = createStackNavigator(
+  {
+    /*
+  This is where you should add screens that don't have the Drawer, here is an example how to.
+  NewScreenExample: {
+    screen: NewScreenExample
+  }, */
+  },
+  {
+    stackNavConfig
+  }
+);
+
+const appScreens = createStackNavigator(
+  {
+    drawerScreens: {
+      screen: drawerScreens,
+      navigationOptions: {
+        header: null
+      }
+    },
+    noDrawerScreens: {
+      screen: noDrawerScreens
+    }
+  },
+  {
+    stackNavConfig
+  }
+);
+<%_ } else{ _%>
+
+const appScreens = createStackNavigator(
+  {
+    [Routes.Home]: {
+      <%_ if (features.tabs) { _%>
+        screen: createBottomTabNavigator(
+          {
+            [Routes.Tab1]: {
+              screen: Home,
+              navigationOptions: screensNavOptions[Routes.Tab1]
+            },
+            [Routes.Tab2]: {
+              screen: Home,
+              navigationOptions: screensNavOptions[Routes.Tab2]
+            }
+          },
+          tabNavConfig
+        ),
+        <%_ } else { _%>
+        screen: Home,
+        <%_ } _%>
+        navigationOptions: screensNavOptions[Routes.Home]
+    }
+  },
+  {
+    stackNavConfig
+  }
+);
+<%_ } _%> 
 
 export default createStackNavigator(
   {
@@ -25,25 +123,8 @@ export default createStackNavigator(
       navigationOptions: screensNavOptions[Routes.Login]
     },
     <%_ } _%>
-    [Routes.Home]: {
-      <%_ if (features.tabs) { _%>
-      screen: createBottomTabNavigator(
-        {
-          [Routes.Tab1]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab1]
-          },
-          [Routes.Tab2]: {
-            screen: Home,
-            navigationOptions: screensNavOptions[Routes.Tab2]
-          }
-        },
-        tabNavConfig
-      ),
-      <%_ } else { _%>
-      screen: Home,
-      <%_ } _%>
-      navigationOptions: screensNavOptions[Routes.Home]
+    appScreens: {
+      screen: appScreens
     }
   },
   stackNavConfig

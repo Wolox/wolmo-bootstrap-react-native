@@ -18,10 +18,7 @@ import auth from './auth/reducer';
 <%_ if(features.pushnotifications) { _%>
 import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
-<%_ if(features.drawerios || features.drawerandroid) { _%>
-import drawer from './drawer/reducer';
-<%_ } _%>
-<%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login || features.googleanalytics) { _%>
+<%_ if(features.drawer || features.pushnotifications || features.login || features.googleanalytics) { _%>
 
 <%_ } _%>
 const nav = createNavigationReducer(Navigator);
@@ -34,9 +31,6 @@ const reducers = combineReducers({
   <%_ } _%>
   <%_ if(features.login) { _%>
   auth,
-  <%_ } _%>
-  <%_ if(features.drawerios || features.drawerandroid) { _%>
-  drawer,
   <%_ } _%>
   nav
 });

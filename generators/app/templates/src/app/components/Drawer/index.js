@@ -1,72 +1,42 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Drawer from 'react-native-drawer';
-import { StatusBar } from 'react-native';
+import { ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import PropTypes from 'prop-types';
 
-import { actionCreators as drawerActions } from '../../../redux/drawer/actions';
-import { propTypes as drawerPropTypes } from '../../../redux/drawer/reducer';
-import { STATUS_BAR_IS_FIXED } from '../../../constants/platform';
-import AppNavigator from '../AppNavigator';
+import styles from './styles';
+import Page from './components/Page';
 
-import DrawerOverlay from './components/DrawerOverlay';
-import DrawerMenu from './components/DrawerMenu';
-
-class DrawerContainer extends Component {
-  state = { isHandlingUserInput: false };
-
-  componentWillUnmount() {
-    this.handleDrawerClosing();
-  }
-
-  handleDrawerClosing = () => {
-    const { dispatch } = this.props;
-    dispatch(drawerActions.drawerToggled(false));
-    StatusBar.setHidden(false, 'slide');
-  };
-
-  handleDrawerOpening = () => {
-    const { dispatch } = this.props;
-    dispatch(drawerActions.drawerToggled(true));
-    this.setState({ isHandlingUserInput: false });
-    StatusBar.setHidden(!STATUS_BAR_IS_FIXED, 'slide');
-  };
-
-  wrapOnPress = onPress => () => {
-    const { isHandlingUserInput } = this.state;
-    if (!isHandlingUserInput) {
-      if (onPress) {
-        onPress();
-      }
-      this.setState({ isHandlingUserInput: true });
-    }
+class Drawer extends Component {
+  navigateToScreen = route => () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigateAction); // eslint-disable-line
   };
 
   render() {
-    const { drawerPresent } = this.props;
     return (
-      <Drawer
-        content={<DrawerMenu wrapOnPress={this.wrapOnPress} />}
-        onOpenStart={this.handleDrawerOpening}
-        onCloseStart={this.handleDrawerClosing}
-        open={drawerPresent}
-        openDrawerOffset={0.15}
-        tapToClose
-        panOpenMask={-1}
-        type="overlay"
-      >
-        <AppNavigator />
-        <DrawerOverlay drawerPresent={drawerPresent} />
-      </Drawer>
+      <ScrollView bounces={false} contentContainerStyle={styles.container}>
+        <Page
+          title="PageExample1"
+          textProps={{ medium: 'medium' }}
+          onPress={this.navigateToScreen('PageExample1')}
+          image={null} // If you need to add an image you can do it from here
+        />
+        <Page
+          title="PageExample2"
+          textProps={{ medium: 'medium' }}
+          onPress={this.navigateToScreen('PageExample2')}
+        />
+      </ScrollView>
     );
   }
 }
 
-DrawerContainer.propTypes = {
-  drawerPresent: drawerPropTypes.present
+Drawer.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  }).isRequired
 };
 
-const mapStateToProps = store => ({
-  drawerPresent: store.drawer.present
-});
-
-export default connect(mapStateToProps)(DrawerContainer);
+export default Drawer;

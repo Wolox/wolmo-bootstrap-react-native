@@ -14,18 +14,8 @@ import { checkAnalyticsTrackingID } from '../redux/middlewares/analyticsMiddlewa
 <%_ if(features.login) { _%>
 import { authSetup } from '../services/AuthService';
 <%_ } _%>
-<%_ if(features.drawerios && features.drawerandroid) { _%>
-
-import Drawer from './components/Drawer';
-<%_ } else if (features.drawerios || features.drawerandroid) { _%>
-import { isAndroid } from '../constants/platform';
-
-import Drawer from './components/Drawer';
-import AppNavigator from './components/AppNavigator';
-<%_ } else { _%>
 
 import AppNavigator from './components/AppNavigator';
-<%_ } _%>
 
 class App extends Component {
   componentDidMount() {
@@ -43,15 +33,7 @@ class App extends Component {
   }
 
   render() {
-    <%_ if(features.drawerios && features.drawerandroid) { _%>
-    return <Drawer />;
-    <%_ } else if (features.drawerios) { _%>
-    return isAndroid ? <AppNavigator /> : <Drawer />;
-    <%_ } else if (features.drawerandroid) { _%>
-    return isAndroid ? <Drawer /> : <AppNavigator />;
-    <%_ } else { _%>
     return <AppNavigator />;
-    <%_ } _%>
   }
 }
 

@@ -10,7 +10,6 @@ const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
-const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelrcSetup = require('./babelrcSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
@@ -51,9 +50,6 @@ module.exports = function index() {
   }
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
-  }
-  if (this.features.drawerios || this.features.drawerandroid) {
-    drawerFeatureFiles.bind(this)();
   }
   if (this.features.googleanalytics) {
     googleAnalyticsFeatureFiles.bind(this)();
