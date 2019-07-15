@@ -25,7 +25,7 @@ if (__DEV__) {
     .connect();
   // eslint-disable-next-line no-console
   console.tron = {
-    log: value => Reactotron.logImportant(JSON.stringify(value, null, 2)),
+    log: value => Reactotron.logImportant(value),
     clear: () => Reactotron.clear(),
     customCommand: ({ command, description, handler, title }) =>
       Reactotron.onCustomCommand({
@@ -37,7 +37,7 @@ if (__DEV__) {
     display: ({ image, name, preview, value }) =>
       Reactotron.display({
         name: name || 'DISPLAY',
-        value: JSON.stringify(value, null, 2),
+        value,
         preview: preview || 'Click para mostrar detalle',
         important: true,
         image
