@@ -1,27 +1,101 @@
-<%_ if (features.drawer) { _%> import React from 'react'; import { Button } from
-'react-native'; import { DrawerActions } from 'react-navigation-drawer'; <%_ }
-_%> import Routes from '../constants/routes'; import { blue, white } from
-'../constants/colors'; import I18n from './i18n'; // Default nav options for all
-screens const defaultNavOptions = ({ navigation }) => ({ // Change screen title
-from i18n traslates files title: I18n.t(`app:${navigation.state.routeName}`), //
-TODO: The following options are examples. Change them to your need headerStyle:
-{ backgroundColor: blue }, headerBackTitleStyle: { color: white },
-headerTitleStyle: { color: white // TODO: If you want to change the header font,
-apply these options // Replace the font with the need // See:
-https://medium.com/react-native-training/react-native-custom-fonts-ccc9aacf9e5e
-// fontWeight: 'normal', // fontFamily: 'Lato-Bold' }, headerTintColor: white
-}); export const screensNavOptions = { // TODO: Add here the screens nav options
-that changes with respect to // the default ones defined in defaultNavOptions,
-for example... /* [Routes.Home]: { title: 'Home' }, [Routes.Login]: { header:
-null } */ <%_ if (features.login) { _%> [Routes.InitialLoading]: { header: null,
-headerStyle: { elevation: 0, shadowOpacity: 0 } <%_ } _%> <%_ if
-(features.drawer) { _%> }, [Routes.Home]: ({ navigation }) => ({ headerRight:
-<Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-title="Drawer" /> }) <%_ } else { _%> } <%_ } _%> }; export const stackNavConfig
-= { navigationOptions: defaultNavOptions // TODO: Change other options for the
-router to your need: // See:
-https://reactnavigation.org/docs/stack-navigator.html#stacknavigatorconfig };
-<%_ if (features.tabs) { _%> export const tabNavConfig = { // TODO: The
-following options are examples. Change them to your need // See:
-https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
-tabBarPosition: 'bottom' }; <%_ } _%>
+<%_ if (features.drawer) { _%>
+import React from 'react';
+import { Button } from 'react-native';
+import i18next from 'i18next';
+
+<%_ } _%>
+import Routes from '../constants/routes';
+import { blue, white } from '../constants/colors';
+<%_ if (features.drawer) { _%>
+import { actionCreators as drawerActions } from '../redux/drawer/actions';
+<%_ } _%>
+
+// Default nav options for all screens
+const defaultNavOptions = ({ navigation }) => ({
+  // Change screen title from i18n traslates files
+  headerTitle: i18next.t(`app:${navigation.state.routeName}`),
+
+  // TODO: The following options are examples. Change them to your need
+  headerStyle: {
+    backgroundColor: blue
+  },
+  headerBackTitleStyle: {
+    color: white
+  },
+  headerTitleStyle: {
+    color: white
+    // TODO: If you want to change the header font, apply these options
+    // Replace the font with the need
+    // See: https://medium.com/react-native-training/react-native-custom-fonts-ccc9aacf9e5e
+    // fontWeight: 'normal',
+    // fontFamily: 'Lato-Bold'
+  },
+  headerTintColor: white
+});
+
+export const screensNavOptions = {
+  // TODO: Add here the screens nav options that changes with respect to
+  // the default ones defined in defaultNavOptions, for example...
+  /*
+  [Routes.Home]: {
+    headerTitle: 'Home'
+  },
+  [Routes.Login]: {
+    header: null
+  }
+  */
+  <%_ if (features.login) { _%>
+  [Routes.InitialLoading]: {
+    header: null,
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0
+    }
+  <%_ } _%>
+  <%_ if (features.drawer) { _%>
+  },
+  [Routes.Home]: ({ navigation }) => ({
+    headerRight: <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />,
+    drawerLockMode: 'unlocked'
+    /* If you want to add the Drawer to your screen 
+    you have to add the above line, you can use this object as a example. */
+  })
+  <%_ } else { _%>
+  }
+  <%_ } _%>
+};
+
+<%_ if (features.drawer) { _%>
+export const defaultDrawerNavOptions = {
+  drawerLockMode: 'locked-closed'
+};
+
+export const drawerNavConfig = {
+  defaultNavigationOptions: defaultDrawerNavOptions,
+  drawerWidth: () => 300, // You can change the widh of the Drawer
+  contentComponent: Drawer
+};
+<%_ } _%>
+
+<%_ if (features.login) { _%>
+export const loginsStackNavConfig = {
+  defaultNavigationOptions: defaultNavOptions,
+  initialRouteName: Routes.Login
+};
+<%_ } _%>
+
+export const mainStackNavConfig = {
+  defaultNavigationOptions: defaultNavOptions,
+  initialRouteName: Routes.Home,
+  headerMode: 'none'
+  // TODO: Change other options for the router to your need:
+  // See: https://reactnavigation.org/docs/stack-navigator.html#stacknavigatorconfig
+};
+<%_ if (features.tabs) { _%>
+
+export const tabNavConfig = {
+  // TODO: The following options are examples. Change them to your need
+  // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
+  tabBarPosition: 'bottom'
+};
+<%_ } _%>

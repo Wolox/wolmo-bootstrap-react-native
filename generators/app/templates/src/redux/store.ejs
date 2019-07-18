@@ -55,15 +55,9 @@ middlewares.push(AnalyticsMiddleware);
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
+if (__DEV__) enhancers.push(Reactotron.createEnhancer());
+
 // in dev mode, we'll create the store through Reactotron
-const store = createStore(
-  reducers,
-  __DEV__
-    ? compose(
-        ...enhancers,
-        Reactotron.createEnhancer()
-      )
-    : compose(...enhancers)
-);
+const store = createStore(reducers, compose(...enhancers));
 
 export default store;

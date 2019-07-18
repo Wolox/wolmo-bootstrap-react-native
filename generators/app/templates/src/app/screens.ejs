@@ -6,6 +6,7 @@ import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackN
 
 import Routes from '../constants/routes';
 import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
+import { inferRoute } from '../utils/navUtils';
 
 <%_ if(features.login) { _%>
 import InitialLoading from './screens/InitialLoading';
@@ -17,115 +18,73 @@ import Login from './screens/Login';
 import Home from './screens/Home';
 
 <%_ if(features.drawer) { _%>
-const drawerScreens = createDrawerNavigator(
-  {
-    [Routes.Home]: {
-      <%_ if (features.tabs) { _%>
-        screen: createBottomTabNavigator(
-          {
-            [Routes.Tab1]: {
-              screen: Home,
-              navigationOptions: screensNavOptions[Routes.Tab1]
+  const drawerStack = createDrawerNavigator(
+    {
+      [Routes.Home]: {
+        <%_ if (features.tabs) { _%>
+          screen: createBottomTabNavigator(
+            {
+              ...inferRoute({ Tab1: Home }),
+              ...inferRoute({ Tab2: Home })
             },
-            [Routes.Tab2]: {
-              screen: Home,
-              navigationOptions: screensNavOptions[Routes.Tab2]
-            }
-          },
-          tabNavConfig
-        ),
-        <%_ } else { _%>
-        screen: Home,
-        <%_ } _%>
-        navigationOptions: screensNavOptions[Routes.Home]
+            tabNavConfig
+          ),
+          <%_ } else { _%>
+          screen: Home,
+          <%_ } _%>
+          navigationOptions: screensNavOptions[Routes.Home]
+      }
+      /*
+      This is where you should add screens to the Drawer, here is an example how to.
+      NewScreenExample: {
+        screen: NewScreenExample
+      }, */
+    },
+    {
+      drawerNavConfig
     }
-    /*
-  This is where you should add screens to the Drawer, here is an example how to.
-  NewScreenExample: {
-    screen: NewScreenExample
-  }, */
-  },
-  {
-    drawerWidth: () => 300,
-    contentComponent: Drawer
-  }
-);
+  );
 
-const noDrawerScreens = createStackNavigator(
+<%_ } _%> 
+
+<%_ if (features.login) { _%>
+const loginStack = createStackNavigator(
   {
+    ...inferRoute({ Login })
     /*
   This is where you should add screens that don't have the Drawer, here is an example how to.
   NewScreenExample: {
     screen: NewScreenExample
   }, */
   },
-  {
-    stackNavConfig
-  }
+  loginsStackNavConfig
 );
-
-const appScreens = createStackNavigator(
-  {
-    drawerScreens: {
-      screen: drawerScreens,
-      navigationOptions: {
-        header: null
-      }
-    },
-    noDrawerScreens: {
-      screen: noDrawerScreens
-    }
-  },
-  {
-    stackNavConfig
-  }
-);
-<%_ } else{ _%>
-
-const appScreens = createStackNavigator(
-  {
-    [Routes.Home]: {
-      <%_ if (features.tabs) { _%>
-        screen: createBottomTabNavigator(
-          {
-            [Routes.Tab1]: {
-              screen: Home,
-              navigationOptions: screensNavOptions[Routes.Tab1]
-            },
-            [Routes.Tab2]: {
-              screen: Home,
-              navigationOptions: screensNavOptions[Routes.Tab2]
-            }
-          },
-          tabNavConfig
-        ),
-        <%_ } else { _%>
-        screen: Home,
-        <%_ } _%>
-        navigationOptions: screensNavOptions[Routes.Home]
-    }
-  },
-  {
-    stackNavConfig
-  }
-);
-<%_ } _%> 
+<%_ } _%>
 
 export default createStackNavigator(
   {
     <%_ if (features.login) { _%>
-    [Routes.InitialLoading]: {
-      screen: InitialLoading,
-      navigationOptions: screensNavOptions[Routes.InitialLoading]
-    },
+    ...inferRoute({ InitialLoading }),
     [Routes.Login]: {
-      screen: Login,
-      navigationOptions: screensNavOptions[Routes.Login]
+      screen: loginStack
     },
     <%_ } _%>
-    appScreens: {
-      screen: appScreens
+    [Routes.Home]: {
+      <%_ if (features.drawer) { _%>
+        screen: drawerStack
+      <%_ else if (features.tabs && !features.drawer) { _%>
+      screen: createBottomTabNavigator(
+        {
+          ...inferRoute({ Tab1: Home }),
+          ...inferRoute({ Tab2: Home })
+        },
+        tabNavConfig
+      ),
+      <%_ } else { _%>
+      screen: Home,
+      <%_ } _%>
+      navigationOptions: screensNavOptions[Routes.Home]
     }
   },
-  stackNavConfig
+  mainStackNavConfig
 );

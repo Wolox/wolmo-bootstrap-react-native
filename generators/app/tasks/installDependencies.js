@@ -21,8 +21,9 @@ const DEPENDENCIES = [
   'seamless-immutable',
   'react-native-config',
   'react-native-gesture-handler',
-  'react-native-i18n',
-  'redux-recompose'
+  'i18next',
+  'redux-recompose',
+  '@react-native-community/async-storage'
 ];
 
 const DEV_DEPENDENCIES = [
