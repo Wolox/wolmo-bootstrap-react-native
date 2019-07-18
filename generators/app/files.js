@@ -44,6 +44,15 @@ module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.j
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 
+// COMPONENTS - DRAWER
+module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
+module.exports.DRAWER = `${module.exports.DRAWER_PATH}/index.js`;
+module.exports.DRAWER_STYLES = `${module.exports.DRAWER_PATH}/styles.js`;
+module.exports.DRAWER_COMPONENTS = `${module.exports.DRAWER_PATH}/components`;
+module.exports.DRAWER_PAGE_PATH = `${module.exports.DRAWER_COMPONENTS}/Page`;
+module.exports.DRAWER_PAGE = `${module.exports.DRAWER_PAGE_PATH}/index.js`;
+module.exports.DRAWER_PAGE_STYLES = `${module.exports.DRAWER_PAGE_PATH}/styles.js`;
+
 // COMPONENTS - APP NAVIGATOR
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;

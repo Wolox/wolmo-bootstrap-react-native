@@ -1,8 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
-
-import CustomText from '../../../CustomText/index';
+import CustomText from '@components/CustomText';
 
 import styles from './styles';
 

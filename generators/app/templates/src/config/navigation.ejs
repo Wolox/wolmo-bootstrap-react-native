@@ -1,8 +1,9 @@
 import React from 'react';
 import i18next from 'i18next';
 <%_ if (features.drawer) { _%>
-  import { Button } from 'react-native';
-  import { actionCreators as drawerActions } from '@redux/drawer/actions';
+import { Button } from 'react-native';
+import { DrawerActions } from 'react-navigation-drawer';
+import Drawer from '@components/Drawer';
 <%_ } _%>
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';

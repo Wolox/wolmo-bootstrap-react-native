@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import PropTypes from 'prop-types';
 import store from '@redux/store';
 
 import styles from './styles';
@@ -33,11 +32,5 @@ class Drawer extends Component {
     );
   }
 }
-
-Drawer.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default Drawer;

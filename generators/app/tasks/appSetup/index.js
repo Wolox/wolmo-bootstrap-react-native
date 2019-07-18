@@ -13,6 +13,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelrcSetup = require('./babelrcSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const drawerFeatureFiles = require('./drawerFeatureFiles');
 
 module.exports = function index() {
   const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
@@ -53,6 +54,9 @@ module.exports = function index() {
   }
   if (this.features.googleanalytics) {
     googleAnalyticsFeatureFiles.bind(this)();
+  }
+  if (this.features.drawer) {
+    drawerFeatureFiles.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------
