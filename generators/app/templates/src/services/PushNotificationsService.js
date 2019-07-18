@@ -1,5 +1,5 @@
 import { Platform, Alert } from 'react-native';
-import api from '@config/api'; // eslint-disable-line import/first
+import api from '@config/api';
 
 let PushNotification;
 try {

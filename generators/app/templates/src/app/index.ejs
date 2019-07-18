@@ -14,15 +14,13 @@ import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware
 import { authSetup } from '@services/AuthService';
 <%_ } _%>
 <%_ if(features.drawerios && features.drawerandroid) { _%>
-
 import Drawer from '@components/Drawer';
 <%_ } else if (features.drawerios || features.drawerandroid) { _%>
 import { isAndroid } from '@constants/platform';
+import AppNavigator from '@components/AppNavigator';
 
 import Drawer from './components/Drawer';
-import AppNavigator from '@components/AppNavigator';
 <%_ } else { _%>
-
 import AppNavigator from '@components/AppNavigator';
 <%_ } _%>
 
