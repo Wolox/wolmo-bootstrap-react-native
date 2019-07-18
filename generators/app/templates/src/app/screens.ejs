@@ -4,7 +4,7 @@
 
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator<% if (features.drawer) { %>, createDrawerNavigator<% } %> } from 'react-navigation';
 import Routes from '@constants/routes';
-import { mainStackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %><% if (features.drawer) { %>, drawerNavConfig<% } %><% if (features.login) { %>, loginsStackNavConfig<% } %> } from '@config/navigation';
+import { mainStackNavConfig<% if (features.tabs) { %>, tabNavConfig<% } %><% if (features.drawer) { %>, drawerNavConfig<% } %><% if (features.login) { %>, loginsStackNavConfig<% } %> } from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
 <%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
@@ -74,11 +74,11 @@ export default createStackNavigator(
           ...inferRoute({ Tab2: Home })
         },
         tabNavConfig
-      ),
+      )
       <%_ } else { _%>
       screen: Home,
-      navigationOptions: screensNavOptions[Routes.Home]
       <%_ } _%>
+      navigationOptions: screensNavOptions[Routes.Home]
     }
   },
   mainStackNavConfig
