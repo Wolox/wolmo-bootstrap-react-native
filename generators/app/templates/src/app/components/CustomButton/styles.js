@@ -46,5 +46,8 @@ export default StyleSheet.create({
   },
   green: {
     backgroundColor: green
+  },
+  greenContent: {
+    color: white
   }
 });
