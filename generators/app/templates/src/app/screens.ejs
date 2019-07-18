@@ -3,19 +3,17 @@
 //  in favour of setting the initialRoute as a prop of the navigator
 
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator<% if (features.drawer) { %>, createDrawerNavigator<% } %> } from 'react-navigation';
-
-import Routes from '../constants/routes';
-import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '../config/navigation';
-import { inferRoute } from '../utils/navUtils';
-
+import Routes from '@constants/routes';
+import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '@config/navigation';
+import { inferRoute } from '@utils/navUtils';
 <%_ if(features.login) { _%>
-import InitialLoading from './screens/InitialLoading';
-import Login from './screens/Login';
+import InitialLoading from '@screens/InitialLoading';
+import Login from '@screens/Login';
 <%_ } _%>
 <%_ if(features.drawer) { _%>
-  import Drawer from './components/Drawer';
+  import Drawer from '@components/Drawer';
 <%_ } _%>  
-import Home from './screens/Home';
+import Home from '@screens/Home';
 
 <%_ if(features.drawer) { _%>
   const drawerStack = createDrawerNavigator(

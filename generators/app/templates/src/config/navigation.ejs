@@ -1,14 +1,11 @@
-<%_ if (features.drawer) { _%>
 import React from 'react';
-import { Button } from 'react-native';
 import i18next from 'i18next';
-
-<%_ } _%>
-import Routes from '../constants/routes';
-import { blue, white } from '../constants/colors';
 <%_ if (features.drawer) { _%>
-import { actionCreators as drawerActions } from '../redux/drawer/actions';
+  import { Button } from 'react-native';
+  import { actionCreators as drawerActions } from '@redux/drawer/actions';
 <%_ } _%>
+import Routes from '@constants/routes';
+import { blue, white } from '@constants/colors';
 
 // Default nav options for all screens
 const defaultNavOptions = ({ navigation }) => ({

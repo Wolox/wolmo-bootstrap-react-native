@@ -1,9 +1,8 @@
 import { PureComponent } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-
-import Loadable from '../../components/Loadable';
-import Routes from '../../../constants/routes';
+import Loadable from '@components/Loadable';
+import Routes from '@constants/routes';
 
 class InitialLoading extends PureComponent {
   static getDerivedStateFromProps(props) {

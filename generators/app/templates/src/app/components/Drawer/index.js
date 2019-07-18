@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
+import store from '@redux/store';
 
 import styles from './styles';
 import Page from './components/Page';
@@ -11,7 +12,7 @@ class Drawer extends Component {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
-    this.props.navigation.dispatch(navigateAction); // eslint-disable-line
+    store.dispatch(navigateAction);
   };
 
   render() {

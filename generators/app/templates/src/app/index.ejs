@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { apiSetup } from '../config/api';
+import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from '../config/HuaweiPushNotifications';
+import alertIfHuaweiDevice from '@config/HuaweiPushNotifications';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
-import configPushNotifications from '../config/PushNotifications';
+import configPushNotifications from '@config/PushNotifications';
 <%_ } _%>
 <%_ if(features.googleanalytics) { _%>
-import { checkAnalyticsTrackingID } from '../redux/middlewares/analyticsMiddleware';
+import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware';
 <%_ } _%>
 <%_ if(features.login) { _%>
-import { authSetup } from '../services/AuthService';
+import { authSetup } from '@services/AuthService';
 <%_ } _%>
-
-import AppNavigator from './components/AppNavigator';
+import AppNavigator from '@components/AppNavigator';
 
 class App extends Component {
   componentDidMount() {
