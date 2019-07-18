@@ -28,6 +28,7 @@ const DEPENDENCIES = [
 const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
+  'babel-plugin-module-resolver',
   'eslint',
   'eslint-config-airbnb',
   'eslint-config-prettier',

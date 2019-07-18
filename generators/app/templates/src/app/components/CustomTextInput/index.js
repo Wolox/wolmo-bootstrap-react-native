@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
-
-import CustomText from '../CustomText';
-import { transparent } from '../../../constants/colors';
+import CustomText from '@components/CustomText';
+import { transparent } from '@constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';

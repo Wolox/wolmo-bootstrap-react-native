@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { TouchableOpacity, Image, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
+import { getCustomStyles } from '@utils/styleUtils';
 
 import CustomText from '../CustomText';
-import { getCustomStyles } from '../../../utils/styleUtils';
 
 import styles from './styles';
 

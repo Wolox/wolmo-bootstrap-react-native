@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
-
-import { getCustomStyles } from '../../../utils/styleUtils';
+import { getCustomStyles } from '@utils/styleUtils';
 
 import styles from './styles';
 

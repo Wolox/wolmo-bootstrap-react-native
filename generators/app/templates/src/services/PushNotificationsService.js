@@ -1,11 +1,10 @@
 import { Platform, Alert } from 'react-native';
+import api from '@config/api';
 
 let PushNotification;
 try {
   PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
 } catch (e) {} // eslint-disable-line no-empty, prettier/prettier
-
-import api from '../config/api'; // eslint-disable-line import/first
 
 const PUSH_NOTIFICATION_HANDLERS = {
   hello() {
