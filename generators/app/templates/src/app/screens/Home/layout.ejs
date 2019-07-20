@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 <%_ } _%>
 import { View } from 'react-native';
-
 <%_ if(features.login) { _%>
-import CustomButton from '../../components/CustomButton';
+import CustomButton from '@components/CustomButton';
 <%_ } else { _%>
-import CustomText from '../../components/CustomText';
+import CustomText from '@components/CustomText';
 <%_ } _%>
 
 import styles from './styles';

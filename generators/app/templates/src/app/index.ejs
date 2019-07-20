@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
-
-import { apiSetup } from '../config/api';
+import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from '../config/HuaweiPushNotifications';
+import alertIfHuaweiDevice from '@config/HuaweiPushNotifications';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
-import configPushNotifications from '../config/PushNotifications';
+import configPushNotifications from '@config/PushNotifications';
 <%_ } _%>
 <%_ if(features.googleanalytics) { _%>
-import { checkAnalyticsTrackingID } from '../redux/middlewares/analyticsMiddleware';
+import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware';
 <%_ } _%>
 <%_ if(features.login) { _%>
-import { authSetup } from '../services/AuthService';
+import { authSetup } from '@services/AuthService';
 <%_ } _%>
 <%_ if(features.drawerios && features.drawerandroid) { _%>
-
-import Drawer from './components/Drawer';
+import Drawer from '@components/Drawer';
 <%_ } else if (features.drawerios || features.drawerandroid) { _%>
-import { isAndroid } from '../constants/platform';
-
-import Drawer from './components/Drawer';
-import AppNavigator from './components/AppNavigator';
+import { isAndroid } from '@constants/platform';
+import AppNavigator from '@components/AppNavigator';
+import Drawer from '@components/Drawer';
 <%_ } else { _%>
-
-import AppNavigator from './components/AppNavigator';
+import AppNavigator from '@components/AppNavigator';
 <%_ } _%>
 
 class App extends Component {

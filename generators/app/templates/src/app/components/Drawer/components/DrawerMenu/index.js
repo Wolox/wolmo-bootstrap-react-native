@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import { actionCreators as drawerActions } from '../../../../../redux/drawer/actions';
+import { actionCreators as drawerActions } from '@redux/drawer/actions';
 
 import DrawerMenu from './layout';
 

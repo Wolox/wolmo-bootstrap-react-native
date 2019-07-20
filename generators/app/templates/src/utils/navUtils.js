@@ -1,5 +1,5 @@
-import { screensNavOptions } from '../config/navigation';
-import Routes from '../constants/routes';
+import { screensNavOptions } from '@config/navigation';
+import Routes from '@constants/routes';
 
 export const getCurrentRouteName = navigationState => {
   if (!navigationState) {
