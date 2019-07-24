@@ -137,16 +137,20 @@ module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
 module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
 module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.js`;
+module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.js`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.js`;
 module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.js`;
 module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
+module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.js`;
 
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
 module.exports.NAV_UTILS = `${module.exports.UTILS_PATH}/navUtils.js`;
 module.exports.STYLE_UTILS = `${module.exports.UTILS_PATH}/styleUtils.js`;
+module.exports.SCALING_UTILS = `${module.exports.UTILS_PATH}/scalingUtils.js`;
+module.exports.FONT_UTILS = `${module.exports.UTILS_PATH}/fontUtils.js`;
 
 // TEST
 module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;

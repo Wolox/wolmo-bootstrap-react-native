@@ -36,7 +36,7 @@ class CustomButton extends PureComponent {
       >
         {icon && <Image source={icon} resizeMode="contain" style={[styles.icon, iconStyle]} />}
         {title && (
-          <CustomText {...textProps} style={[styles.text, this.customTextStyles(), textStyle]}>
+          <CustomText {...textProps} style={[this.customTextStyles(), textStyle]}>
             {title}
           </CustomText>
         )}
