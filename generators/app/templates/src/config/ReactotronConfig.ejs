@@ -25,7 +25,7 @@ if (__DEV__) {
     .connect();
   // eslint-disable-next-line no-console
   console.tron = {
-    log: value => Reactotron.logImportant(value),
+    log: (...args) => Reactotron.logImportant(...args),
     clear: () => Reactotron.clear(),
     customCommand: ({ command, description, handler, title }) =>
       Reactotron.onCustomCommand({
