@@ -62,10 +62,9 @@ For bootstraping your own project using the template generator script you'll nee
 2. run `yo yourPathToWolmo/generators/app/index.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
 3. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
 4. After the script is finished, your project folder will be successfully generated with all the necessary npm dependencies installed. Do `cd you/project/path`.
-5. It's possible that you'll need to link React Native's libraries using `react-native link` (for push notifications to work for instance).
-6. Start budler using `npm run start` or `npm start`.
-7. Run `react-native run-ios` or/and `react-native run-android`.
-8. Start working on your project!
+5. Start budler using `npm run start` or `npm start`.
+6. Run `react-native run-ios` or/and `react-native run-android`.
+7. Start working on your project!
 
 ## Contributing
 
