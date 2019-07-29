@@ -6,7 +6,6 @@ import {
   createNavigationReducer
 } from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
-import Navigator from '@screens';
 
 <%_ if(features.googleanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
@@ -21,8 +20,10 @@ import pushNotifications from './pushNotifications/reducer';
 import drawer from './drawer/reducer';
 <%_ } _%>
 <%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login || features.googleanalytics) { _%>
-
 <%_ } _%>
+
+import Navigator from '@screens';
+
 const nav = createNavigationReducer(Navigator);
 
 configureMergeState((state, diff) => state.merge(diff));
@@ -55,7 +56,6 @@ middlewares.push(fetchMiddleware);
 <%_ if(features.googleanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
 middlewares.push(AnalyticsMiddleware);
-
 <%_ } _%>
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));

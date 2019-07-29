@@ -22,7 +22,8 @@ const DEPENDENCIES = [
   'react-native-gesture-handler',
   'i18next',
   'redux-recompose',
-  '@react-native-community/async-storage'
+  '@react-native-community/async-storage',
+  '@react-native-community/eslint-config'
 ];
 
 const DEV_DEPENDENCIES = [

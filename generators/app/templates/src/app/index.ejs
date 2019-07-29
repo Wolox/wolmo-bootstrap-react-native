@@ -33,9 +33,10 @@ class App extends Component {
     checkAnalyticsTrackingID();
     <%_ } _%>
     <%_ if(features.login) { _%>
-    authSetup(this.props.dispatch);
+    const { dispatch } = this.props;
+    authSetup(dispatch);
     <%_ } _%>
-    apiSetup(this.props.dispatch);
+    apiSetup(dispatch);
   }
 
   render() {
