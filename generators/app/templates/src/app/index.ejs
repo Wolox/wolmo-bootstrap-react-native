@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Reactotron from 'reactotron-react-native';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
 import alertIfHuaweiDevice from '@config/HuaweiPushNotifications';
@@ -51,4 +52,6 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
+
+export default connect()(MyAppWithOverlay);
