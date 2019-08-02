@@ -10,15 +10,11 @@ module.exports = function babelConfigSetup() {
         root: ['./src'],
         alias: {
           '@app': './src/app',
-          '@assets': './src/app/assets',
           '@components': './src/app/components',
           '@config': './src/config',
           '@constants': './src/constants',
-          '@lottieAssets': './src/lottieAssets',
-          '@schemas': './src/schemas',
           '@screens': './src/app/screens',
           '@services': './src/services',
-          '@propTypes': './src/propTypes',
           '@redux': './src/redux',
           '@utils': './src/utils'
         }
