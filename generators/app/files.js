@@ -131,7 +131,7 @@ module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
 
 // CONFIG
 module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/PushNotifications.js`;
-module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/HuaweiPushNotifications.js`;
+module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/huaweiPushNotifications.js`;
 module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;

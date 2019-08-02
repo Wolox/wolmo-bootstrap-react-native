@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from '@config/HuaweiPushNotifications';
+import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
 import configPushNotifications from '@config/PushNotifications';
