@@ -1,3 +1,4 @@
+// var
 let pushNotifications;
 try {
   pushNotifications = require('react-native-push-notification'); // eslint-disable-line global-require
