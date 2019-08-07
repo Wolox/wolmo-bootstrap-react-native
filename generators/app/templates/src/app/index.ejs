@@ -26,17 +26,18 @@ import AppNavigator from '@components/AppNavigator';
 
 class App extends Component {
   componentDidMount() {
+    const { dispatch } = this.props;
     <%_ if(features.pushnotifications) { _%>
-    configPushNotifications(this.props.dispatch);
+    configPushNotifications(dispatch);
     alertIfHuaweiDevice();
     <%_ } _%>
     <%_ if(features.googleanalytics) { _%>
     checkAnalyticsTrackingID();
     <%_ } _%>
     <%_ if(features.login) { _%>
-    authSetup(this.props.dispatch);
+    authSetup(dispatch);
     <%_ } _%>
-    apiSetup(this.props.dispatch);
+    apiSetup(dispatch);
   }
 
   render() {
