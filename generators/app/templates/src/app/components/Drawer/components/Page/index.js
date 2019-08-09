@@ -19,7 +19,7 @@ function Page({ title, textProps, onPress, image }) {
 Page.propTypes = {
   title: PropTypes.string.isRequired,
   textProps: PropTypes.shape({ ...Text.propTypes }),
-  onPress: PropTypes.func,
+  onPress: PropTypes.func.isRequired,
   image: PropTypes.string
 };
 
