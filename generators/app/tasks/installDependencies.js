@@ -8,7 +8,6 @@ const DEPENDENCIES = [
   'change-case',
   'lodash',
   'react-navigation',
-  'react-navigation-drawer',
   'react-navigation-redux-helpers',
   'react-redux',
   'reactotron-apisauce',

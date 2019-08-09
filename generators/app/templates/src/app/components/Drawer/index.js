@@ -3,31 +3,25 @@ import { ScrollView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import store from '@redux/store';
 
-import styles from './styles';
+import styles, { medium } from './styles';
 import Page from './components/Page';
 
+const PAGE_EXAMPLE_1 = 'PageExample1';
+const PAGE_EXAMPLE_2 = 'PageExample2';
+
 class Drawer extends Component {
-  navigateToScreen = route => () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route
-    });
-    store.dispatch(navigateAction);
-  };
+  navigateToScreen = routeName => () => store.dispatch(NavigationActions.navigate({ routeName }));
 
   render() {
     return (
       <ScrollView bounces={false} contentContainerStyle={styles.container}>
         <Page
-          title="PageExample1"
-          textProps={{ medium: 'medium' }}
-          onPress={this.navigateToScreen('PageExample1')}
+          title={PAGE_EXAMPLE_1}
+          textProps={medium}
+          onPress={this.navigateToScreen(PAGE_EXAMPLE_1)}
           image={null} // If you need to add an image you can do it from here
         />
-        <Page
-          title="PageExample2"
-          textProps={{ medium: 'medium' }}
-          onPress={this.navigateToScreen('PageExample2')}
-        />
+        <Page title={PAGE_EXAMPLE_2} textProps={medium} onPress={this.navigateToScreen(PAGE_EXAMPLE_2)} />
       </ScrollView>
     );
   }

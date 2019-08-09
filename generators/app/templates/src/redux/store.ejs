@@ -17,7 +17,7 @@ import auth from './auth/reducer';
 <%_ if(features.pushnotifications) { _%>
 import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
-<%_ if(features.drawer || features.pushnotifications || features.login || features.googleanalytics) { _%>
+<%_ if(features.pushnotifications || features.login || features.googleanalytics) { _%>
 
 <%_ } _%>
 const nav = createNavigationReducer(Navigator);
