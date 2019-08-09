@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+const IMAGE_SIZE = 20;
+const MARGIN_LEFT = 30;
+
 export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -9,12 +12,12 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   image: {
-    marginLeft: 30,
-    height: 20,
-    width: 20
+    marginLeft: MARGIN_LEFT,
+    height: IMAGE_SIZE,
+    width: IMAGE_SIZE
   },
   text: {
-    marginLeft: 30
+    marginLeft: MARGIN_LEFT
   },
   imageContainer: {
     flexDirection: 'row',
