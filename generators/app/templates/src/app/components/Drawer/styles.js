@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
-
-import { isIos } from '../../../constants/platform';
+import { isIos } from '@constants/platform';
 
 export default StyleSheet.create({
   container: {

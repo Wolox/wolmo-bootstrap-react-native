@@ -31,9 +31,7 @@ import Home from '@screens/Home';
       }
       /*
       This is where you should add screens to the Drawer, here is an example how to.
-      NewScreenExample: {
-        screen: NewScreenExample
-      }, */
+      ...inferRoute({ NewScreenExample }) */
     },
     {
       drawerNavConfig
@@ -48,9 +46,7 @@ const loginStack = createStackNavigator(
     ...inferRoute({ Login })
     /*
   This is where you should add screens that don't have the Drawer, here is an example how to.
-  NewScreenExample: {
-    screen: NewScreenExample
-  }, */
+  ...inferRoute({ NewScreenExample }), */
   },
   loginsStackNavConfig
 );
