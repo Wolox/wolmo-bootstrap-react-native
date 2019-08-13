@@ -49,17 +49,19 @@ export const screensNavOptions = {
       elevation: 0,
       shadowOpacity: 0
     }
-  <%_ } _%>
   <%_ if (features.drawer) { _%>
   },
+  <%_ } else { _%>
+  }
+  <%_ } _%>
+  <%_ } _%>
+  <%_ if (features.drawer) { _%>
   [Routes.Home]: ({ navigation }) => ({
-    headerRight: <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />,
+    headerRight: <Button onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />,
     drawerLockMode: 'unlocked'
     /* If you want to add the Drawer to your screen 
     you have to add the above line, you can use this object as a example. */
   })
-  <%_ } else { _%>
-  }
   <%_ } _%>
 };
 

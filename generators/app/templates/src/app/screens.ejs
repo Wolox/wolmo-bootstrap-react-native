@@ -4,8 +4,10 @@
 
 import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator<% if (features.drawer) { %>, createDrawerNavigator<% } %> } from 'react-navigation';
 import Routes from '@constants/routes';
-import { mainStackNavConfig<% if (features.tabs) { %>, tabNavConfig<% } %><% if (features.drawer) { %>, drawerNavConfig<% } %><% if (features.login) { %>, loginsStackNavConfig<% } %> } from '@config/navigation';
+import { screensNavOptions, mainStackNavConfig<% if (features.tabs) { %>, tabNavConfig<% } %><% if (features.drawer) { %>, drawerNavConfig<% } %><% if (features.login) { %>, loginsStackNavConfig<% } %> } from '@config/navigation';
+<%_ if(features.login || features.tabs) { _%>
 import { inferRoute } from '@utils/navUtils';
+<%_ } _%>
 <%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
 import Login from '@screens/Login';
@@ -62,7 +64,7 @@ export default createStackNavigator(
     <%_ } _%>
     [Routes.Home]: {
       <%_ if (features.drawer) { _%>
-        screen: drawerStack
+        screen: drawerStack,
       <%_ } else if (features.tabs && !features.drawer) { _%>
       screen: createBottomTabNavigator(
         {
@@ -70,7 +72,7 @@ export default createStackNavigator(
           ...inferRoute({ Tab2: Home })
         },
         tabNavConfig
-      )
+      ),
       <%_ } else { _%>
       screen: Home,
       <%_ } _%>
