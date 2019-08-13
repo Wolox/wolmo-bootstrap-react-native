@@ -11,7 +11,7 @@ const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles')
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
-const babelrcSetup = require('./babelrcSetup');
+const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
 
@@ -31,7 +31,7 @@ module.exports = function index() {
   iosAppIcons.bind(this)();
 
   // ----------------     babelrc setup     ----------------
-  babelrcSetup.bind(this)();
+  babelConfigSetup.bind(this)();
 
   // ----------------     add react-native-config to build.gradle     ----------------
   androidProjectSetup.bind(this)();

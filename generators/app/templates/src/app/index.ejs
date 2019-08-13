@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Reactotron from 'reactotron-react-native';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
 import alertIfHuaweiDevice from '@config/HuaweiPushNotifications';
@@ -17,17 +18,18 @@ import AppNavigator from '@components/AppNavigator';
 
 class App extends Component {
   componentDidMount() {
+    const { dispatch } = this.props;
     <%_ if(features.pushnotifications) { _%>
-    configPushNotifications(this.props.dispatch);
+    configPushNotifications(dispatch);
     alertIfHuaweiDevice();
     <%_ } _%>
     <%_ if(features.googleanalytics) { _%>
     checkAnalyticsTrackingID();
     <%_ } _%>
     <%_ if(features.login) { _%>
-    authSetup(this.props.dispatch);
+    authSetup(dispatch);
     <%_ } _%>
-    apiSetup(this.props.dispatch);
+    apiSetup(dispatch);
   }
 
   render() {
@@ -35,4 +37,6 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
+
+export default connect()(MyAppWithOverlay);

@@ -7,6 +7,7 @@ module.exports = function eslintSetup() {
   packageJson.scripts.precommit = 'npm run lint-diff';
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 
+  this.fs.copy(this.templatePath('jsconfig.ejs'), this.destinationPath(this.projectName, 'jsconfig.json'));
   this.fs.copy(this.templatePath('.eslintrc.ejs'), this.destinationPath(this.projectName, '.eslintrc.js'));
   this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath(this.projectName, '.eslintignore'));
 };

@@ -13,9 +13,7 @@ import styles from './styles';
 class CustomTextInput extends PureComponent {
   state = { showPassword: false };
 
-  handleShowPassword = () => {
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
-  };
+  handleShowPassword = () => this.setState(prevState => ({ showPassword: !prevState.showPassword }));
 
   render() {
     const {
