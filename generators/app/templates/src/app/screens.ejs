@@ -15,30 +15,30 @@ import Login from '@screens/Login';
 import Home from '@screens/Home';
 
 <%_ if(features.drawer) { _%>
-  const drawerStack = createDrawerNavigator(
-    {
-      [Routes.Home]: {
-        <%_ if (features.tabs) { _%>
-          screen: createBottomTabNavigator(
-            {
-              ...inferRoute({ Tab1: Home }),
-              ...inferRoute({ Tab2: Home })
-            },
-            tabNavConfig
-          ),
-          <%_ } else { _%>
-          screen: Home,
-          <%_ } _%>
-          navigationOptions: screensNavOptions[Routes.Home]
-      }
-      /*
-      This is where you should add screens to the Drawer, here is an example how to.
-      ...inferRoute({ NewScreenExample }) */
-    },
-    {
-      drawerNavConfig
+const drawerStack = createDrawerNavigator(
+  {
+    [Routes.Home]: {
+      <%_ if (features.tabs) { _%>
+        screen: createBottomTabNavigator(
+          {
+            ...inferRoute({ Tab1: Home }),
+            ...inferRoute({ Tab2: Home })
+          },
+          tabNavConfig
+        ),
+        <%_ } else { _%>
+        screen: Home,
+        <%_ } _%>
+        navigationOptions: screensNavOptions[Routes.Home]
     }
-  );
+    /*
+    This is where you should add screens to the Drawer, here is an example how to.
+    ...inferRoute({ NewScreenExample }) */
+  },
+  {
+    drawerNavConfig
+  }
+);
 
 <%_ } _%> 
 
