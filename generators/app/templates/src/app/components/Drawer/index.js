@@ -19,7 +19,8 @@ class Drawer extends Component {
           title={PAGE_EXAMPLE_1}
           textProps={medium}
           onPress={this.navigateToScreen(PAGE_EXAMPLE_1)}
-          image={null} // If you need to add an image you can do it from here
+          // image={image}
+          // If you need to add an image uncomment the line above
         />
         <Page title={PAGE_EXAMPLE_2} textProps={medium} onPress={this.navigateToScreen(PAGE_EXAMPLE_2)} />
       </ScrollView>
