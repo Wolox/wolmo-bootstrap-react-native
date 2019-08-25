@@ -12,7 +12,7 @@ const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
-const babelrcSetup = require('./babelrcSetup');
+const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 
 module.exports = function index() {
@@ -31,7 +31,7 @@ module.exports = function index() {
   iosAppIcons.bind(this)();
 
   // ----------------     babelrc setup     ----------------
-  babelrcSetup.bind(this)();
+  babelConfigSetup.bind(this)();
 
   // ----------------     add react-native-config to build.gradle     ----------------
   androidProjectSetup.bind(this)();

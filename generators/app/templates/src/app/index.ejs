@@ -26,22 +26,24 @@ import AppNavigator from '@components/AppNavigator';
 
 class App extends Component {
 componentDidMount() {
-<% _ if (features.pushnotifications) { _ %>
-configPushNotifications(this.props.dispatch);
+const { dispatch } = this.props;
+<%_ if(features.pushnotifications) { _%>
+configPushNotifications(dispatch);
 alertIfHuaweiDevice();
-<% _ } _ %>
-<% _ if (features.googleanalytics) { _ %>
+<%_ } _%>
+<%_ if(features.googleanalytics) { _%>
 checkAnalyticsTrackingID();
-<% _} _ %>
-<% _ if (features.login) { _ %>
-authSetup(this.props.dispatch);
-<% _ } _ %>
-apiSetup(this.props.dispatch);
+<%_ } _%>
+<%_ if(features.login) { _%>
+authSetup(dispatch);
+<%_ } _%>
+apiSetup(dispatch);
 }
 
 render() {
 <% _ if (features.drawerios && features.drawerandroid) { _ %>
-return <Drawer />;
+return
+<Drawer />;
 <% _ } else if (features.drawerios) { _ %>
 return isAndroid ?
 <AppNavigator /> :
