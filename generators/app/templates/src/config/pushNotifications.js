@@ -1,7 +1,7 @@
-let pushNotifications;
+let PushNotification;
 try {
-  pushNotifications = require('react-native-push-notification'); // eslint-disable-line global-require
-} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
+  PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
+} catch (e) { } // eslint-disable-line no-empty, prettier/prettier
 
 import { actionCreators as notificationActions } from '@redux/pushNotifications/actions'; // eslint-disable-line import/first
 
@@ -21,8 +21,8 @@ export default function setUp(dispatch, isLoggedIn) {
   if (!senderID) {
     console.warn('Push notifications senderID has not been set. Make sure to setup your google project');
   }
-  if (pushNotifications) {
-    pushNotifications.configure({
+  if (PushNotification) {
+    PushNotification.configure({
       onRegister(data) {
         dispatch(notificationActions.register(data.token));
         if (isLoggedIn) {
@@ -42,7 +42,7 @@ export default function setUp(dispatch, isLoggedIn) {
       requestPermissions: true
     });
     console.warn(
-      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/PushNotifications.js'
+      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/pushNotifications.js'
     );
   } else {
     console.warn(

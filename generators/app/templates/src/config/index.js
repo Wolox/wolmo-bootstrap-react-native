@@ -1,2 +1,2 @@
-import './ReactotronConfig';
+import './reactotronConfig';
 import './i18n';

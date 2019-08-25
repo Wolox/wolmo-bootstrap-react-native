@@ -6,7 +6,7 @@ import { apiSetup } from '@config/api';
 import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
-import configPushNotifications from '@config/PushNotifications';
+import configPushNotifications from '@config/pushNotifications';
 <%_ } _%>
 <%_ if(features.googleanalytics) { _%>
 import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware';
@@ -25,31 +25,37 @@ import AppNavigator from '@components/AppNavigator';
 <%_ } _%>
 
 class App extends Component {
-  componentDidMount() {
-    <%_ if(features.pushnotifications) { _%>
-    configPushNotifications(this.props.dispatch);
-    alertIfHuaweiDevice();
-    <%_ } _%>
-    <%_ if(features.googleanalytics) { _%>
-    checkAnalyticsTrackingID();
-    <%_ } _%>
-    <%_ if(features.login) { _%>
-    authSetup(this.props.dispatch);
-    <%_ } _%>
-    apiSetup(this.props.dispatch);
-  }
+componentDidMount() {
+<%_ if(features.pushnotifications) { _%>
+configPushNotifications(this.props.dispatch);
+alertIfHuaweiDevice();
+<%_ } _%>
+<%_ if(features.googleanalytics) { _%>
+checkAnalyticsTrackingID();
+<%_ } _%>
+<%_ if(features.login) { _%>
+authSetup(this.props.dispatch);
+<%_ } _%>
+apiSetup(this.props.dispatch);
+}
 
-  render() {
-    <%_ if(features.drawerios && features.drawerandroid) { _%>
-    return <Drawer />;
-    <%_ } else if (features.drawerios) { _%>
-    return isAndroid ? <AppNavigator /> : <Drawer />;
-    <%_ } else if (features.drawerandroid) { _%>
-    return isAndroid ? <Drawer /> : <AppNavigator />;
-    <%_ } else { _%>
-    return <AppNavigator />;
-    <%_ } _%>
-  }
+render() {
+<%_ if(features.drawerios && features.drawerandroid) { _%>
+return
+<Drawer />;
+<%_ } else if (features.drawerios) { _%>
+return isAndroid ?
+<AppNavigator /> :
+<Drawer />;
+<%_ } else if (features.drawerandroid) { _%>
+return isAndroid ?
+<Drawer /> :
+<AppNavigator />;
+<%_ } else { _%>
+return
+<AppNavigator />;
+<%_ } _%>
+}
 }
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;

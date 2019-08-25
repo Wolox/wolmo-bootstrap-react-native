@@ -1,58 +1,61 @@
 # Wolmo Bootstrap: React Native
 
 ## Prerequisites
-- React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
-- node & npm: https://github.com/creationix/nvm#install-script
-- yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
-- ruby (for Fastlane): https://github.com/rbenv/rbenv#installation
+* React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
+* node & npm: https://github.com/creationix/nvm#install-script
+* yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
+* ruby (for Fastlane): https://github.com/rbenv/rbenv#installation
 
 ## TL;DR
+
 You don't need to clone this repository. Just run the following in your terminal:
+
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-native/master/run.sh)
 ```
 
 ## Description
+
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-- Login
-- Drawer
-- Tabs
-- Push notifications
-- Google Analytics
+* Login
+* Drawer
+* Tabs
+* Push notifications
+* Google Analytics
 
 ### Boilerplate
 
 The boilerplate includes
 
-- [Basic routes configuration for React Navigation](/generators/app/templates/src/screens.ejs)
-- [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
-- [Reactotron config](/generators/app/templates/src/config/ReactotronConfig.ejs)
-- [Basic constants](/generators/app/templates/src/constants)
-- [Http client config](/generators/app/templates/src/config/api.js)
-- [i18n config](/generators/app/templates/src/config/i18n.js)
-- [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+* [Basic routes configuration for React Navigation](/generators/app/templates/src/screens.ejs)
+* [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
+* [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
+* [Basic constants](/generators/app/templates/src/constants)
+* [Http client config](/generators/app/templates/src/config/api.js)
+* [i18n config](/generators/app/templates/src/config/i18n.js)
+* [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 
 ### Tech Stack
 
-- [React](https://facebook.github.io/react/)
-- [React Native](https://facebook.github.io/react-native/)
-- [React Navigation](https://reactnavigation.org/)
-- [Redux](http://redux.js.org/)
-- [Redux Thunk](https://github.com/gaearon/redux-thunk)
-- [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
-- [Apisauce](https://github.com/skellock/apisauce)
-- [Reselect](https://github.com/reactjs/reselect)
-- [React Native Config](https://github.com/luggit/react-native-config)
-- [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
-- [Redux Beacon](For Google Analytics) (https://rangle.github.io/redux-beacon)
+* [React](https://facebook.github.io/react/)
+* [React Native](https://facebook.github.io/react-native/)
+* [React Navigation](https://reactnavigation.org/)
+* [Redux](http://redux.js.org/)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk)
+* [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
+* [Apisauce](https://github.com/skellock/apisauce)
+* [Reselect](https://github.com/reactjs/reselect)
+* [React Native Config](https://github.com/luggit/react-native-config)
+* [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+* [Redux Beacon](For Google Analytics) (https://rangle.github.io/redux-beacon)
 
 ### Tooling
 
-- [Eslint](http://eslint.org/)
-- [Prettier](https://github.com/prettier/prettier)
-- [Reactotron](https://github.com/infinitered/reactotron)
+* [Eslint](http://eslint.org/)
+* [Prettier](https://github.com/prettier/prettier)
+* [Reactotron](https://github.com/infinitered/reactotron)
 
 ### Bootstrap Kick off
 
@@ -68,19 +71,17 @@ For bootstraping your own project using the template generator script you'll nee
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
+1. Fork it.
+2. Create your feature branch (`git checkout -b my-new-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin my-new-feature`).
+5. Create new Pull Request.
 
 ## About
 
 This project is maintained by [Sebastian Balay](https://github.com/sbalay) and it was written by [Wolox](http://www.wolox.com.ar).
 
-![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
-
+![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
 
 ## License
 
