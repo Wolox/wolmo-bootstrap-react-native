@@ -9,5 +9,21 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['android:build'] = 'cd android && ./gradlew clean && ./gradlew assembleRelease';
   packageJson.scripts['android:install'] =
     'cd android && ./gradlew clean && ./gradlew assembleRelease && ./gradlew installRelease';
+
+  packageJson.scripts.test = 'jest';
+  packageJson.scripts['test:watch'] = 'jest --watch';
+  packageJson.scripts['test:debug'] = 'node --inspect node_modules/.bin/jest --runInBand';
+
+  packageJson.jest.preset = 'react-native';
+  packageJson.jest.setupTestFrameworkScriptFile = '<rootDir>__tests__/setup/setupEnzyme.js';
+  packageJson.jest.testPathIgnorePatterns = [
+    '<rootDir>/node_modules/',
+    '<rootDir>/__tests__/setup/',
+    '<rootDir>/__tests__/redux/store.js',
+    '<rootDir>/__tests__/responses/'
+  ];
+  packageJson.jest.transformIgnorePatterns = [
+    '/node_modules/@react-native-community/async-storage/(?!(lib))'
+  ];
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };
