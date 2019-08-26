@@ -15,7 +15,7 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['test:debug'] = 'node --inspect node_modules/.bin/jest --runInBand';
 
   packageJson.jest.preset = 'react-native';
-  packageJson.jest.setupTestFrameworkScriptFile = '<rootDir>__tests__/setup/setupEnzyme.js';
+  packageJson.jest.setupFilesAfterEnv = ['<rootDir>__tests__/setup/setupEnzyme.js'];
   packageJson.jest.testPathIgnorePatterns = [
     '<rootDir>/node_modules/',
     '<rootDir>/__tests__/setup/',
