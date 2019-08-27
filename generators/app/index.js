@@ -5,7 +5,6 @@ const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
-const reactNativeLink = require('./tasks/reactNativeLink');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 
@@ -83,7 +82,6 @@ class ReactNativeBootstrap extends Generator {
   install() {
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
-      .then(() => reactNativeLink.bind(this)())
       .then(() => gitInitialization.bind(this)());
   }
 
