@@ -38,6 +38,7 @@ const DEV_DEPENDENCIES = [
   'eslint-plugin-jsx-a11y',
   'eslint-plugin-prettier',
   'eslint-plugin-react',
+  'eslint-plugin-react-hooks',
   'husky',
   'prettier',
   'prettier-eslint',
