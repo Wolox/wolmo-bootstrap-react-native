@@ -2,7 +2,7 @@ module.exports = {
   env: { es6: true, node: true, browser: true, "jest/globals": true },
   parser: 'babel-eslint',
   parserOptions: { ecmaFeatures: { experimentalObjectRestSpread: true, jsx: true }, sourceType: 'module' },
-  plugins: ['react', 'prettier', 'flowtype', 'jest'],
+  plugins: ['react', 'prettier', 'flowtype', 'jest', 'react-hooks'],
   extends: [
     'eslint:recommended',
     'airbnb',
@@ -42,7 +42,10 @@ module.exports = {
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn'
+
   },
   settings: {
     'import/resolver': {
