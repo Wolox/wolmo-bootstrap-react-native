@@ -1,7 +1,7 @@
 let PushNotification;
 try {
   PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
-} catch (e) { } // eslint-disable-line no-empty, prettier/prettier
+} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
 
 import { actionCreators as notificationActions } from '@redux/pushNotifications/actions'; // eslint-disable-line import/first
 

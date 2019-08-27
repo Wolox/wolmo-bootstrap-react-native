@@ -20,7 +20,7 @@ export const getPreviousRouteName = navigationState => {
 };
 
 export function inferRoute(screenObj) {
-  const screenName = Routes[(Object.keys(screenObj) ?.[0])];
+  const screenName = Routes[(Object.keys(screenObj)?.[0])];
   return (
     screenName && {
       [screenName]: {

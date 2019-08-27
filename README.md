@@ -1,6 +1,7 @@
 # Wolmo Bootstrap: React Native
 
 ## Prerequisites
+
 * React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
 * node & npm: https://github.com/creationix/nvm#install-script
 * yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
@@ -23,7 +24,6 @@ The following optional features can be added out of the box to the new projects:
 * Drawer
 * Tabs
 * Push notifications
-* Google Analytics
 
 ### Boilerplate
 
@@ -49,7 +49,6 @@ The boilerplate includes
 * [Reselect](https://github.com/reactjs/reselect)
 * [React Native Config](https://github.com/luggit/react-native-config)
 * [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
-* [Redux Beacon](For Google Analytics) (https://rangle.github.io/redux-beacon)
 
 ### Tooling
 
