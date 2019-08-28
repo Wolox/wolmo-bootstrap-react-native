@@ -2,15 +2,12 @@
   "name": "generator-wolmo-bootstrap-rn",
   "version": "0.3.7",
   "description": "",
-  "files": [
-    "generators"
-  ],
-  "keywords": [
-    "yeoman-generator"
-  ],
+  "files": ["generators"],
+  "keywords": ["yeoman-generator"],
   "scripts": {
     "lint": "eslint .",
-    "lint-diff": "git diff --name-only --cached --relative --diff-filter=ACM | grep \\.js$ | xargs eslint",
+    "lint-diff":
+      "git diff --name-only --cached --relative --diff-filter=ACM | grep \\.js$ | xargs eslint",
     "lint-fix": "eslint . --fix",
     "precommit": "npm run lint-diff"
   },

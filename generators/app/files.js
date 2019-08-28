@@ -162,11 +162,11 @@ module.exports.PUSH_NOTIFICATIONS_SERVICE = `${module.exports.SERVICES_PATH}/Pus
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
 
 // CONFIG
-module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/PushNotifications.js`;
-module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/HuaweiPushNotifications.js`;
+module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.js`;
+module.exports.HUAWEI_DEVICES_CONFIG = `${module.exports.CONFIG_PATH}/huaweiPushNotifications.js`;
 module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
-module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/ReactotronConfig.js`;
+module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.js`;
 module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
 module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.js`;
 module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.js`;
