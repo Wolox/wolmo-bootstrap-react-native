@@ -1,41 +1,39 @@
-import React, { PureComponent } from 'react';
+import React, { useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 import { getCustomStyles } from '@utils/styleUtils';
 
 import styles from './styles';
 
-class CustomText extends PureComponent {
-  /*
+/*
    ** You can add styles to Base like Family Font to be the Text styles base!
    ** if you want to add a custom style, you need to add it here and in VARIANTS
    */
-  static VARIANTS = [
-    'xxsmall',
-    'xsmall',
-    'small',
-    'medium',
-    'big',
-    'xbig',
-    'bold',
-    'center',
-    'white',
-    'blue',
-    'green',
-    'gray'
-  ];
+const VARIANTS = [
+  'xxsmall',
+  'xsmall',
+  'small',
+  'medium',
+  'big',
+  'xbig',
+  'bold',
+  'center',
+  'white',
+  'blue',
+  'green',
+  'gray'
+];
 
-  customStyles = () => getCustomStyles(CustomText.VARIANTS, this.props, styles);
+const CustomText = ({ ...props }) => {
+  const customStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles), [props]);
 
-  render() {
-    const { textProps, style, children } = this.props;
-    return (
-      <Text {...textProps} style={[styles.base, this.customStyles(), style]}>
-        {children}
-      </Text>
-    );
-  }
-}
+  const { textProps, style, children } = props;
+  return (
+    <Text {...textProps} style={[styles.base, customStyles(), style]}>
+      {children}
+    </Text>
+  );
+};
 
 CustomText.defaultProps = {
   textProps: {}
@@ -46,8 +44,4 @@ CustomText.propTypes = {
   textProps: PropTypes.shape({ ...Text.propTypes })
 };
 
-CustomText.VARIANTS.forEach(variant => {
-  CustomText.propTypes[variant] = PropTypes.bool;
-});
-
-export default CustomText;
+export default memo(CustomText);

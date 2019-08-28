@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback, memo } from 'react';
+import { useDispatch } from 'react-redux';
 import { actionCreators as authActions } from '@redux/auth/actions';
 
 import Home from './layout';
 
-class HomeContainer extends Component {
-  handleLogout = () => {
-    const { dispatch } = this.props;
-    dispatch(authActions.logout());
-  };
+const HomeContainer = () => {
+  const dispatch = useDispatch();
+  const handleLogout = useCallback(() => dispatch(authActions.logout()), []);
 
-  render() {
-    return <Home onLogout={this.handleLogout} />;
-  }
-}
+  return <Home onLogout={handleLogout} />;
+};
 
-export default connect()(HomeContainer);
+export default memo(HomeContainer);
