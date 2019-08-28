@@ -7,6 +7,8 @@ const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
+const configurePods = require('./tasks/configurePods');
+const installPods = require('./tasks/installPods');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -72,7 +74,8 @@ class ReactNativeBootstrap extends Generator {
     return Promise.resolve()
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
-      .then(() => installDependencies.bind(this)());
+      .then(() => installDependencies.bind(this)())
+      .then(() => configurePods.bind(this)());
   }
 
   writing() {
@@ -82,6 +85,7 @@ class ReactNativeBootstrap extends Generator {
   install() {
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
+      .then(() => installPods.bind(this)())
       .then(() => gitInitialization.bind(this)());
   }
 
