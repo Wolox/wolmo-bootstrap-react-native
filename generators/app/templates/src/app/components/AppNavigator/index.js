@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { createReduxContainer } from 'react-navigation-redux-helpers';
 import { ROOT } from '@constants/platform';
+
 import Navigator from '@screens';
 
 const AppWithNavigationState = createReduxContainer(Navigator, ROOT);

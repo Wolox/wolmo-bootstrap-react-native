@@ -20,6 +20,38 @@ module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 module.exports.FASTLANE_EV = `${module.exports.IOS_PATH}/fastlane/config/.env`;
 
+// TESTING FILES
+module.exports.TESTS = '__tests__';
+module.exports.MOCKS = '__mocks__';
+
+// TESTING - MOCKS
+module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH = `${module.exports.MOCKS}/@react-native-community`;
+module.exports.ASYNC_STORAGE_MOCK = `${module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH}/async-storage.js`;
+module.exports.I18NEXT_MOCK = `${module.exports.MOCKS}/i18next.js`;
+
+// TESTING - TESTS
+module.exports.TESTS_COMPONENTS_PATH = `${module.exports.TESTS}/components`;
+module.exports.TESTS_REDUX_PATH = `${module.exports.TESTS}/redux`;
+module.exports.TESTS_RESPONSES_PATH = `${module.exports.TESTS}/responses`;
+module.exports.TESTS_SCREENS_PATH = `${module.exports.TESTS}/screens`;
+module.exports.TESTS_SETUP_PATH = `${module.exports.TESTS}/setup`;
+
+// TESTING - RESPONSES-EXAMPLES
+module.exports.TESTS_RESPONSES_EXAMPLES = `${module.exports.TESTS_RESPONSES_PATH}/examples.js`;
+// TESTING - TESTS-REDUX
+module.exports.TESTS_STORE = `${module.exports.TESTS_REDUX_PATH}/store.js`;
+module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
+
+module.exports.TESTS_AUTH_ACTIONS = `${module.exports.TESTS_AUTH_PATH}/actions.js`;
+module.exports.TESTS_AUTH_REDUCER = `${module.exports.TESTS_AUTH_PATH}/reducer.js`;
+
+// TESTING - TESTS-SETUP
+module.exports.TESTS_SETUP_ENZYME = `${module.exports.TESTS_SETUP_PATH}/setupEnzyme.js`;
+
+// TESTING - SCREENS-LOGIN
+module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/Login`;
+module.exports.TESTS_LOGIN_SCREEN_TEST = `${module.exports.TESTS_LOGIN_SCREEN_PATH}/testLoginScreen.js`;
+
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
 module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;

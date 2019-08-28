@@ -38,11 +38,19 @@ const DEV_DEPENDENCIES = [
   'eslint-plugin-jsx-a11y',
   'eslint-plugin-prettier',
   'eslint-plugin-react',
+  'eslint-plugin-jest',
   'eslint-plugin-react-hooks',
   'husky',
   'prettier',
   'prettier-eslint',
-  'jest-react-native'
+  'jest-react-native',
+  'redux-mock-store',
+  'enzyme',
+  'enzyme-adapter-react-16',
+  'enzyme-to-json',
+  'react-native-mock-render',
+  'jsdom',
+  'jsdom-global'
 ];
 
 /**
