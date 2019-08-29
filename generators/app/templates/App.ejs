@@ -1,0 +1,30 @@
+import React from 'react';
+import { Provider } from 'react-redux';
+<%_ if(features.reduxpersist) { _%>
+import { persistStore } from 'redux-persist';
+<%_ } _%>
+import store from '@redux/store';
+<%_ if(features.reduxpersist) { _%>
+import { PersistGate } from 'redux-persist/integration/react';
+<%_} _%>
+
+import App from '@app';
+import '@config';
+
+<%_ if(features.reduxpersist) { _%>
+const persistor = persistStore(store);
+<%_} _%>
+
+export default function index() {
+  return (
+    <Provider store={store}>
+      <%_ if(features.reduxpersist) { _%>
+      <PersistGate loading={null} persistor={persistor}>
+      <%_} _%>
+        <App />
+      <%_ if(features.reduxpersist) { _%>
+      </PersistGate>
+      <%_} _%>
+    </Provider>
+  );
+}

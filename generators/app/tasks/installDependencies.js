@@ -116,6 +116,10 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@redux-beacon/react-native-google-analytics');
   }
 
+  if (this.features.reduxpersist) {
+    DEPENDENCIES.push('redux-persist');
+    DEPENDENCIES.push('redux-persist-seamless-immutable');
+  }
   return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
     const pluginNames = Object.keys(plugins);
     const fixedDevDeps = DEV_DEPENDENCIES.map(
