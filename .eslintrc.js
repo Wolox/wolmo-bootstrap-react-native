@@ -3,7 +3,7 @@ module.exports = {
     "es6": true,
     "node": true,
     "browser": true
-  },
+    },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -15,7 +15,8 @@ module.exports = {
   "plugins": [
     "react",
     "prettier",
-    "flowtype"
+    "flowtype",
+    "react-hooks"
   ],
   "extends": [
     "eslint:recommended",
