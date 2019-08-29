@@ -1,9 +1,9 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from '@redux/store';
+import React from "react";
+import { Provider } from "react-redux";
+import "@config";
+import store from "@redux/store";
 
-import App from '@app';
-import '@config';
+import App from "@app";
 
 export default function index() {
   return (
