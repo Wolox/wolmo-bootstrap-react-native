@@ -7,7 +7,7 @@ import { transparent } from '@constants/colors';
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
 
-const CustomTextInput = ({ ...props }) => {
+const CustomTextInput = props => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);

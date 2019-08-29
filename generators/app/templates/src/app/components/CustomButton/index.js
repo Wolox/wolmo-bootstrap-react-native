@@ -9,7 +9,7 @@ import styles from './styles';
 
 const VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
 
-const CustomButton = ({ ...props }) => {
+const CustomButton = props => {
   const customStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles), [props]);
 
   const customTextStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles, 'Content'), [props]);

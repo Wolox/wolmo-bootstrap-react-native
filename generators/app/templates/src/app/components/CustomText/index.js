@@ -24,7 +24,7 @@ const VARIANTS = [
   'gray'
 ];
 
-const CustomText = ({ ...props }) => {
+const CustomText = props => {
   const customStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles), [props]);
 
   const { textProps, style, children } = props;
