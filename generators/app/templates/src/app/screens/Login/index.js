@@ -8,7 +8,7 @@ import Login from './layout';
 const LoginContainer = () => {
   const loading = useSelector(state => state.auth.currentUserLoading);
   const dispatch = useDispatch();
-  const handleLogin = useCallback(() => dispatch(authActions.login()), []);
+  const handleLogin = useCallback(() => dispatch(authActions.login()), [dispatch]);
 
   return <Login onLogin={handleLogin} loading={loading} />;
 };

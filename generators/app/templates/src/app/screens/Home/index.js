@@ -6,7 +6,7 @@ import Home from './layout';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
-  const handleLogout = useCallback(() => dispatch(authActions.logout()), []);
+  const handleLogout = useCallback(() => dispatch(authActions.logout()), [dispatch]);
 
   return <Home onLogout={handleLogout} />;
 };
