@@ -25,38 +25,31 @@ import AppNavigator from '@components/AppNavigator';
 <%_ } _%>
 
 const App = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-useEffect(
-() => {
-<%_ if(features.pushnotifications) { _%>
-configPushNotifications(dispatch);
-alertIfHuaweiDevice();
-<%_ } _%>
-<%_ if(features.googleanalytics) { _%>
-checkAnalyticsTrackingID();
-<%_ } _%>
-<%_ if(features.login) { _%>
-authSetup(dispatch);
-<%_ } _%>
-apiSetup(dispatch);
-},[])
+  useEffect( () => {
+    <%_ if(features.pushnotifications) { _%>
+    configPushNotifications(dispatch);
+    alertIfHuaweiDevice();
+    <%_ } _%>
+    <%_ if(features.googleanalytics) { _%>
+    checkAnalyticsTrackingID();
+    <%_ } _%>
+    <%_ if(features.login) { _%>
+    authSetup(dispatch);
+    <%_ } _%>
+    apiSetup(dispatch);
+    },[]);
 
-<%_ if(features.drawerios && features.drawerandroid) { _%>
-return
-<Drawer />;
-<%_ } else if (features.drawerios) { _%>
-return isAndroid ?
-<AppNavigator /> :
-<Drawer />;
-<%_ } else if (features.drawerandroid) { _%>
-return isAndroid ?
-<Drawer /> :
-<AppNavigator />;
-<%_ } else { _%>
-return
-<AppNavigator />;
-<%_ } _%>
+  <%_ if(features.drawerios && features.drawerandroid) { _%>
+  return <Drawer />;
+  <%_ } else if (features.drawerios) { _%>
+  return isAndroid ? <AppNavigator /> : <Drawer />;
+  <%_ } else if (features.drawerandroid) { _%>
+  return isAndroid ? <Drawer /> : <AppNavigator />;
+  <%_ } else { _%>
+  return <AppNavigator />;
+  <%_ } _%>
 }
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
