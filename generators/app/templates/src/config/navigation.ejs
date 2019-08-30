@@ -57,7 +57,9 @@ export const screensNavOptions = {
     headerRight: <Button onPress={() => navigation.dispatch(drawerActions.drawerToggled())} title="Drawer" />
   })
   <%_ } else { _%>
+    <%_ if (features.login) { _%>
   }
+    <%_ } _%>
   <%_ } _%>
 };
 
