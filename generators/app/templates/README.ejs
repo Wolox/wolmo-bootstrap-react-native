@@ -112,34 +112,11 @@ gem install bundler
 bundle install
 ```
 
-#### Create app on both Apple Developer Portal and iTunes Connect
-To interact with Apple Developer Portal and iTunes Connect we use [Produce](https://github.com/fastlane/fastlane/tree/master/produce).
-Run the following command from the project rootpath:
-```bash
-fastlane produce
-```
+#### Available Lanes
 
-#### Create provisioning profiles and signing certificates
+There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
 
-To manage certificates and profiles we use [Match](https://github.com/fastlane/fastlane/tree/master/match).
-Run the following command from the project rootpath:
-```bash
-fastlane match --git_url <project repository url> --git_branch certificates
-```
-You still need to manually set this certificates using xCode.
-
-#### Create push notification certificates
-To create push notification certificates we use [Pem](https://github.com/fastlane/fastlane/tree/master/pem).
-Run the following commands from the project rootpath:
-```bash
-fastlane pem --development
-fastlane pem
-```
-These two commands do the following:
-- Create a new signing request
-- Create a new push certification
-- Downloads the certificate
-- Generates a new .pem file in the current working directory, which you can upload to your server
+Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
 
 --------------------
 
