@@ -5,11 +5,22 @@ module.exports = function reactNativeInit() {
     command: ['react-native', ['init', this.projectName]],
     loadingMessage: 'Initializing react-native',
     context: this.options
-  })
-    .then(({ spinner }) => {
-      spinner.succeed('react-native ready!');
+  }).then(({ spinner }) =>
+    runCommand({
+      command: [
+        'rm',
+        ['-rf', '__tests__'],
+        { cwd: `${process.cwd()}/${this.projectName}` }
+      ],
+      context: this.options
     })
-    .catch(({ spinner }) => {
-      spinner.fail('react-native set up failed. Turn verbose mode on for detailed logging');
-    });
+      .then(() => {
+        spinner.succeed('react-native ready!');
+      })
+      .catch(() => {
+        spinner.fail(
+          'react-native set up failed. Turn verbose mode on for detailed logging'
+        );
+      })
+  );
 };

@@ -3,13 +3,13 @@ import { Provider } from 'react-redux';
 <%_ if(features.reduxpersist) { _%>
 import { persistStore } from 'redux-persist';
 <%_ } _%>
+import '@config';
 import store from '@redux/store';
 <%_ if(features.reduxpersist) { _%>
 import { PersistGate } from 'redux-persist/integration/react';
 <%_} _%>
 
 import App from '@app';
-import '@config';
 
 <%_ if(features.reduxpersist) { _%>
 const persistor = persistStore(store);
