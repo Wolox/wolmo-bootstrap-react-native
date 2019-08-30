@@ -9,7 +9,7 @@ import CustomButton from '@components/CustomButton';
 
 import styles from './styles';
 
-function Login({ onLogin }) {
+export function Login({ onLogin }) {
   return (
     <View style={styles.container}>
       <View style={styles.formElementContainer}>

@@ -42,7 +42,7 @@ export default function setUp(dispatch, isLoggedIn) {
       requestPermissions: true
     });
     console.warn(
-      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/PushNotifications.js'
+      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/pushNotifications.js'
     );
   } else {
     console.warn(

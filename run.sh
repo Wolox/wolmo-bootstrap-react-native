@@ -29,6 +29,10 @@ elif ! system_has ruby; then
   echo "- https://github.com/rbenv/rbenv#basic-github-checkout"
   echo "- https://github.com/rbenv/rbenv#installing-ruby-versions"
   exit 1
+elif ! system_has pod; then
+  echo "CocoaPods is mandatory to continue"
+  echo "Check this guide to complete the installation: https://cocoapods.org/"
+  exit 1
 fi
 
 npm i -g yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
