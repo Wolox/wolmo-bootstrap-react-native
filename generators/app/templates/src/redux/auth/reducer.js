@@ -9,7 +9,7 @@ const stateDescription = {
   initialLoading: true
 };
 
-const initialState = completeState(stateDescription, ['initialLoading']);
+export const initialState = completeState(stateDescription, ['initialLoading']);
 
 const reducerDescription = {
   primaryActions: [actions.LOGIN],

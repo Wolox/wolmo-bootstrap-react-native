@@ -1,6 +1,6 @@
 {
   "name": "generator-wolmo-bootstrap-rn",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "description": "",
   "files": [
     "generators"
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
+    "eslint-plugin-jest": "^22.15.2",
     "latest-semver": "^1.0.0",
     "ora": "^1.1.0",
     "semver-regex": "^1.0.0",

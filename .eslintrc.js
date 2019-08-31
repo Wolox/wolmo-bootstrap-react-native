@@ -2,7 +2,8 @@ module.exports = {
   "env": {
     "es6": true,
     "node": true,
-    "browser": true
+    "browser": true, 
+    "jest/globals": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
@@ -15,7 +16,8 @@ module.exports = {
   "plugins": [
     "react",
     "prettier",
-    "flowtype"
+    "flowtype",
+    "jest"
   ],
   "extends": [
     "eslint:recommended",
@@ -47,7 +49,12 @@ module.exports = {
     "import/default": "off",
     "import/namespace": "off",
     "import/no-absolute-path": "error",
-    "react/no-typos": "off"
+    "react/no-typos": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
   "settings": {
     "import/resolver": {

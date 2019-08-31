@@ -52,7 +52,9 @@ export const screensNavOptions = {
   <%_ if (features.drawer) { _%>
   },
   <%_ } else { _%>
+    <%_ if (features.login) { _%>
   }
+    <%_ } _%>
   <%_ } _%>
   <%_ } _%>
   <%_ if (features.drawer) { _%>
