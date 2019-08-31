@@ -3,7 +3,6 @@ import i18next from 'i18next';
 <%_ if (features.drawer) { _%>
 import { Button } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
-import Drawer from '@components/Drawer';
 <%_ } _%>
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
@@ -12,7 +11,6 @@ import { blue, white } from '@constants/colors';
 const defaultNavOptions = ({ navigation }) => ({
   // Change screen title from i18n traslates files
   headerTitle: i18next.t(`app:${navigation.state.routeName}`),
-
   // TODO: The following options are examples. Change them to your need
   headerStyle: {
     backgroundColor: blue
@@ -31,73 +29,56 @@ const defaultNavOptions = ({ navigation }) => ({
   headerTintColor: white
 });
 
-export const screensNavOptions = {
+export const mainSwitchNavConfig = {
+  initialRouteName: Routes.InitialLoading
+};
+
+<%_ if (features.login) { _%>
+export const authStackNavConfig = {
+  defaultNavigationOptions: defaultNavOptions,
+  initialRouteName: Routes.Login
+};
+
+<%_ } _%>
+export const appStackNavConfig = {
+  defaultNavigationOptions: defaultNavOptions,
+  initialRouteName: Routes.Home
+};
+
+<%_ if (features.drawer) { _%>
+export const defaultDrawerNavOptions = {
+  // TODO: Change them to your need
+};
+
+export const drawerStackNavConfig = {
+  defaultNavigationOptions: defaultDrawerNavOptions
+};
+
+<%_ } _%>
+// Default nav options for all screens
+export const appScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
   /*
   [Routes.Home]: {
     headerTitle: 'Home'
+  <%_ if (features.drawer) { _%>
   },
-  [Routes.Login]: {
-    header: null
+  */
+  [Routes.Home]: ({ navigation }) => ({
+    headerRight: <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
+  })
+  <%_ } else {_%>
   }
   */
-  <%_ if (features.login) { _%>
-  [Routes.InitialLoading]: {
-    header: null,
-    headerStyle: {
-      elevation: 0,
-      shadowOpacity: 0
-    }
-  <%_ if (features.drawer) { _%>
-  },
-  <%_ } else { _%>
-    <%_ if (features.login) { _%>
-  }
-    <%_ } _%>
-  <%_ } _%>
-  <%_ } _%>
-  <%_ if (features.drawer) { _%>
-  [Routes.Home]: ({ navigation }) => ({
-    headerRight: <Button onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />,
-    drawerLockMode: 'unlocked'
-    /* If you want to add the Drawer to your screen 
-    you have to add the above line, you can use this object as a example. */
-  })
   <%_ } _%>
 };
 
-<%_ if (features.drawer) { _%>
-export const defaultDrawerNavOptions = {
-  drawerLockMode: 'locked-closed'
-};
-
-export const drawerNavConfig = {
-  defaultNavigationOptions: defaultDrawerNavOptions,
-  drawerWidth: () => 300, // You can change the widh of the Drawer
-  contentComponent: Drawer
-};
-<%_ } _%>
-
-<%_ if (features.login) { _%>
-export const loginsStackNavConfig = {
-  defaultNavigationOptions: defaultNavOptions,
-  initialRouteName: Routes.Login
-};
-<%_ } _%>
-
-export const mainStackNavConfig = {
-  defaultNavigationOptions: defaultNavOptions,
-  initialRouteName: Routes.Home,
-  headerMode: 'none'
-  // TODO: Change other options for the router to your need:
-  // See: https://reactnavigation.org/docs/stack-navigator.html#stacknavigatorconfig
-};
 <%_ if (features.tabs) { _%>
-
-export const tabNavConfig = {
+export const appTabNavConfig = {
   // TODO: The following options are examples. Change them to your need
   // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
   tabBarPosition: 'bottom'
 };
+
 <%_ } _%>

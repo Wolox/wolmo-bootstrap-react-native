@@ -1,83 +1,90 @@
-// https://github.com/react-community/react-navigation/issues/458
-// once that issue is resolved, the initial loading screen is no longer needed and should be removed
-//  in favour of setting the initialRoute as a prop of the navigator
-
-import { <% if (features.tabs) { %>createBottomTabNavigator, <% } %>createStackNavigator<% if (features.drawer) { %>, createDrawerNavigator<% } %> } from 'react-navigation';
+import {
+  createAppContainer,
+  <%_ if(features.tabs) { _%> 
+  createBottomTabNavigator,
+  <%_ } _%>
+  <%_ if(features.drawer) { _%> 
+  createDrawerNavigator,
+  <%_ } _%>
+  createStackNavigator,
+  createSwitchNavigator
+} from 'react-navigation';
 import Routes from '@constants/routes';
-import { screensNavOptions, mainStackNavConfig<% if (features.tabs) { %>, tabNavConfig<% } %><% if (features.drawer) { %>, drawerNavConfig<% } %><% if (features.login) { %>, loginsStackNavConfig<% } %> } from '@config/navigation';
-<%_ if(features.login || features.tabs) { _%>
+import {
+  appScreensNavOptions,
+  appStackNavConfig,
+  <%_ if(features.tabs) { _%> 
+  appTabNavConfig,
+  <%_ } _%>
+  authStackNavConfig,
+  <%_ if(features.drawer) { _%> 
+  drawerStackNavConfig,
+  <%_ } _%>
+  mainSwitchNavConfig
+} from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
-<%_ } _%>
-<%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
+<%_ if(features.login) { _%>
 import Login from '@screens/Login';
 <%_ } _%>
 import Home from '@screens/Home';
 
-<%_ if(features.drawer) { _%>
-const drawerStack = createDrawerNavigator(
-  {
-    [Routes.Home]: {
-      <%_ if (features.tabs) { _%>
-        screen: createBottomTabNavigator(
-          {
-            ...inferRoute({ Tab1: Home }),
-            ...inferRoute({ Tab2: Home })
-          },
-          tabNavConfig
-        ),
-        <%_ } else { _%>
-        screen: Home,
-        <%_ } _%>
-        navigationOptions: screensNavOptions[Routes.Home]
-    }
-    /*
-    This is where you should add screens to the Drawer, here is an example how to.
-    ...inferRoute({ NewScreenExample }) */
-  },
-  {
-    drawerNavConfig
-  }
-);
-
-<%_ } _%> 
-
-<%_ if (features.login) { _%>
-const loginStack = createStackNavigator(
+<%_ if(features.login) { _%>
+const AuthStack = createStackNavigator(
   {
     ...inferRoute({ Login })
-    /*
-  This is where you should add screens that don't have the Drawer, here is an example how to.
-  ...inferRoute({ NewScreenExample }), */
   },
-  loginsStackNavConfig
+  authStackNavConfig
 );
 <%_ } _%>
 
-export default createStackNavigator(
+const AppStack = createStackNavigator(
   {
-    <%_ if (features.login) { _%>
-    ...inferRoute({ InitialLoading }),
-    [Routes.Login]: {
-      screen: loginStack
-    },
-    <%_ } _%>
     [Routes.Home]: {
-      <%_ if (features.drawer) { _%>
-        screen: drawerStack,
-      <%_ } else if (features.tabs && !features.drawer) { _%>
+      <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
         {
           ...inferRoute({ Tab1: Home }),
           ...inferRoute({ Tab2: Home })
         },
-        tabNavConfig
+        appTabNavConfig
       ),
       <%_ } else { _%>
       screen: Home,
       <%_ } _%>
-      navigationOptions: screensNavOptions[Routes.Home]
+      navigationOptions: appScreensNavOptions[Routes.Home]
     }
   },
-  mainStackNavConfig
+  appStackNavConfig
+);
+
+<%_ if(features.drawer) { _%>
+const DrawerStack = createDrawerNavigator(
+  {
+    [Routes.App]: AppStack,
+    // TODO: Modify drawer screens here
+    Example1: { screen: Home },
+    Example2: { screen: Home }
+  },
+  drawerStackNavConfig
+);
+<%_ } _%>
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      ...inferRoute({ InitialLoading }),
+      <%_ if(features.login) { _%>
+      [Routes.Auth]: AuthStack,
+      <%_ } _%>
+      <%_ if(features.drawer) { _%>
+      [Routes.App]: DrawerStack
+      <%_ } else { _%>
+      [Routes.App]: AppStack
+      <%_ } _%>
+      // TODO: You can add for example an Onboarding flow here
+      // [Routes.Onboarding]: Onboarding
+    },
+    mainSwitchNavConfig
+  )
 );
