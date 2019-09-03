@@ -32,7 +32,7 @@ const CustomTextInput = props => {
   const placeholderColor = value ? transparent : placeholderTextColor;
 
   return (
-    <View>
+    <>
       {title && (
         <CustomText gray small style={[styles.title, titleStyles]}>
           {title}
@@ -60,7 +60,7 @@ const CustomTextInput = props => {
         {secureTextEntry &&
           showEye && <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />}
       </View>
-    </View>
+    </>
   );
 };
 
