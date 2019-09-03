@@ -1,8 +1,10 @@
 // https://github.com/react-community/react-navigation/issues/458
 // once that issue is resolved, the initial loading screen is no longer needed and should be removed
 //  in favour of setting the initialRoute as a prop of the navigator
-import { <% if (features.tabs) { %>createBottomTabNavigator <% }%> } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+<%_ if(features.tabs) { _%> 
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+<%_ } _%>
 import Routes from '@constants/routes';
 import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
