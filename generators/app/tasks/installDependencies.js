@@ -15,6 +15,7 @@ const DEPENDENCIES = [
   'react-native-gesture-handler',
   'react-native-reanimated',
   'react-native-screens',
+  'react-navigation-animated-switch',
   'react-navigation-redux-helpers',
   'react-navigation-stack',
   'react-navigation',
