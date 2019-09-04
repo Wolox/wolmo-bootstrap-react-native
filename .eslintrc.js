@@ -17,6 +17,7 @@ module.exports = {
     "react",
     "prettier",
     "flowtype",
+    "react-hooks",
     "jest"
   ],
   "extends": [
@@ -54,7 +55,9 @@ module.exports = {
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn" 
   },
   "settings": {
     "import/resolver": {
