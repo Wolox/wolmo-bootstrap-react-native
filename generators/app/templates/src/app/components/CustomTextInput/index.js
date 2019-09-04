@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import CustomText from '@components/CustomText';
@@ -7,71 +7,64 @@ import { transparent } from '@constants/colors';
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
 
-// Known issue: showing/hiding the text with secureTextEntry changes the cursor position
-// https://github.com/facebook/react-native/issues/5859
+const CustomTextInput = props => {
+  const [showPassword, setShowPassword] = useState(false);
 
-class CustomTextInput extends PureComponent {
-  state = { showPassword: false };
+  const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
 
-  handleShowPassword = () => this.setState(prevState => ({ showPassword: !prevState.showPassword }));
+  const {
+    value,
+    placeholderTextColor,
+    title,
+    titleStyles,
+    multiline,
+    bottomBorder,
+    style,
+    onChange,
+    onBlur,
+    onFocus,
+    textStyles,
+    secureTextEntry,
+    showEye,
+    autoComplete
+  } = props;
 
-  render() {
-    const {
-      value,
-      placeholderTextColor,
-      title,
-      titleStyles,
-      multiline,
-      bottomBorder,
-      style,
-      onChange,
-      onBlur,
-      onFocus,
-      textStyles,
-      secureTextEntry,
-      showEye,
-      autoComplete
-    } = this.props;
-    const { showPassword } = this.state;
-    const placeholderColor = value ? transparent : placeholderTextColor;
-    return (
-      <View>
-        {title && (
-          <CustomText gray small style={[styles.title, titleStyles]}>
-            {title}
-          </CustomText>
-        )}
-        <View
-          style={[
-            multiline ? styles.multilineContainer : styles.container,
-            bottomBorder && styles.bottomBorder,
-            style
-          ]}
-        >
-          <TextInput
-            {...this.props}
-            allowFontScaling={false}
-            onChangeText={onChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            value={value}
-            style={[styles.inputStyle, multiline ? styles.multilineInput : styles.singleInput, textStyles]}
-            placeholderTextColor={placeholderColor}
-            secureTextEntry={secureTextEntry && !showPassword}
-            autoComplete={secureTextEntry ? 'off' : autoComplete}
-          />
-          {secureTextEntry &&
-            showEye && (
-              <ShowPassword onShowPassword={this.handleShowPassword} passwordVisible={showPassword} />
-            )}
-        </View>
+  const placeholderColor = value ? transparent : placeholderTextColor;
+
+  return (
+    <>
+      {title && (
+        <CustomText gray small style={[styles.title, titleStyles]}>
+          {title}
+        </CustomText>
+      )}
+      <View
+        style={[
+          multiline ? styles.multilineContainer : styles.container,
+          bottomBorder && styles.bottomBorder,
+          style
+        ]}
+      >
+        <TextInput
+          {...props}
+          allowFontScaling={false}
+          onChangeText={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          value={value}
+          style={[styles.inputStyle, multiline ? styles.multilineInput : styles.singleInput, textStyles]}
+          placeholderTextColor={placeholderColor}
+          secureTextEntry={secureTextEntry && !showPassword}
+          autoComplete={secureTextEntry ? 'off' : autoComplete}
+        />
+        {secureTextEntry &&
+          showEye && <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />}
       </View>
-    );
-  }
-}
+    </>
+  );
+};
 
 CustomTextInput.defaultProps = {
-  placeholder: this.emptyString,
   autoCorrect: false,
   autoCapitalize: 'sentences',
   clearButtonMode: 'never',
@@ -107,4 +100,4 @@ CustomTextInput.propTypes = {
   autoComplete: PropTypes.string
 };
 
-export default CustomTextInput;
+export default memo(CustomTextInput);

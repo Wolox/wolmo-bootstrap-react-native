@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
 import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
-<%_ } _%>
-<%_ if(features.pushnotifications) { _%>
 import configPushNotifications from '@config/pushNotifications';
 <%_ } _%>
 <%_ if(features.googleanalytics) { _%>
@@ -16,9 +14,10 @@ import { authSetup } from '@services/AuthService';
 <%_ } _%>
 import AppNavigator from '@components/AppNavigator';
 
-class App extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(dispatch);
     alertIfHuaweiDevice();
@@ -30,13 +29,11 @@ class App extends Component {
     authSetup(dispatch);
     <%_ } _%>
     apiSetup(dispatch);
-  }
+    },[dispatch]);
 
-  render() {
-    return <AppNavigator />;
-  }
+  return <AppNavigator />;
 }
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
 
-export default connect()(MyAppWithOverlay);
+export default MyAppWithOverlay;

@@ -1,41 +1,24 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { compose } from 'recompose';
-import { connect } from 'react-redux';
-import Loadable from '@components/Loadable';
+import { useSelector } from 'react-redux';
+import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
 
-class InitialLoading extends PureComponent {
-  static getDerivedStateFromProps(props) {
-    if (!props.initialLoading) {
-      props.navigation.navigate(props.currentUser ? Routes.App : Routes.Auth);
-    }
-    return null;
-  }
+const initialLoadingSelector = state => state.auth.initialLoading;
 
-  state = {};
-
-  render() {
-    return null;
-  }
-}
+const InitialLoading = ({ navigation }) => {
+  const initialLoading = useSelector(initialLoadingSelector);
+  const currentUser = useSelector(state => state.auth.currentUser);
+  if (!initialLoading) navigation.navigate(currentUser ? Routes.App : Routes.Auth);
+  return null;
+};
 
 InitialLoading.propTypes = {
-  initialLoading: PropTypes.bool,
+  // TODO: complete this shape
   currentUser: PropTypes.shape(),
+  initialLoading: PropTypes.bool,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   })
 };
 
-const mapStateToProps = store => ({
-  currentUser: store.auth.currentUser,
-  initialLoading: store.auth.initialLoading
-});
-
-const enhance = compose(
-  connect(mapStateToProps),
-  Loadable(props => props.initialLoading)
-);
-
-export default enhance(InitialLoading);
+export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
