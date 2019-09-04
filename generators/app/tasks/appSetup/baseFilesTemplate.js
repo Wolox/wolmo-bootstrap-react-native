@@ -60,7 +60,6 @@ const FILES = [
   PULL_REQUEST_TEMPLATE,
   API_CONFIG,
   CONFIG,
-  MAIN,
   APP_NAVIGATOR,
   CUSTOM_TEXT,
   CUSTOM_TEXT_STYLES,
@@ -109,7 +108,8 @@ const TEMPLATE_FILES = [
   SCREENS,
   NAVIGATION_CONFIG,
   APP_I18N,
-  CI_CONFIG_FILE
+  CI_CONFIG_FILE,
+  MAIN
 ];
 
 module.exports = function baseFilesTemplate() {

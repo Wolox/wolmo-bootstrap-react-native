@@ -6,8 +6,16 @@ import {
   createNavigationReducer
 } from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
-import Navigator from '@screens';
+<%_ if(features.reduxpersist) { _%>
+  import AsyncStorage from '@react-native-community/async-storage';
+  import { persistReducer } from 'redux-persist';
+  import {
+    seamlessImmutableReconciler,
+    seamlessImmutableTransformCreator
+  } from 'redux-persist-seamless-immutable';
+  <%_ } _%>
 
+import Navigator from '@screens';
 <%_ if(features.googleanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
@@ -21,6 +29,22 @@ import pushNotifications from './pushNotifications/reducer';
 import drawer from './drawer/reducer';
 <%_ } _%>
 <%_ if(features.drawerios || features.drawerandroid || features.pushnotifications || features.login || features.googleanalytics) { _%>
+<%_ } _%>
+
+<%_ if(features.reduxpersist) { _%>
+const transformerConfig = {
+  whitelistPerReducer: {
+    <%_ if(features.login) { _%>auth: ['currentUser']<%_ } _%>
+  }
+};
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: [<%_ if(features.login) { _%>'auth'<%_ } _%>],
+  stateReconciler: seamlessImmutableReconciler,
+  transforms: [seamlessImmutableTransformCreator(transformerConfig)]
+};
 <%_ } _%>
 
 const nav = createNavigationReducer(Navigator);
@@ -39,6 +63,10 @@ const reducers = combineReducers({
   <%_ } _%>
   nav
 });
+
+<%_ if(features.reduxpersist) { _%>
+const persistedReducer = persistReducer(persistConfig, reducers);
+<%_ } _%>
 
 const middlewares = [];
 const enhancers = [];
@@ -62,6 +90,8 @@ enhancers.push(applyMiddleware(...middlewares));
 if (__DEV__) enhancers.push(Reactotron.createEnhancer());
 
 // in dev mode, we'll create the store through Reactotron
-const store = createStore(reducers, compose(...enhancers));
+const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer
+<%_ } else{ _%>
+reducers<%_ } _%>, compose(...enhancers));
 
 export default store;
