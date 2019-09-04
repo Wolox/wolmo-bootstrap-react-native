@@ -111,6 +111,10 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-native-huawei-protected-apps');
   }
 
+  if (this.features.firebasecore) {
+    DEPENDENCIES.push('@react-native-firebase/app');
+  }
+
   if (this.features.drawerios || this.features.drawerandroid) {
     DEPENDENCIES.push('react-native-drawer');
   }

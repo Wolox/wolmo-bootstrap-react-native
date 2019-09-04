@@ -8,6 +8,7 @@ const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const drawerFeatureFiles = require('./drawerFeatureFiles');
@@ -46,6 +47,9 @@ module.exports = function index() {
   }
 
   // ----------------     features     ----------------
+  if (this.features.firebasecore) {
+    firebaseCoreFeatureFiles.bind(this)();
+  }
   if (this.features.pushnotifications) {
     pushNotificationsFeatureFiles.bind(this)();
   }

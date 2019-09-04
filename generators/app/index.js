@@ -9,6 +9,7 @@ const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configurePods = require('./tasks/configurePods');
 const installPods = require('./tasks/installPods');
+const configureGoogleServices = require('./tasks/configureGoogleServices');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -46,7 +47,8 @@ class ReactNativeBootstrap extends Generator {
           'DrawerIOS',
           'Push Notifications',
           'Google Analytics',
-          'Redux Persist'
+          'Redux Persist',
+          'Firebase Core'
         ],
         filter: values =>
           values.reduce((answer, val) => {
@@ -83,7 +85,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configurePods.bind(this)());
+      .then(() => configurePods.bind(this)())
+      .then(() => configureGoogleServices.bind(this)());
   }
 
   writing() {
