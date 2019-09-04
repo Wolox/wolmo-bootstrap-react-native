@@ -8,6 +8,9 @@ const DEPENDENCIES = [
   'change-case',
   'lodash',
   'react-navigation',
+  'react-native-reanimated',
+  'react-navigation-stack',
+  'react-native-screens',
   'react-navigation-redux-helpers',
   'react-redux',
   'reactotron-apisauce',
@@ -99,6 +102,9 @@ function yarnInstall(projectName, deps, options, dev) {
 module.exports = function installDependencies() {
   if (this.features.login) {
     DEPENDENCIES.push('recompose');
+  }
+  if (this.features.tabs) {
+    DEPENDENCIES.push('react-navigation-tabs');
   }
 
   if (this.features.pushnotifications) {
