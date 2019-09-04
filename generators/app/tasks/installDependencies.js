@@ -116,7 +116,6 @@ module.exports = function installDependencies() {
 
   if (this.features.drawer) {
     DEPENDENCIES.push('react-navigation-drawer');
-    DEPENDENCIES.push('react-native-reanimated');
   }
 
   if (this.features.googleanalytics) {
