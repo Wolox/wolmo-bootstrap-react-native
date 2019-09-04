@@ -4,53 +4,56 @@ const semverRegex = require('semver-regex');
 const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
+  '@react-native-community/async-storage',
+  '@react-native-community/eslint-config',
   'apisauce',
   'change-case',
+  'i18next',
   'lodash',
-  'react-navigation',
+  'prop-types',
+  'react-native-config',
+  'react-native-gesture-handler',
+  'react-native-reanimated',
+  'react-native-screens',
   'react-navigation-redux-helpers',
+  'react-navigation-stack',
+  'react-navigation',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
   'reactotron-redux',
-  'redux',
-  'redux-thunk',
-  'reselect',
-  'prop-types',
-  'seamless-immutable',
-  'react-native-config',
-  'react-native-gesture-handler',
-  'i18next',
   'redux-recompose',
-  '@react-native-community/async-storage',
-  '@react-native-community/eslint-config'
+  'redux-thunk',
+  'redux',
+  'reselect',
+  'seamless-immutable'
 ];
 
 const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
-  'eslint',
+  'enzyme-adapter-react-16',
+  'enzyme-to-json',
+  'enzyme',
   'eslint-config-airbnb',
   'eslint-config-prettier',
   'eslint-plugin-flowtype',
   'eslint-plugin-import',
+  'eslint-plugin-jest',
   'eslint-plugin-jsx-a11y',
   'eslint-plugin-prettier',
-  'eslint-plugin-react',
-  'eslint-plugin-jest',
   'eslint-plugin-react-hooks',
+  'eslint-plugin-react',
+  'eslint',
   'husky',
-  'prettier',
-  'prettier-eslint',
   'jest-react-native',
-  'redux-mock-store',
-  'enzyme',
-  'enzyme-adapter-react-16',
-  'enzyme-to-json',
-  'react-native-mock-render',
+  'jsdom-global',
   'jsdom',
-  'jsdom-global'
+  'prettier-eslint',
+  'prettier',
+  'react-native-mock-render',
+  'redux-mock-store'
 ];
 
 /**
@@ -99,6 +102,9 @@ function yarnInstall(projectName, deps, options, dev) {
 module.exports = function installDependencies() {
   if (this.features.login) {
     DEPENDENCIES.push('recompose');
+  }
+  if (this.features.tabs) {
+    DEPENDENCIES.push('react-navigation-tabs');
   }
 
   if (this.features.pushnotifications) {

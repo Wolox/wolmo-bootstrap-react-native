@@ -1,14 +1,14 @@
 import {
   createAppContainer,
-  <%_ if(features.tabs) { _%> 
-  createBottomTabNavigator,
-  <%_ } _%>
   <%_ if(features.drawer) { _%> 
   createDrawerNavigator,
   <%_ } _%>
-  createStackNavigator,
   createSwitchNavigator
 } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+<%_ if(features.tabs) { _%> 
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+<%_ } _%>
 import Routes from '@constants/routes';
 import {
   appScreensNavOptions,
@@ -71,6 +71,7 @@ const DrawerStack = createDrawerNavigator(
 <%_ } _%>
 
 export default createAppContainer(
+  // TODO: Change createSwitchNavigator to createAnimatedSwitchNavigator when drawer visual issue is fixed
   createSwitchNavigator(
     {
       ...inferRoute({ InitialLoading }),
