@@ -6,7 +6,6 @@ const runCommand = require('./runCommand');
 const DEPENDENCIES = [
   'apisauce',
   'change-case',
-  'lodash',
   'react-navigation',
   'react-native-reanimated',
   'react-navigation-stack',
