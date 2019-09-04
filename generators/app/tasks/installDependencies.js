@@ -57,6 +57,7 @@ const DEV_DEPENDENCIES = [
   'redux-mock-store'
 ];
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * The eslint config we use may have issues between the different plugins we use.
  * The solution for this is installing the proper version of each plugin declared in the eslint config package
@@ -72,9 +73,9 @@ function getLinterPluginVersions(projectName, options) {
       ['info', 'eslint-config-airbnb@latest', 'peerDependencies', '--json'],
       { cwd: `${process.cwd()}/${projectName}` }
     ],
-    loadingMessage: `Getting eslint plugins' versions`,
-    successMessage: `Successfuly download plugins version info`,
-    failureMessage: `Error getting info of eslint plugins. Turn verbose mode on for detailed logging`,
+    loadingMessage: "Getting eslint plugins' versions",
+    successMessage: 'Successfuly download plugins version info',
+    failureMessage: 'Error getting info of eslint plugins. Turn verbose mode on for detailed logging',
     context: options
   }).then(({ result }) => {
     // keep latest if the dependency has different versions. e.g: eslint: '^3.19.0 || ^4.3.0'

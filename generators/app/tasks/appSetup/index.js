@@ -1,23 +1,23 @@
-const ora = require("ora");
+const ora = require('ora');
 
-const packageJsonScripts = require("./packageJsonScripts");
-const eslintSetup = require("./eslintSetup");
-const baseFilesTemplate = require("./baseFilesTemplate");
-const iosAppIcons = require("./iosAppIcons");
-const androidProjectSetup = require("./androidProjectSetup");
-const iosProjectSetup = require("./iosProjectSetup");
-const disableLandscapeOrientation = require("./disableLandscapeOrientation");
-const pushNotificationsFeatureFiles = require("./pushNotificationsFeatureFiles");
-const googleAnalyticsFeatureFiles = require("./googleAnalyticsFeatureFiles");
-const loginFeatureFiles = require("./loginFeatureFiles");
-const enableFullscreen = require("./tabletSetup");
-const babelConfigSetup = require("./babelConfigSetup");
-const editBundleIdentifier = require("./editBundleIdentifier");
+const packageJsonScripts = require('./packageJsonScripts');
+const eslintSetup = require('./eslintSetup');
+const baseFilesTemplate = require('./baseFilesTemplate');
+const iosAppIcons = require('./iosAppIcons');
+const androidProjectSetup = require('./androidProjectSetup');
+const iosProjectSetup = require('./iosProjectSetup');
+const disableLandscapeOrientation = require('./disableLandscapeOrientation');
+const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
+const loginFeatureFiles = require('./loginFeatureFiles');
+const enableFullscreen = require('./tabletSetup');
+const babelConfigSetup = require('./babelConfigSetup');
+const editBundleIdentifier = require('./editBundleIdentifier');
 
 module.exports = function index() {
   const spinner = ora({
-    spinner: "bouncingBall",
-    text: "Creating project boilerplate"
+    spinner: 'bouncingBall',
+    text: 'Creating project boilerplate'
   }).start();
 
   // ----------------     add package.json scripts     ----------------
@@ -61,5 +61,5 @@ module.exports = function index() {
   // --------------- Enables fullscreen on iPad ----------------------------
   enableFullscreen.bind(this)();
 
-  spinner.succeed("Boilerplate ready!");
+  spinner.succeed('Boilerplate ready!');
 };
