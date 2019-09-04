@@ -84,7 +84,6 @@ Re-enter new password: xxxxx
 We use [FastLane](https://fastlane.tools/) and few of its plugins to automate many ios tasks:
 - Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
-- Creating IPAs ([gym](https://github.com/fastlane/fastlane/tree/master/gym))
 - Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
 
 #### FastLane setup
@@ -95,15 +94,8 @@ Make sure you have the latest version of the Xcode command line tools installed:
 xcode-select --install
 ```
 Follow this guides to properly install rbenv and ruby-build. These are tools that will easily allow you to install and change different ruby versions.
-1- [Rbenv](https://github.com/rbenv/rbenv#installation)
-2- [Ruby build](https://github.com/rbenv/ruby-build#installing-as-an-rbenv-plugin-recommended)
+1 -[Ruby build](https://github.com/rbenv/ruby-build#installing-as-an-rbenv-plugin-recommended)
 
-Then run the following command to install the desired ruby version
-```bash
-rbenv install 2.4.1
-rbenv global 2.4.1
-rbenv local 2.4.1
-```
 Run `ruby -v` to check that it was successfully installed.
 
 The last step is installing Fastlane gems:
@@ -164,19 +156,15 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 
 ## iOS
 
-Fastlane is required here. Check the iOS
-
-### Creating an IPA for development (QA)
-Use the following command from the project rootpath:
-```bash
-fastlane dev
-```
-`dev` task is defined in our Fastfile.
-
 ### Uploading build to testflight
+
 Use the following command from the project rootpath:
+
 ```bash
 fastlane beta
 ```
+
 `beta` task is defined in our Fastfile.
 This command only uploads a new build. You still need to go to itunes connect to make this build available for testers and complete the build description.
+
+Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
