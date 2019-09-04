@@ -26,7 +26,7 @@ module.exports = async function firebaseCoreFeatureFiles() {
     `#import "AppDelegate.h"\n\n#import <Firebase.h>`
   );
   AppDelegateContent = AppDelegateContent.replace(
-    `didFinishLaunchingWithOptions:(NSDictionary *)launchOptions`,
+    `didFinishLaunchingWithOptions:(NSDictionary *)launchOptions\n{`,
     `didFinishLaunchingWithOptions:(NSDictionary *)launchOptions\n{\n\t[FIRApp configure];`
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}/AppDelegate.m`, AppDelegateContent);

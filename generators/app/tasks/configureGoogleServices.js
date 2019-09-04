@@ -11,7 +11,7 @@ const googleServicesContent = `
         "client_info": {
           "mobilesdk_app_id": "1:131141576893:android:1bea3c3cb4924149",
           "android_client_info": {
-            "package_name": "com.${this.projectName}"
+            "package_name": "com.test"
           }
         },
         "oauth_client": [
@@ -47,7 +47,7 @@ const googleServicesContent = `
         "client_info": {
           "mobilesdk_app_id": "1:131141576893:android:35c057b099da0ff6",
           "android_client_info": {
-            "package_name": "com.${this.projectName}"
+            "package_name": "com.test"
           }
         },
         "oauth_client": [
@@ -86,4 +86,7 @@ const googleServicesContent = `
 
 module.exports = function configureGoogleServices() {
   this.fs.write(`${this.projectName}/android/app/google-services.json`, googleServicesContent);
+  let newGoogleServicesContent = this.fs.read(`${this.projectName}/android/app/google-services.json`);
+  newGoogleServicesContent = newGoogleServicesContent.replace(`com.test`, `com.${this.projectName}`);
+  this.fs.write(`${this.projectName}/android/app/google-services.json`, newGoogleServicesContent);
 };
