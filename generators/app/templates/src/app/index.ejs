@@ -4,8 +4,6 @@ import Reactotron from 'reactotron-react-native';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
 import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
-<%_ } _%>
-<%_ if(features.pushnotifications) { _%>
 import configPushNotifications from '@config/pushNotifications';
 <%_ } _%>
 <%_ if(features.googleanalytics) { _%>
@@ -14,20 +12,12 @@ import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';
 <%_ } _%>
-<%_ if(features.drawerios && features.drawerandroid) { _%>
-import Drawer from '@components/Drawer';
-<%_ } else if (features.drawerios || features.drawerandroid) { _%>
-import { isAndroid } from '@constants/platform';
 import AppNavigator from '@components/AppNavigator';
-import Drawer from '@components/Drawer';
-<%_ } else { _%>
-import AppNavigator from '@components/AppNavigator';
-<%_ } _%>
 
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect( () => {
+  useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(dispatch);
     alertIfHuaweiDevice();
@@ -39,17 +29,9 @@ const App = () => {
     authSetup(dispatch);
     <%_ } _%>
     apiSetup(dispatch);
-    },[]);
+    },[dispatch]);
 
-  <%_ if(features.drawerios && features.drawerandroid) { _%>
-  return <Drawer />;
-  <%_ } else if (features.drawerios) { _%>
-  return isAndroid ? <AppNavigator /> : <Drawer />;
-  <%_ } else if (features.drawerandroid) { _%>
-  return isAndroid ? <Drawer /> : <AppNavigator />;
-  <%_ } else { _%>
   return <AppNavigator />;
-  <%_ } _%>
 }
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;

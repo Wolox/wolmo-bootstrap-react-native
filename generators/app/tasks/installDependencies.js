@@ -4,57 +4,60 @@ const semverRegex = require('semver-regex');
 const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
+  '@react-native-community/async-storage',
+  '@react-native-community/eslint-config',
   'apisauce',
   'change-case',
-  'react-navigation',
+  'i18next',
+  'lodash',
+  'prop-types',
+  'react-native-config',
+  'react-native-gesture-handler',
   'react-native-reanimated',
-  'react-navigation-stack',
   'react-native-screens',
+  'react-navigation-animated-switch',
   'react-navigation-redux-helpers',
+  'react-navigation-stack',
+  'react-navigation',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
   'reactotron-redux',
-  'redux',
-  'redux-thunk',
-  'reselect',
-  'prop-types',
-  'seamless-immutable',
-  'react-native-config',
-  'react-native-gesture-handler',
-  'i18next',
   'redux-recompose',
-  '@react-native-community/async-storage',
-  '@react-native-community/eslint-config'
+  'redux-thunk',
+  'redux',
+  'reselect',
+  'seamless-immutable'
 ];
 
 const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
-  'eslint',
+  'enzyme-adapter-react-16',
+  'enzyme-to-json',
+  'enzyme',
   'eslint-config-airbnb',
   'eslint-config-prettier',
   'eslint-plugin-flowtype',
   'eslint-plugin-import',
+  'eslint-plugin-jest',
   'eslint-plugin-jsx-a11y',
   'eslint-plugin-prettier',
-  'eslint-plugin-react',
-  'eslint-plugin-jest',
   'eslint-plugin-react-hooks',
+  'eslint-plugin-react',
+  'eslint',
   'husky',
-  'prettier',
-  'prettier-eslint',
   'jest-react-native',
-  'redux-mock-store',
-  'enzyme',
-  'enzyme-adapter-react-16',
-  'enzyme-to-json',
-  'react-native-mock-render',
+  'jsdom-global',
   'jsdom',
-  'jsdom-global'
+  'prettier-eslint',
+  'prettier',
+  'react-native-mock-render',
+  'redux-mock-store'
 ];
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * The eslint config we use may have issues between the different plugins we use.
  * The solution for this is installing the proper version of each plugin declared in the eslint config package
@@ -70,9 +73,9 @@ function getLinterPluginVersions(projectName, options) {
       ['info', 'eslint-config-airbnb@latest', 'peerDependencies', '--json'],
       { cwd: `${process.cwd()}/${projectName}` }
     ],
-    loadingMessage: `Getting eslint plugins' versions`,
-    successMessage: `Successfuly download plugins version info`,
-    failureMessage: `Error getting info of eslint plugins. Turn verbose mode on for detailed logging`,
+    loadingMessage: "Getting eslint plugins' versions",
+    successMessage: 'Successfuly download plugins version info',
+    failureMessage: 'Error getting info of eslint plugins. Turn verbose mode on for detailed logging',
     context: options
   }).then(({ result }) => {
     // keep latest if the dependency has different versions. e.g: eslint: '^3.19.0 || ^4.3.0'
@@ -111,8 +114,8 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-native-huawei-protected-apps');
   }
 
-  if (this.features.drawerios || this.features.drawerandroid) {
-    DEPENDENCIES.push('react-native-drawer');
+  if (this.features.drawer) {
+    DEPENDENCIES.push('react-navigation-drawer');
   }
 
   if (this.features.googleanalytics) {

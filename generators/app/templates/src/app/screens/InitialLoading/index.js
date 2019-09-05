@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Loadable from '@components/Loadable';
+import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
 
 const initialLoadingSelector = state => state.auth.initialLoading;
@@ -7,10 +8,17 @@ const initialLoadingSelector = state => state.auth.initialLoading;
 const InitialLoading = ({ navigation }) => {
   const initialLoading = useSelector(initialLoadingSelector);
   const currentUser = useSelector(state => state.auth.currentUser);
-
-  if (!initialLoading) navigation.replace(currentUser ? Routes.Home : Routes.Login);
-
+  if (!initialLoading) navigation.navigate(currentUser ? Routes.App : Routes.Auth);
   return null;
 };
 
-export default Loadable(() => useSelector(initialLoadingSelector))(InitialLoading);
+InitialLoading.propTypes = {
+  // TODO: complete this shape
+  currentUser: PropTypes.shape(),
+  initialLoading: PropTypes.bool,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  })
+};
+
+export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
