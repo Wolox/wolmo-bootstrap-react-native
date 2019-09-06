@@ -13,6 +13,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -34,6 +35,9 @@ module.exports = function index() {
 
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
+
+  // ----------------     prettierrc setup     ----------------
+  prettierrcConfigSetup.bind(this)();
 
   // ----------------     add react-native-config to build.gradle     ----------------
   androidProjectSetup.bind(this)();
