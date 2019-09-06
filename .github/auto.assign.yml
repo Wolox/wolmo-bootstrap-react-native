@@ -29,7 +29,7 @@ assignees:
   - Anisospina
 
 # A number of assignees to add to the pull request
-# Matt es un capo
+# Matt es un genio
 # Set to 0 to add all of the assignees.
 # Uses numberOfReviewers if unset.
 numberOfAssignees: 0
