@@ -158,13 +158,12 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 
 ### Uploading build to testflight
 
-Use the following command from the project rootpath:
+Use the following commands from yourProject/ios:
 
-```bash
-fastlane beta
-```
+1) If you need recreate Certificates and Provisioning Profiles. You must be use `bundle exec fastlane recreate_development_certificates`
 
-`beta` task is defined in our Fastfile.
-This command only uploads a new build. You still need to go to itunes connect to make this build available for testers and complete the build description.
+2) `bundle exec fastlane download_development_certificates`
+
+3) `bundle exec fastlane release_qa`
 
 Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
