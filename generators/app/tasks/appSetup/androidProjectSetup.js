@@ -1,15 +1,10 @@
-function addDotenvPlugin() {
+function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
-  const updatedBuildGradleContent = buildGradleContent.replace(
+  let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
     'apply plugin: "com.android.application"\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
-  this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
-}
-
-function addReactNativeScreenConfig() {
-  const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
-  const updatedBuildGradleContent = buildGradleContent.replace(
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
     "implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\n\timplementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'\n\n\tif (enableHermes) {"
   );
@@ -35,7 +30,6 @@ function addRNGestureHandlerConfig() {
 }
 
 module.exports = function androidProjectSetup() {
-  addDotenvPlugin.bind(this)();
-  addReactNativeScreenConfig.bind(this)();
+  addDotenvPluginAndRNScreen.bind(this)();
   addRNGestureHandlerConfig.bind(this)();
 };
