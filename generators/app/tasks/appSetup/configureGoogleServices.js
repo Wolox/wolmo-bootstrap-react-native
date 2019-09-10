@@ -2,17 +2,11 @@ const googleServicesPod = `\nproject_path = './appTest.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 project.targets.each do |target|
   if target.name == "appTest"
-     if  !target.shell_script_build_phases.find { |bp| bp.name == 'googleServiceAutomatic' }
+     if  !target.shell_script_build_phases.find { |bp| bp.name == 'googleServiceRun' }
         puts "Adding run script for GoogleService-Info.plist"
-        phase = target.new_shell_script_build_phase("googleServiceAutomatic")
+        phase = target.new_shell_script_build_phase("googleServiceRun")
         phase.shell_script = "PATH_TO_CONFIG=$SRCROOT/config/GoogleService-Info.plist\\nFILENAME_IN_BUNDLE=GoogleService-Info.plist\\nBUILD_APP_DIR=$\{BUILT_PRODUCTS_DIR}/$\{PRODUCT_NAME}.app\\necho cp $PATH_TO_CONFIG \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\ncp $PATH_TO_CONFIG \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\n"
      end
-     if  !target.shell_script_build_phases.find { |bp| bp.name == 'crashlytics' }
-        puts "Adding run script for Crashlytics"
-        phase = target.new_shell_script_build_phase("crashlytics")
-        phase.shell_script = "$\{PODS_ROOT}/Fabric/run"
-        phase.input_paths=["$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"]
-    end
   end
 end
 project.save()`;
