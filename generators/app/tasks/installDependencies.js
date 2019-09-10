@@ -106,23 +106,27 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-navigation-tabs');
   }
 
-  if (this.features.pushnotifications) {
-    DEPENDENCIES.push('react-native-push-notification');
-    DEPENDENCIES.push('react-native-huawei-protected-apps');
-  }
-
-  if (this.features.firebasecore) {
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     DEPENDENCIES.push('@react-native-firebase/app');
   }
 
-  if (this.features.drawerios || this.features.drawerandroid) {
-    DEPENDENCIES.push('react-native-drawer');
+  if (this.features.crashlytics) {
+    DEPENDENCIES.push('@react-native-firebase/crashlytics');
   }
 
   if (this.features.googleanalytics) {
     DEPENDENCIES.push('react-native-google-analytics-bridge');
     DEPENDENCIES.push('redux-beacon');
     DEPENDENCIES.push('@redux-beacon/react-native-google-analytics');
+  }
+
+  if (this.features.pushnotifications) {
+    DEPENDENCIES.push('react-native-push-notification');
+    DEPENDENCIES.push('react-native-huawei-protected-apps');
+  }
+
+  if (this.features.drawerios || this.features.drawerandroid) {
+    DEPENDENCIES.push('react-native-drawer');
   }
 
   if (this.features.reduxpersist) {
