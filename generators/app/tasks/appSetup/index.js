@@ -1,5 +1,7 @@
 const ora = require('ora');
 
+const installPods = require('../installPods');
+
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
@@ -47,24 +49,32 @@ module.exports = function index() {
   }
 
   // ----------------     features     ----------------
-  if (this.features.firebasecore) {
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     firebaseCoreFeatureFiles.bind(this)();
   }
-  if (this.features.pushnotifications) {
-    pushNotificationsFeatureFiles.bind(this)();
-  }
+
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
   }
   if (this.features.drawerios || this.features.drawerandroid) {
     drawerFeatureFiles.bind(this)();
   }
+
   if (this.features.googleanalytics) {
     googleAnalyticsFeatureFiles.bind(this)();
   }
 
+  if (this.features.pushnotifications) {
+    pushNotificationsFeatureFiles.bind(this)();
+  }
+
   // --------------- Enables fullscreen on iPad ----------------------------
   enableFullscreen.bind(this)();
+
+  // ----------------     Install pod with added code for setting xcodeproj     ----------------
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+    installPods.bind(this)();
+  }
 
   spinner.succeed('Boilerplate ready!');
 };
