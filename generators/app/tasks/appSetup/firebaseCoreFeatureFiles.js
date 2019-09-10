@@ -1,4 +1,4 @@
-const { configureAndroidGoogleServices, configureIosGoogleServices } = require('../configureGoogleServices');
+const { configureAndroidGoogleServices, configureIosGoogleServices } = require('./configureGoogleServices');
 
 function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
