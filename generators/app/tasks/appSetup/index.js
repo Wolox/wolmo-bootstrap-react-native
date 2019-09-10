@@ -13,13 +13,15 @@ const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles')
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
-const drawerFeatureFiles = require('./drawerFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 
 module.exports = function index() {
-  const spinner = ora({ spinner: 'bouncingBall', text: 'Creating project boilerplate' }).start();
+  const spinner = ora({
+    spinner: 'bouncingBall',
+    text: 'Creating project boilerplate'
+  }).start();
 
   // ----------------     add package.json scripts     ----------------
   packageJsonScripts.bind(this)();
@@ -36,7 +38,9 @@ module.exports = function index() {
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
 
-  // ----------------     add react-native-config to build.gradle     ----------------
+  // ----------------     add react-native-config to app/build.gradle     ----------------
+  // ----------------     add react-native-screen to app/build.gradle     ----------------
+  // ----------------     add react-native-gesture-handler to MainActivity    ----------------
   androidProjectSetup.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
@@ -56,10 +60,6 @@ module.exports = function index() {
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
   }
-  if (this.features.drawerios || this.features.drawerandroid) {
-    drawerFeatureFiles.bind(this)();
-  }
-
   if (this.features.googleanalytics) {
     googleAnalyticsFeatureFiles.bind(this)();
   }

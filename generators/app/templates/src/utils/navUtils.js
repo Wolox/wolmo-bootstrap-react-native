@@ -1,4 +1,4 @@
-import { screensNavOptions } from '@config/navigation';
+import { appScreensNavOptions } from '@config/navigation';
 import Routes from '@constants/routes';
 
 export const getCurrentRouteName = navigationState => {
@@ -25,7 +25,7 @@ export function inferRoute(screenObj) {
     screenName && {
       [screenName]: {
         screen: screenObj[screenName],
-        navigationOptions: screensNavOptions[screenName],
+        navigationOptions: appScreensNavOptions[screenName],
         ...screenObj
       }
     }

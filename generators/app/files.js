@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 // BASE PATHS
 module.exports.APP_PATH = 'src/app';
 module.exports.CONFIG_PATH = 'src/config';
@@ -90,49 +91,20 @@ module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/Custo
 module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.js`;
 module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.js`;
 module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/assets`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_2X = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility@2x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_3X = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility@3x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility_off.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_2X = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility_off@2x.png`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_3X = `${
-  module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH
-}/ic_visibility_off@3x.png`;
-module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH = `${
-  module.exports.CUSTOM_TEXT_INPUT_PATH
-}/components/ShowPassword`;
-module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD = `${
-  module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH
-}/index.js`;
-module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_STYLES = `${
-  module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH
-}/styles.js`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_2X = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_3X = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility@3x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility_off.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_2X = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility_off@2x.png`;
+module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_OFF_3X = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility_off@3x.png`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/components/ShowPassword`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD = `${module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH}/index.js`;
+module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_SHOW_PASSWORD_PATH}/styles.js`;
 
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
 module.exports.CUSTOM_BUTTON = `${module.exports.CUSTOM_BUTTON_PATH}/index.js`;
 module.exports.CUSTOM_BUTTON_STYLES = `${module.exports.CUSTOM_BUTTON_PATH}/styles.js`;
-
-// COMPONENTS - DRAWER
-module.exports.DRAWER_PATH = `${module.exports.COMPONENTS_PATH}/Drawer`;
-module.exports.DRAWER_INDEX = `${module.exports.DRAWER_PATH}/index.js`;
-module.exports.DRAWER_MENU_PATH = `${module.exports.DRAWER_PATH}/components/DrawerMenu`;
-module.exports.DRAWER_MENU_INDEX = `${module.exports.DRAWER_MENU_PATH}/index.js`;
-module.exports.DRAWER_MENU_STYLES = `${module.exports.DRAWER_MENU_PATH}/styles.js`;
-module.exports.DRAWER_MENU_LAYOUT = `${module.exports.DRAWER_MENU_PATH}/layout.js`;
-module.exports.DRAWER_OVERLAY_PATH = `${module.exports.DRAWER_PATH}/components/DrawerOverlay`;
-module.exports.DRAWER_OVERLAY_INDEX = `${module.exports.DRAWER_OVERLAY_PATH}/index.js`;
-module.exports.DRAWER_OVERLAY_STYLES = `${module.exports.DRAWER_OVERLAY_PATH}/styles.js`;
 
 // COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
@@ -145,10 +117,6 @@ module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
 // REDUX - PUSH NOTIFICATIONS
 module.exports.PUSH_NOTIFICATIONS_REDUCER = `${module.exports.REDUX_PATH}/pushNotifications/reducer.js`;
 module.exports.PUSH_NOTIFICATIONS_ACTIONS = `${module.exports.REDUX_PATH}/pushNotifications/actions.js`;
-
-// REDUX - DRAWER
-module.exports.DRAWER_REDUX_ACTIONS = `${module.exports.REDUX_PATH}/drawer/actions.js`;
-module.exports.DRAWER_REDUX_REDUCER = `${module.exports.REDUX_PATH}/drawer/reducer.js`;
 
 // REDUX - AUTH
 module.exports.AUTH_REDUCER = `${module.exports.REDUX_PATH}/auth/reducer.js`;

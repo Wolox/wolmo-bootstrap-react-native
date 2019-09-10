@@ -1,25 +1,44 @@
-// https://github.com/react-community/react-navigation/issues/458
-// once that issue is resolved, the initial loading screen is no longer needed and should be removed
-//  in favour of setting the initialRoute as a prop of the navigator
+import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 <%_ if(features.tabs) { _%> 
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 <%_ } _%>
+<%_ if(features.drawer) { _%> 
+import { createDrawerNavigator } from 'react-navigation-drawer';
+<%_ } _%>
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
+
 import Routes from '@constants/routes';
-import { stackNavConfig, screensNavOptions<% if (features.tabs) { %>, tabNavConfig<% } %> } from '@config/navigation';
+import {
+  appScreensNavOptions,
+  appStackNavConfig,
+  <%_ if(features.tabs) { _%> 
+  appTabNavConfig,
+  <%_ } _%>
+  authStackNavConfig,
+  <%_ if(features.drawer) { _%> 
+  drawerStackNavConfig,
+  <%_ } _%>
+  mainSwitchNavConfig
+} from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
-<%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
+<%_ if(features.login) { _%>
 import Login from '@screens/Login';
 <%_ } _%>
 import Home from '@screens/Home';
 
-export default createStackNavigator(
+<%_ if(features.login) { _%>
+const AuthStack = createStackNavigator(
   {
-    <%_ if (features.login) { _%>
-    ...inferRoute({ InitialLoading }),
-    ...inferRoute({ Login }),
-    <%_ } _%>
+    ...inferRoute({ Login })
+  },
+  authStackNavConfig
+);
+<%_ } _%>
+
+const AppStack = createStackNavigator(
+  {
     [Routes.Home]: {
       <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
@@ -27,13 +46,44 @@ export default createStackNavigator(
           ...inferRoute({ Tab1: Home }),
           ...inferRoute({ Tab2: Home })
         },
-        tabNavConfig
+        appTabNavConfig
       ),
       <%_ } else { _%>
       screen: Home,
       <%_ } _%>
-      navigationOptions: screensNavOptions[Routes.Home]
+      navigationOptions: appScreensNavOptions[Routes.Home]
     }
   },
-  stackNavConfig
+  appStackNavConfig
+);
+
+<%_ if(features.drawer) { _%>
+const DrawerStack = createDrawerNavigator(
+  {
+    [Routes.App]: AppStack,
+    // TODO: Modify drawer screens here
+    Example1: { screen: Home },
+    Example2: { screen: Home }
+  },
+  drawerStackNavConfig
+);
+<%_ } _%>
+
+export default createAppContainer(
+  createAnimatedSwitchNavigator(
+    {
+      ...inferRoute({ InitialLoading }),
+      <%_ if(features.login) { _%>
+      [Routes.Auth]: AuthStack,
+      <%_ } _%>
+      <%_ if(features.drawer) { _%>
+      [Routes.App]: DrawerStack
+      <%_ } else { _%>
+      [Routes.App]: AppStack
+      <%_ } _%>
+      // TODO: You can add for example an Onboarding flow here
+      // [Routes.Onboarding]: Onboarding
+    },
+    mainSwitchNavConfig
+  )
 );
