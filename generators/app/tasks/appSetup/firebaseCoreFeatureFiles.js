@@ -4,7 +4,7 @@ function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
     'dependencies {',
-    "dependencies {\n\tclasspath 'com.google.gms:google-services:+'"
+    "dependencies {\n\t\tclasspath 'com.google.gms:google-services:+'"
   );
   this.fs.write(`${this.projectName}/android/build.gradle`, buildGradleContent);
 
@@ -14,8 +14,8 @@ function addConfigToAndroidFiles() {
     'apply plugin: "com.android.application"\napply plugin: \'com.google.gms.google-services\''
   );
   appBuildGradleContent = appBuildGradleContent.replace(
-    'dependencies {',
-    "dependencies {\n\timplementation 'com.google.firebase:firebase-core:+'\n\timplementation ('com.google.firebase:firebase-analytics:+')"
+    'if (enableHermes) {',
+    "implementation 'com.google.firebase:firebase-core:+'\n\n\tif (enableHermes) {"
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
   configureAndroidGoogleServices.bind(this)();
