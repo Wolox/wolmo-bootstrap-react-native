@@ -1,3 +1,5 @@
+const { configureAndroidGoogleServices, configureIosGoogleServices } = require('../configureGoogleServices');
+
 function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
@@ -16,10 +18,10 @@ function addConfigToAndroidFiles() {
     `dependencies {\n\timplementation 'com.google.firebase:firebase-core:+'\n\timplementation ('com.google.firebase:firebase-analytics:+')`
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
+  configureAndroidGoogleServices.bind(this)();
 }
 
-module.exports = async function firebaseCoreFeatureFiles() {
-  await addConfigToAndroidFiles.bind(this)();
+function addConfigToIosFiles() {
   let AppDelegateContent = this.fs.read(`${this.projectName}/ios/${this.projectName}/AppDelegate.m`);
   AppDelegateContent = AppDelegateContent.replace(
     `#import "AppDelegate.h"`,
@@ -30,4 +32,10 @@ module.exports = async function firebaseCoreFeatureFiles() {
     `didFinishLaunchingWithOptions:(NSDictionary *)launchOptions\n{\n\t[FIRApp configure];`
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}/AppDelegate.m`, AppDelegateContent);
+  configureIosGoogleServices.bind(this)();
+}
+
+module.exports = function firebaseCoreFeatureFiles() {
+  addConfigToAndroidFiles.bind(this)();
+  addConfigToIosFiles.bind(this)();
 };
