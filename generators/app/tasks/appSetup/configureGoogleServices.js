@@ -28,7 +28,7 @@ function configureAndroidGoogleServices() {
   const googleServicesContent = this.fs.read(
     this.templatePath('googleServicesConfig', 'google-services.json')
   );
-  const updateGoogleServicesContent = googleServicesContent.replace(`com.test`, `com.${this.projectName}`);
+  const updateGoogleServicesContent = googleServicesContent.replace('com.test', `com.${this.projectName}`);
   this.fs.write(`${this.projectName}/android/app/google-services.json`, updateGoogleServicesContent);
 }
 
