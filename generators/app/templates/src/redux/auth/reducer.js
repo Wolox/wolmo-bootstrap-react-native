@@ -19,7 +19,7 @@ const reducerDescription = {
     [actions.LOGOUT]: onSuccess()
   }
 };
-
+/* eslint new-cap: ["error", {capIsNewExceptions: ["Immutable"]}]*/
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
 
 export const propTypes = {

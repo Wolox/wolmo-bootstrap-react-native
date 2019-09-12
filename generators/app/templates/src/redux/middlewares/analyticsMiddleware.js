@@ -13,7 +13,6 @@ export const checkAnalyticsTrackingID = () => {
     console.warn('Google Analytics Tracking ID has not been properly initialized');
   }
 };
-
 const target = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
 
 const pageView = action => ({ hitType: PAGE_VIEW, page: action.routeName });

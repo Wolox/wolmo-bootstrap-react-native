@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@react-native-community/eslint-config": "^0.0.5",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
