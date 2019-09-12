@@ -78,7 +78,6 @@ CustomTextInput.defaultProps = {
   underlineColorAndroid: transparent
 };
 
-/* eslint-disable react/forbid-foreign-prop-types */
 CustomTextInput.propTypes = {
   autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
   autoComplete: PropTypes.string,
