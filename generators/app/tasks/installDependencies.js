@@ -6,9 +6,7 @@ const runCommand = require('./runCommand');
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
   'apisauce',
-  'change-case',
   'i18next',
-  'lodash',
   'prop-types',
   'react-native-config',
   'react-native-gesture-handler',

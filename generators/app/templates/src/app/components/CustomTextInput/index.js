@@ -27,7 +27,7 @@ const CustomTextInput = props => {
     textStyles,
     secureTextEntry,
     showEye,
-    autoComplete
+    autoCompleteType
   } = props;
 
   const placeholderColor = value ? transparent : placeholderTextColor;
@@ -56,7 +56,7 @@ const CustomTextInput = props => {
           style={[styles.inputStyle, multiline ? styles.multilineInput : styles.singleInput, textStyles]}
           placeholderTextColor={placeholderColor}
           secureTextEntry={secureTextEntry && !showPassword}
-          autoComplete={secureTextEntry ? 'off' : autoComplete}
+          autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
         />
         {secureTextEntry && showEye && (
           <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
@@ -94,12 +94,13 @@ CustomTextInput.propTypes = {
   showEye: PropTypes.bool,
   textStyles: Text.propTypes.style,
   title: PropTypes.string,
-  titleStyles: Text.propTypes.style,
   underlineColorAndroid: PropTypes.string,
-  value: PropTypes.string,
+  titleStyles: Text.propTypes.style,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  value: PropTypes.string,
+  autoCompleteType: PropTypes.string
 };
 
 export default memo(CustomTextInput);
