@@ -111,10 +111,6 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@react-native-firebase/app');
   }
 
-  if (this.features.crashlytics) {
-    DEPENDENCIES.push('@react-native-firebase/crashlytics');
-  }
-
   if (this.features.googleanalytics) {
     DEPENDENCIES.push('react-native-google-analytics-bridge');
     DEPENDENCIES.push('redux-beacon');
