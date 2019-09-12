@@ -2,20 +2,19 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 import {
-createReactNavigationReduxMiddleware,
-createNavigationReducer
+  createReactNavigationReduxMiddleware,
+  createNavigationReducer
 } from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 <%_ if(features.reduxpersist) { _%>
 import AsyncStorage from '@react-native-community/async-storage';
 import { persistReducer } from 'redux-persist';
 import {
-seamlessImmutableReconciler,
-seamlessImmutableTransformCreator
+  seamlessImmutableReconciler,
+  seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
 
-import Navigator from '@screens';
 <%_ if(features.googleanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
@@ -26,19 +25,21 @@ import auth from './auth/reducer';
 import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
 
+import Navigator from '@screens';
+
 <%_ if(features.reduxpersist) { _%>
 const transformerConfig = {
-whitelistPerReducer: {
-<%_ if(features.login) { _%>auth: ['currentUser']<%_ } _%>
-}
+  whitelistPerReducer: {
+  <%_ if(features.login) { _%>auth: ['currentUser']<%_ } _%>
+  }
 };
 
 const persistConfig = {
-key: 'root',
-storage: AsyncStorage,
-whitelist: [<%_ if(features.login) { _%>'auth'<%_ } _%>],
-stateReconciler: seamlessImmutableReconciler,
-transforms: [seamlessImmutableTransformCreator(transformerConfig)]
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: [<%_ if(features.login) { _%>'auth'<%_ } _%>],
+  stateReconciler: seamlessImmutableReconciler,
+  transforms: [seamlessImmutableTransformCreator(transformerConfig)]
 };
 <%_ } _%>
 

@@ -1,11 +1,12 @@
 import React, { useState, useCallback, memo } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import CustomText from '@components/CustomText';
-import { transparent } from '@constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
+
+import CustomText from '@components/CustomText';
+import { transparent } from '@constants/colors';
 
 const CustomTextInput = props => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { transparent, black, green, gray, white } from '@constants/colors';
 
 const iconSize = 20;

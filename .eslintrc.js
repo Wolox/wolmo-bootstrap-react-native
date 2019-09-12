@@ -1,5 +1,6 @@
 module.exports = {
-  extends: ['wolox-react'],
+  extends: ['wolox-react',
+    '@react-native-community'],
   rules: {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -14,7 +15,8 @@ module.exports = {
     'no-shadow': 'off',
     'react/forbid-foreign-prop-types': 'off',
     'prefer-promise-reject-errors': 'off',
-    'camelcase': 'off'
+    'camelcase': 'off',
+    "react/jsx-closing-bracket-location": 'off'
 
   }
 };

@@ -52,9 +52,13 @@ module.exports = {
     'no-shadow': 'off',
     'react/forbid-foreign-prop-types': 'off',
     'prefer-promise-reject-errors': 'off',
-    'camelcase': 'off'
+    'camelcase': 'off',
+    'react/jsx-no-bind': 'off',
+    'import/no-cycle': 'off',
+    'react/jsx-closing-bracket-location': 'off'
   },
   settings: {
+    'import/ignore': ['node_modules'],
     'import/resolver': {
       node: {},
       'babel-module': {
