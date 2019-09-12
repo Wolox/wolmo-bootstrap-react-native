@@ -29,9 +29,10 @@ const defaultNavOptions = ({ navigation }) => ({
   headerTintColor: white
 });
 
-export const mainSwitchNavConfig = {
+export const mainSwitchNavConfig = {<%_ if (features.login) { _%>
   initialRouteName: Routes.InitialLoading
-};
+
+<%_ } _%>};
 
 <%_ if (features.login) { _%>
 export const authStackNavConfig = {
