@@ -17,6 +17,5 @@ module.exports = {
     'prefer-promise-reject-errors': 'off',
     'camelcase': 'off',
     "react/jsx-closing-bracket-location": 'off'
-
   }
 };
