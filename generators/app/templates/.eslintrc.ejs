@@ -1,14 +1,5 @@
 module.exports = {
-  env: { es6: true, node: true, browser: true, "jest/globals": true },
-  parser: 'babel-eslint',
-  parserOptions: { ecmaFeatures: { experimentalObjectRestSpread: true, jsx: true }, sourceType: 'module' },
-  plugins: ['react', 'prettier', 'flowtype', 'jest', 'react-hooks', 'babel'],
-  extends: [
-    'wolox-react',
-    '@react-native-community',
-    
-  ],
-  globals: { __DEV__: true },
+   extends: ['wolox-react', '@react-native-community'],
   rules: {
     'prettier/prettier': ['error', { printWidth: 110, singleQuote: true }],
     'no-invalid-this': 'off',
@@ -60,22 +51,17 @@ module.exports = {
   settings: {
     'import/ignore': ['node_modules'],
     'import/resolver': {
-      node: {},
-      'babel-module': {
-        alias: {
-          '@app': './src/app',
-          '@components': './src/app/components',
-          '@config': './src/config',
-          '@constants': './src/constants',
-          '@redux': './src/redux',
-          '@screens': './src/app/screens',
-          '@services': './src/services',
-          '@utils': './src/utils'  
+      node: {
+        paths: ['src'],
+        settings: {
+          'import/resolver': {
+            node: {
+              paths: ['src'],
+              extensions: ['.js', '.jsx', '.json', '.native.js']
+            }
+          }
         }
       }
-    },
-    "react": {
-      "version": "detect"
     }
   }
 };

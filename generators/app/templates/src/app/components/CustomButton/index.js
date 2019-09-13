@@ -1,12 +1,11 @@
 import React, { useCallback, memo } from 'react';
 import { TouchableOpacity, Image, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
+import { getCustomStyles } from '@utils/styleUtils';
 
 import CustomText from '../CustomText';
 
 import styles from './styles';
-
-import { getCustomStyles } from '@utils/styleUtils';
 
 const VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
 
@@ -22,7 +21,8 @@ const CustomButton = props => {
       onPress={onPress}
       style={[styles.container, customStyles(), style]}
       activeOpacity={activeOpacity}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {icon && <Image source={icon} resizeMode="contain" style={[styles.icon, iconStyle]} />}
       {title && (
         <CustomText {...textProps} style={[customTextStyles(), textStyle]}>

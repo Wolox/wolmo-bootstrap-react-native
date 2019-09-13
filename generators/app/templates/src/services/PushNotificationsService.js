@@ -1,5 +1,4 @@
 import { Platform, Alert } from 'react-native';
-
 import api from '@config/api';
 
 let PushNotification;
@@ -44,7 +43,7 @@ export default {
       console.warn(`Push notification with type ${pushType} is not being handled`);
       // do nothing
 
-      handler = () => { };
+      handler = () => {};
     }
     return handler;
   },

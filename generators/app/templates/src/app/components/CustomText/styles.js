@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import fonts from '@config/fonts';
 import { blue, white, green, gray, transparent } from '@constants/colors';
 import { IS_SMALL_DEVICE } from '@constants/platform';

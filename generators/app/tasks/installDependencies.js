@@ -35,7 +35,6 @@ const DEV_DEPENDENCIES = [
   'enzyme-to-json',
   'enzyme',
   '@react-native-community/eslint-config',
-  'eslint-import-resolver-babel-module',
   'eslint-config-wolox',
   'eslint-config-wolox-react',
   'eslint-config-airbnb',

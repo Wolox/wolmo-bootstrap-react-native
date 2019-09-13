@@ -1,12 +1,11 @@
 import React, { useState, useCallback, memo } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import CustomText from '@components/CustomText';
+import { transparent } from '@constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
-
-import CustomText from '@components/CustomText';
-import { transparent } from '@constants/colors';
 
 const CustomTextInput = props => {
   const [showPassword, setShowPassword] = useState(false);
@@ -81,6 +80,7 @@ CustomTextInput.defaultProps = {
 CustomTextInput.propTypes = {
   autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
   autoComplete: PropTypes.string,
+  autoCompleteType: PropTypes.string,
   autoCorrect: PropTypes.bool,
   bottomBorder: PropTypes.bool,
   clearButtonMode: PropTypes.oneOf(['never', 'while-editing', 'unless-editing', 'always']),
@@ -94,13 +94,12 @@ CustomTextInput.propTypes = {
   showEye: PropTypes.bool,
   textStyles: Text.propTypes.style,
   title: PropTypes.string,
-  underlineColorAndroid: PropTypes.string,
   titleStyles: Text.propTypes.style,
+  underlineColorAndroid: PropTypes.string,
+  value: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  value: PropTypes.string,
-  autoCompleteType: PropTypes.string
+  onFocus: PropTypes.func
 };
 
 export default memo(CustomTextInput);

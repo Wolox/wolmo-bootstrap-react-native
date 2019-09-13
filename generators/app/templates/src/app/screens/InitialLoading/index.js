@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-
 import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
 
