@@ -34,7 +34,7 @@ module.exports = function splashScreenSetup() {
     updatedAppDelegateContent
   );
 
-  // Add launch-screen.xml
+  // Add launch_screen.xml
   this.fs.copy(
     this.templatePath('android', 'launch_screen.xml'),
     this.destinationPath(this.projectName, 'android', 'app', 'src', 'main', 'res', 'layout', 'launch_screen.xml')
