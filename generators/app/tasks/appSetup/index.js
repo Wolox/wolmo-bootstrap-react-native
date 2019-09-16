@@ -11,6 +11,7 @@ const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
+const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
@@ -55,6 +56,10 @@ module.exports = function index() {
   // ----------------     features     ----------------
   if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     firebaseCoreFeatureFiles.bind(this)();
+  }
+
+  if (this.features.crashlytics) {
+    crashlyticsFeatureFiles.bind(this)();
   }
 
   if (this.features.login) {
