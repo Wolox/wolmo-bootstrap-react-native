@@ -1,7 +1,7 @@
 module.exports.CRASHLYTICS_LINKS = {
-  ANDROID_INSTALL: 'https://fabric.io/kits/android/crashlytics/install',
-  IOS_INSTALL: 'https://fabric.io/kits/ios/crashlytics/manual-install',
-  RN_INSTALL: 'https://github.com/corymsmith/react-native-fabric#installation'
+  ANDROID_INSTALL: 'https://invertase.io/oss/react-native-firebase/v6/crashlytics/android',
+  IOS_INSTALL: 'https://invertase.io/oss/react-native-firebase/v6/crashlytics/ios',
+  RN_INSTALL: 'https://invertase.io/oss/react-native-firebase/v6/crashlytics/quick-start'
 };
 
 module.exports.PUSH_NOTIFICATIONS_SETUP_LINK =
