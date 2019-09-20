@@ -5,6 +5,7 @@ const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
+const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configurePods = require('./tasks/configurePods');
@@ -72,21 +73,22 @@ class ReactNativeBootstrap extends Generator {
 
   configuring() {
     return Promise.resolve()
-      .then(() => reactNativeCliInstall.bind(this)())
-      .then(() => reactNativeInit.bind(this)())
-      .then(() => installDependencies.bind(this)())
-      .then(() => configurePods.bind(this)());
+      // .then(() => reactNativeCliInstall.bind(this)())
+      // .then(() => reactNativeInit.bind(this)())
+      // .then(() => installDependencies.bind(this)())
+      // .then(() => configurePods.bind(this)());
   }
 
   writing() {
-    appSetup.bind(this)();
+    // appSetup.bind(this)();
   }
 
   install() {
     return Promise.resolve()
-      .then(() => bundleInstall.bind(this)())
-      .then(() => installPods.bind(this)())
-      .then(() => gitInitialization.bind(this)());
+      // .then(() => bundleInstall.bind(this)())
+      // .then(() => installPods.bind(this)())
+      // .then(() => gitInitialization.bind(this)())
+      .then(() => bitriseInitialization.bind(this)());
   }
 
   end() {
