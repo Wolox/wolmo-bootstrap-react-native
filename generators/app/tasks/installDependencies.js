@@ -25,7 +25,8 @@ const DEPENDENCIES = [
   'redux-thunk',
   'redux',
   'reselect',
-  'seamless-immutable'
+  'seamless-immutable',
+  'react-native-splash-screen'
 ];
 
 const DEV_DEPENDENCIES = [

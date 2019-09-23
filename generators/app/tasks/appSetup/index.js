@@ -16,6 +16,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const splashScreenSetup = require('./splashScreenSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -53,6 +54,8 @@ module.exports = function index() {
   }
 
   // ----------------     features     ----------------
+  splashScreenSetup.bind(this)();
+  
   if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     firebaseCoreFeatureFiles.bind(this)();
   }
