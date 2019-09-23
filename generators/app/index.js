@@ -3,7 +3,6 @@ const Generator = require('yeoman-generator');
 const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
-const linkOutdatedDependencies = require('./tasks/linkOutdatedDependencies');
 const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
 const nextSteps = require('./tasks/nextSteps');
@@ -76,7 +75,6 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => linkOutdatedDependencies.bind(this)())
       .then(() => configurePods.bind(this)());
   }
 
