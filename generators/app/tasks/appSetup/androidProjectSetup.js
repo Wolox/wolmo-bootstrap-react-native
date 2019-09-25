@@ -1,3 +1,12 @@
+function addSupportLibVersion() {
+  let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
+  buildGradleContent = buildGradleContent.replace(
+    'targetSdkVersion = 28',
+    'targetSdkVersion = 28\n\t\tsupportLibVersion = "28.0.0"'
+  );
+  this.fs.write(`${this.projectName}/android/build.gradle`, buildGradleContent);
+}
+
 function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
@@ -30,6 +39,7 @@ function addRNGestureHandlerConfig() {
 }
 
 module.exports = function androidProjectSetup() {
+  addSupportLibVersion.bind(this)();
   addDotenvPluginAndRNScreen.bind(this)();
   addRNGestureHandlerConfig.bind(this)();
 };
