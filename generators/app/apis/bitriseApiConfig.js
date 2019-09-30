@@ -6,8 +6,10 @@ const bitriseApi = apisauce.create({
   timeout: 30000
 });
 
-bitriseApi.setHeaders({
-    Authorization: 'eLse21ioH4ik5o_Ih_8hjwfUmXkI3SUD_3-H-M1BZ6qa9c40NQ0hM5YyfTy1_ignB0fK9b0muQ3n7oZBzBHtZg'
-  })
+bitriseApi.addMonitor(response => {
+  if (!response.ok) {
+    console.log(response.data)
+  }
+});
 
 module.exports = bitriseApi;

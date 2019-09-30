@@ -1,5 +1,13 @@
-const bitriseApi = require('../bitriseApiConfig');
-const githupApi = require('../githubApiConfig');
+const bitriseApi = require('../apis/bitriseApiConfig');
+const githubApi = require('../apis/githubApiConfig');
+const gitlabApi = require('../apis/gitlabApiConfig');
+const bitbucketApi = require('../apis/bitbucketApiConfig');
+
+const gitApi = {
+    github: githubApi,
+    gitlab: gitlabApi,
+    bitbucket: bitbucketApi
+}
 
 const createApp = async ({repoUrl, isPublic, gitOwner, provider, repoSlug, type}) => {
     return await bitriseApi.post('/apps/register', {
@@ -12,11 +20,23 @@ const createApp = async ({repoUrl, isPublic, gitOwner, provider, repoSlug, type}
       })
 }
 
-const createSshGithub = async ({repoSlug, publicSshKey}) => {
-    return await githupApi.post('/user/keys', {
-        title: `bitrise-${repoSlug}`,
+const createSshOnBitbucket = async (repoSlug, publicSshKey) => {
+    const userResponse = await gitApi.bitbucket.get('/user/keys');
+    const user = userResponse.data.username;
+    return await gitApi.bitbucket.post(`/users/${user}/ssh-keys`, {
+        label: `bitrise-${repoSlug}`,
         key: publicSshKey
-      })
+    })
+    
+}
+const createSshGit = async ({repoSlug, publicSshKey, provider}) => { // IMPORTANT -> GITLAB AND GITHUB HAVE THE SAME EP
+    if(provider === 'bitbucket') 
+        return await createSshOnBitbucket(repoSlug, publicSshKey);
+    else
+        return await gitApi[provider].post('/user/keys', {
+            title: `bitrise-${repoSlug}`,
+            key: publicSshKey
+        })
 }
 
 const registerSshKeyOnBitrise = async ({slug, publicSshKey, privateSshKey}) => {
@@ -42,10 +62,23 @@ const loadYmlToBitrise = async ({slug, bitriseYml}) => {
       })
 }
 
-module.exports = async function createBitriseApp(values){
+const loadWebHook = async ({slug}) => {
+    return await bitriseApi.post(`/apps/${slug}/register-webhook`);
+}
 
+const setAuthenticationHeaders = ({gitToken, bitriseToken, provider}) => {
+    bitriseApi.setHeaders({
+        Authorization: bitriseToken
+    });
+    gitApi[provider].setHeaders({
+        Authorization: gitToken
+    });
+}
+
+module.exports = async function createBitriseApp(values){
+    setAuthenticationHeaders(values);
     const slugData = await createApp(values);
-    await createSshGithub(values);
+    await createSshGit(values);
     const slug = slugData.data.slug;
     const newValues = {
         ...values,
@@ -53,25 +86,6 @@ module.exports = async function createBitriseApp(values){
     };
     await registerSshKeyOnBitrise(newValues);
     await finishBitrise(newValues);
-    const result = await loadYmlToBitrise(newValues);
-    console.log(result);
+    await loadYmlToBitrise(newValues);
+    await loadWebHook(newValues);
 }
-
-
-// "git_owner": "felire",
-//         "is_public": false,
-//         "provider": "github",
-//         "repo_url": "git@github.com:Wolox/pyg-fidelizacion-react-native.git",
-//         "git_repo_slug":"pyg-fidelizacion-react-native",
-//         "type": "git"
-
-        // repoUrl,
-        //                                 isPublic,
-        //                                 repoSlug,
-        //                                 gitOwner,
-        //                                 provider,
-        //                                 githubToken,
-        //                                 bitriseToken,
-        //                                 type: 'git',
-        //                                 privateSshKey,
-        //                                 publicSshKey

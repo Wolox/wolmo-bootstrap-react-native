@@ -73,21 +73,21 @@ class ReactNativeBootstrap extends Generator {
 
   configuring() {
     return Promise.resolve()
-      // .then(() => reactNativeCliInstall.bind(this)())
-      // .then(() => reactNativeInit.bind(this)())
-      // .then(() => installDependencies.bind(this)())
-      // .then(() => configurePods.bind(this)());
+      .then(() => reactNativeCliInstall.bind(this)())
+      .then(() => reactNativeInit.bind(this)())
+      .then(() => installDependencies.bind(this)())
+      .then(() => configurePods.bind(this)());
   }
 
   writing() {
-    // appSetup.bind(this)();
+    appSetup.bind(this)();
   }
 
   install() {
     return Promise.resolve()
-      // .then(() => bundleInstall.bind(this)())
-      // .then(() => installPods.bind(this)())
-      // .then(() => gitInitialization.bind(this)())
+      .then(() => bundleInstall.bind(this)())
+      .then(() => installPods.bind(this)())
+      .then(() => gitInitialization.bind(this)())
       .then(() => bitriseInitialization.bind(this)());
   }
 

@@ -7,8 +7,11 @@ const githubApi = apisauce.create({
   timeout: 30000
 });
 
-githubApi.setHeaders({
-    Authorization: 'token 5fe45aa1c5c16232e411892824675aacfef0fc81'
-  })
+githubApi.addMonitor(response => {
+  if (!response.ok) {
+    console.log(response.data)
+  }
+});
 
+  
 module.exports = githubApi;
