@@ -81,7 +81,7 @@ Re-enter new password: xxxxx
 
 --------------
 
-We use [FastLane](https://fastlane.tools/) and few of its plugins to automate many ios tasks:
+We use [FastLane](https://github.com/Wolox/fastlane-mobile) and few of its plugins to automate many ios tasks:
 - Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
 - Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
@@ -103,15 +103,6 @@ The last step is installing Fastlane gems:
 gem install bundler
 bundle install
 ```
-
-#### Available Lanes
-
-There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
-
-Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
-
---------------------
-
 
 # Running aplication
 
@@ -160,10 +151,18 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 
 Use the following commands from yourProject/ios:
 
-1) If you need recreate Certificates and Provisioning Profiles. You must be use `bundle exec fastlane recreate_development_certificates`
+1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane create_development_app`. The lane depends of environment, you can use `bundle exec fastlane create_stage_app` or ` bundle exec fastlane create_production_app`
 
-2) `bundle exec fastlane download_development_certificates`
 
-3) `bundle exec fastlane release_qa`
+2) Then you must be use `bundle exec fastlane release_qa` also there are other lanes to deploy to differents environments. You can use `bundle exec fastlane release_stage` or
+`bundle exec fastlane release_production`
 
 Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
+
+--------------------
+
+#### Available Lanes
+
+There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
+
+Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
