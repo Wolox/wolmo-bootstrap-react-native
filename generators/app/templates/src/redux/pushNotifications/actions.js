@@ -1,5 +1,4 @@
 import { createTypes } from 'redux-recompose';
-
 import { isAndroid } from '@constants/platform';
 import PushNotificationsService from '@services/PushNotificationsService';
 

@@ -3,14 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 <%_ } _%>
 import { View } from 'react-native';
-
-import styles from './styles';
-
 <%_ if(features.login) { _%>
 import CustomButton from '@components/CustomButton';
 <%_ } else { _%>
 import CustomText from '@components/CustomText';
 <%_ } _%>
+
+import styles from './styles';
 
 <%_ if(features.login) { _%>
 export default function Home({ onLogout }) {
@@ -30,6 +29,6 @@ export default function Home() {
 <%_ if (features.login) { _%>
 
 Home.propTypes = {
-onLogout: PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired
 };
 <%_ } _%>

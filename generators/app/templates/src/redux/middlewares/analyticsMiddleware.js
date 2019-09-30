@@ -3,7 +3,6 @@ import { NavigationActions, StackActions } from 'react-navigation';
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
 import { createMiddleware } from 'redux-beacon';
-
 import { getPreviousRouteName } from '@utils/navUtils';
 
 const trackingId = Config.ANALYTICS_TRACKING_ID;

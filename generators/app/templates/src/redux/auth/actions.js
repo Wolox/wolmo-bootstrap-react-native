@@ -1,6 +1,5 @@
 import { SwitchActions } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
-
 import * as AuthService from '@services/AuthService';
 import Routes from '@constants/routes';
 
