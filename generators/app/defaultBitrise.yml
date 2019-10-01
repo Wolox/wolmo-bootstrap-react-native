@@ -20,3 +20,4 @@ workflows:
   primary:
     after_run:
     - _run_from_repo
+    
