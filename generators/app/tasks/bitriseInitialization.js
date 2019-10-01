@@ -68,7 +68,7 @@ module.exports = function bitriseInitialization() {
                                         {
                                           type: 'input',
                                           name: 'gitToken',
-                                          message: "Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab)",
+                                          message: "Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab or bitbucket)",
                                           validate: val => (val ? true : 'Github token is required to configure bitrise')
                                         }
                                       ]).then(({ gitToken }) => {
