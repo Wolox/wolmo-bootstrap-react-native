@@ -56,7 +56,7 @@ module.exports = function index() {
 
   // ----------------     features     ----------------
   splashScreenSetup.bind(this)();
-  
+
   if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     firebaseCoreFeatureFiles.bind(this)();
   }

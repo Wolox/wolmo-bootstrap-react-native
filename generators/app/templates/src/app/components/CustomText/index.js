@@ -10,20 +10,23 @@ import styles from './styles';
  ** if you want to add a custom style, you need to add it here and in VARIANTS
  */
 const VARIANTS = [
-  'xxsmall',
-  'xsmall',
-  'small',
-  'medium',
-  'big',
-  'xbig',
   'semiBold',
   'bold',
   'italic',
   'center',
-  'white',
+  'justify',
+  'right',
   'blue',
+  'gray',
   'green',
-  'gray'
+  'white',
+  'xxsmall',
+  'xsmall',
+  'small',
+  'medium',
+  'xmedium',
+  'big',
+  'xbig'
 ];
 
 const CustomText = props => {

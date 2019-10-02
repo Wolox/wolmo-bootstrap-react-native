@@ -10,3 +10,13 @@ export const BOLD = 'Bold';
 // STYLES
 export const NORMAL = 'Normal';
 export const ITALIC = 'Italic';
+// SIZES
+export const SIZES = {
+  XXSMALL: 10,
+  XSMALL: 12,
+  SMALL: 14,
+  MEDIUM: 16,
+  XMEDIUM: 18,
+  BIG: 20,
+  XBIG: 36
+};
