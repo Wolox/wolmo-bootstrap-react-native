@@ -1,16 +1,20 @@
 /* eslint-disable id-length */
 // BASE PATHS
+module.exports.MOCKS = '__mocks__';
+module.exports.TESTS = '__tests__';
+module.exports.CI_PATH = '.woloxci';
+module.exports.FONTS_PATH = 'assets/fonts';
+module.exports.IOS_PATH = 'ios';
 module.exports.APP_PATH = 'src/app';
 module.exports.CONFIG_PATH = 'src/config';
+module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.REDUX_PATH = 'src/redux';
 module.exports.SERVICES_PATH = 'src/services';
 module.exports.UTILS_PATH = 'src/utils';
-module.exports.CONSTANTS_PATH = 'src/constants';
 module.exports.TEST_PATH = 'test';
-module.exports.IOS_PATH = 'ios';
-module.exports.CI_PATH = '.woloxci';
 
 // BASE FILES
+module.exports.REACT_NATIVE_CONFIG = 'react-native.config.js';
 module.exports.JENKINS_FILE = 'Jenkinsfile';
 module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;
 module.exports.CI_CONFIG_FILE = `${module.exports.CI_PATH}/config.yml`;
@@ -21,9 +25,13 @@ module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 module.exports.FASTLANE_EV = `${module.exports.IOS_PATH}/fastlane/config/.env`;
 
-// TESTING FILES
-module.exports.TESTS = '__tests__';
-module.exports.MOCKS = '__mocks__';
+// FONTS
+module.exports.MONTSERRAT_BOLD = `${module.exports.FONTS_PATH}/Montserrat-Bold.ttf`;
+module.exports.MONTSERRAT_BOLD_ITALIC = `${module.exports.FONTS_PATH}/Montserrat-BoldItalic.ttf`;
+module.exports.MONTSERRAT_ITALIC = `${module.exports.FONTS_PATH}/Montserrat-Italic.ttf`;
+module.exports.MONTSERRAT_SEMIBOLD = `${module.exports.FONTS_PATH}/Montserrat-SemiBold.ttf`;
+module.exports.MONTSERRAT_SEMIBOLD_ITALIC = `${module.exports.FONTS_PATH}/Montserrat-SemiBoldItalic.ttf`;
+module.exports.MONTSERRAT = `${module.exports.FONTS_PATH}/Montserrat.ttf`;
 
 // TESTING - MOCKS
 module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH = `${module.exports.MOCKS}/@react-native-community`;

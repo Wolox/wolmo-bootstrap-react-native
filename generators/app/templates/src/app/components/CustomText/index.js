@@ -6,9 +6,9 @@ import { getCustomStyles } from '@utils/styleUtils';
 import styles from './styles';
 
 /*
-   ** You can add styles to Base like Family Font to be the Text styles base!
-   ** if you want to add a custom style, you need to add it here and in VARIANTS
-   */
+ ** You can add styles to Base like Family Font to be the Text styles base!
+ ** if you want to add a custom style, you need to add it here and in VARIANTS
+ */
 const VARIANTS = [
   'xxsmall',
   'xsmall',
@@ -16,7 +16,9 @@ const VARIANTS = [
   'medium',
   'big',
   'xbig',
+  'semiBold',
   'bold',
+  'italic',
   'center',
   'white',
   'blue',
@@ -29,6 +31,7 @@ const CustomText = props => {
 
   const { textProps, style, children } = props;
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <Text {...textProps} style={[styles.base, customStyles(), style]}>
       {children}
     </Text>

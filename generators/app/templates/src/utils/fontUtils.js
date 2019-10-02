@@ -1,53 +1,46 @@
 import { isAndroid } from '@constants/platform';
-import { DEFAULT_FONT, LIGHT, REGULAR, SEMIBOLD, BOLD, BLACK, NORMAL, ITALIC } from '@constants/fonts';
+import { MONTSERRAT, REGULAR, SEMIBOLD, BOLD, NORMAL, ITALIC } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
 
-// Here you can replace DEFAULT_FONT with your custom font.
+const REGULAR_WEIGHT = '400';
+const NORMAL_STYLE = 'normal';
+
+// Here you can replace MONTSERRAT with your custom font.
 // Also, you can add or remove some weights or styles that don't apply with your custom font.
-// If you want to read more about making and configuring custom fonts,
-// this is the original post: https://medium.com/@lewie9021/custom-fonts-in-react-native-85d814ca084
 const fonts = {
-  [DEFAULT_FONT]: {
+  [MONTSERRAT]: {
     weights: {
-      [LIGHT]: '300',
-      [REGULAR]: '400',
+      [REGULAR]: REGULAR_WEIGHT,
       [SEMIBOLD]: '600',
-      [BOLD]: '700',
-      [BLACK]: '900'
+      [BOLD]: '700'
     },
     styles: {
-      [NORMAL]: 'normal',
-      [ITALIC]: 'Italic'
+      [NORMAL]: NORMAL_STYLE,
+      [ITALIC]: 'italic'
     }
   }
 };
 
 export const fontMaker = (options = {}) => {
   const { size = null, color = null } = options;
-  // Here you can replace it too => family = YOUR_CUSTOM_FONT
-  let { weight = null, style = null, family = DEFAULT_FONT } = options;
+  let { weight = null, style = null, family = MONTSERRAT } = options;
 
   let font = {};
   const { weights, styles } = fonts[family];
-  const hasCustomFont = family !== DEFAULT_FONT;
 
-  if (hasCustomFont && isAndroid) {
-    weight = weight !== REGULAR && weights[weight] ? weight : '';
-    style = style !== NORMAL && styles[style] ? style : '';
+  if (isAndroid) {
+    weight = weight !== REGULAR && weights?.[weight] ? weight : '';
+    style = style !== NORMAL && styles?.[style] ? style : '';
 
     family = family.split(' ').join('');
     const suffix = weight + style;
 
     font = { fontFamily: family + (suffix.length ? `-${suffix}` : '') };
   } else {
-    weight = weights[weight] || weights[REGULAR];
-    style = styles[style] || styles[NORMAL];
+    weight = weights?.[weight] || weights?.[REGULAR] || REGULAR_WEIGHT;
+    style = styles?.[style] || styles?.[NORMAL] || NORMAL_STYLE;
 
-    font = {
-      ...(hasCustomFont ? { fontFamily: family } : {}),
-      fontWeight: weight,
-      fontStyle: style
-    };
+    font = { fontFamily: family, fontWeight: weight, fontStyle: style };
   }
 
   font = size ? { ...font, fontSize: moderateScale(size) } : font;
