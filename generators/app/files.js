@@ -144,6 +144,7 @@ module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.j
 module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.js`;
 module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.js`;
+module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBar.js`;
 
 // UTILS
 module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
