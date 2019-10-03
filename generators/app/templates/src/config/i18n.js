@@ -4,7 +4,7 @@ import { getLocales } from 'react-native-localize';
 const getLanguage = {
   type: 'languageDetector',
   init: () => null,
-  detect() {
+  detect: () => {
     const locales = getLocales();
     return locales[0].languageCode;
   },
