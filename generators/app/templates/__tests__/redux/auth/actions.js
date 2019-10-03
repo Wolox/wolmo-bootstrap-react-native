@@ -20,15 +20,9 @@ describe('testing auth actions', () => {
       { type: actions.LOGIN, target: 'currentUser' },
       { type: actions.LOGIN_SUCCESS, target: 'currentUser', payload: { sessionToken: 'token' } },
       {
-        actions: [
-          {
-            routeName: 'Home',
-            type: 'Navigation/NAVIGATE'
-          }
-        ],
-        index: 0,
-        key: null,
-        type: 'Navigation/RESET'
+        preserveFocus: true,
+        routeName: 'App',
+        type: 'Navigation/JUMP_TO',
       }
     ];
     await store.dispatch(actionCreators.login({}));
@@ -41,15 +35,9 @@ describe('testing auth actions', () => {
     const expectedActions = [
       { type: actions.LOGOUT, target: 'currentUser' },
       {
-        actions: [
-          {
-            routeName: 'Login',
-            type: 'Navigation/NAVIGATE'
-          }
-        ],
-        index: 0,
-        key: null,
-        type: 'Navigation/RESET'
+        preserveFocus: true,
+        routeName: 'Auth',
+        type: 'Navigation/JUMP_TO',
       }
     ];
     await store.dispatch(actionCreators.logout({}));
