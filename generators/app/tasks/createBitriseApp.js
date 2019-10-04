@@ -50,7 +50,7 @@ const registerSshKeyOnBitrise = async ({slug, publicSshKey, privateSshKey}) => {
 const finishBitrise = async ({slug}) => {
     return await bitriseApi.post(`/apps/${slug}/finish`, {
         config: 'default-react-native-config',
-        envs: {PROJECT_LOCATION: 'android', MODULE: 'app', VARIANT: 'release', BITRISE_PROJECT_PATH: `ios/${this.projectName}.xcworkspace`, BITRISE_SCHEME: 'TiKit', BITRISE_EXPORT_METHOD: 'app-store'},
+        envs: {},
         mode: 'manual',
         project_type: "react-native",
         stack_id: "osx-xcode-10.2.x"
