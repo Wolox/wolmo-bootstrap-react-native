@@ -26,7 +26,8 @@ const DEPENDENCIES = [
   'redux',
   'reselect',
   'seamless-immutable',
-  'react-native-splash-screen'
+  'react-native-splash-screen',
+  'react-native-localize'
 ];
 
 const DEV_DEPENDENCIES = [
