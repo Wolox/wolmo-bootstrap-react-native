@@ -11,4 +11,9 @@ describe('<Login />', () => {
     expect(wrapper.find(CustomTextInput)).toHaveLength(2);
     expect(wrapper.find(CustomButton)).toHaveLength(1);
   });
+  test('Login Snapshot', () => {
+    const onLogin = jest.fn();
+    const wrapper = shallow(<Login onLogin={onLogin} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

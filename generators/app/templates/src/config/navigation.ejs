@@ -6,6 +6,7 @@ import { DrawerActions } from 'react-navigation-drawer';
 <%_ } _%>
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
+import statusBarConfig from '@constants/statusBar';
 
 // Default nav options for all screens
 const defaultNavOptions = ({ navigation }) => ({
@@ -30,7 +31,11 @@ const defaultNavOptions = ({ navigation }) => ({
 });
 
 export const mainSwitchNavConfig = {
+<%_ if (features.login) { _%>
   initialRouteName: Routes.InitialLoading
+<%_ } else { _%>
+  initialRouteName: Routes.App
+<%_ } _%>
 };
 
 <%_ if (features.login) { _%>
@@ -80,4 +85,18 @@ export const appTabNavConfig = {
   // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
   tabBarPosition: 'bottom'
 };
+
 <%_ } _%>
+export const statusBarStyles = {
+  // TODO: Change these styles to customize the status bar
+<%_ if (features.login) { _%>
+  [Routes.Login]: statusBarConfig.blueStatusBar,
+  [Routes.InitialLoading]: statusBarConfig.whiteStatusBar,
+<%_ } _%>
+<%_ if (features.tabs) { _%>
+  [Routes.Tab1]: statusBarConfig.blueStatusBar,
+  [Routes.Tab2]: statusBarConfig.blueStatusBar,
+<%_ } _%>
+  [Routes.Home]: statusBarConfig.blueStatusBar,
+  default: statusBarConfig.transparentStatusBar
+};

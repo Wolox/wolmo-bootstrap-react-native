@@ -1,5 +1,7 @@
 const ora = require('ora');
 
+const installPods = require('../installPods');
+
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
@@ -8,12 +10,14 @@ const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
+const splashScreenSetup = require('./splashScreenSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -54,9 +58,12 @@ module.exports = function index() {
   }
 
   // ----------------     features     ----------------
-  if (this.features.pushnotifications) {
-    pushNotificationsFeatureFiles.bind(this)();
+  splashScreenSetup.bind(this)();
+
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+    firebaseCoreFeatureFiles.bind(this)();
   }
+
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
   }
@@ -64,8 +71,17 @@ module.exports = function index() {
     googleAnalyticsFeatureFiles.bind(this)();
   }
 
+  if (this.features.pushnotifications) {
+    pushNotificationsFeatureFiles.bind(this)();
+  }
+
   // --------------- Enables fullscreen on iPad ----------------------------
   enableFullscreen.bind(this)();
+
+  // ----------------     Install pod with added code for setting xcodeproj     ----------------
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+    installPods.bind(this)();
+  }
 
   spinner.succeed('Boilerplate ready!');
 };
