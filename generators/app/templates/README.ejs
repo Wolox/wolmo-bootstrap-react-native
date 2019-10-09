@@ -93,8 +93,7 @@ Make sure you have the latest version of the Xcode command line tools installed:
 ```
 xcode-select --install
 ```
-Follow this guides to properly install rvm. These are tools that will easily allow you to install and change different ruby versions.
-1 -[rvm](https://github.com/rvm/rvm)
+Follow this [guide](https://github.com/rvm/rvm) to properly install rvm. This tool will easily allow you to install and change different ruby versions.
 
 Run `rvm -v` to check that it was successfully installed.
 
@@ -148,12 +147,9 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 ## iOS
 
 ### Uploading build to testflight
-
-Use the following commands from yourProject/ios:
+Use the following commands from <%= projectName %>/ios:
 
 1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane create_development_app`. The lane depends of environment, you can use `bundle exec fastlane create_stage_app` or ` bundle exec fastlane create_production_app`
-
-
 2) Then you must be use `bundle exec fastlane release_qa` also there are other lanes to deploy to differents environments. You can use `bundle exec fastlane release_stage` or
 `bundle exec fastlane release_production`
 
@@ -162,7 +158,6 @@ Follow the instructions in the [Fastlane README](ios/README.md) that will help y
 --------------------
 
 #### Available Lanes
-
 There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
 
 Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
