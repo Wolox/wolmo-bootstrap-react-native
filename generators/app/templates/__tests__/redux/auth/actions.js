@@ -1,9 +1,10 @@
-import {actionCreators, actions} from '@redux/auth/actions';
-import api from '@config/api';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {store} from '../store';
-import {mapActionsToTypes} from '../utils';
+import { actionCreators, actions } from '@redux/auth/actions';
+import api from '@config/api';
+
+import { store } from '../store';
+import { mapActionsToTypes } from '../utils';
 
 describe('testing auth actions', () => {
   beforeEach(() => {
