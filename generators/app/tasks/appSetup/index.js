@@ -36,14 +36,12 @@ module.exports = function index() {
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
 
-
   // ----------------     prettierrc setup     ----------------
   prettierrcConfigSetup.bind(this)();
 
   // ----------------     add react-native-config to app/build.gradle     ----------------
   // ----------------     add react-native-screen to app/build.gradle     ----------------
   // ----------------     add react-native-gesture-handler to MainActivity    ----------------
-
   androidProjectSetup.bind(this)();
 
   // ----------------     fix bundle identifier     ----------------
