@@ -8,5 +8,6 @@ export default function alertIfHuaweiDevice() {
     positiveText: 'PROTECTED APPS',
     negativeText: 'CANCEL'
   };
+
   HuaweiProtectedApps.AlertIfHuaweiDevice(config);
 }

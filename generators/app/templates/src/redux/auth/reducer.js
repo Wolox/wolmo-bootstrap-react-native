@@ -19,7 +19,6 @@ const reducerDescription = {
     [actions.LOGOUT]: onSuccess()
   }
 };
-
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
 
 export const propTypes = {

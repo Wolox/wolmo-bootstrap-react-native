@@ -5,7 +5,6 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
-  '@react-native-community/eslint-config',
   'apisauce',
   'i18next',
   'prop-types',
@@ -37,6 +36,9 @@ const DEV_DEPENDENCIES = [
   'enzyme-adapter-react-16',
   'enzyme-to-json',
   'enzyme',
+  '@react-native-community/eslint-config',
+  'eslint-config-wolox',
+  'eslint-config-wolox-react',
   'eslint-config-airbnb',
   'eslint-config-prettier',
   'eslint-plugin-flowtype',
@@ -47,6 +49,8 @@ const DEV_DEPENDENCIES = [
   'eslint-plugin-react-hooks',
   'eslint-plugin-react',
   'eslint',
+  'eslint-plugin-babel',
+  'eslint-plugin-react-native',
   'husky',
   'jest-react-native',
   'jsdom-global',

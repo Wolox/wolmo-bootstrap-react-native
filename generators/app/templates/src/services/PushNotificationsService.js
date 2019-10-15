@@ -4,7 +4,7 @@ import api from '@config/api';
 let PushNotification;
 try {
   PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
-} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
+} catch (e) { } // eslint-disable-line no-empty, prettier/prettier
 
 const PUSH_NOTIFICATION_HANDLERS = {
   hello() {
@@ -42,6 +42,7 @@ export default {
     if (!handler) {
       console.warn(`Push notification with type ${pushType} is not being handled`);
       // do nothing
+
       handler = () => {};
     }
     return handler;
