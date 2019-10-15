@@ -81,10 +81,9 @@ Re-enter new password: xxxxx
 
 --------------
 
-We use [FastLane](https://fastlane.tools/) and few of its plugins to automate many ios tasks:
+We use [FastLane](https://github.com/Wolox/fastlane-mobile) and few of its plugins to automate many ios tasks:
 - Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
-- Creating IPAs ([gym](https://github.com/fastlane/fastlane/tree/master/gym))
 - Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
 
 #### FastLane setup
@@ -94,55 +93,15 @@ Make sure you have the latest version of the Xcode command line tools installed:
 ```
 xcode-select --install
 ```
-Follow this guides to properly install rbenv and ruby-build. These are tools that will easily allow you to install and change different ruby versions.
-1- [Rbenv](https://github.com/rbenv/rbenv#installation)
-2- [Ruby build](https://github.com/rbenv/ruby-build#installing-as-an-rbenv-plugin-recommended)
+Follow this [guide](https://github.com/rvm/rvm) to properly install rvm. This tool will easily allow you to install and change different ruby versions.
 
-Then run the following command to install the desired ruby version
-```bash
-rbenv install 2.4.1
-rbenv global 2.4.1
-rbenv local 2.4.1
-```
-Run `ruby -v` to check that it was successfully installed.
+Run `rvm -v` to check that it was successfully installed.
 
 The last step is installing Fastlane gems:
 ```bash
 gem install bundler
 bundle install
 ```
-
-#### Create app on both Apple Developer Portal and iTunes Connect
-To interact with Apple Developer Portal and iTunes Connect we use [Produce](https://github.com/fastlane/fastlane/tree/master/produce).
-Run the following command from the project rootpath:
-```bash
-fastlane produce
-```
-
-#### Create provisioning profiles and signing certificates
-
-To manage certificates and profiles we use [Match](https://github.com/fastlane/fastlane/tree/master/match).
-Run the following command from the project rootpath:
-```bash
-fastlane match --git_url <project repository url> --git_branch certificates
-```
-You still need to manually set this certificates using xCode.
-
-#### Create push notification certificates
-To create push notification certificates we use [Pem](https://github.com/fastlane/fastlane/tree/master/pem).
-Run the following commands from the project rootpath:
-```bash
-fastlane pem --development
-fastlane pem
-```
-These two commands do the following:
-- Create a new signing request
-- Create a new push certification
-- Downloads the certificate
-- Generates a new .pem file in the current working directory, which you can upload to your server
-
---------------------
-
 
 # Running aplication
 
@@ -187,19 +146,18 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 
 ## iOS
 
-Fastlane is required here. Check the iOS
-
-### Creating an IPA for development (QA)
-Use the following command from the project rootpath:
-```bash
-fastlane dev
-```
-`dev` task is defined in our Fastfile.
-
 ### Uploading build to testflight
-Use the following command from the project rootpath:
-```bash
-fastlane beta
-```
-`beta` task is defined in our Fastfile.
-This command only uploads a new build. You still need to go to itunes connect to make this build available for testers and complete the build description.
+Use the following commands from <%= projectName %>/ios:
+
+1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane create_development_app`. The lane depends of environment, you can use `bundle exec fastlane create_stage_app` or ` bundle exec fastlane create_production_app`
+2) Then you must be use `bundle exec fastlane release_qa` also there are other lanes to deploy to differents environments. You can use `bundle exec fastlane release_stage` or
+`bundle exec fastlane release_production`
+
+Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
+
+--------------------
+
+#### Available Lanes
+There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
+
+Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
