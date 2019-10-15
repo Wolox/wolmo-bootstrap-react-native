@@ -20,6 +20,7 @@ module.exports = function packgeJsonScripts() {
     '<rootDir>/node_modules/',
     '<rootDir>/__tests__/setup/',
     '<rootDir>/__tests__/redux/store.js',
+    "<rootDir>/__tests__/redux/utils.js",
     '<rootDir>/__tests__/responses/'
   ];
   packageJson.jest.transformIgnorePatterns = [
