@@ -31,10 +31,10 @@ const App = () => {
     authSetup(dispatch);
     <%_ } _%>
     apiSetup(dispatch);
-    },[dispatch]);
+  }, [dispatch]);
 
   return <AppNavigator />;
-}
+};
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
 
