@@ -16,19 +16,18 @@ const AppNavigator = () => {
   const dispatch = useDispatch();
   const statusBarProps = statusBarStyles[getCurrentRouteName(state)] || statusBarStyles.default;
 
-  useEffect(
-    () => {
-      const onBackPress = () => {
-        if (state.index === 0) return false;
-        dispatch(NavigationActions.back());
-        return true;
-      };
+  useEffect(() => {
+    const onBackPress = () => {
+      if (state.index === 0) {
+        return false;
+      }
+      dispatch(NavigationActions.back());
+      return true;
+    };
 
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    },
-    [state.index, dispatch]
-  );
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
+    return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+  }, [state.index, dispatch]);
 
   return (
     <>

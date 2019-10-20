@@ -49,6 +49,7 @@ module.exports.TESTS_SETUP_PATH = `${module.exports.TESTS}/setup`;
 module.exports.TESTS_RESPONSES_EXAMPLES = `${module.exports.TESTS_RESPONSES_PATH}/examples.js`;
 // TESTING - TESTS-REDUX
 module.exports.TESTS_STORE = `${module.exports.TESTS_REDUX_PATH}/store.js`;
+module.exports.TESTS_UTILS = `${module.exports.TESTS_REDUX_PATH}/utils.js`;
 module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
 
 module.exports.TESTS_AUTH_ACTIONS = `${module.exports.TESTS_AUTH_PATH}/actions.js`;

@@ -57,47 +57,49 @@ const CustomTextInput = props => {
           secureTextEntry={secureTextEntry && !showPassword}
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
         />
-        {secureTextEntry &&
-          showEye && <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />}
+        {secureTextEntry && showEye && (
+          <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
+        )}
       </View>
     </>
   );
 };
 
 CustomTextInput.defaultProps = {
-  autoCorrect: false,
   autoCapitalize: 'sentences',
-  clearButtonMode: 'never',
-  returnKeyType: 'done',
-  underlineColorAndroid: transparent,
-  keyboardType: 'default',
-  multiline: false,
+  autoCorrect: false,
   bottomBorder: false,
-  maxHeight: 200
+  clearButtonMode: 'never',
+  keyboardType: 'default',
+  maxHeight: 200,
+  multiline: false,
+  returnKeyType: 'done',
+  underlineColorAndroid: transparent
 };
 
 CustomTextInput.propTypes = {
-  bottomBorder: PropTypes.bool,
   autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
-  clearButtonMode: PropTypes.oneOf(['never', 'while-editing', 'unless-editing', 'always']),
-  returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search']),
-  keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
-  underlineColorAndroid: PropTypes.string,
-  maxHeight: PropTypes.number,
+  autoComplete: PropTypes.string,
+  autoCompleteType: PropTypes.string,
   autoCorrect: PropTypes.bool,
+  bottomBorder: PropTypes.bool,
+  clearButtonMode: PropTypes.oneOf(['never', 'while-editing', 'unless-editing', 'always']),
+  keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
+  maxHeight: PropTypes.number,
   multiline: PropTypes.bool,
   placeholder: PropTypes.string,
-  titleStyles: Text.propTypes.style,
+  placeholderTextColor: PropTypes.string,
+  returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search']),
+  secureTextEntry: PropTypes.bool,
+  showEye: PropTypes.bool,
   textStyles: Text.propTypes.style,
+  title: PropTypes.string,
+  titleStyles: Text.propTypes.style,
+  underlineColorAndroid: PropTypes.string,
+  value: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  value: PropTypes.string,
-  placeholderTextColor: PropTypes.string,
-  showEye: PropTypes.bool,
-  secureTextEntry: PropTypes.bool,
-  title: PropTypes.string,
-  autoCompleteType: PropTypes.string
+  onFocus: PropTypes.func
 };
 
 export default memo(CustomTextInput);

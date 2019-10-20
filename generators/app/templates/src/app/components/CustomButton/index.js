@@ -38,11 +38,11 @@ CustomButton.defaultProps = {
 };
 
 CustomButton.propTypes = {
+  onPress: PropTypes.func.isRequired,
   activeOpacity: PropTypes.number,
   disabled: PropTypes.bool,
   icon: PropTypes.number,
   iconStyle: ViewPropTypes.style,
-  onPress: PropTypes.func.isRequired,
   style: ViewPropTypes.style,
   textStyle: PropTypes.number,
   title: PropTypes.string

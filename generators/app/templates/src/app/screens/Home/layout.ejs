@@ -18,11 +18,11 @@ export default function Home() {
 <%_ } _%>
   return (
     <View style={styles.container}>
-      <%_ if(features.login) { _%>
+  <%_ if(features.login) { _%>
       <CustomButton onPress={onLogout} green title="Logout!" style={styles.mainButton} />
-      <%_ } else { _%>
+  <%_ } else { _%>
       <CustomText style={styles.mainButton}><%= projectName %></CustomText>
-      <%_ } _%>
+  <%_ } _%>
     </View>
   );
 }

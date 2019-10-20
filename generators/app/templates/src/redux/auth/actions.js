@@ -15,7 +15,7 @@ export const actionCreators = {
     service: AuthService.login,
     payload: authData,
     injections: [
-      withPostSuccess(async (dispatch, response) => {
+      withPostSuccess((dispatch, response) => {
         dispatch(SwitchActions.jumpTo({ routeName: Routes.App }));
         AuthService.setCurrentUser(response.data);
       })

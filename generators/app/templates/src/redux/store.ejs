@@ -7,15 +7,14 @@ import {
 } from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 <%_ if(features.reduxpersist) { _%>
-  import AsyncStorage from '@react-native-community/async-storage';
-  import { persistReducer } from 'redux-persist';
-  import {
-    seamlessImmutableReconciler,
-    seamlessImmutableTransformCreator
-  } from 'redux-persist-seamless-immutable';
-  <%_ } _%>
+import AsyncStorage from '@react-native-community/async-storage';
+import { persistReducer } from 'redux-persist';
+import {
+  seamlessImmutableReconciler,
+  seamlessImmutableTransformCreator
+} from 'redux-persist-seamless-immutable';
+<%_ } _%>
 
-import Navigator from '@screens';
 <%_ if(features.googleanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
@@ -26,10 +25,12 @@ import auth from './auth/reducer';
 import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
 
+import Navigator from '@screens';
+
 <%_ if(features.reduxpersist) { _%>
 const transformerConfig = {
   whitelistPerReducer: {
-    <%_ if(features.login) { _%>auth: ['currentUser']<%_ } _%>
+  <%_ if(features.login) {     _%>auth: ['currentUser']<%_ } _%>
   }
 };
 
@@ -47,13 +48,13 @@ const nav = createNavigationReducer(Navigator);
 configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
-  <%_ if(features.pushnotifications) { _%>
-  pushNotifications,
-  <%_ } _%>
-  <%_ if(features.login) { _%>
-  auth,
-  <%_ } _%>
-  nav
+<%_ if(features.pushnotifications) { _%>
+pushNotifications,
+<%_ } _%>
+<%_ if(features.login) { _%>
+auth,
+<%_ } _%>
+nav
 });
 
 <%_ if(features.reduxpersist) { _%>

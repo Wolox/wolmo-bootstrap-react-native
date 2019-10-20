@@ -16,6 +16,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 
 module.exports = function index() {
@@ -38,6 +39,9 @@ module.exports = function index() {
 
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
+
+  // ----------------     prettierrc setup     ----------------
+  prettierrcConfigSetup.bind(this)();
 
   // ----------------     add react-native-config to app/build.gradle     ----------------
   // ----------------     add react-native-screen to app/build.gradle     ----------------
