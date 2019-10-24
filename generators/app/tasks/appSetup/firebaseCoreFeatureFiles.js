@@ -3,20 +3,13 @@ const { configureAndroidGoogleServices, configureIosGoogleServices } = require('
 function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
-    'dependencies {',
-    "dependencies {\n\t\tclasspath 'com.google.gms:google-services:+'"
+    '// NOTE: Do not place your application dependencies here; they belong',
+    "classpath 'com.google.gms:google-services:+'\n\t\t// NOTE: Do not place your application dependencies here; they belong"
   );
   this.fs.write(`${this.projectName}/android/build.gradle`, buildGradleContent);
 
   let appBuildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
-  appBuildGradleContent = appBuildGradleContent.replace(
-    'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\napply plugin: \'com.google.gms.google-services\''
-  );
-  appBuildGradleContent = appBuildGradleContent.replace(
-    'if (enableHermes) {',
-    "implementation 'com.google.firebase:firebase-core:+'\n\n\tif (enableHermes) {"
-  );
+  appBuildGradleContent = appBuildGradleContent.concat("\napply plugin: 'com.google.gms.google-services'\n");
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
   configureAndroidGoogleServices.bind(this)();
 }
@@ -25,7 +18,7 @@ function addConfigToIosFiles() {
   let AppDelegateContent = this.fs.read(`${this.projectName}/ios/${this.projectName}/AppDelegate.m`);
   AppDelegateContent = AppDelegateContent.replace(
     '#import "AppDelegate.h"',
-    '#import "AppDelegate.h"\n\n#import <Firebase.h>'
+    '#import "AppDelegate.h"\n#import <Firebase.h>'
   );
   AppDelegateContent = AppDelegateContent.replace(
     'didFinishLaunchingWithOptions:(NSDictionary *)launchOptions\n{',

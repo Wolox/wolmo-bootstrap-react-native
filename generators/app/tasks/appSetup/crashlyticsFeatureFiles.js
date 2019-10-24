@@ -2,7 +2,7 @@ function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
     'jcenter()',
-    "jcenter()\n\t\tmaven {\n\t\turl 'https://maven.fabric.io/public'\n\t\t}"
+    "jcenter()\n\t\tmaven {\n\t\t\turl 'https://maven.fabric.io/public'\n\t\t}"
   );
   buildGradleContent = buildGradleContent.replace(
     '// NOTE: Do not place your application dependencies here; they belong',
@@ -13,17 +13,8 @@ function addConfigToAndroidFiles() {
   let appBuildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   appBuildGradleContent = appBuildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\napply plugin: \'io.fabric\''
+    'apply plugin: "com.android.application"\napply plugin: \'io.fabric\'\n\ncrashlytics {\n\tenableNdk true\n}\n'
   );
-
-  appBuildGradleContent = appBuildGradleContent.replace(
-    "implementation 'com.google.firebase:firebase-core:+'",
-    "implementation 'com.google.firebase:firebase-core:+'\n\timplementation 'com.crashlytics.sdk.android:crashlytics:2.+'"
-  );
-
-  appBuildGradleContent = appBuildGradleContent.concat(`\ncrashlytics {
-    enableNdk true
-  }`);
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
 }
 
