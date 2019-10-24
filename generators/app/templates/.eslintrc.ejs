@@ -1,18 +1,5 @@
 module.exports = {
-  env: { es6: true, node: true, browser: true, "jest/globals": true },
-  parser: 'babel-eslint',
-  parserOptions: { ecmaFeatures: { experimentalObjectRestSpread: true, jsx: true }, sourceType: 'module' },
-  plugins: ['react', 'prettier', 'flowtype', 'jest', 'react-hooks'],
-  extends: [
-    'eslint:recommended',
-    'airbnb',
-    'plugin:react/recommended',
-    'prettier',
-    'prettier/flowtype',
-    'prettier/react',
-    '@react-native-community'
-  ],
-  globals: { __DEV__: true },
+   extends: ['wolox-react', '@react-native-community'],
   rules: {
     'prettier/prettier': ['error', { printWidth: 110, singleQuote: true }],
     'no-invalid-this': 'off',
@@ -44,14 +31,36 @@ module.exports = {
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-magic-numbers': "off",
+    'react/no-multi-comp': 'off',
+    'eslint no-shadow:': 'off',
+    'init-declarations': 'off',
+    "no-empty-function": "off",
+    'complexity': 'off',
+    'no-extra-parens': 'off',
+    'new-cap': 'off',
+    'no-shadow': 'off',
+    'react/forbid-foreign-prop-types': 'off',
+    'prefer-promise-reject-errors': 'off',
+    'camelcase': 'off',
+    'react/jsx-no-bind': 'off',
+    'import/no-cycle': 'off',
+    'import/no-named-as-default': 'off',
+    'react/jsx-closing-bracket-location': 'off'
   },
   settings: {
+    'import/ignore': ['node_modules'],
     'import/resolver': {
       node: {
         paths: ['src'],
         settings: {
-          'import/resolver': { node: { paths: ['src'], extensions: ['.js', '.jsx', '.json', '.native.js'] } }
+          'import/resolver': {
+            node: {
+              paths: ['src'],
+              extensions: ['.js', '.jsx', '.json', '.native.js']
+            }
+          }
         }
       }
     }

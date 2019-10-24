@@ -14,8 +14,8 @@ const ShowPassword = ({ onShowPassword, passwordVisible }) => (
 );
 
 ShowPassword.propTypes = {
-  onShowPassword: PropTypes.func.isRequired,
-  passwordVisible: PropTypes.bool.isRequired
+  passwordVisible: PropTypes.bool.isRequired,
+  onShowPassword: PropTypes.func.isRequired
 };
 
 export default ShowPassword;

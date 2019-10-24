@@ -8,7 +8,9 @@ const initialLoadingSelector = state => state.auth.initialLoading;
 const InitialLoading = ({ navigation }) => {
   const initialLoading = useSelector(initialLoadingSelector);
   const currentUser = useSelector(state => state.auth.currentUser);
-  if (!initialLoading) navigation.navigate(currentUser ? Routes.App : Routes.Auth);
+  if (!initialLoading) {
+    navigation.navigate(currentUser ? Routes.App : Routes.Auth);
+  }
   return null;
 };
 

@@ -5,6 +5,10 @@ function addDotenvPluginAndRNScreen() {
     'apply plugin: "com.android.application"\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'enableHermes: false,',
+    'enableHermes: true,'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
     "implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\n\timplementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'\n\n\tif (enableHermes) {"
   );
