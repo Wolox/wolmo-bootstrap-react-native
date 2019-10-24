@@ -5,14 +5,16 @@ import { SIZES } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
 
 const getColors = colorsObj =>
-  Object.keys(colorsObj)
-    .map(colorName => ({ [colorName]: { color: colorsObj[colorName] } }))
-    .reduce((colors, color) => ({ ...colors, ...color }), {});
+  Object.keys(colorsObj).reduce(
+    (colors, color) => ({ ...colors, ...{ [color]: { color: colorsObj[color] } } }),
+    {}
+  );
 
 const getSizes = sizesObj =>
-  Object.keys(sizesObj)
-    .map(sizeName => ({ [sizeName]: { fontSize: moderateScale(sizesObj[sizeName]) } }))
-    .reduce((sizes, size) => ({ ...sizes, ...size }), {});
+  Object.keys(sizesObj).reduce(
+    (sizes, size) => ({ ...sizes, ...{ [size]: { fontSize: moderateScale(sizesObj[size]) } } }),
+    {}
+  );
 
 export default StyleSheet.create({
   base: {
