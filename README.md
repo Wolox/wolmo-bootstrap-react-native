@@ -41,6 +41,7 @@ The boilerplate includes
 * [i18next config](/generators/app/templates/src/config/i18n.js)
 * [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 * [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
+* [Font Customization](/generators/app/templates/src/config/fonts.js)
 
 ### Tech Stack
 
