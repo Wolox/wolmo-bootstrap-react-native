@@ -5,7 +5,8 @@
 * React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
 * node & npm: https://github.com/creationix/nvm#install-script
 * yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
-* ruby (for Fastlane): https://github.com/rbenv/rbenv#installation
+* ruby (for Fastlane): https://rvm.io/rvm/install
+* CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
 
 ## TL;DR
 
@@ -20,22 +21,27 @@ bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-nat
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
+* Tabs
 * Login
 * Drawer
-* Tabs
-* Push notifications
+* Redux Persist
+* Firebase Analytics
+* Firebase Crashlytics
+* Firebase Push Notifications
 
 ### Boilerplate
 
 The boilerplate includes
 
-* [Basic routes configuration for React Navigation](/generators/app/templates/src/screens.ejs)
+* [Basic routes configuration for React Navigation](/generators/app/templates/src/app/screens.ejs)
 * [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
 * [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
 * [Basic constants](/generators/app/templates/src/constants)
 * [Http client config](/generators/app/templates/src/config/api.js)
-* [i18n config](/generators/app/templates/src/config/i18n.js)
+* [i18next config](/generators/app/templates/src/config/i18n.js)
 * [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+* [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
+* [Font Customization](/generators/app/templates/src/config/fonts.js)
 
 ### Tech Stack
 
@@ -48,7 +54,7 @@ The boilerplate includes
 * [Apisauce](https://github.com/skellock/apisauce)
 * [Reselect](https://github.com/reactjs/reselect)
 * [React Native Config](https://github.com/luggit/react-native-config)
-* [React Native i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+* [i18next](https://www.i18next.com/)
 
 ### Tooling
 
@@ -78,7 +84,19 @@ For bootstraping your own project using the template generator script you'll nee
 
 ## About
 
-This project is maintained by [Sebastian Balay](https://github.com/sbalay) and it was written by [Wolox](http://www.wolox.com.ar).
+This project was created by [Sebastian Balay](https://github.com/sbalay) and it was written by [Wolox](http://www.wolox.com.ar). It is mantained by:
+
+<a href="https://github.com/sfernandez11"><img src="https://avatars2.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
+<a href="https://github.com/mattgle"><img src="https://avatars1.githubusercontent.com/u/44204622?s=460&v=4" title="mattgle" width="80" height="80"></a>
+<a href="https://github.com/andyOlarte514"><img src="https://avatars3.githubusercontent.com/u/40371687?s=460&v=4" title="andyOlarte514" width="80" height="80"></a>
+<a href="https://github.com/Wfolini"><img src="https://avatars0.githubusercontent.com/u/12822259?s=460&v=4" title="Wfolini" width="80" height="80"></a>
+<a href="https://github.com/davidtito1992"><img src="https://avatars3.githubusercontent.com/u/11775595?s=460&v=4" title="davidtito1992" width="80" height="80"></a>
+<a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
+<a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
+<a href="https://github.com/guilleSequeiraWolox"><img src="https://avatars2.githubusercontent.com/u/42941989?s=460&v=4" title="guilleSequeiraWolox" width="80" height="80"></a>
+<a href="https://github.com/rodrigoWolox"><img src="https://avatars0.githubusercontent.com/u/43755587?s=460&v=4" title="rodrigoWolox" width="80" height="80"></a>
+<a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
+<a href="https://github.com/Anisospina"><img src="https://avatars3.githubusercontent.com/u/13072856?s=460&v=4" title="Anisospina" width="80" height="80"></a>
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
 
