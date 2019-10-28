@@ -96,7 +96,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => bundleInstall.bind(this)())
       .then(() => installPods.bind(this)())
       .then(() => gitInitialization.bind(this)())
-      .then(() => bitriseInitialization.bind(this)());
+      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
   }
 
   end() {
