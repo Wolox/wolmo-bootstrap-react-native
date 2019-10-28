@@ -45,7 +45,7 @@ module.exports = function nextSteps() {
   }
 
   if (this.features.bitrise) {
-    // login next steps
+    // bitrise next steps
     console.log(
       'Remember to check this folder and look after the private and public key generated for Bitrise'.bold
         .underline.red
