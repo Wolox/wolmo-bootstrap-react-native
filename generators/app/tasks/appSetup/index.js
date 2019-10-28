@@ -13,6 +13,7 @@ const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles')
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
+const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
@@ -73,6 +74,9 @@ module.exports = function index() {
 
   if (this.features.pushnotifications) {
     pushNotificationsFeatureFiles.bind(this)();
+  }
+  if (this.features.bitrise) {
+    bitriseFeatureFiles.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------
