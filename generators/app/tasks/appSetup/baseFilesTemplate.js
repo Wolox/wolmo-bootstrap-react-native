@@ -1,9 +1,11 @@
 const { copyFile, copyTemplateFile } = require('../../utils');
 const {
+  REACT_NATIVE_CONFIG,
   JENKINS_FILE,
   DOCKER_FILE,
   CI_CONFIG_FILE,
   PULL_REQUEST_TEMPLATE,
+  FONTS,
   API_CONFIG,
   CONFIG,
   MAIN,
@@ -56,9 +58,11 @@ const {
 } = require('../../files');
 
 const FILES = [
+  REACT_NATIVE_CONFIG,
   JENKINS_FILE,
   DOCKER_FILE,
   PULL_REQUEST_TEMPLATE,
+  FONTS,
   API_CONFIG,
   CONFIG,
   APP_NAVIGATOR,

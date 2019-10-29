@@ -9,6 +9,7 @@ const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configurePods = require('./tasks/configurePods');
 const installPods = require('./tasks/installPods');
+const linkAppAssets = require('./tasks/linkAppAssets');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -86,6 +87,7 @@ class ReactNativeBootstrap extends Generator {
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
       .then(() => installPods.bind(this)())
+      .then(() => linkAppAssets.bind(this)())
       .then(() => gitInitialization.bind(this)());
   }
 
