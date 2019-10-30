@@ -84,13 +84,12 @@ For bootstraping your own project using the template generator script you'll nee
 
 ## About
 
-This project was created by [Sebastian Balay](https://github.com/sbalay) and it was written by [Wolox](http://www.wolox.com.ar). It is mantained by:
+This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by:
 
 <a href="https://github.com/sfernandez11"><img src="https://avatars2.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
 <a href="https://github.com/mattgle"><img src="https://avatars1.githubusercontent.com/u/44204622?s=460&v=4" title="mattgle" width="80" height="80"></a>
 <a href="https://github.com/andyOlarte514"><img src="https://avatars3.githubusercontent.com/u/40371687?s=460&v=4" title="andyOlarte514" width="80" height="80"></a>
 <a href="https://github.com/Wfolini"><img src="https://avatars0.githubusercontent.com/u/12822259?s=460&v=4" title="Wfolini" width="80" height="80"></a>
-<a href="https://github.com/davidtito1992"><img src="https://avatars3.githubusercontent.com/u/11775595?s=460&v=4" title="davidtito1992" width="80" height="80"></a>
 <a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
 <a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
 <a href="https://github.com/guilleSequeiraWolox"><img src="https://avatars2.githubusercontent.com/u/42941989?s=460&v=4" title="guilleSequeiraWolox" width="80" height="80"></a>
@@ -104,7 +103,7 @@ This project was created by [Sebastian Balay](https://github.com/sbalay) and it 
 
 **wolmo-bootstrap-react-native** is available under the MIT [license](LICENSE).
 
-    Copyright (c) 2017 Sebastián Balay <sebastian.balay@wolox.com.ar>
+    Copyright © 2018. WOLOX. All rights reserved. <hello@wolox.co>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
