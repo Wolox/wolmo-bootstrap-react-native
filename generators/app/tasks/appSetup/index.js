@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const ora = require('ora');
 
 const installPods = require('../installPods');
@@ -11,6 +12,7 @@ const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
+const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
@@ -52,36 +54,38 @@ module.exports = function index() {
   editBundleIdentifier.bind(this)();
   iosProjectSetup.bind(this)();
 
+  // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
-    // ----------------     disable landscape orientiation for both android and ios     ----------------
     disableLandscapeOrientation.bind(this)();
   }
 
-  // ----------------     features     ----------------
+  // ----------------     Splash Screen    ----------------
   splashScreenSetup.bind(this)();
 
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
-    firebaseCoreFeatureFiles.bind(this)();
-  }
-
+  // ----------------     Features: Login    ----------------
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
   }
-  if (this.features.googleanalytics) {
-    googleAnalyticsFeatureFiles.bind(this)();
-  }
 
-  if (this.features.pushnotifications) {
-    pushNotificationsFeatureFiles.bind(this)();
+  // ----------------     Features: Firebase    ----------------
+  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+    firebaseCoreFeatureFiles.bind(this)();
+
+    if (this.features.crashlytics) {
+      crashlyticsFeatureFiles.bind(this)();
+    }
+    if (this.features.googleanalytics) {
+      googleAnalyticsFeatureFiles.bind(this)();
+    }
+    if (this.features.pushnotifications) {
+      pushNotificationsFeatureFiles.bind(this)();
+    }
+
+    installPods.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------
   enableFullscreen.bind(this)();
-
-  // ----------------     Install pod with added code for setting xcodeproj     ----------------
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
-    installPods.bind(this)();
-  }
 
   spinner.succeed('Boilerplate ready!');
 };
