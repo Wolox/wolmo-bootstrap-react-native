@@ -68,10 +68,6 @@ module.exports = function index() {
     loginFeatureFiles.bind(this)();
   }
 
-  if (this.features.pushnotifications) {
-    pushNotificationsFeatureFiles.bind(this)();
-  }
-
   if (this.features.bitrise) {
     bitriseFeatureFiles.bind(this)();
   }
