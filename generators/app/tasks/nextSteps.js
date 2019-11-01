@@ -1,6 +1,6 @@
 require('colors');
 
-const { CRASHLYTICS_LINKS, PUSH_NOTIFICATIONS_SETUP_LINK } = require('../constants');
+const { PUSH_NOTIFICATIONS_SETUP_LINK } = require('../constants');
 
 module.exports = function nextSteps() {
   console.log(`\n       ${'NEXT STEPS!'.bold.underline.white}       \n`);
@@ -15,18 +15,13 @@ module.exports = function nextSteps() {
     console.log(`● All this boilerplate has already been pushed to ${this.repoUrl}`.cyan);
   }
 
-  // fabric
-  console.log(
-    `● Fabric and crashlytics are two ${
-      'MANDATORY'.bold.underline
-    } tools in every react-native project in Wolox.`.cyan
-  );
-  console.log('  Follow these guides in order to complete their installation:'.cyan);
-  console.log(`    ${CRASHLYTICS_LINKS.IOS_INSTALL.cyan.underline}`);
-  console.log(`    ${CRASHLYTICS_LINKS.ANDROID_INSTALL.cyan.underline}`);
-  console.log(`    ${CRASHLYTICS_LINKS.RN_INSTALL.cyan.underline}`);
-  console.log('  (*) Remember to ask your team lead for the Fabric token'.cyan);
-
+  // firebase
+  if (this.features.crashlytics) {
+    console.log(
+      '  (*) Remember to ask your team lead for the google services file, this file must be replaced for the corresponding application of https://console.firebase.google.com'
+        .cyan
+    );
+  }
   if (this.features.pushnotifications) {
     // push notifications setup
     console.log(

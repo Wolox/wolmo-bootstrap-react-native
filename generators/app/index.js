@@ -10,6 +10,7 @@ const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configurePods = require('./tasks/configurePods');
 const installPods = require('./tasks/installPods');
+const linkAppAssets = require('./tasks/linkAppAssets');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -44,6 +45,7 @@ class ReactNativeBootstrap extends Generator {
           'Login',
           'Tabs',
           'Drawer',
+          'Crashlytics',
           'Push Notifications',
           'Google Analytics',
           'Redux Persist',
@@ -95,8 +97,13 @@ class ReactNativeBootstrap extends Generator {
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
       .then(() => installPods.bind(this)())
+<<<<<<< HEAD
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
+=======
+      .then(() => linkAppAssets.bind(this)())
+      .then(() => gitInitialization.bind(this)());
+>>>>>>> b5f1de36f293fcf29dc476d553c0def0cf58f2c5
   }
 
   end() {

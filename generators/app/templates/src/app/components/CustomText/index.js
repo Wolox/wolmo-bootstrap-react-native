@@ -10,18 +10,23 @@ import styles from './styles';
  ** if you want to add a custom style, you need to add it here and in VARIANTS
  */
 const VARIANTS = [
+  'semiBold',
+  'bold',
+  'italic',
+  'center',
+  'justify',
+  'right',
+  'blue',
+  'gray',
+  'green',
+  'white',
   'xxsmall',
   'xsmall',
   'small',
   'medium',
+  'xmedium',
   'big',
-  'xbig',
-  'bold',
-  'center',
-  'white',
-  'blue',
-  'green',
-  'gray'
+  'xbig'
 ];
 
 const CustomText = props => {
@@ -29,6 +34,7 @@ const CustomText = props => {
 
   const { textProps, style, children } = props;
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <Text {...textProps} style={[styles.base, customStyles(), style]}>
       {children}
     </Text>

@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const latestSemver = require('latest-semver');
 const semverRegex = require('semver-regex');
 
@@ -115,6 +116,10 @@ module.exports = function installDependencies() {
 
   if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
     DEPENDENCIES.push('@react-native-firebase/app');
+  }
+
+  if (this.features.crashlytics) {
+    DEPENDENCIES.push('@react-native-firebase/crashlytics');
   }
 
   if (this.features.googleanalytics) {
