@@ -6,10 +6,10 @@ All notable changes to this project will be documented in this file.
 
 - Added default `Splash Screen`
 - Added `Status Bar` customization
-- Updated implementation to RN 0.60 version
+- Updated implementation to RN 0.61 version
 - Enabled `Hermes` engine
 - Added Snapshot testing for Login
-- Added `RN Localize` and used with `i18next` for better translations
+- Added `RN Localize` and used within `i18next` for better translations
 - Updated both project and bootstrap README
 - Improved both project and bootstrap Eslint configuration
 - Improved Redux testing
