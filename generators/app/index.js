@@ -5,6 +5,7 @@ const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
+const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configurePods = require('./tasks/configurePods');
@@ -47,7 +48,8 @@ class ReactNativeBootstrap extends Generator {
           'Crashlytics',
           'Push Notifications',
           'Google Analytics',
-          'Redux Persist'
+          'Redux Persist',
+          'Bitrise'
         ],
         filter: values =>
           values.reduce((answer, val) => {
@@ -96,7 +98,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => bundleInstall.bind(this)())
       .then(() => installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
-      .then(() => gitInitialization.bind(this)());
+      .then(() => gitInitialization.bind(this)())
+      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
   }
 
   end() {

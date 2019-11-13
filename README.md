@@ -28,6 +28,7 @@ The following optional features can be added out of the box to the new projects:
 * Firebase Analytics
 * Firebase Crashlytics
 * Firebase Push Notifications
+* Bitrise
 
 ### Boilerplate
 
@@ -42,6 +43,7 @@ The boilerplate includes
 * [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 * [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
 * [Font Customization](/generators/app/templates/src/config/fonts.js)
+* [Bitrise config](/generators/app/tasks/createBitriseApp.js)
 
 ### Tech Stack
 
@@ -55,6 +57,7 @@ The boilerplate includes
 * [Reselect](https://github.com/reactjs/reselect)
 * [React Native Config](https://github.com/luggit/react-native-config)
 * [i18next](https://www.i18next.com/)
+* [Bitrise](https://devcenter.bitrise.io/)
 
 ### Tooling
 
