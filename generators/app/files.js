@@ -156,3 +156,6 @@ module.exports.FONT_UTILS = `${module.exports.UTILS_PATH}/fontUtils.js`;
 
 // TEST
 module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;
+
+// BITRISE YML
+module.exports.BITRISE_YML = 'bitrise.yml';

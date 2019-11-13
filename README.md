@@ -28,6 +28,7 @@ The following optional features can be added out of the box to the new projects:
 * Firebase Analytics
 * Firebase Crashlytics
 * Firebase Push Notifications
+* Bitrise
 
 ### Boilerplate
 
@@ -42,6 +43,7 @@ The boilerplate includes
 * [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 * [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
 * [Font Customization](/generators/app/templates/src/config/fonts.js)
+* [Bitrise config](/generators/app/tasks/createBitriseApp.js)
 
 ### Tech Stack
 
@@ -55,6 +57,7 @@ The boilerplate includes
 * [Reselect](https://github.com/reactjs/reselect)
 * [React Native Config](https://github.com/luggit/react-native-config)
 * [i18next](https://www.i18next.com/)
+* [Bitrise](https://devcenter.bitrise.io/)
 
 ### Tooling
 
@@ -95,7 +98,6 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 <a href="https://github.com/guilleSequeiraWolox"><img src="https://avatars2.githubusercontent.com/u/42941989?s=460&v=4" title="guilleSequeiraWolox" width="80" height="80"></a>
 <a href="https://github.com/rodrigoWolox"><img src="https://avatars0.githubusercontent.com/u/43755587?s=460&v=4" title="rodrigoWolox" width="80" height="80"></a>
 <a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
-<a href="https://github.com/Anisospina"><img src="https://avatars3.githubusercontent.com/u/13072856?s=460&v=4" title="Anisospina" width="80" height="80"></a>
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
 
