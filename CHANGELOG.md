@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.6.0] - 2019-11-XX
+## [0.6.0] - 2019-11-13
 
 - Added default `Splash Screen`
 - Added `Status Bar` customization
