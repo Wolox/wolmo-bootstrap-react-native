@@ -25,6 +25,9 @@ import { inferRoute } from '@utils/navUtils';
 import InitialLoading from '@screens/InitialLoading';
 import Login from '@screens/Login';
 <%_ } _%>
+<%_ if(features.onboarding) { _%>
+  import OnBoarding from '@screens/OnBoarding';
+  <%_ } _%>
 import Home from '@screens/Home';
 
 <%_ if(features.login) { _%>
@@ -74,6 +77,9 @@ export default createAppContainer(
       <%_ if(features.login) { _%>
       ...inferRoute({ InitialLoading }),
       [Routes.Auth]: AuthStack,
+      <%_ } _%>
+      <%_ if(features.onboarding) { _%>
+        [Routes.OnBoarding]: OnBoarding,
       <%_ } _%>
       <%_ if(features.drawer) { _%>
       [Routes.App]: DrawerStack

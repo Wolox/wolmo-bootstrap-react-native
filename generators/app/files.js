@@ -75,6 +75,30 @@ module.exports.LOGIN_I18N = `${module.exports.LOGIN_PATH}/i18n.js`;
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
 module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
 
+//SCREENS - ONBOARDING
+module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
+
+module.exports.ONBOARDING = `${module.exports.ONBOARDING_PATH}/index.js`;
+module.exports.ONBOARDING_I18N = `${module.exports.ONBOARDING_PATH}/i18n.js`;
+
+module.exports.ONBOARDING_COMPONENTS_PATH = `${module.exports.ONBOARDING_PATH}/components`;
+module.exports.ONBOARDING_FIRST_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/FirstScreen`;
+module.exports.ONBOARDING_SECOND_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/SecondScreen`;
+module.exports.ONBOARDING_THIRD_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/ThirdScreen`;
+module.exports.ONBOARDING_SWIPER_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/SwiperScreen`;
+
+module.exports.ONBOARDING_FIRST_SCREEN = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/index.js`;
+module.exports.ONBOARDING_FIRST_SCREEN_STYLES = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/styles.js`;
+
+module.exports.ONBOARDING_SECOND_SCREEN = `${module.exports.ONBOARDING_SECOND_SCREEN_PATH}/index.js`;
+module.exports.ONBOARDING_SECOND_SCREEN_STYLES = `${module.exports.ONBOARDING_SECOND_SCREEN_PATH}/styles.js`;
+
+module.exports.ONBOARDING_THIRD_SCREEN = `${module.exports.ONBOARDING_THIRD_SCREEN_PATH}/index.js`;
+module.exports.ONBOARDING_THIRD_SCREEN_STYLES = `${module.exports.ONBOARDING_THIRD_SCREEN_PATH}/styles.js`;
+
+module.exports.ONBOARDING_SWIPER_SCREEN = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/index.js`;
+module.exports.ONBOARDING_SWIPER_SCREEN_STYLES = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/styles.js`;
+
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 

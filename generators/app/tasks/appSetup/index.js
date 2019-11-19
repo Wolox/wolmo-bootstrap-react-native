@@ -16,6 +16,7 @@ const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
 const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
+const onBoardingFeatureFiles = require('./onBoardingFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
@@ -70,6 +71,9 @@ module.exports = function index() {
 
   if (this.features.bitrise) {
     bitriseFeatureFiles.bind(this)();
+  }
+  if (this.features.onboarding) {
+    onBoardingFeatureFiles.bind(this)();
   }
   // ----------------     Features: Firebase    ----------------
   if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
