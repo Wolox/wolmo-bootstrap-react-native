@@ -29,11 +29,7 @@ const defaultNavOptions = ({ navigation }) => ({
 });
 
 export const mainSwitchNavConfig = {
-<%_ if (features.login) { _%>
   initialRouteName: Routes.InitialLoading
-<%_ } else { _%>
-  initialRouteName: Routes.App
-<%_ } _%>
 };
 
 <%_ if (features.login) { _%>

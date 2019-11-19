@@ -4,7 +4,6 @@ const {
   AUTH_ACTIONS,
   AUTH_SERVICE,
   HOME,
-  INITIAL_LOADING,
   LOGIN,
   LOGIN_LAYOUT,
   LOGIN_STYLE,
@@ -27,7 +26,7 @@ const FILES = [
   TESTS_LOGIN_SCREEN_TEST,
   TESTS_UTILS
 ];
-const TEMPLATE_FILES = [HOME, AUTH_ACTIONS, INITIAL_LOADING];
+const TEMPLATE_FILES = [HOME, AUTH_ACTIONS];
 
 module.exports = function loginFeatureFiles() {
   TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));

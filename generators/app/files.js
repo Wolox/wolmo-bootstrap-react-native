@@ -74,8 +74,9 @@ module.exports.LOGIN_I18N = `${module.exports.LOGIN_PATH}/i18n.js`;
 // SCREENS - INITIAL LOADING
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
 module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
+module.exports.INITIAL_LOADING_SERVICE = `${module.exports.INITIAL_LOADING_PATH}/services/onBoardingService.js`;
 
-//SCREENS - ONBOARDING
+// SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
 module.exports.ONBOARDING = `${module.exports.ONBOARDING_PATH}/index.js`;
