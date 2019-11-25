@@ -1,13 +1,24 @@
 {
   "name": "generator-wolmo-bootstrap-rn",
   "version": "0.6.1",
-  "description": "",
+  "description": "A project generator for react native applications with some boilerplates already configured and ready to use.",
   "files": [
     "generators"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wolox/wolmo-bootstrap-react-native.git"
+  },
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "react-native"
   ],
+  "author": "Wolox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wolox/wolmo-bootstrap-react-native/issues"
+  },
+  "homepage": "https://github.com/Wolox/wolmo-bootstrap-react-native#readme",
   "scripts": {
     "lint": "eslint .",
     "lint-diff": "git diff --name-only --cached --relative --diff-filter=ACM | grep \\.js$ | xargs eslint",
@@ -16,7 +27,6 @@
   "dependencies": {
     "apisauce": "^1.1.1",
     "colors": "^1.1.2",
-    "eslint-plugin-jest": "^22.15.2",
     "fs": "0.0.1-security",
     "latest-semver": "^1.0.0",
     "ora": "^1.1.0",
@@ -34,6 +44,7 @@
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",

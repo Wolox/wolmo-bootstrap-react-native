@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] - 2019-11-27
+
+- Setted `react-native-config` version to `v0.11.7` to solve a problem with the build of `ios` in `v0.12`
+- Updated `README` with some information badges
+- Updated `package.json` with some project information to show on `npm`
+
 ## [0.6.0] - 2019-11-13
 
 - Added default `Splash Screen`
