@@ -1,12 +1,16 @@
 # Wolmo Bootstrap: React Native
 
+![Versión npm](https://img.shields.io/npm/v/generator-wolmo-bootstrap-rn.svg?color=68d5f7)
+![Download npm](https://img.shields.io/npm/dw/generator-wolmo-bootstrap-rn.svg?color=7551bb)
+[![Supported by](https://img.shields.io/badge/supported%20by-Wolox.💗-blue.svg)](https://www.wolox.com.ar)
+
 ## Prerequisites
 
-* React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
-* node & npm: https://github.com/creationix/nvm#install-script
-* yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
-* ruby (for Fastlane): https://rvm.io/rvm/install
-* CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
+- React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
+- node & npm: https://github.com/creationix/nvm#install-script
+- yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
+- ruby (for Fastlane): https://rvm.io/rvm/install
+- CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
 
 ## TL;DR
 
@@ -21,49 +25,49 @@ bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-nat
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-* Tabs
-* Login
-* Drawer
-* Redux Persist
-* Firebase Analytics
-* Firebase Crashlytics
-* Firebase Push Notifications
-* Bitrise
+- Tabs
+- Login
+- Drawer
+- Redux Persist
+- Firebase Analytics
+- Firebase Crashlytics
+- Firebase Push Notifications
+- Bitrise
 
 ### Boilerplate
 
 The boilerplate includes
 
-* [Basic routes configuration for React Navigation](/generators/app/templates/src/app/screens.ejs)
-* [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
-* [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
-* [Basic constants](/generators/app/templates/src/constants)
-* [Http client config](/generators/app/templates/src/config/api.js)
-* [i18next config](/generators/app/templates/src/config/i18n.js)
-* [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
-* [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
-* [Font Customization](/generators/app/templates/src/config/fonts.js)
-* [Bitrise config](/generators/app/tasks/createBitriseApp.js)
+- [Basic routes configuration for React Navigation](/generators/app/templates/src/app/screens.ejs)
+- [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
+- [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
+- [Basic constants](/generators/app/templates/src/constants)
+- [Http client config](/generators/app/templates/src/config/api.js)
+- [i18next config](/generators/app/templates/src/config/i18n.js)
+- [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+- [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
+- [Font Customization](/generators/app/templates/src/config/fonts.js)
+- [Bitrise config](/generators/app/tasks/createBitriseApp.js)
 
 ### Tech Stack
 
-* [React](https://facebook.github.io/react/)
-* [React Native](https://facebook.github.io/react-native/)
-* [React Navigation](https://reactnavigation.org/)
-* [Redux](http://redux.js.org/)
-* [Redux Thunk](https://github.com/gaearon/redux-thunk)
-* [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
-* [Apisauce](https://github.com/skellock/apisauce)
-* [Reselect](https://github.com/reactjs/reselect)
-* [React Native Config](https://github.com/luggit/react-native-config)
-* [i18next](https://www.i18next.com/)
-* [Bitrise](https://devcenter.bitrise.io/)
+- [React](https://facebook.github.io/react/)
+- [React Native](https://facebook.github.io/react-native/)
+- [React Navigation](https://reactnavigation.org/)
+- [Redux](http://redux.js.org/)
+- [Redux Thunk](https://github.com/gaearon/redux-thunk)
+- [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
+- [Apisauce](https://github.com/skellock/apisauce)
+- [Reselect](https://github.com/reactjs/reselect)
+- [React Native Config](https://github.com/luggit/react-native-config)
+- [i18next](https://www.i18next.com/)
+- [Bitrise](https://devcenter.bitrise.io/)
 
 ### Tooling
 
-* [Eslint](http://eslint.org/)
-* [Prettier](https://github.com/prettier/prettier)
-* [Reactotron](https://github.com/infinitered/reactotron)
+- [Eslint](http://eslint.org/)
+- [Prettier](https://github.com/prettier/prettier)
+- [Reactotron](https://github.com/infinitered/reactotron)
 
 ### Bootstrap Kick off
 

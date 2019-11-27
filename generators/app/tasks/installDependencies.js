@@ -9,7 +9,7 @@ const DEPENDENCIES = [
   'apisauce',
   'i18next',
   'prop-types',
-  'react-native-config',
+  'react-native-config@0.11.7',
   'react-native-gesture-handler',
   'react-native-reanimated',
   'react-native-screens',
