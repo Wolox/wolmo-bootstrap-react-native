@@ -50,7 +50,7 @@ const finishBitrise = ({ slug }) =>
   bitriseApi.post(`/apps/${slug}/finish`, {
     config: 'default-react-native-config',
     envs: {},
-    organization_slug: 'Wolox',
+    organization_slug: '91af5dfae6f01368',
     mode: 'manual',
     project_type: 'react-native',
     stack_id: 'osx-xcode-10.2.x'
