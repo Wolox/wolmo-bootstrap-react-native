@@ -20,8 +20,9 @@ module.exports = function packgeJsonScripts() {
     '<rootDir>/node_modules/',
     '<rootDir>/__tests__/setup/',
     '<rootDir>/__tests__/redux/store.js',
-    "<rootDir>/__tests__/redux/utils.js",
-    '<rootDir>/__tests__/responses/'
+    '<rootDir>/__tests__/redux/utils.js',
+    '<rootDir>/__tests__/responses/',
+    '<rootDir>/.history/'
   ];
   packageJson.jest.transformIgnorePatterns = [
     '/node_modules/@react-native-community/async-storage/(?!(lib))'
