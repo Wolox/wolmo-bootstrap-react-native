@@ -9,8 +9,8 @@ const gitApi = {
   bitbucket: bitbucketApi
 };
 
-const createApp = async ({ repoUrl, isPublic, gitOwner, provider, repoSlug, type }) =>
-  await bitriseApi.post('/apps/register', {
+const createApp = ({ repoUrl, isPublic, gitOwner, provider, repoSlug, type }) =>
+  bitriseApi.post('/apps/register', {
     git_owner: gitOwner,
     is_public: isPublic,
     provider,

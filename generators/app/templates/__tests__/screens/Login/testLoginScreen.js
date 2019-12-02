@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomTextInput from '@components/CustomTextInput';
 import { shallow } from 'enzyme';
+import CustomTextInput from '@components/CustomTextInput';
 import CustomButton from '@components/CustomButton';
 import { Login } from '@app/screens/Login/layout';
 import renderer from 'react-test-renderer';
