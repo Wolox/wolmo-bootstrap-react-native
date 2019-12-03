@@ -28,16 +28,14 @@ const createSshOnBitbucket = async (repoSlug, publicSshKey) => {
   });
 };
 
-const createSshGit = ({ repoSlug, publicSshKey, provider }) => {
+const createSshGit = ({ repoSlug, publicSshKey, provider }) =>
   // IMPORTANT -> GITLAB AND GITHUB HAVE THE SAME EP
-  if (provider === 'bitbucket') {
-    return createSshOnBitbucket(repoSlug, publicSshKey);
-  }
-  return gitApi[provider].post('/user/keys', {
-    title: `bitrise-${repoSlug}`,
-    key: publicSshKey
-  });
-};
+  provider === 'bitbucket'
+    ? createSshOnBitbucket(repoSlug, publicSshKey)
+    : gitApi[provider].post('/user/keys', {
+        title: `bitrise-${repoSlug}`,
+        key: publicSshKey
+      });
 
 const registerSshKeyOnBitrise = ({ slug, publicSshKey, privateSshKey }) =>
   bitriseApi.post(`/apps/${slug}/register-ssh-key`, {
