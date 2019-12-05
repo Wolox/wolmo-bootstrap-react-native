@@ -71,31 +71,42 @@ module.exports = function bitriseInitialization() {
                 return this.prompt([
                   {
                     type: 'input',
-                    name: 'bitriseToken',
-                    message: 'Please, write your bitrise token with permissions to create ssh keys here',
-                    validate: val => (val ? true : 'Bitrise token is required to configure bitrise')
+                    name: 'bitriseOrganizationSlug',
+                    message: 'Please, write your Bitrise organization slug',
+                    validate: val => (val ? true : 'Organization slug is required')
                   }
-                ]).then(({ bitriseToken }) => {
-                  this.bitriseToken = bitriseToken;
-                  const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
-                  const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
-                  const bitriseYml = fs
-                    .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
-                    .toString();
-                  const values = {
-                    repoUrl,
-                    isPublic: isPublic === 'true',
-                    repoSlug,
-                    gitOwner,
-                    provider,
-                    gitToken,
-                    bitriseToken,
-                    type: 'git',
-                    privateSshKey,
-                    publicSshKey,
-                    bitriseYml
-                  };
-                  createBitriseApp(values);
+                ]).then(({ bitriseOrganizationSlug }) => {
+                  this.bitriseOrganizationSlug = bitriseOrganizationSlug;
+                  return this.prompt([
+                    {
+                      type: 'input',
+                      name: 'bitriseToken',
+                      message: 'Please, write your bitrise token with permissions to create ssh keys here',
+                      validate: val => (val ? true : 'Bitrise token is required to configure bitrise')
+                    }
+                  ]).then(({ bitriseToken }) => {
+                    this.bitriseToken = bitriseToken;
+                    const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
+                    const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
+                    const bitriseYml = fs
+                      .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
+                      .toString();
+                    const values = {
+                      repoUrl,
+                      isPublic: isPublic === 'true',
+                      repoSlug,
+                      gitOwner,
+                      provider,
+                      gitToken,
+                      bitriseOrganizationSlug,
+                      bitriseToken,
+                      type: 'git',
+                      privateSshKey,
+                      publicSshKey,
+                      bitriseYml
+                    };
+                    createBitriseApp(values);
+                  });
                 });
               });
             });

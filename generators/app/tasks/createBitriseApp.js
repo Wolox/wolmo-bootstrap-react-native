@@ -9,7 +9,7 @@ const gitApi = {
   bitbucket: bitbucketApi
 };
 
-const createApp = ({ repoUrl, isPublic, gitOwner, provider, repoSlug, type }) =>
+const createApp = ({ repoUrl, isPublic, gitOwner, provider, repoSlug, type, bitriseOrganizationSlug }) =>
   bitriseApi.post('/apps/register', {
     git_owner: gitOwner,
     is_public: isPublic,
@@ -17,7 +17,7 @@ const createApp = ({ repoUrl, isPublic, gitOwner, provider, repoSlug, type }) =>
     repo_url: repoUrl,
     git_repo_slug: repoSlug,
     type,
-    organization_slug: '91af5dfae6f01368'
+    organization_slug: bitriseOrganizationSlug
   });
 
 const createSshOnBitbucket = async (repoSlug, publicSshKey) => {
@@ -45,14 +45,14 @@ const registerSshKeyOnBitrise = ({ slug, publicSshKey, privateSshKey }) =>
     is_register_key_into_provider_service: false
   });
 
-const finishBitrise = ({ slug }) =>
+const finishBitrise = ({ slug, bitriseOrganizationSlug }) =>
   bitriseApi.post(`/apps/${slug}/finish`, {
     config: 'default-react-native-config',
     envs: {},
     mode: 'manual',
     project_type: 'react-native',
     stack_id: 'osx-xcode-10.2.x',
-    organization_slug: '91af5dfae6f01368'
+    organization_slug: bitriseOrganizationSlug
   });
 
 const loadYmlToBitrise = ({ slug, bitriseYml }) =>
