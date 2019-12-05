@@ -3,6 +3,23 @@ const fs = require('fs');
 const runCommand = require('./runCommand');
 const createBitriseApp = require('./createBitriseApp');
 
+function isNotEmpty(key, value) {
+  const message = `The field ${key} in bitriseInfo.json file is required to run the script`;
+  if ((!value && typeof value === 'string') || value === null || value === undefined) {
+    return message;
+  }
+  return '';
+}
+function validateConfigObject(object) {
+  let lastMessage = '';
+  Object.keys(object).forEach(key => {
+    const message = isNotEmpty(key, object[key]);
+    if (message) {
+      lastMessage = lastMessage.concat('\n', message);
+    }
+  });
+  return lastMessage;
+}
 module.exports = function bitriseInitialization() {
   return runCommand({
     command: ['ssh-keygen', ['-t', 'rsa', '-b', '4096', '-P', '', '-f', './bitrise-ssh', '-m', 'PEM']],
@@ -10,109 +27,37 @@ module.exports = function bitriseInitialization() {
     context: this.options
   }).then(({ spinner }) => {
     spinner.stop();
-    return this.prompt([
-      {
-        type: 'input',
-        name: 'repoUrl',
-        message: "What's your repository url? (ssh only)",
-        validate: val => (val ? true : 'Repository url (ssh) is required to configure bitrise')
+    const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
+    const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
+    const bitriseYml = fs
+      .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
+      .toString();
+    try {
+      const configInfo = JSON.parse(
+        fs.readFileSync('./wolmo-bootstrap-react-native/generators/app/bitriseInfo.json').toString()
+      );
+      const message = validateConfigObject(configInfo);
+      const values = {
+        repoUrl: configInfo.repositoryUrlSsh,
+        isPublic: configInfo.publicRepository,
+        repoSlug: configInfo.repositorySlug,
+        gitOwner: configInfo.repoOwner,
+        provider: configInfo.gitProvider,
+        gitToken: configInfo.gitToken,
+        bitriseOrganizationSlug: configInfo.bitriseOrganizationSlug,
+        bitriseToken: configInfo.bitriseToken,
+        type: 'git',
+        privateSshKey,
+        publicSshKey,
+        bitriseYml
+      };
+      if (message) {
+        console.log(message.bold.underline.red);
+      } else {
+        createBitriseApp(values);
       }
-    ]).then(({ repoUrl }) => {
-      this.repoUrl = repoUrl;
-      // git remote add origin <url>
-      return this.prompt([
-        {
-          type: 'input',
-          name: 'isPublic',
-          message:
-            'Is your repo public? If true then the repository visibility setting will be public, in case of false it will be private',
-          validate: val => (val ? true : 'This value is required to configure bitrise')
-        }
-      ]).then(({ isPublic }) => {
-        this.isPublic = isPublic;
-        return this.prompt([
-          {
-            type: 'input',
-            name: 'repoSlug',
-            message: 'Write the repo slug (The name of your repo not the url)',
-            validate: val => (val ? true : 'Repository slug is required to configure bitrise')
-          }
-        ]).then(({ repoSlug }) => {
-          this.repoSlug = repoSlug;
-          return this.prompt([
-            {
-              type: 'input',
-              name: 'gitOwner',
-              message: 'Who is the owner of the repo?',
-              validate: val => (val ? true : 'Owner is required to configure bitrise')
-            }
-          ]).then(({ gitOwner }) => {
-            this.gitOwner = gitOwner;
-            return this.prompt([
-              {
-                type: 'input',
-                name: 'provider',
-                message:
-                  "The git provider you are using, it can be 'github', 'bitbucket', 'gitlab', 'gitlab-self-hosted' or 'custom'",
-                validate: val => (val ? true : 'Provider is required to configure bitrise')
-              }
-            ]).then(({ provider }) => {
-              this.provider = provider;
-              return this.prompt([
-                {
-                  type: 'input',
-                  name: 'gitToken',
-                  message:
-                    "Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab or bitbucket)",
-                  validate: val => (val ? true : 'Github token is required to configure bitrise')
-                }
-              ]).then(({ gitToken }) => {
-                this.gitToken = gitToken;
-                return this.prompt([
-                  {
-                    type: 'input',
-                    name: 'bitriseOrganizationSlug',
-                    message: 'Please, write your Bitrise organization slug',
-                    validate: val => (val ? true : 'Organization slug is required')
-                  }
-                ]).then(({ bitriseOrganizationSlug }) => {
-                  this.bitriseOrganizationSlug = bitriseOrganizationSlug;
-                  return this.prompt([
-                    {
-                      type: 'input',
-                      name: 'bitriseToken',
-                      message: 'Please, write your bitrise token with permissions to create ssh keys here',
-                      validate: val => (val ? true : 'Bitrise token is required to configure bitrise')
-                    }
-                  ]).then(({ bitriseToken }) => {
-                    this.bitriseToken = bitriseToken;
-                    const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
-                    const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
-                    const bitriseYml = fs
-                      .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
-                      .toString();
-                    const values = {
-                      repoUrl,
-                      isPublic: isPublic === 'true',
-                      repoSlug,
-                      gitOwner,
-                      provider,
-                      gitToken,
-                      bitriseOrganizationSlug,
-                      bitriseToken,
-                      type: 'git',
-                      privateSshKey,
-                      publicSshKey,
-                      bitriseYml
-                    };
-                    createBitriseApp(values);
-                  });
-                });
-              });
-            });
-          });
-        });
-      });
-    });
+    } catch (e) {
+      console.log('The bitriseInfo.json file is writed wrong'.red.underline.bold);
+    }
   });
 };

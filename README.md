@@ -81,6 +81,20 @@ For bootstraping your own project using the template generator script you'll nee
 6. Run `react-native run-ios` or/and `react-native run-android`.
 7. Start working on your project!
 
+### How do you have to configure Bitrise?
+
+You will have to complete the ```bitriseInfo.json``` with the next Info:
+```
+    "repositoryUrlSsh": "", // What's your repository url? (ssh only)
+    "publicRepository": "", // Is your repo public? If true then the repository visibility setting will be public, in case of false it will be private (boolean value)
+    "repositorySlug": "", // Write the repo slug (The name of your repo not the url)
+    "repoOwner": "", // Who is the owner of the repo?
+    "gitProvider": "", // The git provider you are using, it can be 'github', 'bitbucket', 'gitlab', 'gitlab-self-hosted' or 'custom'
+    "gitToken": "", // Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab or bitbucket)
+    "bitriseToken": "", // Please, write your bitrise token with permissions to create ssh keys here
+    "bitriseOrganizationSlug": "" // Please, write your Bitrise organization slug
+```
+
 ## Contributing
 
 1. Fork it.
