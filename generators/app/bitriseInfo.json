@@ -1,12 +1,12 @@
 {
-    "repositoryUrlSsh": "asd",
-    "publicRepository": false,
-    "repositorySlug": "sad",
-    "repoOwner": "adsdsa",
-    "gitProvider": "github",
-    "gitToken": "adssad",
-    "bitriseToken": "13123",
-    "bitriseOrganizationSlug": "slug",
-    "projectPath": "./felire",
-    "projectName": "felire"
+    "repositoryUrlSsh": "",
+    "publicRepository": null,
+    "repositorySlug": "",
+    "repoOwner": "",
+    "gitProvider": "",
+    "gitToken": "",
+    "bitriseToken": "",
+    "bitriseOrganizationSlug": "",
+    "projectPath": "",
+    "projectName": ""
 }
