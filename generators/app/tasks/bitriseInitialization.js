@@ -33,7 +33,7 @@ module.exports = function bitriseInitialization() {
     } else {
       const values = {
         repoUrl: configInfo.repositoryUrlSsh,
-        isPublic: configInfo.publicRepository,
+        isPublic: configInfo.publicApp,
         repoSlug: configInfo.repositorySlug,
         gitOwner: configInfo.repoOwner,
         provider: configInfo.gitProvider,

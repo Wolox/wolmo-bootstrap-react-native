@@ -1,12 +1,12 @@
 {
-    "repositoryUrlSsh": "",
-    "publicRepository": null,
-    "repositorySlug": "",
-    "repoOwner": "",
-    "gitProvider": "",
-    "gitToken": "",
-    "bitriseToken": "",
-    "bitriseOrganizationSlug": "",
+    "repositoryUrlSsh": "git@github.com:BitriseTests/prueba.git",
+    "publicApp": false,
+    "repositorySlug": "prueba",
+    "repoOwner": "BitriseTests",
+    "gitProvider": "github",
+    "gitToken": "token 056efb4f128136288e81fa036e0e8f8f3d373d44",
+    "bitriseToken": "3jtkHiXVVO8gBHhoSR-99orptHD9u7UjNOb1r2IIv_zcJIPDNVaAJc1Q7Lm4dpjx0Rx8b6ikBSLiRpMJMlE76Q",
+    "bitriseOrganizationSlug": "f776c6876a8ee431",
     "projectPath": "",
     "projectName": ""
 }
