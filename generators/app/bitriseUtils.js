@@ -11,7 +11,7 @@ function isNotEmpty(key, value) {
 function validateConfigObject(object) {
   let lastMessage = '';
   if (!object) {
-    return 'The bitriseInfo.json file is writed wrong';
+    return 'The bitriseInfo.json file is written wrong';
   }
   Object.keys(object).forEach(key => {
     const message = isNotEmpty(key, object[key]);
@@ -29,7 +29,7 @@ function loadBitriseInfoFile() {
       fs.readFileSync('./wolmo-bootstrap-react-native/generators/app/bitriseInfo.json').toString()
     );
   } catch (e) {
-    console.log('The bitriseInfo.json file is writed wrong'.red.underline.bold);
+    console.log('The bitriseInfo.json file is written wrong'.red.underline.bold);
   }
   return configInfo;
 }
