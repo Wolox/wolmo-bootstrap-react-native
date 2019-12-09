@@ -93,8 +93,8 @@ You will have to complete the ```bitriseInfo.json``` with the next Info:
     "gitToken": "", // Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab or bitbucket)
     "bitriseToken": "", // Please, write your bitrise token with permissions to create ssh keys here
     "bitriseOrganizationSlug": "", // Please, write your Bitrise organization slug
-    "projectPath": "./felire", // projectPath in case that you want to add the bitrise.yml file to your local repository. This param is in case that you run the script without running the bootstrap
-    "projectName": "felire" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
+    "projectPath": "", // projectPath in case that you want to add the bitrise.yml file to your local repository. This param is in case that you run the script without running the bootstrap
+    "projectName": "" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
 ```
 To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) 
 
