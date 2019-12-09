@@ -1,15 +1,11 @@
 const fs = require('fs');
 
 function isNotEmpty(key, value) {
-  const message = `The field ${key} in bitriseInfo.json file is required to run the script`;
-  if (
-    ((!value && typeof value === 'string') || value === null || value === undefined) &&
+  return ((!value && typeof value === 'string') || value === null || value === undefined) &&
     key !== 'projectPath' &&
     key !== 'projectName'
-  ) {
-    return message;
-  }
-  return '';
+    ? `The field ${key} in bitriseInfo.json file is required to run the script`
+    : '';
 }
 
 function validateConfigObject(object) {
