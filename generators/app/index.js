@@ -1,6 +1,5 @@
 const Generator = require('yeoman-generator');
 
-const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
@@ -83,7 +82,6 @@ class ReactNativeBootstrap extends Generator {
 
   configuring() {
     return Promise.resolve()
-      .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
       .then(() => configurePods.bind(this)());
