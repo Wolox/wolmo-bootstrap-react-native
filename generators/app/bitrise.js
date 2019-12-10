@@ -6,10 +6,9 @@ const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 
 class BitriseInit extends Generator {
-  loadInfo() {
-    const { configInfo, messageError } = loadBitriseInfo();
+  async loadInfo() {
+    const configInfo = await loadBitriseInfo.bind(this)();
     this.configInfo = configInfo;
-    this.messageError = messageError;
   }
 
   constructor(args, opts) {
@@ -26,7 +25,6 @@ class BitriseInit extends Generator {
     this.features = {
       bitrise: true
     };
-    this.loadInfo();
   }
 
   install() {
@@ -34,7 +32,7 @@ class BitriseInit extends Generator {
   }
 
   writing() {
-    if (this.configInfo.projectName && this.configInfo.projectPath) {
+    if (this.configInfo && this.configInfo.projectName && this.configInfo.projectPath) {
       const filepathWithoutExtension = BITRISE_YML.substring(0, BITRISE_YML.lastIndexOf('.'));
       const templatePath = `${filepathWithoutExtension}.ejs`;
       this.fs.copyTpl(

@@ -10,7 +10,7 @@ module.exports = function bitriseInitialization() {
     command: ['ssh-keygen', ['-t', 'rsa', '-b', '4096', '-P', '', '-f', './bitrise-ssh', '-m', 'PEM']],
     loadingMessage: 'Creating ssh key...',
     context: this.options
-  }).then(({ spinner }) => {
+  }).then(async ({ spinner }) => {
     spinner.stop();
     const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
     const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
@@ -18,34 +18,27 @@ module.exports = function bitriseInitialization() {
       .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
       .toString();
     let configInfo = null;
-    let messageError = null;
-    if (!this.configInfo && !this.messageError) {
-      const { configInfo: info, messageError: error } = loadBitriseInfo();
+    if (this.configInfo) {
+      const { configInfo: info } = this;
       configInfo = info;
-      messageError = error;
     } else {
-      const { configInfo: info, messageError: error } = this;
+      const info = await loadBitriseInfo.bind(this)();
       configInfo = info;
-      messageError = error;
     }
-    if (messageError) {
-      console.log(messageError.bold.underline.red);
-    } else {
-      const values = {
-        repoUrl: configInfo.repositoryUrlSsh,
-        isPublic: configInfo.publicApp,
-        repoSlug: configInfo.repositorySlug,
-        gitOwner: configInfo.repoOwner,
-        provider: configInfo.gitProvider,
-        gitToken: configInfo.gitToken,
-        bitriseOrganizationSlug: configInfo.bitriseOrganizationSlug,
-        bitriseToken: configInfo.bitriseToken,
-        type: 'git',
-        privateSshKey,
-        publicSshKey,
-        bitriseYml
-      };
-      createBitriseApp(values);
-    }
+    const values = {
+      repoUrl: configInfo.repositoryUrlSsh,
+      isPublic: configInfo.publicApp,
+      repoSlug: configInfo.repositorySlug,
+      gitOwner: configInfo.repoOwner,
+      provider: configInfo.gitProvider,
+      gitToken: configInfo.gitToken,
+      bitriseOrganizationSlug: configInfo.bitriseOrganizationSlug,
+      bitriseToken: configInfo.bitriseToken,
+      type: 'git',
+      privateSshKey,
+      publicSshKey,
+      bitriseYml
+    };
+    await createBitriseApp(values);
   });
 };
