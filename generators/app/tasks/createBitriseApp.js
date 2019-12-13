@@ -73,15 +73,21 @@ const setAuthenticationHeaders = ({ gitToken, bitriseToken, provider }) => {
 
 module.exports = async function createBitriseApp(values) {
   setAuthenticationHeaders(values);
+  console.log('creating bitrise app...'.green.bold);
   const slugData = await createApp(values);
+  console.log('Registering ssh key on github...'.green.bold);
   await createSshGit(values);
   const { slug } = slugData.data;
   const newValues = {
     ...values,
     slug
   };
+  console.log('Registering ssh key on bitrise...'.green.bold);
   await registerSshKeyOnBitrise(newValues);
+  console.log('last step to create bitrise api...'.green.bold);
   await finishBitrise(newValues);
+  console.log('Loading yml file to bitrise...'.green.bold);
   await loadYmlToBitrise(newValues);
+  console.log('adding webhook to github...'.green.bold);
   await loadWebHook(newValues);
 };
