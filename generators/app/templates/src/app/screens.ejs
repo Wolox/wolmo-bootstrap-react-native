@@ -26,7 +26,7 @@ import InitialLoading from '@screens/InitialLoading';
 import Login from '@screens/Login';
 <%_ } _%>
 <%_ if(features.onboarding) { _%>
-  import OnBoarding from '@screens/OnBoarding';
+import OnBoarding from '@screens/OnBoarding';
   <%_ } _%>
 import Home from '@screens/Home';
 
@@ -79,7 +79,7 @@ export default createAppContainer(
       [Routes.Auth]: AuthStack,
       <%_ } _%>
       <%_ if(features.onboarding) { _%>
-        [Routes.OnBoarding]: OnBoarding,
+      [Routes.OnBoarding]: OnBoarding,
       <%_ } _%>
       <%_ if(features.drawer) { _%>
       [Routes.App]: DrawerStack

@@ -86,7 +86,7 @@ module.exports.ONBOARDING_COMPONENTS_PATH = `${module.exports.ONBOARDING_PATH}/c
 module.exports.ONBOARDING_FIRST_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/FirstScreen`;
 module.exports.ONBOARDING_SECOND_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/SecondScreen`;
 module.exports.ONBOARDING_THIRD_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/ThirdScreen`;
-module.exports.ONBOARDING_SWIPER_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/SwiperScreen`;
+module.exports.ONBOARDING_SWIPER_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/Swiper`;
 
 module.exports.ONBOARDING_FIRST_SCREEN = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/index.js`;
 module.exports.ONBOARDING_FIRST_SCREEN_STYLES = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/styles.js`;

@@ -1,11 +1,12 @@
+<%_ if (features.onboarding && !features.login) { _%>import { useEffect } from 'react';<%_ } _%>
 import PropTypes from 'prop-types';
 <%_ if (features.login) { _%>
 import { useSelector } from 'react-redux';
-<%_ } _%>
 import withLoadable from '@components/Loadable';
+<%_ } _%>
 import Routes from '@constants/routes';
 <%_ if (features.onboarding && !features.login) { _%>
-import { setOnBoardingAccess, getOnBoardingAccess } from './services/AuthService';
+import { setOnBoardingAccess, getOnBoardingAccess } from './services/onBoardingService';
 <%_ } _%>
 
 <%_ if (features.login) { _%>
@@ -18,15 +19,20 @@ const InitialLoading = ({ navigation }) => {
   const currentUser = useSelector(state => state.auth.currentUser);
   if (!initialLoading) {
     <%_ } _%>
-
     <%_ if (features.onboarding && !features.login) { _%>
-    const hasAccess = await getOnBoardingAccess();
-  if (!hasAccess) setOnBoardingAccess();
+  useEffect(() => {
+    (async () => {
+      const access = await getAccess();
+      if (!access) setOnBoardingAccess();
+      navigation.navigate(access ? Routes.App : Routes.OnBoarding);
+    })();
+  }, []);
+  const getAccess = () => getOnBoardingAccess();
   <%_ } _%>
-    navigation.navigate(<%_ 
-    if (features.login) { _%>currentUser ? Routes.App : Routes.Auth<%_ } 
-    if (features.onboarding && !features.login) {_%> hasAccess ? Routes.App : Routes.OnBoarding <%_ } else{ _%>
-      Routes.App<%_ } _%>);
+    <%_ 
+    if(!(features.onboarding && !features.login)){ _%>navigation.navigate(<%_
+    } if (features.login) { _%>currentUser ? Routes.App : Routes.Auth<%_ } 
+    if(!features.onboarding && !features.login){ _%>Routes.App<%_ } if(!(features.onboarding && !features.login)){_%>);<%_ } _%>
     <%_ if (features.login) { _%>
   }
   <%_ } _%>
@@ -44,4 +50,8 @@ InitialLoading.propTypes = {
   })
 };
 
-export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
+<%_ if (features.login) { _%>
+  export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
+  <%_ } else{_%>
+  export default InitialLoading;
+  <%_ } _%>
