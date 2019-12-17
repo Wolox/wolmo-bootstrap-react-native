@@ -1,0 +1,47 @@
+import PropTypes from 'prop-types';
+<%_ if (features.login) { _%>
+import { useSelector } from 'react-redux';
+<%_ } _%>
+import withLoadable from '@components/Loadable';
+import Routes from '@constants/routes';
+<%_ if (features.onboarding && !features.login) { _%>
+import { setOnBoardingAccess, getOnBoardingAccess } from './services/AuthService';
+<%_ } _%>
+
+<%_ if (features.login) { _%>
+const initialLoadingSelector = state => state.auth.initialLoading;
+<%_ } _%>
+
+const InitialLoading = ({ navigation }) => {
+  <%_ if (features.login) { _%>
+  const initialLoading = useSelector(initialLoadingSelector);
+  const currentUser = useSelector(state => state.auth.currentUser);
+  if (!initialLoading) {
+    <%_ } _%>
+
+    <%_ if (features.onboarding && !features.login) { _%>
+    const hasAccess = await getOnBoardingAccess();
+  if (!hasAccess) setOnBoardingAccess();
+  <%_ } _%>
+    navigation.navigate(<%_ 
+    if (features.login) { _%>currentUser ? Routes.App : Routes.Auth<%_ } 
+    if (features.onboarding && !features.login) {_%> hasAccess ? Routes.App : Routes.OnBoarding <%_ } else{ _%>
+      Routes.App<%_ } _%>);
+    <%_ if (features.login) { _%>
+  }
+  <%_ } _%>
+  return null;
+};
+
+InitialLoading.propTypes = {
+  // TODO: complete this shape
+  <%_ if (features.login) { _%>
+  currentUser: PropTypes.shape(),
+  initialLoading: PropTypes.bool,
+  <%_ } _%>
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  })
+};
+
+export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);

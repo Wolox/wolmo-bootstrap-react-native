@@ -54,7 +54,8 @@ const {
   I18NEXT_MOCK,
   TESTS_STORE,
   TESTS_SETUP_ENZYME,
-  TESTS_RESPONSES_EXAMPLES
+  TESTS_RESPONSES_EXAMPLES,
+  INITIAL_LOADING
 } = require('../../files');
 
 const FILES = [
@@ -115,7 +116,8 @@ const TEMPLATE_FILES = [
   NAVIGATION_CONFIG,
   APP_I18N,
   CI_CONFIG_FILE,
-  MAIN
+  MAIN,
+  INITIAL_LOADING
 ];
 
 module.exports = function baseFilesTemplate() {

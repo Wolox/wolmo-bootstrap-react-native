@@ -21,10 +21,13 @@ import {
   mainSwitchNavConfig
 } from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
-<%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
+<%_ if(features.login) { _%>
 import Login from '@screens/Login';
 <%_ } _%>
+<%_ if(features.onboarding) { _%>
+  import OnBoarding from '@screens/OnBoarding';
+  <%_ } _%>
 import Home from '@screens/Home';
 
 <%_ if(features.login) { _%>
@@ -71,9 +74,12 @@ const DrawerStack = createDrawerNavigator(
 export default createAppContainer(
   createAnimatedSwitchNavigator(
     {
-      <%_ if(features.login) { _%>
       ...inferRoute({ InitialLoading }),
+      <%_ if(features.login) { _%>
       [Routes.Auth]: AuthStack,
+      <%_ } _%>
+      <%_ if(features.onboarding) { _%>
+        [Routes.OnBoarding]: OnBoarding,
       <%_ } _%>
       <%_ if(features.drawer) { _%>
       [Routes.App]: DrawerStack
