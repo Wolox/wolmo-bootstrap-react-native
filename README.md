@@ -83,7 +83,8 @@ For bootstraping your own project using the template generator script you'll nee
 
 ### How do you have to configure Bitrise?
 
-You will have to complete the ```bitriseInfo.json``` with the next Info:
+You will have to complete the `bitriseInfo.json` with the next Info:
+
 ```
     "repositoryUrlSsh": "", // What's your repository url? (ssh only)
     "publicApp": "", // If true then the app visibility setting will be public, in case of false it will be private (boolean value)
@@ -96,7 +97,8 @@ You will have to complete the ```bitriseInfo.json``` with the next Info:
     "projectPath": "", // projectPath in case that you want to add the bitrise.yml file to your local repository. This param is in case that you run the script without running the bootstrap
     "projectName": "" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
 ```
-To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) 
+
+To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html)
 
 ## Contributing
 
@@ -116,7 +118,6 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 <a href="https://github.com/Wfolini"><img src="https://avatars0.githubusercontent.com/u/12822259?s=460&v=4" title="Wfolini" width="80" height="80"></a>
 <a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
 <a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
-<a href="https://github.com/guilleSequeiraWolox"><img src="https://avatars2.githubusercontent.com/u/42941989?s=460&v=4" title="guilleSequeiraWolox" width="80" height="80"></a>
 <a href="https://github.com/rodrigoWolox"><img src="https://avatars0.githubusercontent.com/u/43755587?s=460&v=4" title="rodrigoWolox" width="80" height="80"></a>
 <a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
 
