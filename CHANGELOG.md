@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [0.6.2] - 2020-01-29
 
 - Added `@react-native-community/masked-view` and `react-native-safe-area-context` to solve the dependencies issue
+- Change `publicApp` default to `false` in `bitriseInfo.json`
 
 ## [0.6.1] - 2019-11-27
 
