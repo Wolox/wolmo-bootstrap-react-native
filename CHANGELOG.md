@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.2] - 2020-01-29
+
+- Added `@react-native-community/masked-view` and `react-native-safe-area-context` to solve the dependencies issue
+
 ## [0.6.1] - 2019-11-27
 
 - Setted `react-native-config` version to `v0.11.7` to solve a problem with the build of `ios` in `v0.12`

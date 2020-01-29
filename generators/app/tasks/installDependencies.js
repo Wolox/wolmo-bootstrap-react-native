@@ -6,12 +6,14 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
+  '@react-native-community/masked-view',
   'apisauce',
   'i18next',
   'prop-types',
   'react-native-config@0.11.7',
   'react-native-gesture-handler',
   'react-native-reanimated',
+  'react-native-safe-area-context',
   'react-native-screens',
   'react-navigation-animated-switch',
   'react-navigation-redux-helpers',
