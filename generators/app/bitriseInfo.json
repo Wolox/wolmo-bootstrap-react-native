@@ -1,12 +1,12 @@
 {
-    "repositoryUrlSsh": "",
-    "publicApp": null,
-    "repositorySlug": "",
-    "repoOwner": "",
-    "gitProvider": "",
-    "gitToken": "",
-    "bitriseToken": "",
-    "bitriseOrganizationSlug": "",
-    "projectPath": "",
-    "projectName": ""
+  "repositoryUrlSsh": "",
+  "publicApp": false,
+  "repositorySlug": "",
+  "repoOwner": "",
+  "gitProvider": "",
+  "gitToken": "",
+  "bitriseToken": "",
+  "bitriseOrganizationSlug": "",
+  "projectPath": "",
+  "projectName": ""
 }
