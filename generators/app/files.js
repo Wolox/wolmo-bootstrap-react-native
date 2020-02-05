@@ -89,8 +89,8 @@ module.exports.CUSTOM_TEXT_STYLES = `${module.exports.CUSTOM_TEXT_PATH}/styles.j
 
 // COMPONENTS - CUSTOM TEXT INPUT
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
-module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.js`;
-module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.js`;
+module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.tsx`;
+module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.ts`;
 module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/assets`;
 module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility.png`;
 module.exports.CUSTOM_TEXT_INPUT_ASSETS_VISIBILITY_2X = `${module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH}/ic_visibility@2x.png`;
