@@ -1,24 +1,25 @@
-const Generator = require('yeoman-generator');
+const Generator = require("yeoman-generator");
 
-const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
-const reactNativeInit = require('./tasks/reactNativeInit');
-const installDependencies = require('./tasks/installDependencies');
-const appSetup = require('./tasks/appSetup');
-const gitInitialization = require('./tasks/gitInitialization');
-const bitriseInitialization = require('./tasks/bitriseInitialization');
-const nextSteps = require('./tasks/nextSteps');
-const bundleInstall = require('./tasks/bundleInstall');
-const configurePods = require('./tasks/configurePods');
-const installPods = require('./tasks/installPods');
-const linkAppAssets = require('./tasks/linkAppAssets');
+const reactNativeCliInstall = require("./tasks/reactNativeCliInstall");
+const reactNativeInit = require("./tasks/reactNativeInit");
+const installDependencies = require("./tasks/installDependencies");
+const appSetup = require("./tasks/appSetup");
+const gitInitialization = require("./tasks/gitInitialization");
+const bitriseInitialization = require("./tasks/bitriseInitialization");
+const nextSteps = require("./tasks/nextSteps");
+const bundleInstall = require("./tasks/bundleInstall");
+const configurePods = require("./tasks/configurePods");
+const configureFastlane = require("./tasks/configureFastlane");
+const installPods = require("./tasks/installPods");
+const linkAppAssets = require("./tasks/linkAppAssets");
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.option('verbose', {
-      desc: 'Turns on verbose logging',
-      alias: 'v',
+    this.option("verbose", {
+      desc: "Turns on verbose logging",
+      alias: "v",
       type: Boolean,
       default: false
     });
@@ -29,8 +30,8 @@ class ReactNativeBootstrap extends Generator {
   prompting() {
     return this.prompt([
       {
-        type: 'input',
-        name: 'name',
+        type: "input",
+        name: "name",
         message: "What's your project name?",
         validate: val =>
           String(val).match(/^[$A-Z_][0-9A-Z_$]*$/i)
@@ -38,29 +39,30 @@ class ReactNativeBootstrap extends Generator {
             : `${val} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
       },
       {
-        type: 'checkbox',
-        name: 'features',
+        type: "checkbox",
+        name: "features",
         message: "What's features should this project include?",
         choices: [
-          'Login',
-          'Tabs',
-          'Drawer',
-          'Crashlytics',
-          'Push Notifications',
-          'Google Analytics',
-          'Redux Persist',
-          'Bitrise'
+          "Login",
+          "Tabs",
+          "Drawer",
+          "Crashlytics",
+          "Push Notifications",
+          "Google Analytics",
+          "Redux Persist",
+          "Bitrise"
         ],
         filter: values =>
           values.reduce((answer, val) => {
-            answer[val.replace(/ /g, '').toLowerCase()] = true;
+            answer[val.replace(/ /g, "").toLowerCase()] = true;
             return answer;
           }, {})
       },
       {
-        type: 'confirm',
-        name: 'landscape',
-        message: "Would you like to enable landscape orientation? Psst! You probably don't want this!",
+        type: "confirm",
+        name: "landscape",
+        message:
+          "Would you like to enable landscape orientation? Psst! You probably don't want this!",
         default: false
       }
     ]).then(answers => {
@@ -70,9 +72,9 @@ class ReactNativeBootstrap extends Generator {
 
       return this.prompt([
         {
-          type: 'input',
-          name: 'bundleId',
-          message: 'Enter the bundle id for your ios app',
+          type: "input",
+          name: "bundleId",
+          message: "Enter the bundle id for your ios app",
           default: `com.wolox.${this.projectName}`
         }
       ]).then(answer => {
@@ -86,6 +88,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
+      .then(() => configureFastlane.bind(this)())
       .then(() => configurePods.bind(this)());
   }
 
