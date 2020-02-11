@@ -1,36 +1,32 @@
-const runCommand = require("./runCommand");
-const fastlaneMobileHTTPS = "https://github.com/Wolox/fastlane-mobile.git";
-const fastlaneMvCommand = "fastlane-mobile/fastlane ios/fastlane";
-const removeFastlaneMobie = "fastlane-mobile";
+const runCommand = require('./runCommand');
+
+const fastlaneMobileHTTPS = 'https://github.com/Wolox/fastlane-mobile.git';
+const fastlaneMvCommand = 'fastlane-mobile/fastlane ios/fastlane';
+const removeFastlaneMobie = 'fastlane-mobile';
 
 module.exports = function configureFastlane() {
   return runCommand({
     command: [
-      "git",
-      ["clone", `${fastlaneMobileHTTPS}`],
+      'git',
+      ['clone', `${fastlaneMobileHTTPS}`],
       { cwd: `${process.cwd()}/${this.projectName}/ios` }
     ],
-    loadingMessage: "Fetching lastest Fastlane version...",
-    successMessage: "Fetch Success!",
-    failureMessage: "Fetch Failure!",
+    loadingMessage: 'Fetching lastest Fastlane version...',
+    successMessage: 'Fetch Success!',
+    failureMessage: 'Fetch Failure!',
     context: this.options
   })
     .then(() =>
       runCommand({
-        command: [
-          "mv",
-          [`${fastlaneMvCommand}`],
-          { cwd: `${process.cwd()}/${this.projectName}/ios` }
-        ],
+        command: ['mv', [`${fastlaneMvCommand}`], { cwd: `${process.cwd()}/${this.projectName}/ios` }],
         context: this.options
       })
     )
     .then(() =>
       runCommand({
         command: [
-          "rm",
-          "-rf",
-          [`${removeFastlaneMobie}`],
+          'rm',
+          ['-rf', `${removeFastlaneMobie}`],
           { cwd: `${process.cwd()}/${this.projectName}/ios` }
         ],
         context: this.options
