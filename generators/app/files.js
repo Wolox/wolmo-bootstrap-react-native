@@ -23,7 +23,6 @@ module.exports.MAIN = 'App.js';
 module.exports.README = 'README.md';
 module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
-module.exports.FASTLANE_EV = `${module.exports.IOS_PATH}/fastlane/config/.env`;
 
 // TESTING - MOCKS
 module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH = `${module.exports.MOCKS}/@react-native-community`;
