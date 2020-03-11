@@ -3,6 +3,6 @@ const { ANALYTICS_MIDDLEWARE } = require('../../files');
 
 const FILES = [ANALYTICS_MIDDLEWARE];
 
-module.exports = function googleAnalyticsFeatureFiles() {
+module.exports = function firebaseAnalyticsFeatureFiles() {
   FILES.forEach(copyFile.bind(this));
 };

@@ -7,9 +7,6 @@ import { apiSetup } from '@config/api';
 import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
 import configPushNotifications from '@config/pushNotifications';
 <%_ } _%>
-<%_ if(features.googleanalytics) { _%>
-import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware';
-<%_ } _%>
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';
 <%_ } _%>
@@ -23,9 +20,6 @@ const App = () => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(dispatch);
     alertIfHuaweiDevice();
-    <%_ } _%>
-    <%_ if(features.googleanalytics) { _%>
-    checkAnalyticsTrackingID();
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(dispatch);

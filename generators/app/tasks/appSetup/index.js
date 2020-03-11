@@ -13,7 +13,7 @@ const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
-const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
+const firebaseAnalyticsFeatureFiles = require('./firebaseAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
@@ -72,14 +72,14 @@ module.exports = function index() {
     bitriseFeatureFiles.bind(this)();
   }
   // ----------------     Features: Firebase    ----------------
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+  if (this.features.crashlytics || this.features.firebaseanalytics || this.features.pushnotifications) {
     firebaseCoreFeatureFiles.bind(this)();
 
     if (this.features.crashlytics) {
       crashlyticsFeatureFiles.bind(this)();
     }
-    if (this.features.googleanalytics) {
-      googleAnalyticsFeatureFiles.bind(this)();
+    if (this.features.firebaseanalytics) {
+      firebaseAnalyticsFeatureFiles.bind(this)();
     }
     if (this.features.pushnotifications) {
       pushNotificationsFeatureFiles.bind(this)();
