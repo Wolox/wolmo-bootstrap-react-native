@@ -4,7 +4,6 @@ import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
 import configPushNotifications from '@config/pushNotifications';
 <%_ } _%>
 <%_ if(features.login) { _%>
@@ -19,7 +18,6 @@ const App = () => {
   useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications(dispatch);
-    alertIfHuaweiDevice();
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(dispatch);

@@ -133,7 +133,6 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@react-native-firebase/messaging');
     DEPENDENCIES.push('@types/react-native-push-notification');
     DEPENDENCIES.push('@react-native-community/push-notification-ios');
-    DEPENDENCIES.push('react-native-huawei-protected-apps');
   }
 
   if (this.features.drawer) {

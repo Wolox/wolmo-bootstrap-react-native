@@ -8,6 +8,7 @@ const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
 const androidProjectSetup = require('./androidProjectSetup');
+const androidPushNotificationsSetup = require('./androidPushNotificationsSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
@@ -83,6 +84,7 @@ module.exports = function index() {
     }
     if (this.features.pushnotifications) {
       pushNotificationsFeatureFiles.bind(this)();
+      androidPushNotificationsSetup.bind(this)();
     }
 
     installPods.bind(this)();
