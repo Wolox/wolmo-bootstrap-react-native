@@ -1,4 +1,5 @@
 const apisauce = require('apisauce');
+
 const baseURL = 'https://gitlab.com/api/v4';
 
 const gitlabApi = apisauce.create({
@@ -8,7 +9,7 @@ const gitlabApi = apisauce.create({
 
 gitlabApi.addMonitor(response => {
   if (!response.ok) {
-    console.log(response.data)
+    console.log(response.data);
   }
 });
 

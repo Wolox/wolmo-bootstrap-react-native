@@ -1,6 +1,6 @@
 require('colors');
 
-const spawn = require('child_process').spawn;
+const { spawn } = require('child_process');
 
 const ora = require('ora');
 

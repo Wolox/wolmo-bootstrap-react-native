@@ -1,22 +1,8 @@
-<%_ if(features.animatedcustomtextinput){_%>
-  import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
-import {
-  View,
-  TextInput,
-  TextProps,
-  ViewProps,
-  TextInputProps,
-  Animated,
-  TextStyle,
-  Image,
-  TouchableOpacity
-} from 'react-native';
-import imageError from '@assets/ic_login_error.png';
-import editableImage from '@assets/ic_profile_edit.png';
+<%_ if(features.animatedcustomtextinput){ _%>
+ import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
+import { View, TextInput, TextProps, ViewProps, TextInputProps, Animated, TextStyle } from 'react-native';
 import CustomText from '@components/CustomText';
-import withForm from '@components/withForm';
-import { transparent, lightGray, extraMediumGray } from '@constants/colors';
-import { SIZES } from '@constants/fonts';
+import { transparent, gray, black } from '@constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
@@ -109,7 +95,7 @@ const CustomTextInput = (props: Props): JSX.Element => {
     }),
     color: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [lightGray, extraMediumGray]
+      outputRange: [gray, black]
     })
   };
 
@@ -190,7 +176,7 @@ const MyCustomTextInput = memo(CustomTextInput);
 export default MyCustomTextInput;
 
 <%_ } _%>
-<%_ else{ _%>
+<%_ if(!features.animatedcustomtextinput){_%>
 import React, { useState, useCallback, memo } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import PropTypes from 'prop-types';

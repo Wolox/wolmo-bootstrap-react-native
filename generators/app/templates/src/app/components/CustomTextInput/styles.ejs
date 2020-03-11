@@ -1,7 +1,7 @@
 <%_ if(features.animatedcustomtextinput){ _%>
-  import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
-import { extraLightGray, blue, transparent, lightGray, mediumRed, darkGray } from '@constants/colors';
+import { black, blue, transparent, gray, darkGray } from '@constants/colors';
 import { SIZES } from '@constants/fonts';
 
 const INPUT_PADDING = 5;
@@ -43,7 +43,7 @@ export default StyleSheet.create({
   },
   bottomBorderGray: {
     borderBottomWidth: 1,
-    borderBottomColor: lightGray
+    borderBottomColor: black
   },
   bottomBorderBlue: {
     borderBottomWidth: 1,
@@ -51,11 +51,11 @@ export default StyleSheet.create({
   },
   bottomBorderRed: {
     borderBottomWidth: 1,
-    borderBottomColor: mediumRed
+    borderBottomColor: 'red'
   },
   bottomBorderLightGray: {
     borderBottomWidth: 1,
-    borderBottomColor: extraLightGray
+    borderBottomColor: gray
   },
   title: {
     marginTop: 5,
@@ -77,8 +77,9 @@ export default StyleSheet.create({
   }
 });
 
+
 <%_ } _%>
-<%_ else{ _%>
+<%_ if(!features.animatedcustomtextinput){ _%>
 import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
 import { gray, transparent } from '@constants/colors';
