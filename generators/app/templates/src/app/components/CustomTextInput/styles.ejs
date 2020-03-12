@@ -9,7 +9,8 @@ const IMAGE_SIZE = 14;
 
 export default StyleSheet.create({
   containerWithLabel: {
-    marginTop: 10
+    marginTop: 10,
+    alignSelf: 'stretch'
   },
   inputContainer: {
     flexDirection: 'row',
@@ -18,7 +19,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   label: {
-    ...fonts.workSansFont,
+    ...fonts.baseFont,
     backgroundColor: transparent,
     fontSize: SIZES.XSMALL,
     position: 'absolute',
@@ -31,7 +32,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   inputStyle: {
-    ...fonts.workSansFont,
+    ...fonts.baseFont,
     fontSize: SIZES.SMALL,
     color: darkGray,
     padding: 0,
@@ -76,7 +77,6 @@ export default StyleSheet.create({
     marginTop: 3
   }
 });
-
 
 <%_ } _%>
 <%_ if(!features.animatedcustomtextinput){ _%>

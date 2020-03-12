@@ -1,42 +1,19 @@
 <%_ if(features.animatedcustomtextinput){ _%>
- import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
-import { View, TextInput, TextProps, ViewProps, TextInputProps, Animated, TextStyle } from 'react-native';
+import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
+import { View, TextInput, Animated, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
 import CustomText from '@components/CustomText';
 import { transparent, gray, black } from '@constants/colors';
 
 import ShowPassword from './components/ShowPassword';
 import styles from './styles';
 
-interface Props extends TextInputProps, TextProps {
-  bottomBorder?: boolean;
-  underlineColorAndroid?: string;
-  maxHeight?: number;
-  autoCorrect?: boolean;
-  multiline?: boolean;
-  placeholder?: string;
-  textStyles?: TextStyle;
-  onBlur?: TextInputProps['onBlur'];
-  onChange?(e: any): any;
-  onFocus?: TextInputProps['onFocus'];
-  value?: string;
-  placeholderTextColor?: string;
-  showEye?: boolean;
-  secureTextEntry?: boolean;
-  istitle?: boolean;
-  style?: ViewProps['style'];
-  label?: string;
-  labelStyle?: TextProps['style'];
-  autoCompleteType?: TextInputProps['autoCompleteType'];
-  error?: boolean | string;
-  disabled?: boolean;
-}
-
 const TOP_DEGRADE = -25;
 const LABEL_SIZE = 14;
 const LABEL_SIZE_DEGRADE = 12;
 const LEFT_DEGRADE = 5;
 const LEFT_SMALL_DEGRADE = 0;
-const CustomTextInput = (props: Props): JSX.Element => {
+const CustomTextInput = props => {
   const {
     value,
     placeholderTextColor,
@@ -60,8 +37,6 @@ const CustomTextInput = (props: Props): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const animatedIsFocused = useRef(new Animated.Value(value ? 1 : 0)).current;
-  let inputRef: TextInput | null = null;
-  const handlePressEdit = () => inputRef!.focus();
   useEffect(() => {
     const realValue = isFocused || value ? 1 : 0;
     Animated.timing(animatedIsFocused, {
@@ -115,7 +90,7 @@ const CustomTextInput = (props: Props): JSX.Element => {
     return styles.bottomBorderGray;
   };
   return (
-    <View style={[(label && styles.containerWithLabel) as undefined | Record<string, any>, style]}>
+    <View style={[label && styles.containerWithLabel, style]}>
       {label && (
         <Animated.Text allowFontScaling={false} style={[styles.label, animatedLabelStyle, labelStyle]}>
           {label}
@@ -141,7 +116,6 @@ const CustomTextInput = (props: Props): JSX.Element => {
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
           placeholder={isFocused && value === '' ? placeholder : ''}
           editable={!disabled}
-          ref={ref => (inputRef = ref)}
         />
         {secureTextEntry && showEye && (
           <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
@@ -154,6 +128,35 @@ const CustomTextInput = (props: Props): JSX.Element => {
       )}
     </View>
   );
+};
+
+CustomTextInput.propTypes = {
+  autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
+  autoComplete: PropTypes.string,
+  autoCompleteType: PropTypes.string,
+  autoCorrect: PropTypes.bool,
+  bottomBorder: PropTypes.bool,
+  clearButtonMode: PropTypes.oneOf(['never', 'while-editing', 'unless-editing', 'always']),
+  disabled: PropTypes.bool,
+  error: PropTypes.string,
+  keyboardType: PropTypes.oneOf(['default', 'numeric', 'email-address', 'phone-pad']),
+  label: PropTypes.string,
+  labelStyle: ViewPropTypes.style,
+  maxHeight: PropTypes.number,
+  multiline: PropTypes.bool,
+  placeholder: PropTypes.string,
+  placeholderTextColor: PropTypes.string,
+  returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search']),
+  secureTextEntry: PropTypes.bool,
+  showEye: PropTypes.bool,
+  textStyles: ViewPropTypes.style,
+  title: PropTypes.string,
+  titleStyles: ViewPropTypes.style,
+  underlineColorAndroid: PropTypes.string,
+  value: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func
 };
 
 CustomTextInput.defaultProps = {
