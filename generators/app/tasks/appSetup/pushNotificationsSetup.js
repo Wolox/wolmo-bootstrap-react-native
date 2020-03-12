@@ -6,8 +6,8 @@ module.exports = function pushNotificationsSetup() {
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}/Info.plist`, iosInfoPlistContent);
 
-  const androidManifestContent = this.fs.read(`${this.projectName}/android/app/src/main/AndroidManifest.xml`);
-  androidManifestContent.replace(
+  let androidManifestContent = this.fs.read(`${this.projectName}/android/app/src/main/AndroidManifest.xml`);
+  androidManifestContent = androidManifestContent.replace(
     '<application',
     '<uses-permission android:name="android.permission.VIBRATE" />\n<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>\n\n<application'
   );
@@ -17,8 +17,8 @@ module.exports = function pushNotificationsSetup() {
   );
   this.fs.write(`${this.projectName}/android/app/src/main/AndroidManifest.xml`, androidManifestContent);
 
-  const stringsContent = this.fs.read(`${this.projectName}/android/app/src/main/res/values/strings.xml`);
-  stringsContent.replace(
+  let stringsContent = this.fs.read(`${this.projectName}/android/app/src/main/res/values/strings.xml`);
+  stringsContent = stringsContent.replace(
     '</resources>',
     `\t<string name="default_notification_channel_id" translatable="false">${this.projectName}</string>\n<string name="default_notification_channel_description" translatable="false">${this.projectname}</string>\n</resources>`
   );
