@@ -2,7 +2,7 @@ function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
+    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [qadebug: ".env.dev",\nqarelease: ".env.dev",\nproductiondebug: ".env.production",\nproductionrelease: ".env.production",\nanothercustombuild: ".env"]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'enableHermes: false,',
@@ -11,6 +11,18 @@ function addDotenvPluginAndRNScreen() {
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
     "implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\n\timplementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'\n\n\tif (enableHermes) {"
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'compileSdkVersion rootProject.ext.compileSdkVersion',
+    'compileSdkVersion rootProject.ext.compileSdkVersion\nflavorDimensions "buildtype"'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    '// applicationVariants are e.g. debug, release',
+    'productFlavors {\nqa {\ndimension \'buildtype\'\napplicationIdSuffix ".qa"\n}\nproduction {\ndimension \'buildtype\'\napplicationIdSuffix ".production"\n}\n}\n// applicationVariants are e.g. debug, release'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'versionName "1.0"',
+    `versionName "1.0"\nresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }
