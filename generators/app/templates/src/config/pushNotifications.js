@@ -1,15 +1,18 @@
+import Config from 'react-native-config';
 import PushNotification from 'react-native-push-notification';
 import AsyncStorage from '@react-native-community/async-storage';
 import messaging from '@react-native-firebase/messaging';
 
 let lastId = 0;
-const senderId = 'on-sender-id';
+const senderId = Config.NOTIFICATIONS_SENDER_ID;
 
 export const getFirebaseToken = async () => {
   let fcmToken = await AsyncStorage.getItem('fcmToken');
   if (!fcmToken) {
     fcmToken = await messaging().getToken();
-    if (fcmToken) await AsyncStorage.setItem('fcmToken', fcmToken);
+    if (fcmToken) {
+      await AsyncStorage.setItem('fcmToken', fcmToken);
+    }
   }
   return fcmToken;
 };
@@ -31,8 +34,11 @@ export const requestPermission = () =>
 
 export const checkPermission = async () => {
   const enabled = await messaging().hasPermission();
-  if (enabled) getFirebaseToken();
-  else requestPermission();
+  if (enabled) {
+    getFirebaseToken();
+  } else {
+    requestPermission();
+  }
 };
 
 export const registerAppWithFCM = async () => {
@@ -43,7 +49,9 @@ export const registerAppWithFCM = async () => {
 export const pushNotificationConfig = () => {
   PushNotification.configure({
     onRegister: async token => {
-      if (token) await AsyncStorage.setItem('gcmToken', JSON.stringify(token));
+      if (token) {
+        await AsyncStorage.setItem('gcmToken', JSON.stringify(token));
+      }
     },
     senderID: senderId,
     permissions: {
