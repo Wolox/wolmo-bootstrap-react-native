@@ -135,6 +135,10 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@react-native-community/push-notification-ios');
   }
 
+  if (this.features.firebaseperformance) {
+    DEPENDENCIES.push('@react-native-firebase/perf');
+  }
+
   if (this.features.drawer) {
     DEPENDENCIES.push('react-navigation-drawer');
   }
