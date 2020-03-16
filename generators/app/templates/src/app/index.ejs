@@ -3,9 +3,6 @@ import { useDispatch } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { apiSetup } from '@config/api';
-<%_ if(features.pushnotifications) { _%>
-import configPushNotifications from '@config/pushNotifications';
-<%_ } _%>
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';
 <%_ } _%>
@@ -16,9 +13,6 @@ const App = () => {
   
   useEffect(() => SplashScreen.hide(), []);
   useEffect(() => {
-    <%_ if(features.pushnotifications) { _%>
-    configPushNotifications(dispatch);
-    <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(dispatch);
     <%_ } _%>
