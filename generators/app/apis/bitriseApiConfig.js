@@ -1,4 +1,5 @@
 const apisauce = require('apisauce');
+
 const baseURL = 'https://api.bitrise.io/v0.1';
 
 const bitriseApi = apisauce.create({
@@ -8,7 +9,7 @@ const bitriseApi = apisauce.create({
 
 bitriseApi.addMonitor(response => {
   if (!response.ok) {
-    console.log(response.data)
+    console.log(response.data);
   }
 });
 

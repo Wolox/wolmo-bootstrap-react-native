@@ -1,11 +1,11 @@
 require('colors');
 
-const spawn = require('child_process').spawn;
+const { spawn } = require('child_process');
 
 const ora = require('ora');
 
 /**
- * Receives only one argument which is an object of options:
+ * @param {obj} options Receives only one argument which is an object of options:
  * - (mandatory) command {array}: list of paramaters to send to child_process.spawn
  * - loadingMessage {string}: Message shown while the command is running
  * - successMessage {string}: Message shown when the command finishes successfuly
@@ -13,7 +13,7 @@ const ora = require('ora');
  * - context {obj}: Yeoman context options and arguments
  * - timeout {int}: Time in millis that will be waited after the last console output to kill the process
  *
- * Returns a promise that resolves to the loading spinner if the loading message is present
+ * @returns {Promise} Returns a promise that resolves to the loading spinner if the loading message is present
  */
 module.exports = function runCommand(options) {
   const spinner =
@@ -23,8 +23,10 @@ module.exports = function runCommand(options) {
     const command = spawn(...options.command);
     const result = [];
 
+    // eslint-disable-next-line init-declarations
     let killTimeout;
-    let processKilled;
+    let processKilled = false;
+
     function killProcess() {
       command.kill();
       processKilled = true;
