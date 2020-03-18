@@ -4,11 +4,7 @@ import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-import alertIfHuaweiDevice from '@config/huaweiPushNotifications';
-import configPushNotifications from '@config/pushNotifications';
-<%_ } _%>
-<%_ if(features.googleanalytics) { _%>
-import { checkAnalyticsTrackingID } from '@redux/middlewares/analyticsMiddleware';
+  import { configPushNotifications } from '@config/pushnotifications';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';
@@ -21,11 +17,7 @@ const App = () => {
   useEffect(() => SplashScreen.hide(), []);
   useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
-    configPushNotifications(dispatch);
-    alertIfHuaweiDevice();
-    <%_ } _%>
-    <%_ if(features.googleanalytics) { _%>
-    checkAnalyticsTrackingID();
+      configPushNotifications();
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(dispatch);
