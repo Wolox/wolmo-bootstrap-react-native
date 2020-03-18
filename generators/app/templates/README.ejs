@@ -17,6 +17,10 @@ create the `.env` file on the root.
 ```
 API_BASE_URL=https://XXXXXXXX
 
+<%_ if(features.pushnotifications) { _%>
+  NOTIFICATIONS_SENDER_ID=XXXXXXXX
+<%_ } _%>
+
 OTHER_ENV_VARs=XXXXXXXXXX
 
 ```

@@ -32,6 +32,7 @@ The following optional features can be added out of the box to the new projects:
 - Firebase Analytics
 - Firebase Crashlytics
 - Firebase Push Notifications
+- Firebase Performance
 - Bitrise
 
 ### Boilerplate
