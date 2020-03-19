@@ -15,14 +15,11 @@ import {
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
 
-<%_ if(features.googleanalytics) { _%>
+<%_ if(features.firebaseanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
-<%_ } _%>
-<%_ if(features.pushnotifications) { _%>
-import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
 
 import Navigator from '@screens';
@@ -48,9 +45,6 @@ const nav = createNavigationReducer(Navigator);
 configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
-<%_ if(features.pushnotifications) { _%>
-pushNotifications,
-<%_ } _%>
 <%_ if(features.login) { _%>
 auth,
 <%_ } _%>
@@ -73,7 +67,7 @@ middlewares.push(thunk);
 /* ------------- Redux-Recompose Middleware ------------- */
 middlewares.push(fetchMiddleware);
 
-<%_ if(features.googleanalytics) { _%>
+<%_ if(features.firebaseanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
 middlewares.push(AnalyticsMiddleware);
 <%_ } _%>

@@ -10,9 +10,10 @@ const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const pushNotificationsSetup = require('./pushNotificationsSetup');
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
-const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
+const firebaseAnalyticsFeatureFiles = require('./firebaseAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
@@ -20,7 +21,9 @@ const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
+const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
+// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
@@ -71,17 +74,27 @@ module.exports = function index() {
     bitriseFeatureFiles.bind(this)();
   }
   // ----------------     Features: Firebase    ----------------
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+  if (
+    this.features.crashlytics ||
+    this.features.firebaseanalytics ||
+    this.features.pushnotifications ||
+    this.features.firebaseperformance
+  ) {
     firebaseCoreFeatureFiles.bind(this)();
 
     if (this.features.crashlytics) {
       crashlyticsFeatureFiles.bind(this)();
     }
-    if (this.features.googleanalytics) {
-      googleAnalyticsFeatureFiles.bind(this)();
+    if (this.features.firebaseanalytics) {
+      firebaseAnalyticsFeatureFiles.bind(this)();
     }
     if (this.features.pushnotifications) {
       pushNotificationsFeatureFiles.bind(this)();
+      pushNotificationsSetup.bind(this)();
+    }
+
+    if (this.features.firebaseperformance) {
+      firebasePerformanceSetup.bind(this)();
     }
 
     installPods.bind(this)();

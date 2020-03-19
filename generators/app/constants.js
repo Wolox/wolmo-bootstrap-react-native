@@ -1,5 +1,5 @@
 module.exports.PUSH_NOTIFICATIONS_SETUP_LINK =
-  'https://facebook.github.io/react-native/docs/pushnotificationios.html';
+  'https://github.com/react-native-community/react-native-push-notification-ios';
 
 module.exports.BITRISE_PROMPTS = {
   repositoryUrlSsh: {
