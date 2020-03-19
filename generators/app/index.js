@@ -46,12 +46,12 @@ class ReactNativeBootstrap extends Generator {
           'Login',
           'Tabs',
           'Drawer',
-          'Crashlytics',
-          'Push Notifications',
-          'Firebase Analytics',
           'Redux Persist',
-          'Bitrise',
-          'Firebase Performance'
+          'Firebase Analytics',
+          'Crashlytics',
+          'Firebase Performance',
+          'Push Notifications',
+          'Bitrise'
         ],
         filter: values =>
           values.reduce((answer, val) => {
