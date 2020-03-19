@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 const ora = require('ora');
 
 const installPods = require('../installPods');
