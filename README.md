@@ -25,14 +25,14 @@ bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-nat
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-- Tabs
 - Login
+- Tabs
 - Drawer
 - Redux Persist
 - Firebase Analytics
 - Firebase Crashlytics
-- Firebase Push Notifications
 - Firebase Performance
+- Firebase Push Notifications
 - Bitrise
 
 ### Boilerplate
@@ -46,6 +46,7 @@ The boilerplate includes
 - [Http client config](/generators/app/templates/src/config/api.js)
 - [i18next config](/generators/app/templates/src/config/i18n.js)
 - [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+- [Push Notifications configuration](/generators/app/templates/src/config/pushNotifications.js)
 - [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
 - [Font Customization](/generators/app/templates/src/config/fonts.js)
 - [Bitrise config](/generators/app/tasks/createBitriseApp.js)
@@ -63,6 +64,7 @@ The boilerplate includes
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [i18next](https://www.i18next.com/)
 - [Bitrise](https://devcenter.bitrise.io/)
+- [React Native Firebase](https://invertase.io/oss/react-native-firebase)
 
 ### Tooling
 
@@ -128,7 +130,7 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 
 **wolmo-bootstrap-react-native** is available under the MIT [license](LICENSE).
 
-    Copyright © 2018. WOLOX. All rights reserved. <hello@wolox.co>
+    Copyright © 2020. WOLOX. All rights reserved. <hello@wolox.co>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

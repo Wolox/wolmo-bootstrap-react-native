@@ -18,6 +18,8 @@ const eventsTrackingMiddleware = getState => next => action => {
     case StackActions.RESET:
       trackNavigation(action.actions[action.index].routeName);
       break;
+    default:
+      break;
   }
   return next(action);
   // TODO: Add other actions

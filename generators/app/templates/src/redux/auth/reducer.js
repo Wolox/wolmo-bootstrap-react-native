@@ -19,6 +19,8 @@ const reducerDescription = {
     [actions.LOGOUT]: onSuccess()
   }
 };
+
+// eslint-disable-next-line new-cap
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
 
 export const propTypes = {

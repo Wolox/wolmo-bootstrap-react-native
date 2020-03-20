@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 const latestSemver = require('latest-semver');
 const semverRegex = require('semver-regex');
 

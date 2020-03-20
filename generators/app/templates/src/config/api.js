@@ -10,7 +10,7 @@ const api = create({
 
 api.addMonitor(Reactotron.apisauce);
 
-export const apiSetup = dispatch => { // eslint-disable-line no-unused-vars, prettier/prettier
+export const apiSetup = dispatch => {
   if (baseURL === 'http://wolox.com') {
     console.warn('API baseURL has not been properly initialized');
   }

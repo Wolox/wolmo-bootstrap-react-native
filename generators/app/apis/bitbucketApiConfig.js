@@ -1,4 +1,5 @@
 const apisauce = require('apisauce');
+
 const baseURL = 'https://api.bitbucket.org/2.0';
 
 const bitbucketApi = apisauce.create({
@@ -8,7 +9,7 @@ const bitbucketApi = apisauce.create({
 
 bitbucketApi.addMonitor(response => {
   if (!response.ok) {
-    console.log(response.data)
+    console.log(response.data);
   }
 });
 
