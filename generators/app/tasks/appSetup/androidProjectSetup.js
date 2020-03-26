@@ -9,8 +9,12 @@ function addDotenvPluginAndRNScreen() {
     'enableHermes: true,'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'versionName "1.0"',
+    'versionName "1.0"\n\t\tmultiDexEnabled true'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
-    "implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\n\timplementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'\n\n\tif (enableHermes) {"
+    "implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'\n\timplementation 'androidx.multidex:multidex:2.0.1'\n\tif (enableHermes) {"
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }

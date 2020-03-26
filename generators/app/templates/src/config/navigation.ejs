@@ -69,7 +69,9 @@ export const appScreensNavOptions = {
   },
   */
   [Routes.Home]: ({ navigation }) => ({
-    headerRight: <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
+    headerRight: () => (
+      <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
+    )
   })
   <%_ } else {_%>
   }

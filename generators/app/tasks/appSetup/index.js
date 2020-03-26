@@ -1,7 +1,5 @@
 const ora = require('ora');
 
-const installPods = require('../installPods');
-
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
@@ -96,8 +94,6 @@ module.exports = function index() {
     if (this.features.firebaseperformance) {
       firebasePerformanceSetup.bind(this)();
     }
-
-    installPods.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------
