@@ -21,7 +21,6 @@ const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
-// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
