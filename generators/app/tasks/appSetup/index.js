@@ -1,7 +1,5 @@
 const ora = require('ora');
 
-const installPods = require('../installPods');
-
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
@@ -23,7 +21,6 @@ const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
-// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
@@ -96,8 +93,6 @@ module.exports = function index() {
     if (this.features.firebaseperformance) {
       firebasePerformanceSetup.bind(this)();
     }
-
-    installPods.bind(this)();
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------

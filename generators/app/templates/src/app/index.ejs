@@ -4,7 +4,7 @@ import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
-  import { configPushNotifications } from '@config/pushnotifications';
+import { configPushNotifications } from '@config/pushNotifications';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';

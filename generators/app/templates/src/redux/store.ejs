@@ -27,7 +27,9 @@ import Navigator from '@screens';
 <%_ if(features.reduxpersist) { _%>
 const transformerConfig = {
   whitelistPerReducer: {
-  <%_ if(features.login) {     _%>auth: ['currentUser']<%_ } _%>
+  <%_ if(features.login) { _%>
+    auth: ['currentUser']
+  <%_ } _%>
   }
 };
 
@@ -74,11 +76,11 @@ middlewares.push(AnalyticsMiddleware);
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
-if (__DEV__) enhancers.push(Reactotron.createEnhancer());
+if (__DEV__) enhancers.push(Reactotron.createEnhancer(true));
 
 // in dev mode, we'll create the store through Reactotron
-const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer
-<%_ } else{ _%>
-reducers<%_ } _%>, compose(...enhancers));
+const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
+
+if (__DEV__) Reactotron.setReduxStore(store);
 
 export default store;

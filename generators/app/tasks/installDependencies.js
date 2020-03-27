@@ -9,8 +9,10 @@ const DEPENDENCIES = [
   'apisauce',
   'i18next',
   'prop-types',
-  'react-native-config@0.11.7',
-  'react-native-gesture-handler',
+  'react-native-config',
+  // Delete when react-native-gesture-handler fix this issue on Android
+  // https://github.com/software-mansion/react-native-gesture-handler/issues/950
+  'react-native-gesture-handler@1.5.3',
   'react-native-reanimated',
   'react-native-safe-area-context',
   'react-native-screens',

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.1] - 2020-03-27
+
+- Updated some files and libs to support React Native 0.62
+- Removed some old and unused implementations
+- Added `multiDex` support for Android
+- Setted `react-native-gesture-handler` version to `v1.5.3` to solve a problem with the navigation in Android. The issue appears in versions > `1.5.3`
+- Updated some Reactotron implementation
+
 ## [0.7.0] - 2020-03-20
 
 - Updated some bootstrap configurations, README and fixed linter problems (added Wolox CI)

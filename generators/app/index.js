@@ -8,7 +8,6 @@ const gitInitialization = require('./tasks/gitInitialization');
 const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
-const configurePods = require('./tasks/configurePods');
 const configureFastlane = require('./tasks/configureFastlane');
 const installPods = require('./tasks/installPods');
 const linkAppAssets = require('./tasks/linkAppAssets');
@@ -88,8 +87,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configureFastlane.bind(this)())
-      .then(() => configurePods.bind(this)());
+      .then(() => configureFastlane.bind(this)());
   }
 
   writing() {
