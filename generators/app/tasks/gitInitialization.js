@@ -1,3 +1,4 @@
+/* eslint-disable max-nested-callbacks */
 const runCommand = require('./runCommand');
 
 module.exports = function gitInitialization() {
@@ -27,10 +28,9 @@ module.exports = function gitInitialization() {
                 name: 'pushToRepo',
                 message: 'Do you want to initialize your git remote repository? (i.e. github, bitbucket, etc)'
               }
+              // eslint-disable-next-line consistent-return
             ]).then(({ pushToRepo }) => {
-              if (!pushToRepo) {
-                spinner.succeed('git ready');
-              } else {
+              if (pushToRepo) {
                 // ask for the repository url
                 return this.prompt([
                   {
@@ -65,6 +65,7 @@ module.exports = function gitInitialization() {
                   );
                 });
               }
+              spinner.succeed('git ready');
             });
           })
         )

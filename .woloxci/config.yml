@@ -1,0 +1,13 @@
+config:
+  dockerfile: .woloxci/Dockerfile
+  project_name: wolmo-bootstrap-react-native
+
+steps:
+  lint:
+    - ln -sfn /home/node/node_modules node_modules
+    - npm run lint
+
+environment:
+  GIT_COMMITTER_NAME: a
+  GIT_COMMITTER_EMAIL: b
+  LANG: C.UTF-8

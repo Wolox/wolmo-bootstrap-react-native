@@ -34,7 +34,6 @@ const CustomText = props => {
 
   const { textProps, style, children } = props;
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Text {...textProps} style={[styles.base, customStyles(), style]}>
       {children}
     </Text>

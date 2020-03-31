@@ -45,10 +45,11 @@ class ReactNativeBootstrap extends Generator {
           'Login',
           'Tabs',
           'Drawer',
-          'Crashlytics',
-          'Push Notifications',
-          'Google Analytics',
           'Redux Persist',
+          'Firebase Analytics',
+          'Crashlytics',
+          'Firebase Performance',
+          'Push Notifications',
           'Bitrise'
         ],
         filter: values =>
@@ -86,7 +87,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configureFastlane.bind(this)())
+      .then(() => configureFastlane.bind(this)());
   }
 
   writing() {
