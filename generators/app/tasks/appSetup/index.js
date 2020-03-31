@@ -1,31 +1,32 @@
-const ora = require("ora");
+/* eslint-disable max-statements */
+const ora = require('ora');
 
-const packageJsonScripts = require("./packageJsonScripts");
-const eslintSetup = require("./eslintSetup");
-const baseFilesTemplate = require("./baseFilesTemplate");
-const iosAppIcons = require("./iosAppIcons");
-const androidProjectSetup = require("./androidProjectSetup");
-const createDotEnvFilesLocally = require("./createDotEnvFilesLocally");
-const iosProjectSetup = require("./iosProjectSetup");
-const disableLandscapeOrientation = require("./disableLandscapeOrientation");
-const pushNotificationsFeatureFiles = require("./pushNotificationsFeatureFiles");
-const pushNotificationsSetup = require("./pushNotificationsSetup");
-const firebaseCoreFeatureFiles = require("./firebaseCoreFeatureFiles");
-const crashlyticsFeatureFiles = require("./crashlyticsFeatureFiles");
-const firebaseAnalyticsFeatureFiles = require("./firebaseAnalyticsFeatureFiles");
-const loginFeatureFiles = require("./loginFeatureFiles");
-const bitriseFeatureFiles = require("./bitriseFeatureFiles");
-const enableFullscreen = require("./tabletSetup");
-const babelConfigSetup = require("./babelConfigSetup");
-const editBundleIdentifier = require("./editBundleIdentifier");
-const prettierrcConfigSetup = require("./prettierrcConfigSetup");
-const splashScreenSetup = require("./splashScreenSetup");
-const firebasePerformanceSetup = require("./firebasePerformanceSetup");
+const packageJsonScripts = require('./packageJsonScripts');
+const eslintSetup = require('./eslintSetup');
+const baseFilesTemplate = require('./baseFilesTemplate');
+const iosAppIcons = require('./iosAppIcons');
+const androidProjectSetup = require('./androidProjectSetup');
+const createDotEnvFilesLocally = require('./createDotEnvFilesLocally');
+const iosProjectSetup = require('./iosProjectSetup');
+const disableLandscapeOrientation = require('./disableLandscapeOrientation');
+const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const pushNotificationsSetup = require('./pushNotificationsSetup');
+const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
+const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
+const firebaseAnalyticsFeatureFiles = require('./firebaseAnalyticsFeatureFiles');
+const loginFeatureFiles = require('./loginFeatureFiles');
+const bitriseFeatureFiles = require('./bitriseFeatureFiles');
+const enableFullscreen = require('./tabletSetup');
+const babelConfigSetup = require('./babelConfigSetup');
+const editBundleIdentifier = require('./editBundleIdentifier');
+const prettierrcConfigSetup = require('./prettierrcConfigSetup');
+const splashScreenSetup = require('./splashScreenSetup');
+const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
 module.exports = function index() {
   const spinner = ora({
-    spinner: "bouncingBall",
-    text: "Creating project boilerplate"
+    spinner: 'bouncingBall',
+    text: 'Creating project boilerplate'
   }).start();
 
   // ----------------     add package.json scripts     ----------------
@@ -99,5 +100,5 @@ module.exports = function index() {
   // --------------- Enables fullscreen on iPad ----------------------------
   enableFullscreen.bind(this)();
 
-  spinner.succeed("Boilerplate ready!");
+  spinner.succeed('Boilerplate ready!');
 };
