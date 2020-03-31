@@ -7,4 +7,7 @@ module.exports = function createSchemes() {
   this.fs.write(commonPath("dev"), schemeBase.bind(this)("dev"));
   this.fs.write(commonPath("stage"), schemeBase.bind(this)("stage"));
   this.fs.write(commonPath("production"), schemeBase.bind(this)("production"));
+  console.log(this.fs);
+  this.fs.delete(commonPath(this.projectName));
+  this.fs.delete(commonPath(`${this.projectName}-tvOS`));
 };
