@@ -38,6 +38,5 @@ module.exports = function configureFastlane() {
         successMessage: 'Delete Success!',
         context: this.options
       })
-    )
-    
+    );
 };
