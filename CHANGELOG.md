@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.2] - 2020-04-02
+
+- Removed extra lane from Fastlane (added in `fastlane-mobile` repo)
+- Fixed Firebase Analytics issue
+
 ## [0.7.1] - 2020-03-27
 
 - Updated some files and libs to support React Native 0.62
