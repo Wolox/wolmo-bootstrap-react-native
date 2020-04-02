@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 - Removed extra lane from Fastlane (added in `fastlane-mobile` repo)
 - Fixed Firebase Analytics issue
+- Upgraded dependencies and `yarn.lock` to solve `Security Alerts` github issues
+- Updated README and `editBundleIdentifier` task
 
 ## [0.7.1] - 2020-03-27
 
