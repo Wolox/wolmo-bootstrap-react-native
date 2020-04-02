@@ -6,7 +6,7 @@ const trackNavigation = routeName => {
   if (routeName) analytics().setCurrentScreen(routeName, routeName);
 };
 
-const eventsTrackingMiddleware = ({ getState }) => next => action => {
+const eventsTrackingMiddleware = ({ getState }) => next => action => {
   switch (action.type) {
     case NavigationActions.NAVIGATE:
     case StackActions.REPLACE:
