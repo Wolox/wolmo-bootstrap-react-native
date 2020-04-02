@@ -7,7 +7,6 @@ module.exports = function editBundleIdentifier() {
       [
         'exec',
         'fastlane',
-        'ios',
         'update_bundle_identifier',
         `project_name:${this.projectName}`,
         `bundle_identifier:${this.bundleId}`

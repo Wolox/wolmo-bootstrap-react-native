@@ -2,12 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.7.2] - 2020-04-02
+## [0.7.2] - 2020-04-03
 
 - Removed extra lane from Fastlane (added in `fastlane-mobile` repo)
 - Fixed Firebase Analytics issue
 - Upgraded dependencies and `yarn.lock` to solve `Security Alerts` github issues
-- Updated README and `editBundleIdentifier` task
+- Updated README
+- Fixed `google-service.json` and `GoogleService-Info.plist`
 
 ## [0.7.1] - 2020-03-27
 
