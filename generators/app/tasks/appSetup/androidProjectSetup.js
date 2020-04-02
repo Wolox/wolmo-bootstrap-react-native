@@ -2,7 +2,7 @@ function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [\n\tdebug: ".env.dev",\n\trelease: ".env.dev",\n\tqadebug: ".env.dev",\n\tqarelease: ".env.dev",\n\tstagedebug: ".env.stage",\n\tstagerelease: ".env.stage",\n\tproductiondebug: ".env.production",\n\tproductionrelease: ".env.production"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
+    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [\n\tqadebug: ".env.dev",\n\tqarelease: ".env.dev",\n\tstagedebug: ".env.stage",\n\tstagerelease: ".env.stage",\n\tproductiondebug: ".env.production",\n\tproductionrelease: ".env.production"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'enableHermes: false,',
