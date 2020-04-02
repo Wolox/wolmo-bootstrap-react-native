@@ -2,7 +2,7 @@ function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [qadebug: ".env.dev",\nqarelease: ".env.dev",\nstagedebug: ".env.stage",\nstagerelease: ".env.stage",\nproductiondebug: ".env.production",\nproductionrelease: ".env.production",\nanothercustombuild: ".env"]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
+    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [\n\tdebug: ".env.dev",\n\trelease: ".env.dev",\n\tqadebug: ".env.dev",\n\tqarelease: ".env.dev",\n\tstagedebug: ".env.stage",\n\tstagerelease: ".env.stage",\n\tproductiondebug: ".env.production",\n\tproductionrelease: ".env.production"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'enableHermes: false,',
@@ -18,15 +18,15 @@ function addDotenvPluginAndRNScreen() {
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'compileSdkVersion rootProject.ext.compileSdkVersion',
-    'compileSdkVersion rootProject.ext.compileSdkVersion\nflavorDimensions "buildtype"'
+    'compileSdkVersion rootProject.ext.compileSdkVersion\n\tflavorDimensions "buildtype"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     '// applicationVariants are e.g. debug, release',
-    'productFlavors {\nqa {\ndimension \'buildtype\'\napplicationIdSuffix ".qa"\n}\nstage {\ndimension \'buildtype\'\napplicationIdSuffix ".stage"\n}\nproduction {\ndimension \'buildtype\'\napplicationIdSuffix ".production"\n}\n}\n// applicationVariants are e.g. debug, release'
+    "productFlavors {\n\t\tqa {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".qa\"\n\t\t}\n\t\tstage {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".stage\"\n\t\t}\n\t\tproduction {\n\t\t\tdimension 'buildtype'\n\t\t}\n\t}\n// applicationVariants are e.g. debug, release"
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'versionName "1.0"',
-    `versionName "1.0"\nresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
+    `versionName "1.0"\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }
