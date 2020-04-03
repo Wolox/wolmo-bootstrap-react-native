@@ -53,8 +53,8 @@ module.exports = function index() {
   androidProjectSetup.bind(this)();
   createDotEnvFilesLocally.bind(this)();
   // ----------------     fix bundle identifier     ----------------
-  editBundleIdentifier.bind(this)();
   iosProjectSetup.bind(this)();
+  editBundleIdentifier.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
