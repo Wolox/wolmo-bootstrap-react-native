@@ -30,7 +30,7 @@ function configureAndroidGoogleServices() {
   );
   const updateGoogleServicesContent = googleServicesContent.replace(
     'com.test',
-    `com.${this.projectName.toLowerCase()}`
+    `com.${this.projectName.toLowerCase()}.qa`
   );
   this.fs.write(`${this.projectName}/android/app/google-services.json`, updateGoogleServicesContent);
 }
