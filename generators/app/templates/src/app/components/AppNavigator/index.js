@@ -6,13 +6,12 @@ import { createReduxContainer } from 'react-navigation-redux-helpers';
 import { ROOT } from '@constants/platform';
 import { statusBarStyles } from '@config/navigation';
 import { getCurrentRouteName } from '@utils/navUtils';
-
 import Navigator from '@screens';
 
 const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 
 const AppNavigator = () => {
-  const state = useSelector(state => state.nav);
+  const state = useSelector(store => store.nav);
   const dispatch = useDispatch();
   const statusBarProps = statusBarStyles[getCurrentRouteName(state)] || statusBarStyles.default;
 

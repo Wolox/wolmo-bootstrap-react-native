@@ -1,52 +1,76 @@
-let PushNotification;
-try {
-  PushNotification = require('react-native-push-notification'); // eslint-disable-line global-require
-} catch (e) {} // eslint-disable-line no-empty, prettier/prettier
+import Config from 'react-native-config';
+import PushNotification from 'react-native-push-notification';
+import AsyncStorage from '@react-native-community/async-storage';
+import messaging from '@react-native-firebase/messaging';
 
-import { actionCreators as notificationActions } from '@redux/pushNotifications/actions'; // eslint-disable-line import/first
+let lastId = 0;
+const senderId = Config.NOTIFICATIONS_SENDER_ID;
 
-const formatReceivedNotification = push => {
-  if (push.alert && push.alert.APNS_SANDBOX) {
-    push.alert = JSON.parse(push.alert.APNS_SANDBOX).aps.alert;
+export const getFirebaseToken = async () => {
+  let fcmToken = await AsyncStorage.getItem('fcmToken');
+  if (!fcmToken) {
+    fcmToken = await messaging().getToken();
+    if (fcmToken) await AsyncStorage.setItem('fcmToken', fcmToken);
   }
-  if (push.message && push.message.APNS_SANDBOX) {
-    push.message = JSON.parse(push.message.APNS_SANDBOX).aps.message;
-  }
-  return push;
+  return fcmToken;
 };
 
-export default function setUp(dispatch, isLoggedIn) {
-  const senderID = '';
+export const deleteFirebaseToken = async () => {
+  await AsyncStorage.removeItem('fcmToken');
+};
 
-  if (!senderID) {
-    console.warn('Push notifications senderID has not been set. Make sure to setup your google project');
-  }
-  if (PushNotification) {
-    PushNotification.configure({
-      onRegister(data) {
-        dispatch(notificationActions.register(data.token));
-        if (isLoggedIn) {
-          dispatch(notificationActions.updateToken());
-        }
-      },
-      onNotification(notification) {
-        dispatch(notificationActions.notificationReceived(formatReceivedNotification(notification)));
-      },
-      senderID,
-      permissions: {
-        alert: true,
-        badge: true,
-        sound: true
-      },
-      popInitialNotification: true,
-      requestPermissions: true
+export const requestPermission = () =>
+  messaging()
+    .requestPermission()
+    .then(() => {
+      getFirebaseToken();
+    })
+    .catch(() => {
+      // TODO: add a better handler for permissions rejection
+      console.log('Error with permissions');
     });
-    console.warn(
-      'If PushNotificationIOS has already been linked, remove the unnecessary checks in src/config/pushNotifications.js'
-    );
-  } else {
-    console.warn(
-      'PushNotificationIOS has not been linked and will not work. Read more here: https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking'
-    );
-  }
-}
+
+export const checkPermission = async () => {
+  const enabled = await messaging().hasPermission();
+  if (enabled) getFirebaseToken();
+  else requestPermission();
+};
+
+export const registerAppWithFCM = async () => {
+  await messaging().registerForRemoteNotifications();
+  checkPermission();
+};
+
+export const configPushNotifications = () => {
+  PushNotification.configure({
+    onRegister: async token => {
+      if (token) await AsyncStorage.setItem('gcmToken', JSON.stringify(token));
+    },
+    senderID: senderId,
+    permissions: {
+      alert: true,
+      badge: true,
+      sound: true
+    },
+    popInitialNotification: true,
+    requestPermissions: true
+  });
+};
+
+// TODO this make us able to send notifications locally
+export const setLocalNotifications = () => {
+  lastId++;
+  PushNotification.localNotification({
+    id: `${lastId}`,
+    autoCancel: true,
+    vibration: 100,
+    ongoing: false,
+    title: 'Local Notification',
+    message: 'Local Notification message',
+    playSound: false,
+    soundName: 'default',
+    actions: '["Yes", "No"]'
+  });
+};
+
+export const checkNotificationPermission = cbk => PushNotification.checkPermissions(cbk);

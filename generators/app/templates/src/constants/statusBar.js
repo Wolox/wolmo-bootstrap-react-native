@@ -1,5 +1,4 @@
-import { blue, white, gray } from './colors';
-import { isIos } from './platform';
+import { blue, white } from './colors';
 
 const statusBarConfig = {
   transparentStatusBar: {

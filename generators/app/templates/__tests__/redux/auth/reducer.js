@@ -8,7 +8,7 @@ describe('testing reducers', () => {
       payload: { id: '', email: '' },
       target: 'currentUser'
     };
-    expect(authReducer(undefined, action)).toEqual({
+    await expect(authReducer(undefined, action)).toEqual({
       ...initialState,
       initialLoading: false,
       currentUser: { id: '', email: '' }
@@ -19,7 +19,7 @@ describe('testing reducers', () => {
       type: actions.LOGOUT,
       target: 'currentUser'
     };
-    expect(authReducer(undefined, action)).toEqual({
+    await expect(authReducer(undefined, action)).toEqual({
       ...initialState,
       currentUserLoading: false,
       currentUserError: null,

@@ -15,14 +15,11 @@ import {
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
 
-<%_ if(features.googleanalytics) { _%>
+<%_ if(features.firebaseanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
-<%_ } _%>
-<%_ if(features.pushnotifications) { _%>
-import pushNotifications from './pushNotifications/reducer';
 <%_ } _%>
 
 import Navigator from '@screens';
@@ -30,7 +27,9 @@ import Navigator from '@screens';
 <%_ if(features.reduxpersist) { _%>
 const transformerConfig = {
   whitelistPerReducer: {
-  <%_ if(features.login) {     _%>auth: ['currentUser']<%_ } _%>
+  <%_ if(features.login) { _%>
+    auth: ['currentUser']
+  <%_ } _%>
   }
 };
 
@@ -48,9 +47,6 @@ const nav = createNavigationReducer(Navigator);
 configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
-<%_ if(features.pushnotifications) { _%>
-pushNotifications,
-<%_ } _%>
 <%_ if(features.login) { _%>
 auth,
 <%_ } _%>
@@ -73,18 +69,18 @@ middlewares.push(thunk);
 /* ------------- Redux-Recompose Middleware ------------- */
 middlewares.push(fetchMiddleware);
 
-<%_ if(features.googleanalytics) { _%>
+<%_ if(features.firebaseanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
 middlewares.push(AnalyticsMiddleware);
 <%_ } _%>
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
-if (__DEV__) enhancers.push(Reactotron.createEnhancer());
+if (__DEV__) enhancers.push(Reactotron.createEnhancer(true));
 
 // in dev mode, we'll create the store through Reactotron
-const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer
-<%_ } else{ _%>
-reducers<%_ } _%>, compose(...enhancers));
+const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
+
+if (__DEV__) Reactotron.setReduxStore(store);
 
 export default store;
