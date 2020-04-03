@@ -8,12 +8,16 @@ module.exports = function pushNotificationsSetup() {
 
   let androidManifestContent = this.fs.read(`${this.projectName}/android/app/src/main/AndroidManifest.xml`);
   androidManifestContent = androidManifestContent.replace(
+    'xmlns:android="http://schemas.android.com/apk/res/android"',
+    'xmlns:android="http://schemas.android.com/apk/res/android"\n\txmlns:tools="http://schemas.android.com/tools"'
+  );
+  androidManifestContent = androidManifestContent.replace(
     '<application',
     '<uses-permission android:name="android.permission.VIBRATE" />\n\t\t<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>\n\n<application'
   );
   androidManifestContent = androidManifestContent.replace(
     '</application>',
-    '\n\t\t<meta-data android:name="com.google.firebase.messaging.default_notification_channel_id"\n\t\t\t\tandroid:value="@string/default_notification_channel_id"/>\n\t\t\t<meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_name"\n\t\t\t\tandroid:value="@string/notification_channel_name"/>\n\t\t\t<meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_description"\n\t\t\t\tandroid:value="@string/notification_channel_description"/>\n\t\t\t<meta-data android:name="com.google.firebase.messaging.default_notification_icon"\n\t\t\t\tandroid:resource="@mipmap/ic_launcher" />\n\n\t\t\t<service\n\t\t\t\tandroid:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"\n\t\t\t\tandroid:exported="false" >\n\t\t\t\t<intent-filter>\n\t\t\t\t\t<action android:name="com.google.firebase.MESSAGING_EVENT" />\n\t\t\t\t</intent-filter>\n\t\t\t</service>\n\n</application>'
+    '\n\t\t<meta-data tools:replace="android:value" android:name="com.google.firebase.messaging.default_notification_channel_id"\n\t\t\t\tandroid:value="@string/default_notification_channel_id"/>\n\t\t\t<meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_name"\n\t\t\t\tandroid:value="@string/notification_channel_name"/>\n\t\t\t<meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_description"\n\t\t\t\tandroid:value="@string/notification_channel_description"/>\n\t\t\t<meta-data android:name="com.google.firebase.messaging.default_notification_icon"\n\t\t\t\tandroid:resource="@mipmap/ic_launcher" />\n\n\t\t\t<service\n\t\t\t\tandroid:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"\n\t\t\t\tandroid:exported="false" >\n\t\t\t\t<intent-filter>\n\t\t\t\t\t<action android:name="com.google.firebase.MESSAGING_EVENT" />\n\t\t\t\t</intent-filter>\n\t\t\t</service>\n\n</application>'
   );
   this.fs.write(`${this.projectName}/android/app/src/main/AndroidManifest.xml`, androidManifestContent);
 

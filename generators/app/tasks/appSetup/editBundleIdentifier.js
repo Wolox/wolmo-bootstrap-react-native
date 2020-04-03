@@ -14,7 +14,7 @@ module.exports = function editBundleIdentifier() {
       ],
       { cwd: `${process.cwd()}/${this.projectName}/ios` }
     ],
-    loadingMessage: 'Updating bundle identifier...',
+    loadingMessage: 'Updating bundle identifier...\n',
     successMessage: 'Bundle identifier updated!',
     failureMessage: 'Bundle identifier update failed. Turn verbose mode on for detailed logging',
     context: this.options
