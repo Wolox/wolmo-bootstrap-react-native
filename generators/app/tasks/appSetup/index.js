@@ -17,10 +17,12 @@ const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const configureIosProject = require('./configureIosProject');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
+// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
@@ -53,7 +55,7 @@ module.exports = function index() {
   // ----------------     fix bundle identifier     ----------------
   editBundleIdentifier.bind(this)();
   iosProjectSetup.bind(this)();
-
+  configureIosProject.bind(this)();
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
     disableLandscapeOrientation.bind(this)();
