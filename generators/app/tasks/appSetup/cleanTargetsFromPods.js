@@ -1,12 +1,20 @@
 module.exports = function cleanTargetsFromPods() {
-  const podfileContent = this.fs.read(`${this.projectName}/ios/Podfile`);
-  let updatedPodfileContent = podfileContent.replace(
-    "  target 'UltimaPruebaTests' do\n    inherit! :complete\n    # Pods for testing\n  end",
-    ''
-  );
-  updatedPodfileContent = podfileContent.replace(
-    "target 'UltimaPrueba-tvOS' do\n  # Pods for UltimaPrueba-tvOS\n\n  target 'UltimaPrueba-tvOSTests' do\n    inherit! :search_paths\n    # Pods for testing\n  end\nend",
-    ''
-  );
-  this.fs.write(`${this.projectName}/ios/Podfile`, updatedPodfileContent);
+  let podfileContent = this.fs.read(`${this.projectName}/ios/Podfile`);
+  let numberLineTargetTest = null;
+  let numberLineTvOSTest = null;
+  podfileContent = podfileContent.split('\n');
+  podfileContent.forEach((line, index) => {
+    if (line.includes(`target '${this.projectName}Tests'`)) {
+      numberLineTargetTest = index;
+    }
+    if (line.includes(`target '${this.projectName}-tvOS'`)) {
+      numberLineTvOSTest = index;
+    }
+  });
+  podfileContent = [
+    ...podfileContent.slice(0, numberLineTargetTest),
+    ...podfileContent.slice(numberLineTargetTest + 4, numberLineTvOSTest),
+    ...podfileContent.slice(numberLineTvOSTest + 8)
+  ].join('\n');
+  this.fs.write(`${this.projectName}/ios/Podfile`, podfileContent);
 };
