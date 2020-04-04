@@ -19,10 +19,13 @@ const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
+const configureIosProject = require('./configureIosProject');
+const cleanTargetsFromPods = require('./cleanTargetsFromPods');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
+// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
@@ -52,10 +55,11 @@ module.exports = function index() {
   // ----------------     add react-native-gesture-handler to MainActivity    ----------------
   androidProjectSetup.bind(this)();
   createDotEnvFilesLocally.bind(this)();
-  // ----------------     fix bundle identifier     ----------------
   iosProjectSetup.bind(this)();
+  configureIosProject.bind(this)();
+  cleanTargetsFromPods.bind(this)();
+  // ----------------     fix bundle identifier     ----------------
   editBundleIdentifier.bind(this)();
-
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
     disableLandscapeOrientation.bind(this)();

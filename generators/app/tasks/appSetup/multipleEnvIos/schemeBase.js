@@ -1,4 +1,4 @@
-module.exports = function schemeBase(envName) {
+module.exports = function schemeBase(envName, buildConfig) {
   return `<?xml version="1.0" encoding="UTF-8"?>
  <Scheme
     LastUpgradeVersion = "1130"
@@ -33,7 +33,7 @@ module.exports = function schemeBase(envName) {
        </BuildActionEntries>
     </BuildAction>
     <TestAction
-       buildConfiguration = "Debug"
+       buildConfiguration = "${buildConfig}"
        selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
        selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
        shouldUseLaunchSchemeArgsEnv = "YES">
@@ -51,7 +51,7 @@ module.exports = function schemeBase(envName) {
        </Testables>
     </TestAction>
     <LaunchAction
-       buildConfiguration = "Debug"
+       buildConfiguration = "${buildConfig}"
        selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
        selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
        launchStyle = "0"
@@ -72,7 +72,7 @@ module.exports = function schemeBase(envName) {
        </BuildableProductRunnable>
     </LaunchAction>
     <ProfileAction
-       buildConfiguration = "Release"
+       buildConfiguration = "${buildConfig}"
        shouldUseLaunchSchemeArgsEnv = "YES"
        savedToolIdentifier = ""
        useCustomWorkingDirectory = "NO"
@@ -89,10 +89,10 @@ module.exports = function schemeBase(envName) {
        </BuildableProductRunnable>
     </ProfileAction>
     <AnalyzeAction
-       buildConfiguration = "Debug">
+       buildConfiguration = "${buildConfig}">
     </AnalyzeAction>
     <ArchiveAction
-       buildConfiguration = "Release"
+       buildConfiguration = "${buildConfig}"
        revealArchiveInOrganizer = "YES">
     </ArchiveAction>
  </Scheme>

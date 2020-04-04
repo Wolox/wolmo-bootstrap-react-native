@@ -18,24 +18,6 @@ function addConfigToAndroidFiles() {
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
 }
 
-function addConfigToIosFiles() {
-  const crashlyticsPod = `\nproject.targets.each do |target|
-    if target.name == "appTest"
-       if  !target.shell_script_build_phases.find { |bp| bp.name == 'Crashlytics' }
-          puts "Adding run script for Crashlytics"
-          phase=target.new_shell_script_build_phase("Crashlytics")
-          phase.shell_script="$\{PODS_ROOT}/Fabric/run"
-       end
-    end
-  end\nproject.save()`;
-
-  const updateCrashlyticsPod = crashlyticsPod.split('appTest').join(this.projectName);
-  const podfileContent = this.fs.read(`${this.projectName}/ios/Podfile`);
-  const updatePodfileContent = podfileContent.replace('project.save()', updateCrashlyticsPod);
-  this.fs.write(`${this.projectName}/ios/Podfile`, updatePodfileContent);
-}
-
 module.exports = function crashlyticsFeatureFiles() {
   addConfigToAndroidFiles.bind(this)();
-  addConfigToIosFiles.bind(this)();
 };
