@@ -1,7 +1,8 @@
 require 'xcodeproj'
 project_name = ARGV[0]
-crashlytics = ARGV[1] == 'true'
-project_path = './ios/' + project_name + '.xcodeproj'
+total_path = ARGV[1]
+crashlytics = ARGV[2] == 'true'
+project_path = total_path + '/' + project_name + '/ios/' + project_name + '.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 release_base_config_file = nil
 release_build_settings = nil
@@ -50,6 +51,18 @@ end
 project.build_configurations.each do |config|
  if(config.name == 'Release')
   config.remove_from_project
+ end
+end
+
+if crashlytics
+ project.targets.each do |target|
+  if target.name == project_name
+     if  !target.shell_script_build_phases.find { |bp| bp.name == 'Crashlytics' }
+        puts "Adding run script for Crashlytics"
+        phase=target.new_shell_script_build_phase("Crashlytics")
+        phase.shell_script="$\{PODS_ROOT}/Fabric/run"
+     end
+  end
  end
 end
 
