@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.3] - 2020-04-03
+
+- Fixed Push Notifications config on `AndroidManifest`
+- Added again (temporary) the lane to change the `bundleId (update_bundle_identifier)` and a `TODO` in [editBundleIdentifier](generators/app/tasks/appSetup/editBundleIdentifier.js) task
+
 ## [0.7.2] - 2020-04-03
 
 - Removed extra lane from Fastlane (added in `fastlane-mobile` repo)
