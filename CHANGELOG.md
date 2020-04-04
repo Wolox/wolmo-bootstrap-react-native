@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.0] - 2020-04-XX
+
+- Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects (Missing add build configurations for iOS, for now just Debug and Release)
+
 ## [0.7.3] - 2020-04-03
 
 - Fixed Push Notifications config on `AndroidManifest`
