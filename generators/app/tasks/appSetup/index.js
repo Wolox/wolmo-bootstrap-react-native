@@ -18,6 +18,7 @@ const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 const configureIosProject = require('./configureIosProject');
+const cleanTargetsFromPods = require('./cleanTargetsFromPods');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
@@ -56,6 +57,7 @@ module.exports = function index() {
   editBundleIdentifier.bind(this)();
   iosProjectSetup.bind(this)();
   configureIosProject.bind(this)();
+  cleanTargetsFromPods.bind(this)();
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
     disableLandscapeOrientation.bind(this)();
