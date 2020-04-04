@@ -73,7 +73,7 @@ if googleServices
      if  !target.shell_script_build_phases.find { |bp| bp.name == 'googleServiceRun' }
         puts "Adding run script for GoogleService-Info.plist"
         phase = target.new_shell_script_build_phase("googleServiceRun")
-        phase.shell_script = "PATH_TO_GOOGLE_SERVICE=$SRCROOT/GoogleService-Info.plist\\nFILENAME_IN_BUNDLE=GoogleService-Info.plist\\nBUILD_APP_DIR=$\{BUILT_PRODUCTS_DIR}/$\{PRODUCT_NAME}.app\\necho cp $PATH_TO_GOOGLE_SERVICE \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\ncp $PATH_TO_GOOGLE_SERVICE \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\n"
+        # phase.shell_script = "PATH_TO_GOOGLE_SERVICE=$SRCROOT/GoogleService-Info.plist\\nFILENAME_IN_BUNDLE=GoogleService-Info.plist\\nBUILD_APP_DIR=$\{BUILT_PRODUCTS_DIR}/$\{PRODUCT_NAME}.app\\necho cp $PATH_TO_GOOGLE_SERVICE \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\ncp $PATH_TO_GOOGLE_SERVICE \\"$BUILD_APP_DIR/$FILENAME_IN_BUNDLE\\"\\n"
      end
   end
  end
