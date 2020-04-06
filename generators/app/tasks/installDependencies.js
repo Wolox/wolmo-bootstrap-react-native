@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 const latestSemver = require('latest-semver');
 const semverRegex = require('semver-regex');
 
@@ -6,12 +5,16 @@ const runCommand = require('./runCommand');
 
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
+  '@react-native-community/masked-view',
   'apisauce',
   'i18next',
   'prop-types',
-  'react-native-config@0.11.7',
-  'react-native-gesture-handler',
+  'react-native-config',
+  // Delete when react-native-gesture-handler fix this issue on Android
+  // https://github.com/software-mansion/react-native-gesture-handler/issues/950
+  'react-native-gesture-handler@1.5.3',
   'react-native-reanimated',
+  'react-native-safe-area-context',
   'react-native-screens',
   'react-navigation-animated-switch',
   'react-navigation-redux-helpers',
@@ -114,7 +117,7 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('react-navigation-tabs');
   }
 
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+  if (this.features.crashlytics || this.features.firebaseanalytics || this.features.pushnotifications) {
     DEPENDENCIES.push('@react-native-firebase/app');
   }
 
@@ -122,15 +125,19 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@react-native-firebase/crashlytics');
   }
 
-  if (this.features.googleanalytics) {
-    DEPENDENCIES.push('react-native-google-analytics-bridge');
-    DEPENDENCIES.push('redux-beacon');
-    DEPENDENCIES.push('@redux-beacon/react-native-google-analytics');
+  if (this.features.firebaseanalytics) {
+    DEPENDENCIES.push('@react-native-firebase/analytics');
   }
 
   if (this.features.pushnotifications) {
     DEPENDENCIES.push('react-native-push-notification');
-    DEPENDENCIES.push('react-native-huawei-protected-apps');
+    DEPENDENCIES.push('@react-native-firebase/messaging');
+    DEPENDENCIES.push('@types/react-native-push-notification');
+    DEPENDENCIES.push('@react-native-community/push-notification-ios');
+  }
+
+  if (this.features.firebaseperformance) {
+    DEPENDENCIES.push('@react-native-firebase/perf');
   }
 
   if (this.features.drawer) {

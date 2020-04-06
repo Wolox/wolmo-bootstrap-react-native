@@ -9,9 +9,8 @@ const githubApi = apisauce.create({
 
 githubApi.addMonitor(response => {
   if (!response.ok) {
-    console.log(response.data)
+    console.log(response.data);
   }
 });
 
-  
 module.exports = githubApi;

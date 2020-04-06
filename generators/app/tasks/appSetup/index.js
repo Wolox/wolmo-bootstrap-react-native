@@ -1,7 +1,4 @@
-/* eslint-disable complexity */
 const ora = require('ora');
-
-const installPods = require('../installPods');
 
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
@@ -11,9 +8,10 @@ const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
+const pushNotificationsSetup = require('./pushNotificationsSetup');
 const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
 const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
-const googleAnalyticsFeatureFiles = require('./googleAnalyticsFeatureFiles');
+const firebaseAnalyticsFeatureFiles = require('./firebaseAnalyticsFeatureFiles');
 const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const onBoardingFeatureFiles = require('./onBoardingFeatureFiles');
@@ -22,6 +20,7 @@ const babelConfigSetup = require('./babelConfigSetup');
 const editBundleIdentifier = require('./editBundleIdentifier');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
+const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -76,20 +75,28 @@ module.exports = function index() {
     onBoardingFeatureFiles.bind(this)();
   }
   // ----------------     Features: Firebase    ----------------
-  if (this.features.crashlytics || this.features.googleanalytics || this.features.pushnotifications) {
+  if (
+    this.features.crashlytics ||
+    this.features.firebaseanalytics ||
+    this.features.pushnotifications ||
+    this.features.firebaseperformance
+  ) {
     firebaseCoreFeatureFiles.bind(this)();
 
     if (this.features.crashlytics) {
       crashlyticsFeatureFiles.bind(this)();
     }
-    if (this.features.googleanalytics) {
-      googleAnalyticsFeatureFiles.bind(this)();
+    if (this.features.firebaseanalytics) {
+      firebaseAnalyticsFeatureFiles.bind(this)();
     }
     if (this.features.pushnotifications) {
       pushNotificationsFeatureFiles.bind(this)();
+      pushNotificationsSetup.bind(this)();
     }
 
-    installPods.bind(this)();
+    if (this.features.firebaseperformance) {
+      firebasePerformanceSetup.bind(this)();
+    }
   }
 
   // --------------- Enables fullscreen on iPad ----------------------------

@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.3] - 2020-04-03
+
+- Fixed Push Notifications config on `AndroidManifest`
+- Added again (temporary) the lane to change the `bundleId (update_bundle_identifier)` and a `TODO` in [editBundleIdentifier](generators/app/tasks/appSetup/editBundleIdentifier.js) task
+
+## [0.7.2] - 2020-04-03
+
+- Removed extra lane from Fastlane (added in `fastlane-mobile` repo)
+- Fixed Firebase Analytics issue
+- Upgraded dependencies and `yarn.lock` to solve `Security Alerts` github issues
+- Updated README
+- Fixed `google-service.json` and `GoogleService-Info.plist`
+
+## [0.7.1] - 2020-03-27
+
+- Updated some files and libs to support React Native 0.62
+- Removed some old and unused implementations
+- Added `multiDex` support for Android
+- Setted `react-native-gesture-handler` version to `v1.5.3` to solve a problem with the navigation in Android. The issue appears in versions > `1.5.3`
+- Updated some Reactotron implementation
+
+## [0.7.0] - 2020-03-20
+
+- Updated some bootstrap configurations, README and fixed linter problems (added Wolox CI)
+- Upgraded Firebase package configuration to v6 (Analytics and Push Notifications). Added Firebase Performance Monitoring as a new feature
+- Upgraded some libs to solve vulnerabilities
+- Added the automatization on fetching the `Fastlane` files from `fastlane-mobile` repo and deleted static files
+
+## [0.6.2] - 2020-02-05
+
+- Added `@react-native-community/masked-view` and `react-native-safe-area-context` to solve the dependencies issue
+- Change `publicApp` default to `false` in `bitriseInfo.json`
+
 ## [0.6.1] - 2019-11-27
 
 - Setted `react-native-config` version to `v0.11.7` to solve a problem with the build of `ios` in `v0.12`

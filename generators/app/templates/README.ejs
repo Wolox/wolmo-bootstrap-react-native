@@ -16,8 +16,9 @@ We highly recommend using [nvm](https://github.com/creationix/nvm) instead of br
 create the `.env` file on the root.
 ```
 API_BASE_URL=https://XXXXXXXX
-<%_ if(features.googleanalytics) { _%>
-ANALYTICS_TRACKING_ID=UA-XXXXX-Y
+
+<%_ if(features.pushnotifications) { _%>
+  NOTIFICATIONS_SENDER_ID=XXXXXXXX
 <%_ } _%>
 
 OTHER_ENV_VARs=XXXXXXXXXX
@@ -149,9 +150,9 @@ If you want to test that file in a plugged devise use the command `yarn run andr
 ### Uploading build to testflight
 Use the following commands from <%= projectName %>/ios:
 
-1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane create_development_app`. The lane depends of environment, you can use `bundle exec fastlane create_stage_app` or ` bundle exec fastlane create_production_app`
-2) Then you must be use `bundle exec fastlane release_qa` also there are other lanes to deploy to differents environments. You can use `bundle exec fastlane release_stage` or
-`bundle exec fastlane release_production`
+1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane ios create_development_app`. The lane depends of environment, you can use `bundle exec fastlane ios create_stage_app` or ` bundle exec fastlane ios create_production_app`
+2) Then you must be use `bundle exec fastlane ios release_qa` also there are other lanes to deploy to differents environments. You can use `bundle exec fastlane ios release_stage` or
+`bundle exec fastlane ios release_production`
 
 Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
 

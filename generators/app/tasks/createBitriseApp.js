@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const bitriseApi = require('../apis/bitriseApiConfig');
 const githubApi = require('../apis/githubApiConfig');
 const gitlabApi = require('../apis/gitlabApiConfig');
@@ -42,6 +43,7 @@ const registerSshKeyOnBitrise = ({ slug, publicSshKey, privateSshKey }) =>
   bitriseApi.post(`/apps/${slug}/register-ssh-key`, {
     auth_ssh_private_key: privateSshKey,
     auth_ssh_public_key: publicSshKey,
+    // eslint-disable-next-line id-length
     is_register_key_into_provider_service: false
   });
 

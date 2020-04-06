@@ -25,12 +25,13 @@ bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-nat
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-- Tabs
 - Login
+- Tabs
 - Drawer
 - Redux Persist
 - Firebase Analytics
 - Firebase Crashlytics
+- Firebase Performance
 - Firebase Push Notifications
 - Bitrise
 
@@ -45,6 +46,7 @@ The boilerplate includes
 - [Http client config](/generators/app/templates/src/config/api.js)
 - [i18next config](/generators/app/templates/src/config/i18n.js)
 - [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+- [Push Notifications configuration](/generators/app/templates/src/config/pushNotifications.js)
 - [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
 - [Font Customization](/generators/app/templates/src/config/fonts.js)
 - [Bitrise config](/generators/app/tasks/createBitriseApp.js)
@@ -62,6 +64,7 @@ The boilerplate includes
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [i18next](https://www.i18next.com/)
 - [Bitrise](https://devcenter.bitrise.io/)
+- [React Native Firebase](https://invertase.io/oss/react-native-firebase)
 
 ### Tooling
 
@@ -83,7 +86,8 @@ For bootstraping your own project using the template generator script you'll nee
 
 ### How do you have to configure Bitrise?
 
-You will have to complete the ```bitriseInfo.json``` with the next Info:
+You will have to complete the `bitriseInfo.json` with the next Info:
+
 ```
     "repositoryUrlSsh": "", // What's your repository url? (ssh only)
     "publicApp": "", // If true then the app visibility setting will be public, in case of false it will be private (boolean value)
@@ -96,7 +100,8 @@ You will have to complete the ```bitriseInfo.json``` with the next Info:
     "projectPath": "", // projectPath in case that you want to add the bitrise.yml file to your local repository. This param is in case that you run the script without running the bootstrap
     "projectName": "" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
 ```
-To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) 
+
+To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html)
 
 ## Contributing
 
@@ -116,7 +121,6 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 <a href="https://github.com/Wfolini"><img src="https://avatars0.githubusercontent.com/u/12822259?s=460&v=4" title="Wfolini" width="80" height="80"></a>
 <a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
 <a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
-<a href="https://github.com/guilleSequeiraWolox"><img src="https://avatars2.githubusercontent.com/u/42941989?s=460&v=4" title="guilleSequeiraWolox" width="80" height="80"></a>
 <a href="https://github.com/rodrigoWolox"><img src="https://avatars0.githubusercontent.com/u/43755587?s=460&v=4" title="rodrigoWolox" width="80" height="80"></a>
 <a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
 
@@ -126,7 +130,7 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 
 **wolmo-bootstrap-react-native** is available under the MIT [license](LICENSE).
 
-    Copyright © 2018. WOLOX. All rights reserved. <hello@wolox.co>
+    Copyright © 2020. WOLOX. All rights reserved. <hello@wolox.co>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
