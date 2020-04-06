@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
 - Removed unused targets from iOS project and Podfile (ruby script)
+- Added [firebaseFilesScript](generators/app/templates/googleServicesConfig/firebaseFilesScript.sh) configuration for Android and iOS projects
 
 ## [0.7.3] - 2020-04-03
 
