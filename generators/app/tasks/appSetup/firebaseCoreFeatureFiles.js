@@ -1,5 +1,3 @@
-// const runCommand = require('../runCommand');
-
 function configureGoogleServices() {
   const googleServicesAndroidContent = this.fs.read(
     this.templatePath('googleServicesConfig', 'google-services.json')
@@ -27,7 +25,7 @@ function configureGoogleServices() {
   });
 }
 
-function copyfirebaseFilesScript() {
+function copyFirebaseFilesScript() {
   const firebaseFilesScriptContent = this.fs.read(
     this.templatePath('googleServicesConfig', 'firebaseFilesScript.sh')
   );
@@ -69,7 +67,7 @@ function addConfigToIosFiles() {
 
 module.exports = function firebaseCoreFeatureFiles() {
   configureGoogleServices.bind(this)();
-  copyfirebaseFilesScript.bind(this)();
+  copyFirebaseFilesScript.bind(this)();
   addConfigToAndroidFiles.bind(this)();
   addConfigToIosFiles.bind(this)();
 };
