@@ -25,12 +25,14 @@ const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
 
-// eslint-disable-next-line max-statements
 module.exports = function index() {
   const spinner = ora({
     spinner: 'bouncingBall',
     text: 'Creating project boilerplate'
   }).start();
+
+  // ----------------     add envs files     ----------------
+  createDotEnvFilesLocally.bind(this)();
 
   // ----------------     add package.json scripts     ----------------
   packageJsonScripts.bind(this)();
@@ -50,16 +52,17 @@ module.exports = function index() {
   // ----------------     prettierrc setup     ----------------
   prettierrcConfigSetup.bind(this)();
 
-  // ----------------     add react-native-config to app/build.gradle     ----------------
-  // ----------------     add react-native-screen to app/build.gradle     ----------------
-  // ----------------     add react-native-gesture-handler to MainActivity    ----------------
+  // ----------------     add Android project configurationn    ----------------
   androidProjectSetup.bind(this)();
-  createDotEnvFilesLocally.bind(this)();
+
+  // ----------------     add iOS project configuration     ----------------
   iosProjectSetup.bind(this)();
   configureIosProject.bind(this)();
   cleanTargetsFromPods.bind(this)();
+
   // ----------------     fix bundle identifier     ----------------
   editBundleIdentifier.bind(this)();
+
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
     disableLandscapeOrientation.bind(this)();
@@ -73,9 +76,11 @@ module.exports = function index() {
     loginFeatureFiles.bind(this)();
   }
 
+  // ----------------     Features: Bitrise    ----------------
   if (this.features.bitrise) {
     bitriseFeatureFiles.bind(this)();
   }
+
   // ----------------     Features: Firebase    ----------------
   if (
     this.features.crashlytics ||

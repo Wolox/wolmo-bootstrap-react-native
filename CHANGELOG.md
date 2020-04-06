@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [0.8.0] - 2020-04-XX
 
-- Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects (Missing add build configurations for iOS, for now just Debug and Release)
+- Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
+- Removed unused targets from iOS project and Podfile (ruby script)
 
 ## [0.7.3] - 2020-04-03
 
