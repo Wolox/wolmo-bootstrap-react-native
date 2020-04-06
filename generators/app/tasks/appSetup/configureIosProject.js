@@ -14,7 +14,7 @@ module.exports = function configureIosProject() {
           this.features.pushnotifications ||
           this.features.firebaseperformance
       ],
-      { cwd: `${process.cwd()}/wolmo-bootstrap-react-native/generators/app/tasks/appSetup` }
+      { cwd: `${this.templatePath()}/../tasks/appSetup` }
     ],
     loadingMessage: 'Deleting targets and generating build configurations...\n',
     successMessage: 'Ios project configured!',
