@@ -10,34 +10,17 @@ import CustomText from "@components/CustomText";
 import { transparent, gray, black } from "@constants/colors";
 
 import ShowPassword from "../components/ShowPassword";
+import {
+  TOP_DEGRADE,
+  LABEL_SIZE,
+  LABEL_SIZE_DEGRADE,
+  LEFT_DEGRADE,
+  LEFT_SMALL_DEGRADE,
+} from "./constants";
+import { AnimatedCustomTextInputProps } from "./interface";
 import styles from "./styles";
 
-export interface CustomTextInputProps extends TextInputProps, TextProps {
-  bottomBorder?: boolean;
-  multiline?: boolean;
-  placeholder?: string;
-  textStyles?: TextStyle;
-  onBlur?: TextInputProps["onBlur"];
-  onChange?(e: any): any;
-  onFocus?: TextInputProps["onFocus"];
-  value?: string;
-  placeholderTextColor?: string;
-  showEye?: boolean;
-  secureTextEntry?: boolean;
-  style?: ViewProps["style"];
-  label?: string;
-  labelStyle?: TextProps["style"];
-  autoCompleteType?: TextInputProps["autoCompleteType"];
-  error?: boolean | string;
-  disabled?: boolean;
-}
-
-const TOP_DEGRADE = -25;
-const LABEL_SIZE = 14;
-const LABEL_SIZE_DEGRADE = 12;
-const LEFT_DEGRADE = 5;
-const LEFT_SMALL_DEGRADE = 0;
-const CustomTextInput = (props: CustomTextInputProps) => {
+const CustomTextInput = (props: AnimatedCustomTextInputProps) => {
   const {
     value,
     placeholderTextColor,
