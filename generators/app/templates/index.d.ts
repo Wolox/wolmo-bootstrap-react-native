@@ -1,0 +1,9 @@
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.json';
+declare module 'reactotron-apisauce';
+declare module 'recompose';
+declare module 'redux-recompose';
+declare module 'redux-persist-seamless-immutable';
+declare module 'react-native-push-notification';
+declare module '@react-native-firebase/messaging';

@@ -13,11 +13,11 @@ import AppNavigator from '@components/AppNavigator';
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => SplashScreen.hide(), []);
   useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
-      configPushNotifications();
+    configPushNotifications();
     <%_ } _%>
     <%_ if(features.login) { _%>
     authSetup(dispatch);

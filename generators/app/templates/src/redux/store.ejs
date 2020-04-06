@@ -14,6 +14,7 @@ import {
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
+import Navigator from '@screens';
 
 <%_ if(features.firebaseanalytics) { _%>
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
@@ -21,8 +22,6 @@ import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
 <%_ } _%>
-
-import Navigator from '@screens';
 
 <%_ if(features.reduxpersist) { _%>
 const transformerConfig = {
@@ -48,9 +47,9 @@ configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
 <%_ if(features.login) { _%>
-auth,
+  auth,
 <%_ } _%>
-nav
+  nav
 });
 
 <%_ if(features.reduxpersist) { _%>

@@ -1,7 +1,6 @@
 const ora = require('ora');
 
 const packageJsonScripts = require('./packageJsonScripts');
-const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const iosAppIcons = require('./iosAppIcons');
 const androidProjectSetup = require('./androidProjectSetup');
@@ -29,9 +28,6 @@ module.exports = function index() {
 
   // ----------------     add package.json scripts     ----------------
   packageJsonScripts.bind(this)();
-
-  // ----------------     eslint config file     ----------------
-  eslintSetup.bind(this)();
 
   // ----------------     base app files     ----------------
   baseFilesTemplate.bind(this)();

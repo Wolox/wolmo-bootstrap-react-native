@@ -14,6 +14,10 @@ module.exports.UTILS_PATH = 'src/utils';
 module.exports.TEST_PATH = 'test';
 
 // BASE FILES
+module.exports.TSCONFIG_FILE = 'tsconfig.json';
+module.exports.INDEX_D_FILE = 'index.d.ts';
+module.exports.ESLINTRC_FILE = '.eslintrc.js';
+module.exports.ESLINT_IGNORE_FILE = '.eslintignore';
 module.exports.REACT_NATIVE_CONFIG = 'react-native.config.js';
 module.exports.JENKINS_FILE = 'Jenkinsfile';
 module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;

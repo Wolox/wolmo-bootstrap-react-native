@@ -9,7 +9,6 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['android:build'] = 'cd android && ./gradlew clean && ./gradlew assembleRelease';
   packageJson.scripts['android:install'] =
     'cd android && ./gradlew clean && ./gradlew assembleRelease && ./gradlew installRelease';
-
   packageJson.scripts.test = 'jest';
   packageJson.scripts['test:watch'] = 'jest --watch';
   packageJson.scripts['test:debug'] = 'node --inspect node_modules/.bin/jest --runInBand';
@@ -27,5 +26,13 @@ module.exports = function packgeJsonScripts() {
   packageJson.jest.transformIgnorePatterns = [
     '/node_modules/@react-native-community/async-storage/(?!(lib))'
   ];
+  packageJson.scripts.lint = 'eslint src --ext .js,.ts,.jsx,.tsx';
+  packageJson.scripts['lint-fix'] = 'eslint src --ext .js,.ts,.jsx,.tsx --fix';
+  packageJson.scripts['lint-diff'] =
+    'git diff --name-only --cached --relative | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
+  packageJson.scripts.tsc = 'tsc';
+  packageJson.husky = packageJson.husky || {};
+  packageJson.husky.hooks = packageJson.husky.hooks || {};
+  packageJson.husky.hooks['pre-commit'] = 'npm run lint-diff && npm run tsc';
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };
