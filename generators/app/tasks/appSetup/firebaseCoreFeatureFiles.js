@@ -35,14 +35,6 @@ function copyfirebaseFilesScript() {
     `${this.projectName}/firebaseFilesScript.sh`,
     firebaseFilesScriptContent.replace(/wolmorn/g, `${this.projectName}`)
   );
-  // TODO: UPDATE THIS RUN COMMAND
-  // runCommand({
-  //   command: ['chmod', ['u+x', 'firebaseFilesScript.sh'], { cwd: `${process.cwd()}/${this.projectName}` }],
-  //   loadingMessage: 'Changing permissions of the firebaseFilesScript file...',
-  //   successMessage: 'Permissions changed!',
-  //   failureMessage: 'Permissions were not changed',
-  //   context: this.options
-  // });
 }
 
 function addConfigToAndroidFiles() {

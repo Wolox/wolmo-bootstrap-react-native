@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [0.8.0] - 2020-04-XX
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
-- Removed unused targets from iOS project and Podfile (ruby script)
-- Added [firebaseFilesScript](generators/app/templates/googleServicesConfig/firebaseFilesScript.sh) configuration for Android and iOS projects
+- Removed unused targets from iOS project and Podfile ([Ruby script](generators/app/tasks/appSetup/scriptIosConfig.rb))
+- Added configuration to use [firebaseFilesScript](generators/app/templates/googleServicesConfig/firebaseFilesScript.sh) script for Android and iOS projects to automatically copy Google services files
 
 ## [0.7.3] - 2020-04-03
 
