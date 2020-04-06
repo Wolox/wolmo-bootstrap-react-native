@@ -16,7 +16,7 @@ module.exports = function configureIosProject() {
       ],
       { cwd: `${process.cwd()}/wolmo-bootstrap-react-native/generators/app/tasks/appSetup` }
     ],
-    loadingMessage: 'Deleting targets and generating build configurations...\n',
+    loadingMessage: 'Deleting targets and generating build configurations...',
     successMessage: 'Ios project configured!',
     failureMessage: 'Ios project was not configured',
     context: this.options
