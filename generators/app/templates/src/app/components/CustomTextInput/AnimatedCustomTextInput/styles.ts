@@ -1,6 +1,13 @@
 import { StyleSheet } from "react-native";
 import fonts from "@config/fonts";
-import { black, blue, transparent, gray, darkGray } from "@constants/colors";
+import {
+  black,
+  blue,
+  transparent,
+  gray,
+  darkGray,
+  red,
+} from "@constants/colors";
 import { SIZES } from "@constants/fonts";
 
 const INPUT_PADDING = 5;
@@ -41,17 +48,17 @@ export default StyleSheet.create({
   singleInput: {
     flex: 1,
   },
-  bottomBorderGray: {
+  borderWidth: {
     borderBottomWidth: 1,
+  },
+  bottomBorderGray: {
     borderBottomColor: black,
   },
   bottomBorderBlue: {
-    borderBottomWidth: 1,
     borderBottomColor: blue,
   },
   bottomBorderRed: {
-    borderBottomWidth: 1,
-    borderBottomColor: "red",
+    borderBottomColor: red,
   },
   bottomBorderLightGray: {
     borderBottomWidth: 1,

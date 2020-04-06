@@ -10,6 +10,7 @@ import CustomText from "@components/CustomText";
 import { transparent, gray, black } from "@constants/colors";
 
 import ShowPassword from "../components/ShowPassword";
+
 import {
   TOP_DEGRADE,
   LABEL_SIZE,
@@ -93,7 +94,7 @@ const CustomTextInput = (props: AnimatedCustomTextInputProps) => {
   );
 
   const placeholderColor = value ? transparent : placeholderTextColor;
-  const borderStyle = () => {
+  const borderColor = () => {
     if (disabled) return styles.bottomBorderLightGray;
     if (isFocused) return styles.bottomBorderBlue;
     if (error) return styles.bottomBorderRed;
@@ -117,7 +118,7 @@ const CustomTextInput = (props: AnimatedCustomTextInputProps) => {
       <View
         style={[
           !multiline && styles.inputContainer,
-          bottomBorder && borderStyle(),
+          bottomBorder && { ...borderColor(), ...styles.borderWidth },
         ]}
       >
         <TextInput
