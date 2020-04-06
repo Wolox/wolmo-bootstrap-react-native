@@ -21,11 +21,10 @@ function addConfigToAndroidFiles() {
 function addConfigToIosFiles() {
   const crashlyticsPod = `\nproject.targets.each do |target|
     if target.name == "appTest"
-       if  !target.shell_script_build_phases.find { |bp| bp.name == 'crashlytics' }
-          puts "Adding run script for crashlytics"
-          phase=target.new_shell_script_build_phase("crashlytics")
+       if  !target.shell_script_build_phases.find { |bp| bp.name == 'Crashlytics' }
+          puts "Adding run script for Crashlytics"
+          phase=target.new_shell_script_build_phase("Crashlytics")
           phase.shell_script="$\{PODS_ROOT}/Fabric/run"
-          phase.input_paths=["$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"]
        end
     end
   end\nproject.save()`;
