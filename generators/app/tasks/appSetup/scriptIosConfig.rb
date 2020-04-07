@@ -8,6 +8,12 @@ project = Xcodeproj::Project.open(project_path)
 release_base_config_file = nil
 release_build_settings = nil
 
+# Delete unused targets
+project.targets.each do |target|
+ if target.name != project_name
+  target.remove_from_project
+ end
+end
 project.targets.each do |target|
  if target.name != project_name
   target.remove_from_project
@@ -15,46 +21,52 @@ project.targets.each do |target|
 end
 
 project.targets.each do |target|
- if target.name != project_name
-  target.remove_from_project
- end
-end
-
-project.targets.each do |target|
- target.build_configurations.each do |config|
-  if(config.name == 'Release')
-   release_base_config_file = config.base_configuration_reference
-   release_build_settings = config.build_settings
+ if target.name == project_name
+  target.build_configurations.each do |config|
+   # Copy Release Build Configuration for Target
+   if (config.name == 'Release')
+    release_base_config_file = config.base_configuration_reference
+    release_build_settings = config.build_settings
+    # Delete Release Build Configuration from Target
+    config.remove_from_project
+   end
   end
- end
-end
-
-project.targets.each do |target|
- target.add_build_configuration('QA', :release)
- target.add_build_configuration('Stage', :release)
- target.add_build_configuration('Production', :release)
- target.build_configurations.each do |config|
-  if(config.name == 'Stage' || config.name == 'QA' || config.name == 'Production')
-   config.base_configuration_reference=(release_base_config_file)
-   config.build_settings=(release_build_settings)
-  end
- end
-end
-
-project.targets.each do |target|
- target.build_configurations.each do |config|
-  if(config.name == 'Release')
-   config.remove_from_project
+  # Add new Build Configurations to Target
+  target.add_build_configuration('QA', :release)
+  target.add_build_configuration('Stage', :release)
+  target.add_build_configuration('Production', :release)
+  target.build_configurations.each do |config|
+   # Copy Release Build Configuration to new configs
+   if (config.name == 'Stage' || config.name == 'QA' || config.name == 'Production')
+      config.base_configuration_reference=(release_base_config_file)
+      config.build_settings=(release_build_settings)
+   end
   end
  end
 end
 
 project.build_configurations.each do |config|
- if(config.name == 'Release')
+ # Copy Release Build Configuration for Project
+ if (config.name == 'Release')
+  release_base_config_file = config.base_configuration_reference
+  release_build_settings = config.build_settings
+  # Delete Release Build Configuration from Project
   config.remove_from_project
  end
 end
+# Add new Build Configurations to Project
+project.add_build_configuration('QA', :release)
+project.add_build_configuration('Stage', :release)
+project.add_build_configuration('Production', :release)
+project.build_configurations.each do |config|
+ # Copy Release Build Configuration to new configs
+ if (config.name == 'Stage' || config.name == 'QA' || config.name == 'Production')
+  config.base_configuration_reference=(release_base_config_file)
+  config.build_settings=(release_build_settings)
+ end
+end
 
+# Google Services Script
 if googleServices
    project.targets.each do |target|
     if target.name == project_name
