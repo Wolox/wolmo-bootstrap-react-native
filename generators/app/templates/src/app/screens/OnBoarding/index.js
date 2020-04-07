@@ -5,11 +5,11 @@ import Routes from '@constants/routes';
 import './i18n';
 import Swiper from './components/Swiper';
 
-const OnBoardingContainer = ({ navigation: { navigate } }) => {
+function OnBoardingContainer({ navigation: { navigate } }) {
   const skipOnBoarding = () => navigate(Routes.App);
 
   return <Swiper skip={skipOnBoarding} />;
-};
+}
 
 export default memo(OnBoardingContainer);
 
