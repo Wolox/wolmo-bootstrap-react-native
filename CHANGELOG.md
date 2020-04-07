@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
 - Removed unused targets from iOS project and Podfile (ruby script)
+- Removed temporary fix for the `update_bundle_identifier` Fastlane lane
 
 ## [0.7.3] - 2020-04-03
 
