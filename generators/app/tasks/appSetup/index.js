@@ -55,13 +55,12 @@ module.exports = function index() {
   // ----------------     add Android project configurationn    ----------------
   androidProjectSetup.bind(this)();
 
-  // ----------------     add iOS project configuration     ----------------
+  // ----------------     add iOS project configuration && fix bundle identifier     ----------------
   iosProjectSetup.bind(this)();
-  configureIosProject.bind(this)();
+  configureIosProject
+    .bind(this)()
+    .then(() => editBundleIdentifier.bind(this)());
   cleanTargetsFromPods.bind(this)();
-
-  // ----------------     fix bundle identifier     ----------------
-  editBundleIdentifier.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
