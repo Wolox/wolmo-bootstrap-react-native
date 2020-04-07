@@ -91,9 +91,9 @@ module.exports.ONBOARDING_SECOND_SCREEN_PATH = `${module.exports.ONBOARDING_SWIP
 module.exports.ONBOARDING_THIRD_SCREEN_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/ThirdScreen`;
 module.exports.ONBOARDING_FOOTER_COMPONENT_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/Footer`;
 
-module.exports.ONBOARDING_FOOTER = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/index.js`;
-module.exports.ONBOARDING_FOOTER_STYLES = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/styles.js`;
-module.exports.ONBOARDING_FOOTER_BUTTONS_INFO = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/buttonsInfo.js.js`;
+module.exports.ONBOARDING_FOOTER = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/index.js`;
+module.exports.ONBOARDING_FOOTER_STYLES = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/styles.js`;
+module.exports.ONBOARDING_FOOTER_BUTTONS_INFO = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/buttonsInfo.js`;
 
 module.exports.ONBOARDING_FIRST_SCREEN = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/index.js`;
 module.exports.ONBOARDING_FIRST_SCREEN_STYLES = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/styles.js`;
