@@ -24,14 +24,15 @@ class CustomStepSwipper extends PureComponent {
 
   handleChangeIndex = index => this.setState({ scrollIndex: index });
 
-  onHandleScreenName = () => {
+  screenName = () => {
     const { scrollIndex } = this.state;
     return Object.keys(screens).find((screenName, index) => index === scrollIndex);
   };
 
+  handleRef = ref => (this.scrollView = ref);
+
   render() {
     const { skip } = this.props;
-    Object.keys(screens).forEach((screenName, index) => console.tron.log(screenName));
     return (
       <SafeAreaView style={styles.container}>
         <Swiper
@@ -40,7 +41,7 @@ class CustomStepSwipper extends PureComponent {
           paginationStyle={styles.pagination}
           loop={false}
           onIndexChanged={this.handleChangeIndex}
-          ref={ref => (this.scrollView = ref)}
+          ref={this.handleRef}
         >
           {Object.keys(screensComponents).map(screen => screensComponents[screen])}
         </Swiper>
@@ -48,7 +49,7 @@ class CustomStepSwipper extends PureComponent {
           nextScreen={this.onHandleNextScreen}
           skip={skip}
           previousScreen={this.onHandlePreviousScreen}
-          screenName={this.onHandleScreenName()}
+          screenName={this.screenName()}
         />
       </SafeAreaView>
     );
