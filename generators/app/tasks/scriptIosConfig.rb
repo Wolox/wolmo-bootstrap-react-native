@@ -9,18 +9,18 @@ release_base_config_file = nil
 release_build_settings = nil
 
 # Delete unused targets
-def delete_targets_from_project(project)
-   project.targets.each do |target|
-    if target.name != project_name
-     target_atts_obj = project.root_object.attributes['TargetAttributes']
-     target_atts_obj.delete(target.uuid)
-     target.remove_from_project
-    end
-   end
+def delete_targets_from_project(project, project_name)
+ project.targets.each do |target|
+  if target.name != project_name
+   target_atts_obj = project.root_object.attributes['TargetAttributes']
+   target_atts_obj.delete(target.uuid)
+   target.remove_from_project
+  end
+ end
 end
 
-delete_targets_from_project(project)
-delete_targets_from_project(project)
+delete_targets_from_project(project, project_name)
+delete_targets_from_project(project, project_name)
 
 project.targets.each do |target|
  if target.name == project_name
