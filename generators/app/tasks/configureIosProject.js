@@ -1,4 +1,4 @@
-const runCommand = require('../runCommand');
+const runCommand = require('./runCommand');
 
 module.exports = function configureIosProject() {
   return runCommand({
@@ -14,9 +14,9 @@ module.exports = function configureIosProject() {
           this.features.pushnotifications ||
           this.features.firebaseperformance
       ],
-      { cwd: `${this.templatePath()}/../tasks/appSetup` }
+      { cwd: `${this.templatePath()}/../tasks` }
     ],
-    loadingMessage: 'Deleting targets and generating build configurations...\n',
+    loadingMessage: 'Deleting targets and generating build configurations...',
     successMessage: 'Ios project configured!',
     failureMessage: 'Ios project was not configured',
     context: this.options
