@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 const ora = require('ora');
 
 const packageJsonScripts = require('./packageJsonScripts');
