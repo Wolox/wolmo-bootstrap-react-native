@@ -52,8 +52,7 @@ class ReactNativeBootstrap extends Generator {
           'Push Notifications',
           'Google Analytics',
           'Redux Persist',
-          'Bitrise',
-          'Animated Custom Text Input'
+          'Bitrise'
         ],
         filter: values =>
           values.reduce((answer, val) => {

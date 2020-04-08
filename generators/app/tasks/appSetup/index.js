@@ -5,7 +5,6 @@ const ora = require('ora');
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
-const animatedCustomTextInputFeatureFiles = require('./animatedCustomTextInputFeatureFiles');
 const iosAppIcons = require('./iosAppIcons');
 const androidProjectSetup = require('./androidProjectSetup');
 const iosProjectSetup = require('./iosProjectSetup');
@@ -68,10 +67,6 @@ module.exports = function index() {
   // ----------------     Features: Login    ----------------
   if (this.features.login) {
     loginFeatureFiles.bind(this)();
-  }
-
-  if (this.features.animatedcustomtextinput) {
-    animatedCustomTextInputFeatureFiles.bind(this)();
   }
 
   if (this.features.bitrise) {
