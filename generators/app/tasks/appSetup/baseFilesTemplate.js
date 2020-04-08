@@ -94,7 +94,6 @@ const FILES = [
   TESTS_RESPONSES_EXAMPLES,
   TSCONFIG_FILE,
   INDEX_D_FILE,
-  ESLINTRC_FILE,
   ESLINT_IGNORE_FILE
 ];
 
@@ -109,7 +108,8 @@ const TEMPLATE_FILES = [
   NAVIGATION_CONFIG,
   APP_I18N,
   CI_CONFIG_FILE,
-  MAIN
+  MAIN,
+  ESLINTRC_FILE
 ];
 
 module.exports = function baseFilesTemplate() {
