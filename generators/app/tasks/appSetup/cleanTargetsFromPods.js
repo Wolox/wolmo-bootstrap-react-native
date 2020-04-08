@@ -17,4 +17,7 @@ module.exports = function cleanTargetsFromPods() {
     ...podfileContent.slice(numberLineTvOSTest + 8)
   ].join('\n');
   this.fs.write(`${this.projectName}/ios/Podfile`, podfileContent);
+  this.fs.delete(`${this.projectName}/ios/${this.projectName}Tests/`);
+  this.fs.delete(`${this.projectName}/ios/${this.projectName}-tvOS/`);
+  this.fs.delete(`${this.projectName}/ios/${this.projectName}-tvOSTests/`);
 };

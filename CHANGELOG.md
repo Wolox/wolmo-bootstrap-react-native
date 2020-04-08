@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
 - Removed unused targets from iOS project and Podfile ([Ruby script](generators/app/tasks/appSetup/scriptIosConfig.rb))
+- Fixed issue with the `update_bundle_identifier` Fastlane lane
 - Added configuration to use [firebaseFilesScript](generators/app/templates/googleServicesConfig/firebaseFilesScript.sh) script for Android and iOS projects to automatically copy Google services files
 
 ## [0.7.3] - 2020-04-03

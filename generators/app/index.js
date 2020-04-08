@@ -12,6 +12,8 @@ const configureFastlane = require('./tasks/configureFastlane');
 const installPods = require('./tasks/installPods');
 const linkAppAssets = require('./tasks/linkAppAssets');
 const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
+const editBundleIdentifier = require('./tasks/editBundleIdentifier');
+const configureIosProject = require('./tasks/configureIosProject');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -103,8 +105,10 @@ class ReactNativeBootstrap extends Generator {
       this.features.firebaseperformance;
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
+      .then(() => configureIosProject.bind(this)())
       .then(() => installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
+      .then(() => editBundleIdentifier.bind(this)())
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
       .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());

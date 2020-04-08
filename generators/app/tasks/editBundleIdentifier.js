@@ -1,4 +1,4 @@
-const runCommand = require('../runCommand');
+const runCommand = require('./runCommand');
 
 module.exports = function editBundleIdentifier() {
   return runCommand({
@@ -7,7 +7,7 @@ module.exports = function editBundleIdentifier() {
       [
         'exec',
         'fastlane',
-        // 'ios', TODO: Uncomment this when build configurations works
+        'ios',
         'update_bundle_identifier',
         `project_name:${this.projectName}`,
         `bundle_identifier:${this.bundleId}`

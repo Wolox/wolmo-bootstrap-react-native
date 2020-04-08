@@ -18,8 +18,6 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
-const editBundleIdentifier = require('./editBundleIdentifier');
-const configureIosProject = require('./configureIosProject');
 const cleanTargetsFromPods = require('./cleanTargetsFromPods');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
@@ -55,13 +53,9 @@ module.exports = function index() {
   // ----------------     add Android project configurationn    ----------------
   androidProjectSetup.bind(this)();
 
-  // ----------------     add iOS project configuration     ----------------
+  // ----------------     add iOS project configuration and clean unused targets    ----------------
   iosProjectSetup.bind(this)();
-  configureIosProject.bind(this)();
   cleanTargetsFromPods.bind(this)();
-
-  // ----------------     fix bundle identifier     ----------------
-  editBundleIdentifier.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
