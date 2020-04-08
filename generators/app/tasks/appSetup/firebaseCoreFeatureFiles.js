@@ -46,7 +46,7 @@ function addConfigToAndroidFiles() {
   let appBuildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   appBuildGradleContent = appBuildGradleContent.replace(
     'apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)',
-    'task setFirebaseFiles() {\n\texec {\n\t\tdef buildArgs = getGradle().startParameter.taskRequests[0].getArgs()\n\t\texecutable \'../../firebaseFilesScript.sh\'\n\t\tif (buildArgs[1] != null) {\n\t\t\targs(buildArgs[1].toString(), "android")\n\t\t} else { \n\t\t\targs(buildArgs[0].toString(), "android")\n\t\t}\n\t}\n}\n\nbuild.dependsOn setFirebaseFiles\n\napply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)'
+    'task setFirebaseFiles() {\n\tif (getGradle().startParameter.taskRequests.size()) {\n\t\texec {\n\t\t\tdef buildArgs = getGradle().startParameter.taskRequests[0].getArgs()\n\t\t\texecutable \'../../firebaseFilesScript.sh\'\n\t\t\tif (buildArgs[1] != null) {\n\t\t\t\targs(buildArgs[1].toString(), "android")\n\t\t\t} else { \n\t\t\t\targs(buildArgs[0].toString(), "android")\n\t\t\t}\n\t\t}\n\t}\n}\n\nbuild.dependsOn setFirebaseFiles\n\napply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)'
   );
   appBuildGradleContent = appBuildGradleContent.concat("apply plugin: 'com.google.gms.google-services'\n");
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
