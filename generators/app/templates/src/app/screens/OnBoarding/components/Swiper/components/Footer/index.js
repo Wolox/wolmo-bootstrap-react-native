@@ -5,7 +5,7 @@ import CustomButton from '@components/CustomButton';
 import { screensButtonInfo } from './buttonsInfo';
 import styles from './styles';
 
-export default function FirstScreen(props) {
+export default function Footer(props) {
   const { firstButton, secondButton } = screensButtonInfo(props);
   return (
     <View style={styles.buttons}>
