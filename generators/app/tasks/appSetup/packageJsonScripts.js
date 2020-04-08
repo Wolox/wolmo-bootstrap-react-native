@@ -6,10 +6,14 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['force-clean'] =
     'npm run android:clean && rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && npm cache clean && npm i';
   packageJson.scripts['android:clean'] = 'cd android/ && ./gradlew clean';
-  packageJson.scripts['android:build'] = 'cd android && ./gradlew clean && ./gradlew assembleRelease';
   packageJson.scripts['android:install'] =
     'cd android && ./gradlew clean && ./gradlew assembleRelease && ./gradlew installRelease';
 
+  packageJson.scripts['android:build.qa'] = 'cd android && ./gradlew clean && ./gradlew assembleQaRelease';
+  packageJson.scripts['android:build.stage'] =
+    'cd android && ./gradlew clean && ./gradlew assembleStageRelease';
+  packageJson.scripts['android:build.production'] =
+    'cd android && ./gradlew clean && ./gradlew bundleProductionRelease';
   packageJson.scripts.test = 'jest';
   packageJson.scripts['test:watch'] = 'jest --watch';
   packageJson.scripts['test:debug'] = 'node --inspect node_modules/.bin/jest --runInBand';

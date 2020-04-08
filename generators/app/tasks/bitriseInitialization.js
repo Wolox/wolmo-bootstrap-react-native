@@ -14,9 +14,7 @@ module.exports = function bitriseInitialization() {
     spinner.stop();
     const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
     const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
-    const bitriseYml = fs
-      .readFileSync('./wolmo-bootstrap-react-native/generators/app/defaultBitrise.yml')
-      .toString();
+    const bitriseYml = fs.readFileSync(`${this.templatePath()}/../defaultBitrise.yml`).toString();
     let configInfo = null;
     if (this.configInfo) {
       const { configInfo: info } = this;
