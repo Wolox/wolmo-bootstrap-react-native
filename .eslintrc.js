@@ -7,6 +7,7 @@ module.exports = {
     'no-magic-numbers': 'off',
     'import/order': ['error', { 'newlines-between': 'always' }],
     'no-nested-ternary': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'max-statements': 'off'
   }
 };

@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "131141576893",
-    "firebase_url": "https://testcore-4f5e9.firebaseio.com",
-    "project_id": "testcore-4f5e9",
-    "storage_bucket": "testcore-4f5e9.appspot.com"
+    "project_number": "1048568404151",
+    "firebase_url": "https://wolmobootstraprn.firebaseio.com",
+    "project_id": "wolmobootstraprn",
+    "storage_bucket": "wolmobootstraprn.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:131141576893:android:1bea3c3cb4924149",
+        "mobilesdk_app_id": "1:1048568404151:android:59c730a1cafc7acdcd5532",
         "android_client_info": {
-          "package_name": "com.test"
+          "package_name": "com.wolmorn"
         }
       },
       "oauth_client": [
         {
-          "client_id": "131141576893-hv79tvt9j3gnoosdbpb3qm20ukjmpg45.apps.googleusercontent.com",
+          "client_id": "1048568404151-9fln80in54jih46ip4uu8psdhlg8r7q1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAM1_DBBec9ZEy_iAJty6h3wzNGb5plrRE"
+          "current_key": "AIzaSyCnFOLCB-o72Te7YclqFnQs_Y1hiwUMuGI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "131141576893-hv79tvt9j3gnoosdbpb3qm20ukjmpg45.apps.googleusercontent.com",
+              "client_id": "1048568404151-9fln80in54jih46ip4uu8psdhlg8r7q1.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "131141576893-3i2u499jp8iggj0dvc9f97o82llqbev3.apps.googleusercontent.com",
+              "client_id": "1048568404151-camksnsehgk30fn2fckt1fu9iis8jc3m.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.wolox.itestHooks"
+                "bundle_id": "com.wolox.wolmorn"
               }
             }
           ]

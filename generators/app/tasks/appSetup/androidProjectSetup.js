@@ -2,7 +2,7 @@ function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
+    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [\n\tqadebug: ".dev.env",\n\tqarelease: ".dev.env",\n\tstagedebug: ".stage.env",\n\tstagerelease: ".stage.env",\n\tproductiondebug: ".production.env",\n\tproductionrelease: ".production.env"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'enableHermes: false,',
@@ -15,6 +15,18 @@ function addDotenvPluginAndRNScreen() {
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
     "implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'\n\timplementation 'androidx.multidex:multidex:2.0.1'\n\tif (enableHermes) {"
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'compileSdkVersion rootProject.ext.compileSdkVersion',
+    'compileSdkVersion rootProject.ext.compileSdkVersion\n\tflavorDimensions "buildtype"'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    '// applicationVariants are e.g. debug, release',
+    "productFlavors {\n\t\tqa {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".qa\"\n\t\t}\n\t\tstage {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".stage\"\n\t\t}\n\t\tproduction {\n\t\t\tdimension 'buildtype'\n\t\t}\n\t}\n// applicationVariants are e.g. debug, release"
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'versionName "1.0"',
+    `versionName "1.0"\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }
