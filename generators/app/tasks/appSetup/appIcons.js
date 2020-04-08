@@ -1,5 +1,5 @@
-module.exports = function iosAppIcons() {
-  const files = [
+function iosAppIcons() {
+  const iosFiles = [
     'Contents.json',
     'Icon-Small.png',
     'Icon-Small@2x.png',
@@ -18,9 +18,9 @@ module.exports = function iosAppIcons() {
     'iTunesArtwork@2x.png'
   ];
 
-  files.forEach(fileName => {
+  iosFiles.forEach(fileName => {
     this.fs.copy(
-      this.templatePath('iosIcons', fileName),
+      this.templatePath('icons/iosIcons', fileName),
       this.destinationPath(
         this.projectName,
         'ios',
@@ -31,4 +31,16 @@ module.exports = function iosAppIcons() {
       )
     );
   });
+}
+
+function androidAppIcons() {
+  this.fs.copy(
+    this.templatePath('icons/androidIcons'),
+    this.destinationPath(this.projectName, 'android', 'app', 'src', 'main', 'res')
+  );
+}
+
+module.exports = function appIcons() {
+  iosAppIcons.bind(this)();
+  androidAppIcons.bind(this)();
 };
