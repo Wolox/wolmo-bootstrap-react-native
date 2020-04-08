@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>131141576893-mi98n9v9ncdabivm4akn707ju2dh1dn3.apps.googleusercontent.com</string>
+	<string>1048568404151-camksnsehgk30fn2fckt1fu9iis8jc3m.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.131141576893-mi98n9v9ncdabivm4akn707ju2dh1dn3</string>
+	<string>com.googleusercontent.apps.1048568404151-camksnsehgk30fn2fckt1fu9iis8jc3m</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB5kNsNMLcaXeXuegGjEuk0WJHLRiBgA_A</string>
+	<string>AIzaSyB9gVWZZWAZUzT11CoAxDDrSxxMUfBjqVE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>131141576893</string>
+	<string>1048568404151</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.wolox.appTest</string>
+	<string>com.wolox.wolmorn</string>
 	<key>PROJECT_ID</key>
-	<string>testcore-4f5e9</string>
+	<string>wolmobootstraprn</string>
 	<key>STORAGE_BUCKET</key>
-	<string>testcore-4f5e9.appspot.com</string>
+	<string>wolmobootstraprn.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:131141576893:ios:745e62604af2dca09b6fd4</string>
+	<string>1:1048568404151:ios:47fdb4dc9eab1de0cd5532</string>
 	<key>DATABASE_URL</key>
-	<string>https://testcore-4f5e9.firebaseio.com</string>
+	<string>https://wolmobootstraprn.firebaseio.com</string>
 </dict>
 </plist>

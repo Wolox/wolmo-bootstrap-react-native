@@ -1,6 +1,5 @@
 /* eslint-disable max-nested-callbacks */
 const runCommand = require('./runCommand');
-const ignoreDotEnvFromGitignore = require('./appSetup/ignoreDotEnvFromGitignore');
 
 module.exports = function gitInitialization() {
   // git init
@@ -23,7 +22,6 @@ module.exports = function gitInitialization() {
           }).then(() => {
             // check if the user wants to initialiaze the remote repository too
             spinner.stop();
-            ignoreDotEnvFromGitignore.bind(this)();
             return this.prompt([
               {
                 type: 'confirm',
