@@ -11,7 +11,7 @@ module.exports = function schemeBase(envName, buildConfig) {
              ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
              <ActionContent
                 title = "Run Script"
-                scriptText = "echo &quot;.env.${envName}&quot; &gt; /tmp/envfile &#10;">
+                scriptText = "echo &quot;.${envName}.env&quot; &gt; /tmp/envfile &#10;">
              </ActionContent>
           </ExecutionAction>
        </PreActions>
