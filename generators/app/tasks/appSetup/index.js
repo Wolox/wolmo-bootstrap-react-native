@@ -4,7 +4,7 @@ const ora = require('ora');
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
-const iosAppIcons = require('./iosAppIcons');
+const appIcons = require('./appIcons');
 const androidProjectSetup = require('./androidProjectSetup');
 const createDotEnvFilesLocally = require('./createDotEnvFilesLocally');
 const iosProjectSetup = require('./iosProjectSetup');
@@ -41,8 +41,8 @@ module.exports = function index() {
   // ----------------     base app files     ----------------
   baseFilesTemplate.bind(this)();
 
-  // ----------------     ios app icons     ----------------
-  iosAppIcons.bind(this)();
+  // ----------------     app icons     ----------------
+  appIcons.bind(this)();
 
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
