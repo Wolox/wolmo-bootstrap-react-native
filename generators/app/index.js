@@ -14,6 +14,7 @@ const linkAppAssets = require('./tasks/linkAppAssets');
 const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
 const editBundleIdentifier = require('./tasks/editBundleIdentifier');
 const configureIosProject = require('./tasks/configureIosProject');
+const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -90,7 +91,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configureFastlane.bind(this)());
+      .then(() => configureFastlane.bind(this)())
+      .then(() => addFilesToGitIgnore.bind(this)());
   }
 
   writing() {
