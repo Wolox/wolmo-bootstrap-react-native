@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native';
 import Swiper from 'react-native-swiper';
 import PropTypes from 'prop-types';
 
-import screens, { screensComponents } from './screens';
+import screens from './screens';
 import Footer from './components/Footer';
 import styles from './styles';
 
@@ -12,27 +12,23 @@ class CustomStepSwipper extends PureComponent {
     scrollIndex: 0
   };
 
-  onHandleNextScreen = () => {
+  handleNextScreen = () => {
     this.scrollView.scrollBy(1);
     this.setState(prevState => ({ scrollIndex: prevState.scrollIndex + 1 }));
   };
 
-  onHandlePreviousScreen = () => {
+  handlePreviousScreen = () => {
     this.scrollView.scrollBy(-1);
     this.setState(prevState => ({ scrollIndex: prevState.scrollIndex - 1 }));
   };
 
   handleChangeIndex = index => this.setState({ scrollIndex: index });
 
-  screenName = () => {
-    const { scrollIndex } = this.state;
-    return Object.keys(screens).find((screenName, index) => index === scrollIndex);
-  };
-
   handleRef = ref => (this.scrollView = ref);
 
   render() {
-    const { skip } = this.props;
+    const { onSkip } = this.props;
+    const { scrollIndex } = this.state;
     return (
       <SafeAreaView style={styles.container}>
         <Swiper
@@ -43,13 +39,13 @@ class CustomStepSwipper extends PureComponent {
           onIndexChanged={this.handleChangeIndex}
           ref={this.handleRef}
         >
-          {Object.keys(screensComponents).map(screen => screensComponents[screen])}
+          {screens}
         </Swiper>
         <Footer
-          nextScreen={this.onHandleNextScreen}
-          skip={skip}
-          previousScreen={this.onHandlePreviousScreen}
-          screenName={this.screenName()}
+          onNextScreen={this.handleNextScreen}
+          onSkip={onSkip}
+          onPreviousScreen={this.handlePreviousScreen}
+          screenIndex={scrollIndex}
         />
       </SafeAreaView>
     );

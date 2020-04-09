@@ -8,7 +8,7 @@ import Swiper from './components/Swiper';
 function OnBoardingContainer({ navigation: { navigate } }) {
   const skipOnBoarding = () => navigate(Routes.App);
 
-  return <Swiper skip={skipOnBoarding} />;
+  return <Swiper onSkip={skipOnBoarding} />;
 }
 
 export default memo(OnBoardingContainer);

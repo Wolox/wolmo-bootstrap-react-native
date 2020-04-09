@@ -1,35 +1,35 @@
 import i18next from 'i18next';
 
-export const screensButtonInfo = ({ nextScreen, skip, previousScreen, screenName }) =>
-  ({
-    FirstScreen: {
+export const screensButtonInfo = ({ onNextScreen, onSkip, onPreviousScreen, screenIndex }) =>
+  [
+    {
       firstButton: {
-        onPress: skip,
+        onPress: onSkip,
         title: i18next.t('ONBOARDING:SKIP')
       },
       secondButton: {
-        onPress: nextScreen,
+        onPress: onNextScreen,
         title: i18next.t('ONBOARDING:NEXT')
       }
     },
-    SecondScreen: {
+    {
       firstButton: {
-        onPress: previousScreen,
+        onPress: onPreviousScreen,
         title: i18next.t('ONBOARDING:PREVIOUS')
       },
       secondButton: {
-        onPress: nextScreen,
+        onPress: onNextScreen,
         title: i18next.t('ONBOARDING:NEXT')
       }
     },
-    ThirdScreen: {
+    {
       firstButton: {
-        onPress: previousScreen,
+        onPress: onPreviousScreen,
         title: i18next.t('ONBOARDING:PREVIOUS')
       },
       secondButton: {
-        onPress: skip,
-        title: i18next.t('ONBOARDING:SKIP')
+        onPress: onSkip,
+        title: i18next.t('ONBOARDING:FINISH')
       }
     }
-  }[screenName]);
+  ][screenIndex];

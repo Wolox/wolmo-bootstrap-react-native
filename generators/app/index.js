@@ -54,8 +54,6 @@ class ReactNativeBootstrap extends Generator {
           'Crashlytics',
           'Firebase Performance',
           'Push Notifications',
-          'Google Analytics',
-          'Redux Persist',
           'Bitrise',
           'OnBoarding'
         ],
