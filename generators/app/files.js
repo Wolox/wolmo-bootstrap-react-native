@@ -78,36 +78,6 @@ module.exports.INITIAL_LOADING_SERVICE = `${module.exports.INITIAL_LOADING_PATH}
 // SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
-module.exports.ONBOARDING = `${module.exports.ONBOARDING_PATH}/index.js`;
-module.exports.ONBOARDING_I18N = `${module.exports.ONBOARDING_PATH}/i18n.js`;
-
-module.exports.ONBOARDING_COMPONENTS_PATH = `${module.exports.ONBOARDING_PATH}/components`;
-
-module.exports.ONBOARDING_SWIPER_SCREEN_PATH = `${module.exports.ONBOARDING_COMPONENTS_PATH}/Swiper`;
-module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/components`;
-
-module.exports.ONBOARDING_FIRST_SCREEN_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/FirstScreen`;
-module.exports.ONBOARDING_SECOND_SCREEN_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/SecondScreen`;
-module.exports.ONBOARDING_THIRD_SCREEN_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/ThirdScreen`;
-module.exports.ONBOARDING_FOOTER_COMPONENT_PATH = `${module.exports.ONBOARDING_SWIPER_COMPONENTS_PATH}/Footer`;
-
-module.exports.ONBOARDING_FOOTER = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/index.js`;
-module.exports.ONBOARDING_FOOTER_STYLES = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/styles.js`;
-module.exports.ONBOARDING_FOOTER_BUTTONS_INFO = `${module.exports.ONBOARDING_FOOTER_COMPONENT_PATH}/buttonsInfo.js`;
-
-module.exports.ONBOARDING_FIRST_SCREEN = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/index.js`;
-module.exports.ONBOARDING_FIRST_SCREEN_STYLES = `${module.exports.ONBOARDING_FIRST_SCREEN_PATH}/styles.js`;
-
-module.exports.ONBOARDING_SECOND_SCREEN = `${module.exports.ONBOARDING_SECOND_SCREEN_PATH}/index.js`;
-module.exports.ONBOARDING_SECOND_SCREEN_STYLES = `${module.exports.ONBOARDING_SECOND_SCREEN_PATH}/styles.js`;
-
-module.exports.ONBOARDING_THIRD_SCREEN = `${module.exports.ONBOARDING_THIRD_SCREEN_PATH}/index.js`;
-module.exports.ONBOARDING_THIRD_SCREEN_STYLES = `${module.exports.ONBOARDING_THIRD_SCREEN_PATH}/styles.js`;
-
-module.exports.ONBOARDING_SWIPER_SCREEN = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/index.js`;
-module.exports.ONBOARDING_SWIPER_SCREENS = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/screens.js`;
-module.exports.ONBOARDING_SWIPER_SCREEN_STYLES = `${module.exports.ONBOARDING_SWIPER_SCREEN_PATH}/styles.js`;
-
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 
