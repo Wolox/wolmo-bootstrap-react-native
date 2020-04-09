@@ -172,6 +172,4 @@ AnimatedCustomTextInput.defaultProps = {
   underlineColorAndroid: transparent,
 };
 
-const MyAnimatedCustomTextInput = memo(AnimatedCustomTextInput);
-
-export default MyAnimatedCustomTextInput;
+export default memo(AnimatedCustomTextInput);
