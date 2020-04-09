@@ -11,6 +11,10 @@ const bundleInstall = require('./tasks/bundleInstall');
 const configureFastlane = require('./tasks/configureFastlane');
 const installPods = require('./tasks/installPods');
 const linkAppAssets = require('./tasks/linkAppAssets');
+const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
+const editBundleIdentifier = require('./tasks/editBundleIdentifier');
+const configureIosProject = require('./tasks/configureIosProject');
+const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -89,7 +93,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configureFastlane.bind(this)());
+      .then(() => configureFastlane.bind(this)())
+      .then(() => addFilesToGitIgnore.bind(this)());
   }
 
   writing() {
@@ -97,12 +102,20 @@ class ReactNativeBootstrap extends Generator {
   }
 
   install() {
+    const hasFirebaseConfiguration =
+      this.features.crashlytics ||
+      this.features.firebaseanalytics ||
+      this.features.pushnotifications ||
+      this.features.firebaseperformance;
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
+      .then(() => configureIosProject.bind(this)())
       .then(() => installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
+      .then(() => editBundleIdentifier.bind(this)())
       .then(() => gitInitialization.bind(this)())
-      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
+      .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
+      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());
   }
 
   end() {

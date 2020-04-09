@@ -104,45 +104,72 @@ gem install bundler
 bundle install
 ```
 
+
 # Running aplication
 
---------------------
-To run a Android/Ios simulator with `development` environment, just run:
+This proyect supports many `Debug`, `QA`, `Stage`, and `Production` environments.  
+The following enviorments are supported:
 
-IOS
-`react-native run-ios`
+##### iOS
 
-ANDROID
-`react-native run-android`
+- Dev - Scheme: `dev`
+- Dev - Configuration: `Debug`
+- QA - Scheme: `qa`
+- QA - Configurations: `Debug` or `QA`
+- Stage - Scheme: `stage`
+- Stage - Configurations: `Debug` or `Stage`
+- Production - Scheme: `production`
+- Production - Configurations: `Debug` or `Production`
 
---------------------
+**The default configuration is `Debug`.**
 
+##### Android
 
---------------------
-To run a Android/Ios simulator with `Production` environment, just run:
+- Dev/QA - Debug: `qaDebug`
+- Dev/QA - Release: `qaRelease`
+- Stage - Debug: `stageDebug`
+- Stage - Release: `stageRelease`
+- Production - Debug: `productionDebug`
+- Production - Release: `productionRelease`
 
-IOS
-`react-native run-ios --configuration Release`
+To run a Android/iOS simulator with determinated environment, just run:
 
-ANDROID
-`react-native run-android` and then:
-1. Command⌘ + M to launch the developer menu in Android emulator.
-2. Tap DevSettings.
-3. Toggle JS Dev Mode.
+**ANDROID**  
+`react-native run-android --variant=[build variant]`  
+For Example:  
+`react-native run-android --variant=qaDebug`
+or
+`react-native run-android --variant=qaRelease`
 
---------------------
+**iOS**  
+`react-native run-ios --scheme [scheme] [--configuration [configuration]](optional)`
 
+For Example:  
+`react-native run-ios --scheme qa`(Debug configuration)
+
+or
+
+`react-native run-ios --scheme dev --configuration Release`
+
+---
 
 # Outputs
 
 ## Android
-Use the the command in the rootpath to generate the APK:
-```
-yarn run android:build
-```
-It will generate the apk file in the path `android/app/build/outputs/apk/app-release.apk`
 
-If you want to test that file in a plugged devise use the command `yarn run android:install` to install it.
+Use the the command in the rootpath to generate the APK:
+
+```
+yarn run android:build.[environment]
+```
+
+For example:
+
+```
+yarn run android:build.qa
+```
+
+It will generate the apk file in the path `android/app/build/outputs/apk/[environment]/release/app-[environment]-release.apk`
 
 
 ## iOS

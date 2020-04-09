@@ -5,8 +5,9 @@ const ora = require('ora');
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
-const iosAppIcons = require('./iosAppIcons');
+const appIcons = require('./appIcons');
 const androidProjectSetup = require('./androidProjectSetup');
+const createDotEnvFilesLocally = require('./createDotEnvFilesLocally');
 const iosProjectSetup = require('./iosProjectSetup');
 const disableLandscapeOrientation = require('./disableLandscapeOrientation');
 const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
@@ -18,7 +19,7 @@ const loginFeatureFiles = require('./loginFeatureFiles');
 const bitriseFeatureFiles = require('./bitriseFeatureFiles');
 const enableFullscreen = require('./tabletSetup');
 const babelConfigSetup = require('./babelConfigSetup');
-const editBundleIdentifier = require('./editBundleIdentifier');
+const cleanTargetsFromPods = require('./cleanTargetsFromPods');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
@@ -29,6 +30,9 @@ module.exports = function index() {
     text: 'Creating project boilerplate'
   }).start();
 
+  // ----------------     add envs files     ----------------
+  createDotEnvFilesLocally.bind(this)();
+
   // ----------------     add package.json scripts     ----------------
   packageJsonScripts.bind(this)();
 
@@ -38,8 +42,8 @@ module.exports = function index() {
   // ----------------     base app files     ----------------
   baseFilesTemplate.bind(this)();
 
-  // ----------------     ios app icons     ----------------
-  iosAppIcons.bind(this)();
+  // ----------------     app icons     ----------------
+  appIcons.bind(this)();
 
   // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
@@ -47,14 +51,12 @@ module.exports = function index() {
   // ----------------     prettierrc setup     ----------------
   prettierrcConfigSetup.bind(this)();
 
-  // ----------------     add react-native-config to app/build.gradle     ----------------
-  // ----------------     add react-native-screen to app/build.gradle     ----------------
-  // ----------------     add react-native-gesture-handler to MainActivity    ----------------
+  // ----------------     add Android project configurationn    ----------------
   androidProjectSetup.bind(this)();
 
-  // ----------------     fix bundle identifier     ----------------
-  editBundleIdentifier.bind(this)();
+  // ----------------     add iOS project configuration and clean unused targets    ----------------
   iosProjectSetup.bind(this)();
+  cleanTargetsFromPods.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
@@ -69,9 +71,11 @@ module.exports = function index() {
     loginFeatureFiles.bind(this)();
   }
 
+  // ----------------     Features: Bitrise    ----------------
   if (this.features.bitrise) {
     bitriseFeatureFiles.bind(this)();
   }
+
   // ----------------     Features: Firebase    ----------------
   if (
     this.features.crashlytics ||
