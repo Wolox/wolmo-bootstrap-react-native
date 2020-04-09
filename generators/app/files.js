@@ -88,18 +88,7 @@ module.exports.CUSTOM_TEXT_STYLES = `${module.exports.CUSTOM_TEXT_PATH}/styles.j
 
 // COMPONENTS - CUSTOM TEXT INPUT
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
-module.exports.CUSTOM_TEXT_INPUT = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/index.tsx`;
-module.exports.CUSTOM_TEXT_INPUT_STYLES = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/styles.ts`;
-module.exports.CUSTOM_TEXT_INPUT_INTERFACE = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/interface.ts`;
-module.exports.CUSTOM_TEXT_INPUT_ASSETS_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/assets`;
-module.exports.CTI_SHOW_PASSWORD_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/components/ShowPassword`;
 
-// COMPONENTS - ANIMATED CUSTOM TEXT INPUT
-module.exports.ANIMATED_CUSTOM_TEXT_INPUT_PATH = `${module.exports.CUSTOM_TEXT_INPUT_PATH}/AnimatedCustomTextInput`;
-module.exports.ANIMATED_CUSTOM_TEXT_INPUT = `${module.exports.ANIMATED_CUSTOM_TEXT_INPUT_PATH}/index.tsx`;
-module.exports.ANIMATED_CUSTOM_TEXT_INPUT_STYLES = `${module.exports.ANIMATED_CUSTOM_TEXT_INPUT_PATH}/styles.ts`;
-module.exports.ANIMATED_CUSTOM_TEXT_INPUT_CONSTANTS = `${module.exports.ANIMATED_CUSTOM_TEXT_INPUT_PATH}/constants.ts`;
-module.exports.ANIMATED_CUSTOM_TEXT_INPUT_INTERFACE = `${module.exports.ANIMATED_CUSTOM_TEXT_INPUT_PATH}/interface.ts`;
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
 module.exports.CUSTOM_BUTTON = `${module.exports.CUSTOM_BUTTON_PATH}/index.js`;
