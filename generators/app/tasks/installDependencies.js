@@ -13,6 +13,7 @@ const DEPENDENCIES = [
   '@types/react-test-renderer',
   '@types/seamless-immutable',
   'apisauce',
+  'cerealizr',
   'i18next',
   'prop-types',
   'react-native-config',
