@@ -54,8 +54,8 @@ class ReactNativeBootstrap extends Generator {
           'Crashlytics',
           'Firebase Performance',
           'Push Notifications',
-          'Google Analytics',
           'Redux Persist',
+          'Google Analytics',
           'Bitrise'
         ],
         filter: values =>
