@@ -15,6 +15,7 @@ const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
 const editBundleIdentifier = require('./tasks/editBundleIdentifier');
 const configureIosProject = require('./tasks/configureIosProject');
 const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
+const { isMacSystem } = require('./utils');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -91,7 +92,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
-      .then(() => configureFastlane.bind(this)())
+      .then(() => isMacSystem() && configureFastlane.bind(this)())
       .then(() => addFilesToGitIgnore.bind(this)());
   }
 
@@ -106,11 +107,11 @@ class ReactNativeBootstrap extends Generator {
       this.features.pushnotifications ||
       this.features.firebaseperformance;
     return Promise.resolve()
-      .then(() => bundleInstall.bind(this)())
-      .then(() => configureIosProject.bind(this)())
-      .then(() => installPods.bind(this)())
+      .then(() => isMacSystem() && bundleInstall.bind(this)())
+      .then(() => isMacSystem() && configureIosProject.bind(this)())
+      .then(() => isMacSystem() && installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
-      .then(() => editBundleIdentifier.bind(this)())
+      .then(() => isMacSystem() && editBundleIdentifier.bind(this)())
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
       .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());

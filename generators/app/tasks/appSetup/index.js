@@ -1,6 +1,8 @@
 /* eslint-disable max-statements */
 const ora = require('ora');
 
+const { isMacSystem } = require('../../utils');
+
 const packageJsonScripts = require('./packageJsonScripts');
 const eslintSetup = require('./eslintSetup');
 const baseFilesTemplate = require('./baseFilesTemplate');
@@ -54,8 +56,8 @@ module.exports = function index() {
   androidProjectSetup.bind(this)();
 
   // ----------------     add iOS project configuration and clean unused targets    ----------------
-  iosProjectSetup.bind(this)();
-  cleanTargetsFromPods.bind(this)();
+  if (isMacSystem()) iosProjectSetup.bind(this)();
+  if (isMacSystem()) cleanTargetsFromPods.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {

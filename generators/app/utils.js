@@ -1,3 +1,5 @@
+const { platform } = require('process');
+
 module.exports.copyFile = function copyFile(filepath) {
   if (!this.fs) {
     throw new Error('File utils functions needs to be binded to the generator context');
@@ -23,3 +25,5 @@ module.exports.copyTemplateFile = function copyTemplateFile(filepath) {
     { projectName: this.projectName, features: this.features }
   );
 };
+
+module.exports.isMacSystem = () => platform === 'darwin';
