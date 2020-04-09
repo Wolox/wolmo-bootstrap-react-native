@@ -1,9 +1,9 @@
 function iosAppIcons() {
   const iosFiles = [
     'Contents.json',
-    'Icon-Small.png',
-    'Icon-Small@2x.png',
-    'Icon-Small@3x.png',
+    'Icon-29.png',
+    'Icon-29@2x.png',
+    'Icon-29@3x.png',
     'Icon-20.png',
     'Icon-20@2x.png',
     'Icon-20@3x.png',
