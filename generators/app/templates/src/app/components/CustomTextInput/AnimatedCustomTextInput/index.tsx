@@ -21,7 +21,7 @@ import {
 import { AnimatedCustomTextInputProps } from "./interface";
 import styles from "./styles";
 
-const CustomTextInput = (props: AnimatedCustomTextInputProps) => {
+const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   const {
     value,
     placeholderTextColor,
@@ -157,7 +157,7 @@ const CustomTextInput = (props: AnimatedCustomTextInputProps) => {
   );
 };
 
-CustomTextInput.defaultProps = {
+AnimatedCustomTextInput.defaultProps = {
   autoCapitalize: "none",
   autoCompleteType: "off",
   autoCorrect: false,
@@ -172,6 +172,6 @@ CustomTextInput.defaultProps = {
   underlineColorAndroid: transparent,
 };
 
-const MyCustomTextInput = memo(CustomTextInput);
+const MyAnimatedCustomTextInput = memo(AnimatedCustomTextInput);
 
-export default MyCustomTextInput;
+export default MyAnimatedCustomTextInput;
