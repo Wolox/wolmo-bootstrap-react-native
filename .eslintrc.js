@@ -9,5 +9,6 @@ module.exports = {
     'max-statements': 'off',
     'no-console': 'off'
   },
-  ignorePatterns: ['node_modules/', '*.ejs']
+  // Ignore .ejs files for now. TODO: Search for eslint plugin for ejs
+  ignorePatterns: ['*.ejs']
 };
