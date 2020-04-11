@@ -43,8 +43,7 @@ const CustomTextInput = props => {
           multiline ? styles.multilineContainer : styles.container,
           bottomBorder && styles.bottomBorder,
           style
-        ]}
-      >
+        ]}>
         <TextInput
           {...props}
           allowFontScaling={false}

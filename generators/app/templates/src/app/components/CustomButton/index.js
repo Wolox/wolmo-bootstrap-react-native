@@ -21,8 +21,7 @@ const CustomButton = props => {
       onPress={onPress}
       style={[styles.container, customStyles(), style]}
       activeOpacity={activeOpacity}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {icon && <Image source={icon} resizeMode="contain" style={[styles.icon, iconStyle]} />}
       {title && (
         <CustomText {...textProps} style={[customTextStyles(), textStyle]}>
