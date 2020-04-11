@@ -8,5 +8,6 @@ module.exports = {
     'new-cap': 'off',
     'max-statements': 'off',
     'no-console': 'off'
-  }
+  },
+  ignorePatterns: ['node_modules/', '*.ejs']
 };
