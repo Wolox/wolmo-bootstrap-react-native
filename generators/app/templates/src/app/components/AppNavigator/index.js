@@ -6,7 +6,8 @@ import { createReduxContainer } from 'react-navigation-redux-helpers';
 import { ROOT } from '@constants/platform';
 import { statusBarStyles } from '@config/navigation';
 import { getCurrentRouteName } from '@utils/navUtils';
-import Navigator from '@screens';
+
+import Navigator from './navigator';
 
 const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 

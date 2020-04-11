@@ -49,7 +49,6 @@ module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/L
 
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
-module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
 module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.js`;
 
 // SCREENS - HOME
@@ -69,6 +68,7 @@ module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 // COMPONENTS - APP NAVIGATOR
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
+module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
 
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;

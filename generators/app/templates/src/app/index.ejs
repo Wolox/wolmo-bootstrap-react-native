@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
+import AppNavigator from '@components/AppNavigator';
 import { apiSetup } from '@config/api';
 <%_ if(features.pushnotifications) { _%>
 import { configPushNotifications } from '@config/pushNotifications';
@@ -9,12 +10,14 @@ import { configPushNotifications } from '@config/pushNotifications';
 <%_ if(features.login) { _%>
 import { authSetup } from '@services/AuthService';
 <%_ } _%>
-import AppNavigator from '@components/AppNavigator';
 
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => SplashScreen.hide(), []);
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   useEffect(() => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications();

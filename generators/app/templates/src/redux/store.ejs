@@ -14,16 +14,16 @@ import {
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
-import Navigator from '@screens';
-
+import Navigator from '@components/AppNavigator/navigator';
 <%_ if(features.firebaseanalytics) { _%>
+
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } _%>
 <%_ if(features.login) { _%>
 import auth from './auth/reducer';
 <%_ } _%>
-
 <%_ if(features.reduxpersist) { _%>
+
 const transformerConfig = {
   whitelistPerReducer: {
   <%_ if(features.login) { _%>
@@ -51,8 +51,8 @@ const reducers = combineReducers({
 <%_ } _%>
   nav
 });
-
 <%_ if(features.reduxpersist) { _%>
+
 const persistedReducer = persistReducer(persistConfig, reducers);
 <%_ } _%>
 
