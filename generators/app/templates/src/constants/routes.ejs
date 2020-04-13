@@ -1,11 +1,6 @@
 const Routes = {
-  App: 'App',
   <%_ if(features.login) { _%>
   Auth: 'Auth',
-  <%_ } _%>
-  Home: 'Home',
-  InitialLoading: 'InitialLoading',
-  <%_ if(features.login) { _%>
   Login: 'Login',
   <%_ } _%>
   <%_ if(features.onboarding) { _%>
@@ -13,8 +8,11 @@ const Routes = {
     <%_ } _%>
   <%_ if(features.tabs) { _%>
   Tab1: 'Tab1',
-  Tab2: 'Tab2'
+  Tab2: 'Tab2',
   <%_ } _%>
+  InitialLoading: 'InitialLoading',
+  App: 'App',
+  Home: 'Home'
 };
 
 export default Routes;

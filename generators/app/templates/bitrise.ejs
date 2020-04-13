@@ -3,11 +3,12 @@ format_version: '8'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: react-native
 trigger_map:
-- pull_request_source_branch: "*"
-  workflow: primary
+  - pull_request_source_branch: "*"
+    workflow: primary
 workflows:
   deploy:
-    description: "## Configure Android part of the deploy workflow\n\nTo generate
+    description:
+      "## Configure Android part of the deploy workflow\n\nTo generate
       a signed APK:\n\n1. Open the **Workflow** tab of your project on Bitrise.io\n1.
       Add **Sign APK step right after Android Build step**\n1. Click on **Code Signing**
       tab\n1. Find the **ANDROID KEYSTORE FILE** section\n1. Click or drop your file
@@ -37,47 +38,37 @@ workflows:
       next change in your repository that matches any of your trigger map event will
       start **deploy** workflow.\n"
     steps:
-    - activate-ssh-key@4.0.3:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.14: {}
-    - script@1.1.5:
-        title: Do anything with Script step
-    - npm@1.0.2:
-        inputs:
-        - command: install
+      - activate-ssh-key@4.0.3:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@4.0.14: {}
+      - script@1.1.5:
+          title: Do anything with Script step
+      - yarn:
+          inputs:
+            - command: install
     before_run: []
   primary:
     steps:
-    - activate-ssh-key@4.0.3:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.14: {}
-    - npm@1.0.2:
-        inputs:
-        - command: install
-    - npm@1.0.2:
-        inputs:
-        - command: run lint
-    - npm@1.0.2:
-        inputs:
-        - command: test
+      - activate-ssh-key@4.0.3:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@4.0.14: {}
+      - yarn:
+          inputs:
+            - command: install
+      - yarn:
+          inputs:
+            - command: run lint
+      - yarn:
+          inputs:
+            - command: run tsc
+      - yarn:
+          inputs:
+            - command: test
 app:
   envs:
-  - opts:
-      is_expand: false
-    PROJECT_LOCATION: android
-  - opts:
-      is_expand: false
-    MODULE: app
-  - opts:
-      is_expand: false
-    VARIANT: release
-  - opts:
-      is_expand: false
-    BITRISE_PROJECT_PATH: ios/<%= projectName %>.xcworkspace
-  - opts:
-      is_expand: false
-    BITRISE_SCHEME: <%= projectName %>
-  - opts:
-      is_expand: false
-    BITRISE_EXPORT_METHOD: ad-hoc
-    
+    - PROJECT_LOCATION: android
+    - MODULE: app
+    - VARIANT: release
+    - BITRISE_PROJECT_PATH: ios/<%= projectName %>.xcworkspace
+    - BITRISE_SCHEME: <%= projectName %>
+    - BITRISE_EXPORT_METHOD: ad-hoc

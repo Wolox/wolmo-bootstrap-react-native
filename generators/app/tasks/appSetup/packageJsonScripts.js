@@ -17,6 +17,11 @@ module.exports = function packgeJsonScripts() {
     'cd android && ./gradlew clean && ./gradlew bundleProductionRelease';
   packageJson.scripts['test:watch'] = 'jest --watch';
   packageJson.scripts['test:debug'] = 'node --inspect node_modules/.bin/jest --runInBand';
+  packageJson.scripts.lint = 'eslint src --ext .js,.ts,.jsx,.tsx';
+  packageJson.scripts['lint-fix'] = 'eslint src --ext .js,.ts,.jsx,.tsx --fix';
+  packageJson.scripts['lint-diff'] =
+    'git diff --name-only --cached --relative | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
+  packageJson.scripts.tsc = 'tsc';
 
   packageJson.jest.preset = 'react-native';
   packageJson.jest.setupFilesAfterEnv = ['<rootDir>__tests__/setup/setupEnzyme.js'];
@@ -31,5 +36,10 @@ module.exports = function packgeJsonScripts() {
   packageJson.jest.transformIgnorePatterns = [
     '/node_modules/@react-native-community/async-storage/(?!(lib))'
   ];
+
+  packageJson.husky = packageJson.husky || {};
+  packageJson.husky.hooks = packageJson.husky.hooks || {};
+  packageJson.husky.hooks['pre-commit'] = 'npm run lint-diff && npm run tsc';
+
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };
