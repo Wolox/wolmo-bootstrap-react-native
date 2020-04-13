@@ -6,31 +6,39 @@ const runCommand = require('./runCommand');
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
   '@react-native-community/masked-view',
+  '@types/jest',
+  '@types/react',
+  '@types/react-native',
+  '@types/react-redux',
+  '@types/react-test-renderer',
+  '@types/seamless-immutable',
   'apisauce',
+  'cerealizr',
   'i18next',
   'prop-types',
   'react-native-config',
   // Delete when react-native-gesture-handler fix this issue on Android
   // https://github.com/software-mansion/react-native-gesture-handler/issues/950
   'react-native-gesture-handler@1.5.3',
+  'react-native-localize',
   'react-native-reanimated',
   'react-native-safe-area-context',
   'react-native-screens',
+  'react-native-splash-screen',
+  'react-navigation',
   'react-navigation-animated-switch',
   'react-navigation-redux-helpers',
   'react-navigation-stack',
-  'react-navigation',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
   'reactotron-redux',
+  'redux',
   'redux-recompose',
   'redux-thunk',
-  'redux',
   'reselect',
   'seamless-immutable',
-  'react-native-splash-screen',
-  'react-native-localize'
+  'typescript'
 ];
 
 const DEV_DEPENDENCIES = [
@@ -41,8 +49,7 @@ const DEV_DEPENDENCIES = [
   'enzyme-to-json',
   'enzyme',
   '@react-native-community/eslint-config',
-  'eslint-config-wolox',
-  'eslint-config-wolox-react',
+  'eslint-config-wolox-react-native',
   'eslint-config-airbnb',
   'eslint-config-prettier',
   'eslint-plugin-flowtype',
