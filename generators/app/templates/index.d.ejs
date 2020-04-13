@@ -1,0 +1,16 @@
+declare module '*.jpg';
+declare module '*.json';
+declare module '*.png';
+declare module 'cerealizr';
+declare module 'reactotron-apisauce';
+declare module 'redux-recompose';
+<%_ if(features.login) { _%>
+declare module 'recompose';
+<%_ } _%>
+<%_ if(features.pushnotifications) { _%>
+declare module '@react-native-firebase/messaging';
+declare module 'react-native-push-notification';
+<%_ } _%>
+<%_ if(features.reduxpersist) { _%>
+declare module 'redux-persist-seamless-immutable';
+<%_ } _%>

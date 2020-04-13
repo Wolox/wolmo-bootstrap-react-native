@@ -39,7 +39,7 @@ The following optional features can be added out of the box to the new projects:
 
 The boilerplate includes
 
-- [Basic routes configuration for React Navigation](/generators/app/templates/src/app/screens.ejs)
+- [Basic routes configuration for React Navigation](/generators/app/templates/src/app/components/AppNavigator/navigator.ejs)
 - [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
 - [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
 - [Basic constants](/generators/app/templates/src/constants)
@@ -50,6 +50,7 @@ The boilerplate includes
 - [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
 - [Font Customization](/generators/app/templates/src/config/fonts.js)
 - [Bitrise config](/generators/app/tasks/createBitriseApp.js)
+- [TypeScript configuration](/generators/app/templates/tsconfig.json)
 
 ### Tech Stack
 
@@ -71,17 +72,18 @@ The boilerplate includes
 - [Eslint](http://eslint.org/)
 - [Prettier](https://github.com/prettier/prettier)
 - [Reactotron](https://github.com/infinitered/reactotron)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ### Bootstrap Kick off
 
 For bootstraping your own project using the template generator script you'll need to follow these steps:
 
-1. Run `npm install` or `yarn install`.
+1. Run `yarn install`.
 2. run `yo yourPathToWolmo/generators/app/index.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
 3. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
-4. After the script is finished, your project folder will be successfully generated with all the necessary npm dependencies installed. Do `cd you/project/path`.
-5. Start budler using `npm run start` or `npm start`.
-6. Run `react-native run-ios` or/and `react-native run-android`.
+4. After the script is finished, your project folder will be successfully generated with all the necessary npm/yarn dependencies installed. Do `cd you/project/path`.
+5. Start budler using `yarn start`.
+6. Run `react-native run-ios --scheme qa` or `yarn ios` for iOS and `react-native run-android --variant=qaDebug` or `yarn android` for Android.
 7. Start working on your project!
 
 ### How do you have to configure Bitrise?

@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 // BASE PATHS
 module.exports.MOCKS = '__mocks__';
 module.exports.TESTS = '__tests__';
@@ -14,6 +13,10 @@ module.exports.UTILS_PATH = 'src/utils';
 module.exports.TEST_PATH = 'test';
 
 // BASE FILES
+module.exports.TSCONFIG_FILE = 'tsconfig.json';
+module.exports.INDEX_D_FILE = 'index.d.ts';
+module.exports.ESLINTRC_FILE = '.eslintrc.js';
+module.exports.ESLINT_IGNORE_FILE = '.eslintignore';
 module.exports.REACT_NATIVE_CONFIG = 'react-native.config.js';
 module.exports.JENKINS_FILE = 'Jenkinsfile';
 module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;
@@ -23,11 +26,6 @@ module.exports.MAIN = 'App.js';
 module.exports.README = 'README.md';
 module.exports.INDEX = 'index.js';
 module.exports.APP = `${module.exports.APP_PATH}/index.js`;
-
-// TESTING - MOCKS
-module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH = `${module.exports.MOCKS}/@react-native-community`;
-module.exports.ASYNC_STORAGE_MOCK = `${module.exports.REACT_NATIVE_COMMUNITY_MOCK_PATH}/async-storage.js`;
-module.exports.I18NEXT_MOCK = `${module.exports.MOCKS}/i18next.js`;
 
 // TESTING - TESTS
 module.exports.TESTS_COMPONENTS_PATH = `${module.exports.TESTS}/components`;
@@ -43,19 +41,14 @@ module.exports.TESTS_STORE = `${module.exports.TESTS_REDUX_PATH}/store.js`;
 module.exports.TESTS_UTILS = `${module.exports.TESTS_REDUX_PATH}/utils.js`;
 module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
 
-module.exports.TESTS_AUTH_ACTIONS = `${module.exports.TESTS_AUTH_PATH}/actions.js`;
-module.exports.TESTS_AUTH_REDUCER = `${module.exports.TESTS_AUTH_PATH}/reducer.js`;
-
 // TESTING - TESTS-SETUP
 module.exports.TESTS_SETUP_ENZYME = `${module.exports.TESTS_SETUP_PATH}/setupEnzyme.js`;
 
 // TESTING - SCREENS-LOGIN
 module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/Login`;
-module.exports.TESTS_LOGIN_SCREEN_TEST = `${module.exports.TESTS_LOGIN_SCREEN_PATH}/testLoginScreen.js`;
 
 // SCREENS
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
-module.exports.SCREENS = `${module.exports.APP_PATH}/screens.js`;
 module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.js`;
 
 // SCREENS - HOME
@@ -65,14 +58,9 @@ module.exports.HOME = `${module.exports.HOME_PATH}/layout.js`;
 
 // SCREENS - LOGIN
 module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
-module.exports.LOGIN = `${module.exports.LOGIN_PATH}/index.js`;
-module.exports.LOGIN_LAYOUT = `${module.exports.LOGIN_PATH}/layout.js`;
-module.exports.LOGIN_STYLE = `${module.exports.LOGIN_PATH}/styles.js`;
-module.exports.LOGIN_I18N = `${module.exports.LOGIN_PATH}/i18n.js`;
 
 // SCREENS - INITIAL LOADING
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
-module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
 
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
@@ -80,31 +68,25 @@ module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 // COMPONENTS - APP NAVIGATOR
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
+module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
 
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
-module.exports.CUSTOM_TEXT = `${module.exports.CUSTOM_TEXT_PATH}/index.js`;
-module.exports.CUSTOM_TEXT_STYLES = `${module.exports.CUSTOM_TEXT_PATH}/styles.js`;
 
 // COMPONENTS - CUSTOM TEXT INPUT
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
 
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
-module.exports.CUSTOM_BUTTON = `${module.exports.CUSTOM_BUTTON_PATH}/index.js`;
-module.exports.CUSTOM_BUTTON_STYLES = `${module.exports.CUSTOM_BUTTON_PATH}/styles.js`;
 
 // COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
-module.exports.LOADABLE = `${module.exports.LOADABLE_PATH}/index.js`;
-module.exports.LOADABLE_STYLES = `${module.exports.LOADABLE_PATH}/styles.js`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
 
 // REDUX - AUTH
-module.exports.AUTH_REDUCER = `${module.exports.REDUX_PATH}/auth/reducer.js`;
-module.exports.AUTH_ACTIONS = `${module.exports.REDUX_PATH}/auth/actions.js`;
+module.exports.AUTH_REDUX_PATH = `${module.exports.REDUX_PATH}/auth`;
 
 // REDUX - MIDDLEWARES
 module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
@@ -127,13 +109,6 @@ module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.js`;
 module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.js`;
 module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.js`;
 module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBar.js`;
-
-// UTILS
-module.exports.ARRAY_UTILS = `${module.exports.UTILS_PATH}/arrayUtils.js`;
-module.exports.NAV_UTILS = `${module.exports.UTILS_PATH}/navUtils.js`;
-module.exports.STYLE_UTILS = `${module.exports.UTILS_PATH}/styleUtils.js`;
-module.exports.SCALING_UTILS = `${module.exports.UTILS_PATH}/scalingUtils.js`;
-module.exports.FONT_UTILS = `${module.exports.UTILS_PATH}/fontUtils.js`;
 
 // TEST
 module.exports.TEST_ESLINT_CONFIG = `${module.exports.TEST_PATH}/.eslintrc.js`;
