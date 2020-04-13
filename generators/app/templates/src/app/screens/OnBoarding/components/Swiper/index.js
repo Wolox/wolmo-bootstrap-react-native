@@ -37,8 +37,7 @@ class CustomStepSwipper extends PureComponent {
           paginationStyle={styles.pagination}
           loop={false}
           onIndexChanged={this.handleChangeIndex}
-          ref={this.handleRef}
-        >
+          ref={this.handleRef}>
           {screens}
         </Swiper>
         <Footer
