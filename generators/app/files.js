@@ -89,9 +89,10 @@ module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
-
 // REDUX - AUTH
 module.exports.AUTH_REDUX_PATH = `${module.exports.REDUX_PATH}/auth`;
+module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.js`;
+module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.js`;
 
 // REDUX - MIDDLEWARES
 module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
