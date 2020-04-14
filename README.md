@@ -81,7 +81,7 @@ For bootstraping your own project using the template generator script you'll nee
 1. Run `yarn install`.
 2. run `yo yourPathToWolmo/generators/app/index.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
 3. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
-4. After the script is finished, your project folder will be successfully generated with all the necessary npm/yarn dependencies installed. Do `cd you/project/path`.
+4. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
 5. Start budler using `yarn start`.
 6. Run `react-native run-ios --scheme qa` or `yarn ios` for iOS and `react-native run-android --variant=qaDebug` or `yarn android` for Android.
 7. Start working on your project!
@@ -117,14 +117,10 @@ To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/a
 
 This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by:
 
-<a href="https://github.com/sfernandez11"><img src="https://avatars2.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
-<a href="https://github.com/mattgle"><img src="https://avatars1.githubusercontent.com/u/44204622?s=460&v=4" title="mattgle" width="80" height="80"></a>
-<a href="https://github.com/andyOlarte514"><img src="https://avatars3.githubusercontent.com/u/40371687?s=460&v=4" title="andyOlarte514" width="80" height="80"></a>
-<a href="https://github.com/Wfolini"><img src="https://avatars0.githubusercontent.com/u/12822259?s=460&v=4" title="Wfolini" width="80" height="80"></a>
+<a href="https://github.com/sfernandez11"><img src="https://avatars3.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
 <a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
-<a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
-<a href="https://github.com/rodrigoWolox"><img src="https://avatars0.githubusercontent.com/u/43755587?s=460&v=4" title="rodrigoWolox" width="80" height="80"></a>
 <a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
+<a href="https://github.com/ignaciosantise"><img src="https://avatars3.githubusercontent.com/u/25931366?s=460&v=4" title="felire" width="80" height="80"></a>
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
 

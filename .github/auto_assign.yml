@@ -9,6 +9,7 @@ reviewers:
   - sfernandez11
   - ignaciosantise
   - guidoprinc
+  - felire
 
 # A number of reviewers added to the pull request
 # Set 0 to add all the reviewers (default: 0)
@@ -17,12 +18,9 @@ numberOfReviewers: 0
 # A list of assignees, overrides reviewers if set
 assignees:
   - sfernandez11
-  - mattgle
-  - andyOlarte514
+  - ignaciosantise
   - guidoprinc
   - felire
-  - mcavo
-  - rodrigoWolox
 
 # A number of assignees to add to the pull request
 # Set to 0 to add all of the assignees.
