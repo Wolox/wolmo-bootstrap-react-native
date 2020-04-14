@@ -1,21 +1,10 @@
-export interface AnimatedCustomTextInputProps
-  extends TextInputProps,
-    TextProps {
-  bottomBorder?: boolean;
-  multiline?: boolean;
+import { TextProps } from 'react-native';
+
+import { CustomTextInputProps } from '../interface';
+
+export interface AnimatedCustomTextInputProps extends CustomTextInputProps {
   placeholder?: string;
-  textStyles?: TextStyle;
-  onBlur?: TextInputProps["onBlur"];
-  onChange?(e: any): any;
-  onFocus?: TextInputProps["onFocus"];
-  value?: string;
-  placeholderTextColor?: string;
-  showEye?: boolean;
-  secureTextEntry?: boolean;
-  style?: ViewProps["style"];
   label?: string;
-  labelStyle?: TextProps["style"];
-  autoCompleteType?: TextInputProps["autoCompleteType"];
-  error?: boolean | string;
+  labelStyle?: TextProps['style'];
   disabled?: boolean;
 }

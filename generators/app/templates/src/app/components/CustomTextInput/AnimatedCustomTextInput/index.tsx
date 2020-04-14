@@ -1,15 +1,9 @@
-import React, { useState, useCallback, useEffect, memo, useRef } from "react";
-import {
-  View,
-  TextInput,
-  Animated,
-  TextInputProps,
-  TextProps,
-} from "react-native";
-import CustomText from "@components/CustomText";
-import { transparent, gray, black } from "@constants/colors";
+import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
+import { View, TextInput, Animated } from 'react-native';
+import CustomText from '@components/CustomText';
+import { transparent, gray, black } from '@constants/colors';
 
-import ShowPassword from "../components/ShowPassword";
+import ShowPassword from '../components/ShowPassword';
 
 import {
   TOP_DEGRADE,
@@ -17,9 +11,10 @@ import {
   LABEL_SIZE_DEGRADE,
   LEFT_DEGRADE,
   LEFT_SMALL_DEGRADE,
-} from "./constants";
-import { AnimatedCustomTextInputProps } from "./interface";
-import styles from "./styles";
+  ANIMATION_DURATION
+} from './constants';
+import { AnimatedCustomTextInputProps } from './interface';
+import styles from './styles';
 
 const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   const {
@@ -49,17 +44,15 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     const realValue = isFocused || value ? 1 : 0;
     Animated.timing(animatedIsFocused, {
       toValue: realValue,
-      duration: 200,
+      duration: ANIMATION_DURATION,
+      useNativeDriver: false
     }).start();
   }, [animatedIsFocused, isFocused, value]);
 
-  const handleShowPassword = useCallback(
-    () => setShowPassword((prevShowPassword) => !prevShowPassword),
-    []
-  );
+  const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
 
   const handleFocus = useCallback(
-    (e) => {
+    e => {
       setIsFocused(true);
       if (onFocus) onFocus(e);
     },
@@ -69,24 +62,24 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   const animatedLabelStyle = {
     top: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, TOP_DEGRADE],
+      outputRange: [0, TOP_DEGRADE]
     }),
     left: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [LEFT_DEGRADE, LEFT_SMALL_DEGRADE],
+      outputRange: [LEFT_DEGRADE, LEFT_SMALL_DEGRADE]
     }),
     fontSize: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [LABEL_SIZE, LABEL_SIZE_DEGRADE],
+      outputRange: [LABEL_SIZE, LABEL_SIZE_DEGRADE]
     }),
     color: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [gray, black],
-    }),
+      outputRange: [gray, black]
+    })
   };
 
   const handleBlur = useCallback(
-    (e) => {
+    e => {
       setIsFocused(false);
       if (onBlur) onBlur(e);
     },
@@ -101,26 +94,17 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     return styles.bottomBorderGray;
   };
   return (
-    <View
-      style={[
-        (label && styles.containerWithLabel) as undefined | Record<string, any>,
-        style,
-      ]}
-    >
+    <View style={[(label && styles.containerWithLabel) as undefined | Record<string, any>, style]}>
       {label && (
-        <Animated.Text
-          allowFontScaling={false}
-          style={[styles.label, animatedLabelStyle, labelStyle]}
-        >
+        <Animated.Text allowFontScaling={false} style={[styles.label, animatedLabelStyle, labelStyle]}>
           {label}
         </Animated.Text>
       )}
       <View
         style={[
           !multiline && styles.inputContainer,
-          bottomBorder && { ...borderColor(), ...styles.borderWidth },
-        ]}
-      >
+          bottomBorder && { ...borderColor(), ...styles.borderWidth }
+        ]}>
         <TextInput
           {...rest}
           value={value}
@@ -132,20 +116,17 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
             styles.inputStyle,
             !multiline && styles.singleInput,
             !multiline && styles.offset,
-            textStyles,
+            textStyles
           ]}
           multiline={multiline}
           placeholderTextColor={placeholderColor}
           secureTextEntry={secureTextEntry && !showPassword}
-          autoCompleteType={secureTextEntry ? "off" : autoCompleteType}
-          placeholder={isFocused && value === "" ? placeholder : ""}
+          autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
+          placeholder={isFocused && value === '' ? placeholder : ''}
           editable={!disabled}
         />
         {secureTextEntry && showEye && (
-          <ShowPassword
-            onShowPassword={handleShowPassword}
-            passwordVisible={showPassword}
-          />
+          <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
         )}
       </View>
       {error && (
@@ -158,18 +139,18 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
 };
 
 AnimatedCustomTextInput.defaultProps = {
-  autoCapitalize: "none",
-  autoCompleteType: "off",
+  autoCapitalize: 'none',
+  autoCompleteType: 'off',
   autoCorrect: false,
   bottomBorder: true,
-  clearButtonMode: "never",
+  clearButtonMode: 'never',
   disabled: false,
-  keyboardType: "default",
+  keyboardType: 'default',
   maxHeight: 200,
   multiline: false,
-  placeholder: "",
-  returnKeyType: "done",
-  underlineColorAndroid: transparent,
+  placeholder: '',
+  returnKeyType: 'done',
+  underlineColorAndroid: transparent
 };
 
 export default memo(AnimatedCustomTextInput);
