@@ -7,4 +7,5 @@ export interface AnimatedCustomTextInputProps extends CustomTextInputProps {
   label?: string;
   labelStyle?: TextProps['style'];
   disabled?: boolean;
+  initialValue?: string;
 }
