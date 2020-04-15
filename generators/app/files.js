@@ -62,7 +62,6 @@ module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 // SCREENS - INITIAL LOADING
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
 module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
-module.exports.INITIAL_LOADING_SERVICE = `${module.exports.INITIAL_LOADING_PATH}/services/onBoardingService.js`;
 
 // SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
@@ -99,6 +98,7 @@ module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/
 
 // SERVICES
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
+module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.js`;
 
 // CONFIG
 module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.js`;
