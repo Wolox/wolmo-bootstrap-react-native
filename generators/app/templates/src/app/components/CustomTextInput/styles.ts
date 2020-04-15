@@ -32,5 +32,8 @@ export default StyleSheet.create({
   title: {
     marginTop: 5,
     backgroundColor: transparent
+  },
+  errorMessage: {
+    marginTop: 3
   }
 });
