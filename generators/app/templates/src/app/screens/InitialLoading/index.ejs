@@ -21,18 +21,18 @@ const InitialLoading = ({ navigation }) => {
     <%_ } _%>
     <%_ if (features.onboarding && !features.login) { _%>
   useEffect(() => {
+    const getAccess = () => getOnBoardingAccess();
     (async () => {
       const access = await getAccess();
       if (!access) setOnBoardingAccess();
       navigation.navigate(access ? Routes.App : Routes.OnBoarding);
     })();
-  }, []);
-  const getAccess = () => getOnBoardingAccess();
+  }, [navigation]);
   <%_ } _%>
     <%_ 
-    if(!(features.onboarding && !features.login)){ _%>navigation.navigate(<%_
+    if(!features.onboarding || features.login){ _%>navigation.navigate(<%_
     } if (features.login) { _%>currentUser ? Routes.App : Routes.Auth<%_ } 
-    if(!features.onboarding && !features.login){ _%>Routes.App<%_ } if(!(features.onboarding && !features.login)){_%>);<%_ } _%>
+    if(!features.onboarding && !features.login){ _%>Routes.App<%_ } if(!features.onboarding || features.login){_%>);<%_ } _%>
     <%_ if (features.login) { _%>
   }
   <%_ } _%>
