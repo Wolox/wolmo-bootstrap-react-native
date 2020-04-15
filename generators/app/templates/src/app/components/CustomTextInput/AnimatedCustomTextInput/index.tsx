@@ -16,9 +16,11 @@ import {
 import { AnimatedCustomTextInputProps } from './interface';
 import styles from './styles';
 
+/* If you want to integrate this component with some Form handler you will have to delete the handle of value's state and the handleChange function
+You will also have to send the value and the onChange by props */
 const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   const {
-    value,
+    initialValue,
     placeholderTextColor,
     multiline,
     bottomBorder,
@@ -38,6 +40,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     ...rest
   } = props;
   const [showPassword, setShowPassword] = useState(false);
+  const [value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
   const animatedIsFocused = useRef(new Animated.Value(value ? 1 : 0)).current;
   useEffect(() => {
@@ -51,6 +54,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
 
   const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
 
+  const handleChange = text => setValue(text);
   const handleFocus = useCallback(
     e => {
       setIsFocused(true);
@@ -109,7 +113,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
           {...rest}
           value={value}
           allowFontScaling={false}
-          onChangeText={onChange}
+          onChangeText={onChange || handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           style={[
@@ -139,6 +143,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
 };
 
 AnimatedCustomTextInput.defaultProps = {
+  initialValue: '',
   autoCapitalize: 'none',
   autoCompleteType: 'off',
   autoCorrect: false,
