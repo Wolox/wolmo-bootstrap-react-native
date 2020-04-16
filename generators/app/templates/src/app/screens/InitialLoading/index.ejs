@@ -21,9 +21,8 @@ const InitialLoading = ({ navigation }) => {
     <%_ } _%>
     <%_ if (features.onboarding && !features.login) { _%>
   useEffect(() => {
-    const getAccess = () => getOnBoardingAccess();
     (async () => {
-      const access = await getAccess();
+      const access = await getOnBoardingAccess();
       if (!access) setOnBoardingAccess();
       navigation.navigate(access ? Routes.App : Routes.OnBoarding);
     })();
@@ -55,4 +54,3 @@ InitialLoading.propTypes = {
   <%_ } else{_%>
   export default InitialLoading;
   <%_ } _%>
-  
