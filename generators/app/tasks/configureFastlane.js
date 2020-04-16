@@ -100,33 +100,36 @@ function configureAndroidFastlane() {
 }
 
 module.exports = function configureFastlane() {
-  return runCommand({
-    command: ['git', ['clone', `${fastlaneMobileHTTPS}`], { cwd: `${process.cwd()}/${this.projectName}` }],
-    loadingMessage: 'Fetching lastest Fastlane version...',
-    successMessage: 'Fetch Success!',
-    failureMessage: 'Fetch Failure!',
-    context: this.options
-  })
-    .then(() =>
-      runCommand({
-        command: [
-          'git',
-          ['checkout', '-b', 'fastlane-for-android', 'origin/fastlane-for-android'],
-          { cwd: `${process.cwd()}/${this.projectName}/${fastlaneMobileRoot}` }
-        ],
-        loadingMessage: 'Moving to branch',
-        successMessage: 'Moved to branch!',
-        failureMessage: 'Move to branch Failure!',
-        context: this.options
-      })
-    )
-    .then(() => configureIosFastlane.bind(this)())
-    .then(() => configureAndroidFastlane.bind(this)())
-    .then(() =>
-      runCommand({
-        command: ['rm', ['-rf', `${fastlaneMobileRoot}`], { cwd: `${process.cwd()}/${this.projectName}` }],
-        successMessage: 'Deleted fastlane-mobile repo successfully!',
-        context: this.options
-      })
-    );
+  return (
+    runCommand({
+      command: ['git', ['clone', `${fastlaneMobileHTTPS}`], { cwd: `${process.cwd()}/${this.projectName}` }],
+      loadingMessage: 'Fetching lastest Fastlane version...',
+      successMessage: 'Fetch Success!',
+      failureMessage: 'Fetch Failure!',
+      context: this.options
+    })
+      // Remove this after fastlane-for-android branch is merged to master
+      .then(() =>
+        runCommand({
+          command: [
+            'git',
+            ['checkout', '-b', 'fastlane-for-android', 'origin/fastlane-for-android'],
+            { cwd: `${process.cwd()}/${this.projectName}/${fastlaneMobileRoot}` }
+          ],
+          loadingMessage: 'Moving to branch',
+          successMessage: 'Moved to branch!',
+          failureMessage: 'Move to branch Failure!',
+          context: this.options
+        })
+      )
+      .then(() => configureIosFastlane.bind(this)())
+      .then(() => configureAndroidFastlane.bind(this)())
+      .then(() =>
+        runCommand({
+          command: ['rm', ['-rf', `${fastlaneMobileRoot}`], { cwd: `${process.cwd()}/${this.projectName}` }],
+          successMessage: 'Deleted fastlane-mobile repo successfully!',
+          context: this.options
+        })
+      )
+  );
 };
