@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useRef } from 'react';
 import { SafeAreaView } from 'react-native';
 import Swiper from 'react-native-swiper';
 import PropTypes from 'prop-types';
@@ -7,48 +7,41 @@ import screens from './screens';
 import Footer from './components/Footer';
 import styles from './styles';
 
-class CustomStepSwipper extends PureComponent {
-  state = {
-    scrollIndex: 0
+function CustomStepSwipper({ onSkip }) {
+  const [scrollIndex, setScrollIndex] = useState(0);
+  const scrollView = useRef(null);
+
+  const handleNextScreen = () => {
+    scrollView.current.scrollBy(1);
+    setScrollIndex(scrollIndex + 1);
   };
 
-  handleNextScreen = () => {
-    this.scrollView.scrollBy(1);
-    this.setState(prevState => ({ scrollIndex: prevState.scrollIndex + 1 }));
+  const handlePreviousScreen = () => {
+    scrollView.current.scrollBy(-1);
+    setScrollIndex(scrollIndex - 1);
   };
 
-  handlePreviousScreen = () => {
-    this.scrollView.scrollBy(-1);
-    this.setState(prevState => ({ scrollIndex: prevState.scrollIndex - 1 }));
-  };
+  const handleChangeIndex = index => setScrollIndex(index);
 
-  handleChangeIndex = index => this.setState({ scrollIndex: index });
-
-  handleRef = ref => (this.scrollView = ref);
-
-  render() {
-    const { onSkip } = this.props;
-    const { scrollIndex } = this.state;
-    return (
-      <SafeAreaView style={styles.container}>
-        <Swiper
-          activeDotStyle={styles.activeDot}
-          dotStyle={styles.dot}
-          paginationStyle={styles.pagination}
-          loop={false}
-          onIndexChanged={this.handleChangeIndex}
-          ref={this.handleRef}>
-          {screens}
-        </Swiper>
-        <Footer
-          onNextScreen={this.handleNextScreen}
-          onSkip={onSkip}
-          onPreviousScreen={this.handlePreviousScreen}
-          screenIndex={scrollIndex}
-        />
-      </SafeAreaView>
-    );
-  }
+  return (
+    <SafeAreaView style={styles.container}>
+      <Swiper
+        activeDotStyle={styles.activeDot}
+        dotStyle={styles.dot}
+        paginationStyle={styles.pagination}
+        loop={false}
+        onIndexChanged={handleChangeIndex}
+        ref={scrollView}>
+        {screens}
+      </Swiper>
+      <Footer
+        onNextScreen={handleNextScreen}
+        onSkip={onSkip}
+        onPreviousScreen={handlePreviousScreen}
+        screenIndex={scrollIndex}
+      />
+    </SafeAreaView>
+  );
 }
 
 CustomStepSwipper.propTypes = {
