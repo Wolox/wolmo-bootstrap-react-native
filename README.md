@@ -34,6 +34,7 @@ The following optional features can be added out of the box to the new projects:
 - Firebase Performance
 - Firebase Push Notifications
 - Bitrise
+- OnBoarding
 
 ### Boilerplate
 
