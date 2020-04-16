@@ -18,9 +18,10 @@ import Navigator from '@components/AppNavigator/navigator';
 <%_ if(features.firebaseanalytics) { _%>
 
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
+<%_ } else { _%>
+
 <%_ } _%>
 <%_ if(features.login) { _%>
-
 import auth from './auth/reducer';
 <%_ } _%>
 <%_ if(features.reduxpersist) { _%>
@@ -73,12 +74,13 @@ middlewares.push(fetchMiddleware);
 /* ------------- Analytics Middleware ------------- */
 middlewares.push(AnalyticsMiddleware);
 <%_ } _%>
+
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
 if (__DEV__) enhancers.push(Reactotron.createEnhancer(true));
 
-// in dev mode, we'll create the store through Reactotron
+// In DEV mode, we'll create the store through Reactotron
 const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
 
 if (__DEV__) Reactotron.setReduxStore(store);
