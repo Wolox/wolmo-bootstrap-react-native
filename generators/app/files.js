@@ -61,6 +61,10 @@ module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 
 // SCREENS - INITIAL LOADING
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
+module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
+
+// SCREENS - ONBOARDING
+module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
 // COMPONENTS
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
@@ -84,15 +88,17 @@ module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
-
 // REDUX - AUTH
 module.exports.AUTH_REDUX_PATH = `${module.exports.REDUX_PATH}/auth`;
+module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.js`;
+module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.js`;
 
 // REDUX - MIDDLEWARES
 module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
 
 // SERVICES
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
+module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.js`;
 
 // CONFIG
 module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.js`;

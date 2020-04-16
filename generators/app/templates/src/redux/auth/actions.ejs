@@ -16,7 +16,7 @@ export const actionCreators = {
     payload: authData,
     injections: [
       withPostSuccess((dispatch, response) => {
-        dispatch(SwitchActions.jumpTo({ routeName: Routes.App }));
+        dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));
         AuthService.setCurrentUser(response.data);
       })
     ]

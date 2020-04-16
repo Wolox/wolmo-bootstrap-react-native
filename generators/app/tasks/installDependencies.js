@@ -155,6 +155,9 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('redux-persist');
     DEPENDENCIES.push('redux-persist-seamless-immutable');
   }
+  if (this.features.onboarding) {
+    DEPENDENCIES.push('react-native-swiper');
+  }
   return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
     const pluginNames = Object.keys(plugins);
     const fixedDevDeps = DEV_DEPENDENCIES.map(

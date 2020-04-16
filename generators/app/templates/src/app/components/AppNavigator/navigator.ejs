@@ -22,13 +22,14 @@ import {
   <%_ } _%>
   mainSwitchNavConfig
 } from '@config/navigation';
-<%_ if(features.login || features.tabs) { _%>
 import { inferRoute } from '@utils/navUtils';
-<%_ } _%>
-<%_ if(features.login) { _%>
 import InitialLoading from '@screens/InitialLoading';
+<%_ if(features.login) { _%>
 import Login from '@screens/Login';
 <%_ } _%>
+<%_ if(features.onboarding) { _%>
+import OnBoarding from '@screens/OnBoarding';
+  <%_ } _%>
 import Home from '@screens/Home';
 <%_ if(features.login) { _%>
 
@@ -74,17 +75,18 @@ const DrawerStack = createDrawerNavigator(
 
 const SwitchNavigator = createAnimatedSwitchNavigator(
   {
-    <%_ if(features.login) { _%>
     ...inferRoute({ InitialLoading }),
+    <%_ if(features.login) { _%>
     [Routes.Auth]: AuthStack,
+    <%_ } _%>
+    <%_ if(features.onboarding) { _%>
+    [Routes.OnBoarding]: OnBoarding,
     <%_ } _%>
     <%_ if(features.drawer) { _%>
     [Routes.App]: DrawerStack
     <%_ } else { _%>
     [Routes.App]: AppStack
     <%_ } _%>
-    // TODO: You can add for example an Onboarding flow here
-    // [Routes.Onboarding]: Onboarding
   },
   mainSwitchNavConfig
 );
