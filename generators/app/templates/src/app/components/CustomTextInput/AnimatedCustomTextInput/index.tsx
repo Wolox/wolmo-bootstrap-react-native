@@ -54,7 +54,8 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
 
   const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
 
-  const handleChange = text => setValue(text);
+  const handleChange = (text: string) => setValue(text);
+
   const handleFocus = useCallback(
     e => {
       setIsFocused(true);
