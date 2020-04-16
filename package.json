@@ -62,7 +62,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-diff"
+      "pre-commit": "yarn run lint-diff"
     }
   }
 }
