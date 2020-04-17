@@ -1,5 +1,7 @@
 import { NavigationStackProp, NavigationStackOptions } from 'react-navigation-stack';
+<%_ if(features.tabs) { _%>
 import { NavigationBottomTabOptions } from 'react-navigation-tabs';
+<%_ } _%>
 
 export interface Navigation {
   navigation: NavigationStackProp;
@@ -14,7 +16,7 @@ export interface AppScreensNavOptions {
 }
 
 export interface AppTabOptions {
-  [screenName: string]: boolean | string | number | object | NavigationBottomTabOptions;
+  [screenName: string]: boolean | string | number | object<%_ if(features.tabs) { _%> | NavigationBottomTabOptions<%_ } _%>;
 }
 export interface TabProps {
   focused: boolean;
