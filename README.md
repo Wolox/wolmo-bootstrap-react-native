@@ -7,7 +7,7 @@
 ## Prerequisites
 
 - React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
-- node & npm: https://github.com/creationix/nvm#install-script
+- node: https://github.com/creationix/nvm#install-script
 - yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
 - ruby (for Fastlane): https://rvm.io/rvm/install
 - CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
