@@ -14,17 +14,16 @@ export type NavOptionsType = NavigationStackOptions | navOptionsMethod;
 export interface AppScreensNavOptions {
   [screenName: string]: NavOptionsType;
 }
+<%_ if(features.tabs) { _%>
 
 export interface AppTabOptions {
-  [screenName: string]: boolean | string | number | object<%_ if(features.tabs) { _%> | NavigationBottomTabOptions<%_ } _%>;
+  [screenName: string]: boolean | string | number | object | NavigationBottomTabOptions;
 }
+
 export interface TabProps {
   focused: boolean;
   routeName: string;
   onPress: () => void;
   index: number;
 }
-
-export interface TabBarIconProps extends TabProps {
-  route: string;
-}
+<%_ } _%>
