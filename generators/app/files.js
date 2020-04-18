@@ -26,21 +26,16 @@ module.exports.REACT_NATIVE_CONFIG = 'react-native.config.js';
 module.exports.README = 'README.md';
 module.exports.TSCONFIG_FILE = 'tsconfig.json';
 
-// TESTING - TESTS
-module.exports.TESTS_COMPONENTS_PATH = `${module.exports.TESTS}/components`;
+// TESTS
 module.exports.TESTS_REDUX_PATH = `${module.exports.TESTS}/redux`;
 module.exports.TESTS_RESPONSES_PATH = `${module.exports.TESTS}/responses`;
 module.exports.TESTS_SCREENS_PATH = `${module.exports.TESTS}/screens`;
 module.exports.TESTS_SETUP_PATH = `${module.exports.TESTS}/setup`;
-// TESTING - RESPONSES-EXAMPLES
-module.exports.TESTS_RESPONSES_EXAMPLES = `${module.exports.TESTS_RESPONSES_PATH}/examples.js`;
-// TESTING - TESTS-REDUX
+// TESTS - REDUX
 module.exports.TESTS_STORE = `${module.exports.TESTS_REDUX_PATH}/store.js`;
 module.exports.TESTS_UTILS = `${module.exports.TESTS_REDUX_PATH}/utils.js`;
 module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
-// TESTING - TESTS-SETUP
-module.exports.TESTS_SETUP_ENZYME = `${module.exports.TESTS_SETUP_PATH}/setupEnzyme.js`;
-// TESTING - SCREENS-LOGIN
+// TESTING - SCREENS - LOGIN
 module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/Login`;
 
 //  Wolox CI
@@ -57,12 +52,12 @@ module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
 module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
+// APP COMPONENTS - CUSTOM BUTTON
+module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
 // APPCOMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
 // APP COMPONENTS - CUSTOM TEXT INPUT
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
-// APP COMPONENTS - CUSTOM TEXT
-module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
 // APP COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
 
