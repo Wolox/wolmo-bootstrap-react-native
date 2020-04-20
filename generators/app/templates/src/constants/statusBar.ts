@@ -8,6 +8,6 @@ const statusBarConfig = {
   },
   blueStatusBar: { barStyle: 'light-content', backgroundColor: blue },
   whiteStatusBar: { barStyle: 'dark-content', backgroundColor: white }
-};
+} as const;
 
 export default statusBarConfig;
