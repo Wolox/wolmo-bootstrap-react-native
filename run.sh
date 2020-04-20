@@ -35,7 +35,7 @@ elif ! system_has pod; then
   exit 1
 fi
 
-npm i -g yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
+yarn global add yo generator-wolmo-bootstrap-rn > /dev/null 2>&1
 yo wolmo-bootstrap-rn
 
 wait $!

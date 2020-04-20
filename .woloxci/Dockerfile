@@ -4,7 +4,7 @@ WORKDIR /home/node
 
 COPY package.json .
 
-RUN npm install
+RUN yarn install
 ENV PATH /home/node/node_modules/.bin:$PATH
 
 WORKDIR /home/node/app

@@ -84,8 +84,8 @@ function getLinterPluginVersions(projectName, options) {
   // { eslint: '^3.19.0 || ^4.3.0', 'eslint-plugin-jsx-a11y': '^5.1.1', 'eslint-plugin-import': '^2.7.0', 'eslint-plugin-react': '^7.1.0' }
   return runCommand({
     command: [
-      'npm',
-      ['info', 'eslint-config-airbnb@latest', 'peerDependencies', '--json'],
+      'yarn',
+      ['info', 'eslint-config-airbnb', 'peerDependencies', '--json'],
       { cwd: `${process.cwd()}/${projectName}` }
     ],
     loadingMessage: "Getting eslint plugins' versions",
@@ -94,7 +94,7 @@ function getLinterPluginVersions(projectName, options) {
     context: options
   }).then(({ result }) => {
     // keep latest if the dependency has different versions. e.g: eslint: '^3.19.0 || ^4.3.0'
-    const dependencies = JSON.parse(result);
+    const dependencies = JSON.parse(result).data;
     Object.keys(dependencies).forEach(eachDependency => {
       const latestDependencyVersion = latestSemver(dependencies[eachDependency].match(semverRegex()));
       dependencies[eachDependency] = `^${latestDependencyVersion}`;
