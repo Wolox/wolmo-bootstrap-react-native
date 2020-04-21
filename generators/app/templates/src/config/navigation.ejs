@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import { NavigationStackOptions } from 'react-navigation-stack';
 <%_ if (features.drawer) { _%>
 import React from 'react';
 import { Button } from 'react-native';
@@ -7,11 +8,11 @@ import { DrawerActions } from 'react-navigation-drawer';
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
-
+import { <%_ if (features.tabs) { _%> AppTabOptions,<%_ } _%> Navigation, AppScreensNavOptions } from '@interfaces/navigation';
 import fonts from './fonts';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ navigation }) => ({
+const defaultNavOptions = ({ navigation }: Navigation) => ({
   // Change screen title from i18n traslates files
   headerTitle: i18next.t(`app:${navigation.state.routeName}`),
   // TODO: The following options are examples. Change them to your need
@@ -55,7 +56,7 @@ export const drawerStackNavConfig = {
 
 <%_ } _%>
 // Default nav options for all screens
-export const appScreensNavOptions = {
+export const appScreensNavOptions: AppScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
   /*
@@ -64,7 +65,7 @@ export const appScreensNavOptions = {
   <%_ if (features.drawer) { _%>
   },
   */
-  [Routes.Home]: ({ navigation }) => ({
+  [Routes.Home]: ({ navigation }: NavigationStackOptions) => ({
     headerRight: () => (
       <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
     )
@@ -76,7 +77,7 @@ export const appScreensNavOptions = {
 };
 
 <%_ if (features.tabs) { _%>
-export const appTabNavConfig = {
+export const appTabNavConfig: AppTabOptions = {
   // TODO: The following options are examples. Change them to your need
   // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
   tabBarPosition: 'bottom'
