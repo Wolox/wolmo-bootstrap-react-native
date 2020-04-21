@@ -1,13 +1,27 @@
+import { TextStyle } from 'react-native';
 import { isAndroid } from '@constants/platform';
 import { MONTSERRAT, REGULAR, SEMIBOLD, BOLD, NORMAL, ITALIC } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
 
-const REGULAR_WEIGHT = '400';
-const NORMAL_STYLE = 'normal';
+const REGULAR_WEIGHT: string = '400';
+const NORMAL_STYLE: string = 'normal';
+
+interface FontMakerOptions {
+  size?: number;
+  color?: string;
+  weight?: string;
+  family?: string;
+  style?: string;
+}
+
+interface Types {
+  weights: StringObject;
+  styles: StringObject;
+}
 
 // Here you can replace MONTSERRAT with your custom font.
 // Also, you can add or remove some weights or styles that don't apply with your custom font.
-const fonts = {
+const fonts: Record<string, Types> = {
   [MONTSERRAT]: {
     weights: {
       [REGULAR]: REGULAR_WEIGHT,
@@ -21,7 +35,7 @@ const fonts = {
   }
 };
 
-export const fontMaker = (options = {}) => {
+export const fontMaker = (options: FontMakerOptions = {}): TextStyle => {
   const { size = null, color = null } = options;
   let { weight = null, style = null, family = MONTSERRAT } = options;
 
