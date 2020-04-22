@@ -1,10 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useSelector } from 'react-redux';
 import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
-import { authStackNavConfig, appStackNavConfig } from '@config/navigation';
+import { authStackNavConfig, appStackNavConfig, defaultDrawerNavOptions } from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
 import Login from '@screens/Login';
 import OnBoarding from '@screens/OnBoarding';
@@ -12,7 +13,7 @@ import Home from '@screens/Home';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
+const Drawer = createDrawerNavigator();
 const AuthStack = () => <>{inferRoute(Stack)({ Login })}</>;
 
 function HomeTabs() {
@@ -24,19 +25,15 @@ function HomeTabs() {
   );
 }
 
-function AppStack() {
-  return <>{inferRoute(Stack)({ [Routes.Home]: HomeTabs })}</>;
+function AppDrawerNavigator() {
+  return (
+    <Drawer.Navigator {...defaultDrawerNavOptions}>{inferRoute(Drawer)({ Home: HomeTabs })}</Drawer.Navigator>
+  );
 }
 
-// const DrawerStack = createDrawerNavigator(
-//   {
-//     [Routes.App]: AppStack,
-//     // TODO: Modify drawer screens here
-//     Example1: { screen: Home },
-//     Example2: { screen: Home }
-//   },
-//   drawerStackNavConfig
-// );
+function AppStack() {
+  return <>{inferRoute(Stack)({ [Routes.Home]: AppDrawerNavigator /* or HomeTabs or Home*/ })}</>;
+}
 
 const initialLoadingSelector = state => state.auth.initialLoading;
 
