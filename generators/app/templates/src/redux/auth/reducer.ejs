@@ -1,3 +1,4 @@
+<%_ if(features.login) { _%>
 import { createReducer, completeReducer, completeState, onSuccess<%_ if(features.onboarding) { _%>, onReadValue<%_ } _%> } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
@@ -31,3 +32,26 @@ export const propTypes = {
     // TODO: Extend user model definition
   })
 };
+<%_ } _%>
+<%_ if(!features.login) { _%>
+import { createReducer, onReadValue } from 'redux-recompose';
+import Immutable from 'seamless-immutable';
+
+import { actions } from './actions';
+
+const initialState = {
+  hasAccessOnBoarding: false,
+  initialLoading: true
+};
+
+const reducerDescription = {
+  [actions.AUTH_INIT]: (state, action) =>
+    state.merge({
+      initialLoading: false,
+      [action.target]: action.payload
+    }),
+  [actions.HAS_ACCESS]: onReadValue()
+};
+
+export default createReducer(Immutable(initialState), reducerDescription);
+<%_ } _%>

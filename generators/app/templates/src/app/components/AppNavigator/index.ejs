@@ -79,6 +79,16 @@ const Navigator = () => {
   );
 };
 <%_ }_%>
+<%_ if(features.onboarding && !features.login) { _%>
+const Navigator = () => {
+  const hasAccessOnBoarding = useSelector(state => state.auth.hasAccessOnBoarding);
+  return (
+    <Stack.Navigator {...appStackNavConfig}>
+      {hasAccessOnBoarding ? AppStack() : inferRoute(Stack)({ OnBoarding })}
+    </Stack.Navigator>
+  );
+};
+<%_ }_%>
 <%_ if(!features.onboarding) { _%>
 const Navigator = () => {
   const currentUser = useSelector(state => state.auth.currentUser);

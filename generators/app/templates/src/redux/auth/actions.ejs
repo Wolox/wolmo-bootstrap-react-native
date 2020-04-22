@@ -1,3 +1,4 @@
+<%_ if(features.login) { _%>
 import { SwitchActions } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import * as AuthService from '@services/AuthService';
@@ -42,3 +43,27 @@ export const actionCreators = {
   }
   <%_ }_%>
 };
+<%_ } _%>
+<%_ if(!features.login) { _%>
+import { createTypes } from 'redux-recompose';
+import { setOnBoardingAccess } from '@services/OnBoardingService';
+
+export const actions = createTypes(['HAS_ACCESS'], '@@AUTH');
+
+const onBoardingTarget = 'hasAccessOnBoarding';
+export const actionCreators = {
+  init: hasAccessOnBoarding => ({
+    type: actions.AUTH_INIT,
+    target: onBoardingTarget,
+    payload: hasAccessOnBoarding
+  }),
+  setHasAccessOnBoarding: value => async dispatch => {
+    await setOnBoardingAccess(value);
+    dispatch({
+      type: actions.HAS_ACCESS,
+      target: onBoardingTarget,
+      payload: value
+    });
+  }
+};
+<%_ } _%>

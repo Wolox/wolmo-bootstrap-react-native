@@ -1,7 +1,13 @@
+<%_ if(features.login) { _%>
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
+<%_ } _%>
 import { actionCreators as authActions } from '@redux/auth/actions';
-import { setOnBoardingAccess, getOnBoardingAccess } from '@services/OnBoardingService';
+<%_ if(features.onboarding) { _%>
+import { getOnBoardingAccess } from '@services/OnBoardingService';
+<%_ } _%>
+
+<%_ if(features.login) { _%>
 // TODO: Adapt returned object to:
 //   sessionToken: usually currentUser.access_token
 //   renewId: usually currentUser.renew_id
@@ -14,18 +20,24 @@ export const setCurrentUser = currentUser => {
 };
 export const getCurrentUser = () => AsyncStorage.getItem('@Auth:currentUser').then(JSON.parse);
 export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUser');
+  <%_ } _%>
 
 export const authSetup = async dispatch => {
+  <%_ if(features.login) { _%>
   const currentUser = await getCurrentUser();
+  <%_ } _%>
   <%_ if(features.onboarding) { _%>
   const hasAccess = await getOnBoardingAccess();
   <%_ } _%>
+  <%_ if(features.login) { _%>
   if (currentUser) {
     api.setHeader('Authorization', currentUser.sessionToken);
   }
-  dispatch(authActions.init(currentUser<%_ if(features.onboarding) { _%>, hasAccess<%_ } _%>));
+  <%_ } _%>
+  dispatch(authActions.init(<%_ if(features.login) { _%>currentUser<%_ } _%><%_ if(features.onboarding) { _%><%_ if(features.login) { _%>,   <%_ } _%>hasAccess<%_ } _%>));
 };
 
+<%_ if(features.login) { _%>
 export const login = () =>
   // TODO: Implement call to authentication API here
   new Promise(resolve => {
@@ -33,3 +45,4 @@ export const login = () =>
       resolve({ ok: true, data: { sessionToken: 'token' } });
     }, 750);
   });
+  <%_ } _%>

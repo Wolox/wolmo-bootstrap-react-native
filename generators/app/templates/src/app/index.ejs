@@ -22,7 +22,7 @@ const App = () => {
     <%_ if(features.pushnotifications) { _%>
     configPushNotifications();
     <%_ } _%>
-    <%_ if(features.login) { _%>
+    <%_ if(features.login || features.onboarding) { _%>
     authSetup(dispatch);
     <%_ } _%>
     apiSetup(dispatch);

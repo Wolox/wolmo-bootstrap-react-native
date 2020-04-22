@@ -16,7 +16,7 @@ import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
 <%_ } else { _%>
 
 <%_ } _%>
-<%_ if(features.login) { _%>
+<%_ if(features.login || features.onboarding) { _%>
 import auth from './auth/reducer';
 <%_ } _%>
 <%_ if(features.reduxpersist) { _%>
@@ -41,7 +41,7 @@ const persistConfig = {
 configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
-<%_ if(features.login) { _%>
+<%_ if(features.login || features.onboarding) { _%>
   auth
 <%_ } _%>
 });
