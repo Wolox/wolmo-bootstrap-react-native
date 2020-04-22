@@ -3,17 +3,18 @@ import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import * as AuthService from '@services/AuthService';
 import Routes from '@constants/routes';
 
-export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT', 'HAS_ACCESS']), '@@AUTH');
+export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
 const loginTarget = 'currentUser';
-const onBoardingTarget = 'hasAccessOnBoarding';
+<%_ if(features.onboarding) { _%>const onBoardingTarget = 'hasAccessOnBoarding';<%_ } _%>
 
 export const actionCreators = {
-  init: (user, hasAccessOnBoarding) => ({
+  init: (user<%_ if(features.onboarding) { _%>, hasAccessOnBoarding<%_ } _%>) => ({
     type: actions.AUTH_INIT,
     target: loginTarget,
-    payload: user,
+    payload: user<%_ if(features.onboarding) { _%>,
     hasAccessOnBoarding
+    <%_ } _%>
   }),
   login: authData => ({
     type: actions.LOGIN,
@@ -30,7 +31,7 @@ export const actionCreators = {
     await AuthService.removeCurrentUser();
     dispatch(actionCreators.setHasAccessOnBoarding(false));
     dispatch({ type: actions.LOGOUT, target: loginTarget });
-  },
+  }<%_ if(features.onboarding) { _%>,
   setHasAccessOnBoarding: value => async dispatch => {
     await setOnBoardingAccess(value);
     dispatch({
@@ -39,4 +40,5 @@ export const actionCreators = {
       payload: value
     });
   }
+  <%_ }_%>
 };

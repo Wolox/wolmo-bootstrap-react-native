@@ -17,11 +17,13 @@ export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUse
 
 export const authSetup = async dispatch => {
   const currentUser = await getCurrentUser();
+  <%_ if(features.onboarding) { _%>
   const hasAccess = await getOnBoardingAccess();
+  <%_ } _%>
   if (currentUser) {
     api.setHeader('Authorization', currentUser.sessionToken);
   }
-  dispatch(authActions.init(currentUser, hasAccess));
+  dispatch(authActions.init(currentUser<%_ if(features.onboarding) { _%>, hasAccess<%_ } _%>));
 };
 
 export const login = () =>

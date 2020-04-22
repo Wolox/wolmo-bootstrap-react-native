@@ -1,4 +1,4 @@
-import { createReducer, completeReducer, completeState, onSuccess, onReadValue } from 'redux-recompose';
+import { createReducer, completeReducer, completeState, onSuccess<%_ if(features.onboarding) { _%>, onReadValue<%_ } _%> } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 import PropTypes from 'prop-types';
 
@@ -6,19 +6,20 @@ import { actions } from './actions';
 
 const stateDescription = {
   currentUser: null,
-  initialLoading: true,
+  initialLoading: true<%_ if(features.onboarding) { _%>,
   hasAccessOnBoarding: false
+  <%_ }_%>
 };
 
-export const initialState = completeState(stateDescription, ['initialLoading', 'hasAccessOnBoarding']);
+export const initialState = completeState(stateDescription, ['initialLoading'<%_ if(features.onboarding) { _%>, 'hasAccessOnBoarding'<%_ } _%>]);
 
 const reducerDescription = {
   primaryActions: [actions.LOGIN],
   override: {
     [actions.AUTH_INIT]: (state, action) =>
       state.merge({ initialLoading: false, [action.target]: action.payload }),
-    [actions.LOGOUT]: onSuccess(),
-    [actions.HAS_ACCESS]: onReadValue()
+    [actions.LOGOUT]: onSuccess()<%_ if(features.onboarding) { _%>,
+    [actions.HAS_ACCESS]: onReadValue()<%_ } _%>
   }
 };
 

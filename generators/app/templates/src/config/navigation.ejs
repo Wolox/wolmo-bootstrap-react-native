@@ -24,17 +24,24 @@ const defaultNavOptions = ({ route }) => {
     headerTintColor: white
   };
 };
-
+<%_ if(features.login) { _%>
 export const authStackNavConfig = {
   screenOptions: defaultNavOptions,
   initialRouteName: Routes.Login
 };
+<%_ } _%>
 
 export const appStackNavConfig = {
   screenOptions: defaultNavOptions,
   initialRouteName: Routes.OnBoarding
 };
+<%_ if(features.tabs) { _%>
+export const tabNavConfig = {
+  // TODO: Change them to your need
+};
+<%_ } _%>
 
+<%_ if(features.drawer) { _%>
 export const defaultDrawerNavOptions = {
   // TODO: Change them to your need
 };
@@ -42,7 +49,7 @@ export const defaultDrawerNavOptions = {
 export const drawerStackNavConfig = {
   screenOptions: defaultDrawerNavOptions
 };
-
+<%_ } _%>
 // Default nav options for all screens
 export const appScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
@@ -50,10 +57,10 @@ export const appScreensNavOptions = {
 
   [Routes.Home]: {
     headerTitle: 'Home'
-  },
+  }<%_ if(features.onboarding) { _%>,
   [Routes.OnBoarding]: {
     headerShown: false
-  }
+  }<%_ } _%>
 };
 
 export const statusBarStyles = {
