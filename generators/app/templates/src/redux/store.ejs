@@ -1,10 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
-import {
-  createReactNavigationReduxMiddleware,
-  createNavigationReducer
-} from 'react-navigation-redux-helpers';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 <%_ if(features.reduxpersist) { _%>
 import AsyncStorage from '@react-native-community/async-storage';
@@ -14,7 +10,6 @@ import {
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
-import Navigator from '@components/AppNavigator/navigator';
 <%_ if(features.firebaseanalytics) { _%>
 
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
@@ -43,15 +38,12 @@ const persistConfig = {
 };
 <%_ } _%>
 
-const nav = createNavigationReducer(Navigator);
-
 configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
 <%_ if(features.login) { _%>
-  auth,
+  auth
 <%_ } _%>
-  nav
 });
 <%_ if(features.reduxpersist) { _%>
 

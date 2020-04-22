@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
 import { actionCreators as authActions } from '@redux/auth/actions';
-
+import { setOnBoardingAccess, getOnBoardingAccess } from '@services/OnBoardingService';
 // TODO: Adapt returned object to:
 //   sessionToken: usually currentUser.access_token
 //   renewId: usually currentUser.renew_id
@@ -17,10 +17,11 @@ export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUse
 
 export const authSetup = async dispatch => {
   const currentUser = await getCurrentUser();
+  const hasAccess = await getOnBoardingAccess();
   if (currentUser) {
     api.setHeader('Authorization', currentUser.sessionToken);
   }
-  dispatch(authActions.init(currentUser));
+  dispatch(authActions.init(currentUser, hasAccess));
 };
 
 export const login = () =>

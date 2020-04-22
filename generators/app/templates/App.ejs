@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import 'react-native-gesture-handler';
 <%_ if(features.reduxpersist) { _%>
 import { persistStore } from 'redux-persist';
 <%_ } _%>
@@ -8,7 +9,8 @@ import store from '@redux/store';
 <%_ if(features.reduxpersist) { _%>
 import { PersistGate } from 'redux-persist/integration/react';
 <%_} _%>
-
+import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from '@navigation';
 import App from './src/app';
 
 <%_ if(features.reduxpersist) { _%>
@@ -21,7 +23,9 @@ export default function index() {
       <%_ if(features.reduxpersist) { _%>
       <PersistGate loading={null} persistor={persistor}>
       <%_} _%>
-        <App />
+        <NavigationContainer ref={navigationRef}>
+          <App />
+        </NavigationContainer>
       <%_ if(features.reduxpersist) { _%>
       </PersistGate>
       <%_} _%>

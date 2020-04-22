@@ -1,9 +1,4 @@
 import i18next from 'i18next';
-<%_ if (features.drawer) { _%>
-import React from 'react';
-import { Button } from 'react-native';
-import { DrawerActions } from 'react-navigation-drawer';
-<%_ } _%>
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
@@ -11,88 +6,62 @@ import statusBarConfig from '@constants/statusBar';
 import fonts from './fonts';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ navigation }) => ({
-  // Change screen title from i18n traslates files
-  headerTitle: i18next.t(`app:${navigation.state.routeName}`),
-  // TODO: The following options are examples. Change them to your need
-  headerStyle: {
-    backgroundColor: blue
-  },
-  headerBackTitleStyle: {
-    color: white
-  },
-  headerTitleStyle: {
-    ...fonts.baseFont,
-    color: white
-  },
-  headerTintColor: white
-});
-
-export const mainSwitchNavConfig = {
-  initialRouteName: Routes.InitialLoading
+const defaultNavOptions = ({ route }) => {
+  return {
+    // Change screen title from i18n traslates files
+    headerTitle: i18next.t(`app:${route.name}`),
+    // TODO: The following options are examples. Change them to your need
+    headerStyle: {
+      backgroundColor: blue
+    },
+    headerBackTitleStyle: {
+      color: white
+    },
+    headerTitleStyle: {
+      ...fonts.baseFont,
+      color: white
+    },
+    headerTintColor: white
+  };
 };
 
-<%_ if (features.login) { _%>
 export const authStackNavConfig = {
-  defaultNavigationOptions: defaultNavOptions,
+  screenOptions: defaultNavOptions,
   initialRouteName: Routes.Login
 };
 
-<%_ } _%>
 export const appStackNavConfig = {
-  defaultNavigationOptions: defaultNavOptions,
-  initialRouteName: Routes.Home
+  screenOptions: defaultNavOptions,
+  initialRouteName: Routes.OnBoarding
 };
 
-<%_ if (features.drawer) { _%>
 export const defaultDrawerNavOptions = {
   // TODO: Change them to your need
 };
 
 export const drawerStackNavConfig = {
-  defaultNavigationOptions: defaultDrawerNavOptions
+  screenOptions: defaultDrawerNavOptions
 };
 
-<%_ } _%>
 // Default nav options for all screens
 export const appScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
-  /*
+
   [Routes.Home]: {
     headerTitle: 'Home'
-  <%_ if (features.drawer) { _%>
   },
-  */
-  [Routes.Home]: ({ navigation }) => ({
-    headerRight: () => (
-      <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
-    )
-  })
-  <%_ } else {_%>
+  [Routes.OnBoarding]: {
+    headerShown: false
   }
-  */
-  <%_ } _%>
 };
 
-<%_ if (features.tabs) { _%>
-export const appTabNavConfig = {
-  // TODO: The following options are examples. Change them to your need
-  // See: https://reactnavigation.org/docs/tab-navigator.html#tabnavigatorconfig
-  tabBarPosition: 'bottom'
-};
-
-<%_ } _%>
 export const statusBarStyles = {
   // TODO: Change these styles to customize the status bar
-<%_ if (features.login) { _%>
   [Routes.Login]: statusBarConfig.blueStatusBar,
   [Routes.InitialLoading]: statusBarConfig.whiteStatusBar,
-<%_ } _%>
-<%_ if (features.tabs) { _%>
   [Routes.Tab1]: statusBarConfig.blueStatusBar,
   [Routes.Tab2]: statusBarConfig.blueStatusBar,
-<%_ } _%>
   [Routes.Home]: statusBarConfig.blueStatusBar,
   default: statusBarConfig.transparentStatusBar
 };

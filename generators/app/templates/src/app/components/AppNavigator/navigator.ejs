@@ -1,94 +1,54 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-<%_ if(features.tabs) { _%> 
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-<%_ } _%>
-<%_ if(features.drawer) { _%> 
-import { createDrawerNavigator } from 'react-navigation-drawer';
-<%_ } _%>
-import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSelector } from 'react-redux';
+import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
-import {
-  appScreensNavOptions,
-  appStackNavConfig,
-  <%_ if(features.tabs) { _%> 
-  appTabNavConfig,
-  <%_ } _%>
-  <%_ if(features.login) { _%> 
-  authStackNavConfig,
-  <%_ } _%>
-  <%_ if(features.drawer) { _%> 
-  drawerStackNavConfig,
-  <%_ } _%>
-  mainSwitchNavConfig
-} from '@config/navigation';
+import { authStackNavConfig, appStackNavConfig } from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
-import InitialLoading from '@screens/InitialLoading';
-<%_ if(features.login) { _%>
 import Login from '@screens/Login';
-<%_ } _%>
-<%_ if(features.onboarding) { _%>
 import OnBoarding from '@screens/OnBoarding';
-  <%_ } _%>
 import Home from '@screens/Home';
-<%_ if(features.login) { _%>
 
-const AuthStack = createStackNavigator(
-  {
-    ...inferRoute({ Login })
-  },
-  authStackNavConfig
-);
-<%_ } _%>
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const AppStack = createStackNavigator(
-  {
-    [Routes.Home]: {
-      <%_ if (features.tabs) { _%>
-      screen: createBottomTabNavigator(
-        {
-          ...inferRoute({ Tab1: Home }),
-          ...inferRoute({ Tab2: Home })
-        },
-        appTabNavConfig
-      ),
-      <%_ } else { _%>
-      screen: Home,
-      <%_ } _%>
-      navigationOptions: appScreensNavOptions[Routes.Home]
-    }
-  },
-  appStackNavConfig
-);
-<%_ if(features.drawer) { _%>
+const AuthStack = () => <>{inferRoute(Stack)({ Login })}</>;
 
-const DrawerStack = createDrawerNavigator(
-  {
-    [Routes.App]: AppStack,
-    // TODO: Modify drawer screens here
-    Example1: { screen: Home },
-    Example2: { screen: Home }
-  },
-  drawerStackNavConfig
-);
-<%_ } _%>
+function HomeTabs() {
+  return (
+    <Tab.Navigator>
+      {inferRoute(Tab)({ [Routes.Tab1]: Home })}
+      {inferRoute(Tab)({ [Routes.Tab2]: Home })}
+    </Tab.Navigator>
+  );
+}
 
-const SwitchNavigator = createAnimatedSwitchNavigator(
-  {
-    ...inferRoute({ InitialLoading }),
-    <%_ if(features.login) { _%>
-    [Routes.Auth]: AuthStack,
-    <%_ } _%>
-    <%_ if(features.onboarding) { _%>
-    [Routes.OnBoarding]: OnBoarding,
-    <%_ } _%>
-    <%_ if(features.drawer) { _%>
-    [Routes.App]: DrawerStack
-    <%_ } else { _%>
-    [Routes.App]: AppStack
-    <%_ } _%>
-  },
-  mainSwitchNavConfig
-);
+function AppStack() {
+  return <>{inferRoute(Stack)({ [Routes.Home]: HomeTabs })}</>;
+}
 
-export default createAppContainer(SwitchNavigator);
+// const DrawerStack = createDrawerNavigator(
+//   {
+//     [Routes.App]: AppStack,
+//     // TODO: Modify drawer screens here
+//     Example1: { screen: Home },
+//     Example2: { screen: Home }
+//   },
+//   drawerStackNavConfig
+// );
+
+const initialLoadingSelector = state => state.auth.initialLoading;
+
+const Navigator = () => {
+  const hasAccessOnBoarding = useSelector(state => state.auth.hasAccessOnBoarding);
+  const currentUser = useSelector(state => state.auth.currentUser);
+  const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
+  return (
+    <Stack.Navigator {...defaultStackConfig}>
+      {currentUser ? (hasAccessOnBoarding ? AppStack() : inferRoute(Stack)({ OnBoarding })) : AuthStack()}
+    </Stack.Navigator>
+  );
+};
+
+export default withLoadable(() => useSelector(initialLoadingSelector))(Navigator);

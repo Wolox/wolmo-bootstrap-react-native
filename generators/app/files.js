@@ -60,10 +60,6 @@ module.exports.HOME = `${module.exports.HOME_PATH}/layout.js`;
 // SCREENS - LOGIN
 module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 
-// SCREENS - INITIAL LOADING
-module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
-module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
-
 // SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
@@ -86,6 +82,9 @@ module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomBut
 
 // COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
+
+// COMPONENTS - NAVIGATION
+module.exports.NAVIGATION_PATH = `${module.exports.COMPONENTS_PATH}/Navigation`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
