@@ -41,7 +41,10 @@ const {
   ESLINTRC_FILE,
   ESLINT_IGNORE_FILE,
   JEST_CONFIG_FILE,
-  NAVIGATION_PATH
+  NAVIGATION_PATH,
+  AUTH_ACTIONS,
+  AUTH_REDUCER,
+  AUTH_SERVICE
 } = require('../../files');
 
 const FILES = [
@@ -89,7 +92,10 @@ const TEMPLATE_FILES = [
   CI_CONFIG_FILE,
   MAIN,
   INDEX_D_FILE,
-  ESLINTRC_FILE
+  ESLINTRC_FILE,
+  AUTH_ACTIONS,
+  AUTH_REDUCER,
+  AUTH_SERVICE
 ];
 
 module.exports = function baseFilesTemplate() {

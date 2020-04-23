@@ -21,7 +21,6 @@ const cleanTargetsFromPods = require('./cleanTargetsFromPods');
 const prettierrcConfigSetup = require('./prettierrcConfigSetup');
 const splashScreenSetup = require('./splashScreenSetup');
 const firebasePerformanceSetup = require('./firebasePerformanceSetup');
-const onBoardingAndLoginCommonFiles = require('./onBoardingAndLoginCommonFiles');
 
 module.exports = function index() {
   const spinner = ora({
@@ -77,10 +76,6 @@ module.exports = function index() {
     onBoardingFeatureFiles.bind(this)();
   }
 
-  // ----------------     Features: OnBoarding & Login COMMON FILES   ----------------
-  if (this.features.onboarding || this.features.login) {
-    onBoardingAndLoginCommonFiles.bind(this)();
-  }
   // ----------------     Features: Firebase    ----------------
   if (
     this.features.crashlytics ||

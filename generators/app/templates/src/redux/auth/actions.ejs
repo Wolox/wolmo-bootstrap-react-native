@@ -67,3 +67,15 @@ export const actionCreators = {
   }
 };
 <%_ } _%>
+<%_ if(!features.login && !features.onboarding) { _%>
+import { createTypes } from 'redux-recompose';
+
+export const actions = createTypes(['AUTH_INIT'], '@@AUTH');
+
+export const actionCreators = {
+  init: () => ({
+    type: actions.AUTH_INIT
+  })
+};
+
+<%_ } _%>

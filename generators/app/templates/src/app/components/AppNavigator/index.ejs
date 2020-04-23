@@ -6,9 +6,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 <%_ if(features.drawer) { _%>
 import { createDrawerNavigator } from '@react-navigation/drawer';
 <%_ } _%>
+<%_ if(features.onboarding || features.login) { _%>
 import { useSelector } from 'react-redux';
 import withLoadable from '@components/Loadable';
+<%_ } _%>
+<%_ if(features.onboarding || features.login) { _%>
 import Routes from '@constants/routes';
+<%_ } _%>
 import { <%_ if(features.login) { _%>authStackNavConfig,<%_ } _%> appStackNavConfig<%_ if(features.drawer) { _%>, defaultDrawerNavOptions <%_ }_%><%_ if(features.tabs) { _%>, tabNavConfig <%_ }_%>} from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
 <%_ if(features.login) { _%>
@@ -65,7 +69,9 @@ function AppStack() {
 }
 <%_ }_%>
 
+<%_ if(features.onboarding || features.login) { _%>
 const initialLoadingSelector = state => state.auth.initialLoading;
+<%_ } _%>
 
 <%_ if(features.onboarding) { _%>
 const Navigator = () => {
@@ -96,4 +102,13 @@ const Navigator = () => {
   return <Stack.Navigator {...defaultStackConfig}>{currentUser ? AppStack() : AuthStack()}</Stack.Navigator>;
 };
 <%_ }_%>
+<%_ if(!features.onboarding && !features.login) { _%>
+const Navigator = () => {
+  return <Stack.Navigator {...appStackNavConfig}>{AppStack()}</Stack.Navigator>;
+};
+<%_ }_%>
+<%_ if(features.onboarding || features.login) { _%>
 export default withLoadable(() => useSelector(initialLoadingSelector))(Navigator);
+<%_ }else{ _%>
+export default Navigator;
+<%_ } _%>
