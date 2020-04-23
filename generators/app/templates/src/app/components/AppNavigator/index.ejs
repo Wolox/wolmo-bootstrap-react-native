@@ -43,7 +43,7 @@ function HomeTabs() {
 <%_ if(features.drawer) { _%>
 function AppDrawerNavigator() {
   return (
-    <Drawer.Navigator {...defaultDrawerNavOptions}>{inferRoute(Drawer)({ Home: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ { _%>Home <%_ } _%> })}</Drawer.Navigator>
+    <Drawer.Navigator {...defaultDrawerNavOptions}>{inferRoute(Drawer)({ Home: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%> })}</Drawer.Navigator>
   );
 }
 <%_ } _%>
