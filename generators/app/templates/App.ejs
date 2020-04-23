@@ -9,8 +9,6 @@ import store from '@redux/store';
 <%_ if(features.reduxpersist) { _%>
 import { PersistGate } from 'redux-persist/integration/react';
 <%_} _%>
-import { NavigationContainer } from '@react-navigation/native';
-import { navigationRef } from '@navigation';
 import App from './src/app';
 
 <%_ if(features.reduxpersist) { _%>
@@ -23,9 +21,7 @@ export default function index() {
       <%_ if(features.reduxpersist) { _%>
       <PersistGate loading={null} persistor={persistor}>
       <%_} _%>
-        <NavigationContainer ref={navigationRef}>
-          <App />
-        </NavigationContainer>
+        <App />
       <%_ if(features.reduxpersist) { _%>
       </PersistGate>
       <%_} _%>
