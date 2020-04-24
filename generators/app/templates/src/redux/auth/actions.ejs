@@ -31,7 +31,9 @@ export const actionCreators = {
   }),
   logout: () => async dispatch => {
     await AuthService.removeCurrentUser();
+    <%_ if(features.onboarding) { _%>
     dispatch(actionCreators.setHasAccessOnBoarding(false));
+    <%_ } _%>
     dispatch({ type: actions.LOGOUT, target: loginTarget });
   }<%_ if(features.onboarding) { _%>,
   setHasAccessOnBoarding: value => async dispatch => {
