@@ -15,6 +15,7 @@ const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
 const editBundleIdentifier = require('./tasks/editBundleIdentifier');
 const configureIosProject = require('./tasks/configureIosProject');
 const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
+const lintFixProject = require('./tasks/lintFixProject');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
@@ -114,7 +115,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => editBundleIdentifier.bind(this)())
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
-      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());
+      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)())
+      .then(() => lintFixProject.bind(this)());
   }
 
   end() {
