@@ -60,15 +60,29 @@ function configureAndroidFastlane() {
     context: this.options
   })
     .then(() => {
-      runCommand({
-        command: [
-          'mv',
-          [`${fastlaneMobileRoot}/android/version.gradle`, `android/app`],
-          { cwd: `${process.cwd()}/${this.projectName}` }
-        ],
-        successMessage: 'Moved version.gradle!',
-        context: this.options
-      });
+      const fastfile = this.fs.read(
+        `${this.projectName}/android/${fastlaneFolderDestination}/Fastfile.private`
+      );
+      // Modifying task to set build number and version code using version.gradle functions
+      const updateFastfile = fastfile.replace(
+        'buid_task = get_build_task(environment: environment, aab: create_aab)',
+        'UI.message "Forced to version name #{version_name}" if version_name != nil\n\t\t' +
+          'gradle(task: "bumperVersionName", properties: { versionName: version_name }) if version_name != nil\n\n\t\t' +
+          'UI.message "Forced to build number #{build_num}" if build_num != nil\n\t\t' +
+          'gradle(task: "bumperVersionCode", properties: { versionCode: build_num }) if build_num != nil\n\n' +
+          '\n\t\tbuid_task = get_build_task(environment: environment, aab: create_aab)'
+      );
+      this.fs.write(
+        `${this.projectName}/android/${fastlaneFolderDestination}/Fastfile.private`,
+        updateFastfile
+      );
+    })
+    .then(() => {
+      // Copy version.gradle from template folder
+      this.fs.copy(
+        this.templatePath('android', 'version.gradle'),
+        this.destinationPath(this.projectName, 'android', 'app', 'version.gradle')
+      );
     })
     .then(() => {
       runCommand({
