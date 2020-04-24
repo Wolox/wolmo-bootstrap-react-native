@@ -22,7 +22,7 @@ export const getCurrentUser = () => AsyncStorage.getItem('@Auth:currentUser').th
 export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUser');
   <%_ } _%>
 
-export const authSetup = async dispatch => {
+export const authSetup = <%_ if(features.login || features.onboarding) { _%>async<%_ } _%> dispatch => {
   <%_ if(features.login) { _%>
   const currentUser = await getCurrentUser();
   <%_ } _%>

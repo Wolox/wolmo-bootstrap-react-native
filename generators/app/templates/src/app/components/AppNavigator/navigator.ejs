@@ -10,7 +10,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useSelector } from 'react-redux';
 import withLoadable from '@components/Loadable';
 <%_ } _%>
-<%_ if(features.onboarding || features.login) { _%>
+<%_ if(features.drawer || features.tabs) { _%>
 import Routes from '@constants/routes';
 <%_ } _%>
 import { <%_ if(features.login) { _%>authStackNavConfig,<%_ } _%> appStackNavConfig<%_ if(features.drawer) { _%>, defaultDrawerNavOptions <%_ }_%><%_ if(features.tabs) { _%>, tabNavConfig <%_ }_%>} from '@config/navigation';
@@ -73,7 +73,7 @@ function AppStack() {
 const initialLoadingSelector = state => state.auth.initialLoading;
 <%_ } _%>
 
-<%_ if(features.onboarding) { _%>
+<%_ if(features.onboarding && features.login) { _%>
 const Navigator = () => {
   const hasAccessOnBoarding = useSelector(state => state.auth.hasAccessOnBoarding);
   const currentUser = useSelector(state => state.auth.currentUser);

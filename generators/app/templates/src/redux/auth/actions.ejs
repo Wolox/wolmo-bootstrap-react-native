@@ -1,8 +1,9 @@
 <%_ if(features.login) { _%>
-import { SwitchActions } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import * as AuthService from '@services/AuthService';
-import Routes from '@constants/routes';
+<%_ if(features.onboarding) { _%>
+import { setOnBoardingAccess } from '@services/OnBoardingService';
+<%_ } _%>
 
 export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
@@ -44,7 +45,7 @@ export const actionCreators = {
   <%_ }_%>
 };
 <%_ } _%>
-<%_ if(!features.login) { _%>
+<%_ if(!features.login && features.onboarding) { _%>
 import { createTypes } from 'redux-recompose';
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 
