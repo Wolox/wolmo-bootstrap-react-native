@@ -95,7 +95,7 @@ const Navigator = () => {
   );
 };
 <%_ }_%>
-<%_ if(!features.onboarding) { _%>
+<%_ if(!features.onboarding && features.login) { _%>
 const Navigator = () => {
   const currentUser = useSelector(state => state.auth.currentUser);
   const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
