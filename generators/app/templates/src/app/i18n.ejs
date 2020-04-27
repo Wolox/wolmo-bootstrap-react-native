@@ -4,7 +4,6 @@ import Routes from '@constants/routes';
 // TODO: Replace here the screens titles
 
 i18next.addResources('es', 'app', {
-  es: {
     <%_ if(features.login) { _%>
     [Routes.Login]: 'Login',
     <%_ } _%>
@@ -17,5 +16,4 @@ i18next.addResources('es', 'app', {
     <%_ } _%><%_ if(features.drawer) { _%>,
     [Routes.Home1]: 'Home1'
     <%_ } _%>
-  }
 });
