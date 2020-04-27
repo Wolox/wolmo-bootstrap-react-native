@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { navigationRef } from '@navigation';
+import { navigationRef } from '@navigationHelper';
 
 import Navigator from './navigator';
 

@@ -70,6 +70,7 @@ module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
 module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
+module.exports.NAVIGATION_HELPER = `${module.exports.APP_NAVIGATOR_PATH}/helper.js`;
 
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
@@ -82,9 +83,6 @@ module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomBut
 
 // COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
-
-// COMPONENTS - NAVIGATION
-module.exports.NAVIGATION_PATH = `${module.exports.COMPONENTS_PATH}/Navigation`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;

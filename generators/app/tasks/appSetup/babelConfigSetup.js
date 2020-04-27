@@ -18,7 +18,7 @@ module.exports = function babelConfigSetup() {
           '@services': './src/services',
           '@redux': './src/redux',
           '@utils': './src/utils',
-          '@navigation': './src/app/components/Navigation'
+          '@navigationHelper': './src/app/components/AppNavigator/helper'
         }
       }
     ]

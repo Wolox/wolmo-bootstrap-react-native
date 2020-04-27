@@ -113,10 +113,10 @@ class ReactNativeBootstrap extends Generator {
       .then(() => installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
       .then(() => editBundleIdentifier.bind(this)())
+      .then(() => lintFixProject.bind(this)())
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
-      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)())
-      .then(() => lintFixProject.bind(this)());
+      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());
   }
 
   end() {
