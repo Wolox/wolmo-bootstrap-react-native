@@ -1,9 +1,10 @@
 import { ApiOkResponse } from 'apisauce';
 import { Dispatch } from 'react';
-import { SwitchActions } from 'react-navigation';
+import { SwitchActions, NavigationJumpToAction } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import Routes from '@constants/routes';
 import { CurrentUser } from '@interfaces/authInterfaces';
+import { Action } from '@interfaces/reduxInterfaces';
 import * as AuthService from '@services/AuthService';
 
 export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT']), '@@AUTH');
@@ -19,13 +20,13 @@ export const actionCreators = {
     target: TARGETS.CURRENT_USER,
     service: AuthService.login,
     injections: [
-      withPostSuccess((dispatch: Dispatch<any>, response: ApiOkResponse<CurrentUser>) => {
+      withPostSuccess((dispatch: Dispatch<NavigationJumpToAction>, response: ApiOkResponse<CurrentUser>) => {
         dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));
         AuthService.setCurrentUser(response.data);
       })
     ]
   }),
-  logout: () => async (dispatch: Dispatch<any>) => {
+  logout: () => async (dispatch: Dispatch<NavigationJumpToAction | Action<{}>>) => {
     await AuthService.removeCurrentUser();
     dispatch({ type: actions.LOGOUT, target: TARGETS.CURRENT_USER });
     dispatch(SwitchActions.jumpTo({ routeName: Routes.Auth }));
