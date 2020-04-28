@@ -1,15 +1,13 @@
 import React, { useCallback, memo } from 'react';
-import { TouchableOpacity, Image, ViewPropTypes } from 'react-native';
-import PropTypes from 'prop-types';
+import { TouchableOpacity, Image } from 'react-native';
 import { getCustomStyles } from '@utils/styleUtils';
 
 import CustomText from '../CustomText';
 
+import { VARIANTS, CustomButtonProps } from './constants';
 import styles from './styles';
 
-const VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
-
-const CustomButton = props => {
+const CustomButton = (props: CustomButtonProps) => {
   const customStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles), [props]);
 
   const customTextStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles, 'Content'), [props]);
@@ -34,17 +32,6 @@ const CustomButton = props => {
 
 CustomButton.defaultProps = {
   activeOpacity: 1
-};
-
-CustomButton.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  activeOpacity: PropTypes.number,
-  disabled: PropTypes.bool,
-  icon: PropTypes.number,
-  iconStyle: ViewPropTypes.style,
-  style: ViewPropTypes.style,
-  textStyle: PropTypes.number,
-  title: PropTypes.string
 };
 
 export default memo(CustomButton);
