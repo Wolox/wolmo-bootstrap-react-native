@@ -90,19 +90,20 @@ module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.ts`;
 module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBar.ts`;
 
 // INTERFACES
+module.exports.AUTH_INTERFACES = `${module.exports.INTERFACES_PATH}/authInterfaces.ts`;
 module.exports.GLOBAL_INTERFACES = `${module.exports.INTERFACES_PATH}/globalInterfaces.ts`;
 module.exports.NAVIGATION_INTERFACES = `${module.exports.INTERFACES_PATH}/navigation.ts`;
 module.exports.REACTOTRON_INTERFACES = `${module.exports.INTERFACES_PATH}/reactotron.ts`;
-module.exports.AUTH_INTERFACES = `${module.exports.INTERFACES_PATH}/authInterfaces.ts`;
+module.exports.REDUX_INTERFACES = `${module.exports.INTERFACES_PATH}/reduxInterfaces.ts`;
 
 // REDUX
-module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
+module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.ts`;
 // REDUX - AUTH
 module.exports.AUTH_REDUX_PATH = `${module.exports.REDUX_PATH}/auth`;
-module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.js`;
-module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.js`;
+module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.ts`;
+module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.ts`;
 // REDUX - MIDDLEWARES
-module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
+module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.ts`;
 
 // SERVICES
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.ts`;
