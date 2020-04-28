@@ -9,10 +9,11 @@ import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
 <%_ } _%>
 
+import { HomeProps } from './interface';
 import styles from './styles';
 
 <%_ if(features.login) { _%>
-export default function Home({ onLogout }) {
+export default function Home({ onLogout }: HomeProps) {
 <%_ } else { _%>
 export default function Home() {
 <%_ } _%>
