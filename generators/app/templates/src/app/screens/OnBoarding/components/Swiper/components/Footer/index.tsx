@@ -2,10 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import CustomButton from '@components/CustomButton';
 
+import { FooterProps } from './interface';
 import { screensButtonInfo } from './buttonsInfo';
 import styles from './styles';
 
-export default function Footer(props) {
+export default function Footer(props: FooterProps) {
   const { firstButton, secondButton } = screensButtonInfo(props);
   return (
     <View style={styles.buttons}>
