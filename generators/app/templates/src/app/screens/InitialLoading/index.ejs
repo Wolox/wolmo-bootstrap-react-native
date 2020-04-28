@@ -7,16 +7,19 @@ import withLoadable from '@components/Loadable';
 import Routes from '@constants/routes';
 <%_ if (features.onboarding && !features.login) { _%>
 import { setOnBoardingAccess, getOnBoardingAccess } from '@services/OnBoardingService';
+import { Navigation } from '@interfaces/navigation';
+import { Action, State } from '@interfaces/reduxInterfaces';
+import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
 
 <%_ if (features.login) { _%>
 const initialLoadingSelector = state => state.auth.initialLoading;
 <%_ } _%>
 
-const InitialLoading = ({ navigation }) => {
+const InitialLoading = ({ navigation }: Navigation) => {
   <%_ if (features.login) { _%>
-  const initialLoading = useSelector(initialLoadingSelector);
-  const currentUser = useSelector(state => state.auth.currentUser);
+  const initialLoading = useSelector<State,boolean>(initialLoadingSelector);
+  const currentUser = useSelector<State,CurrentUser >(state => state.auth.currentUser);
   if (!initialLoading) {
     <%_ } _%>
     <%_ if (features.onboarding && !features.login) { _%>
@@ -36,17 +39,6 @@ const InitialLoading = ({ navigation }) => {
   }
   <%_ } _%>
   return null;
-};
-
-InitialLoading.propTypes = {
-  // TODO: complete this shape
-  <%_ if (features.login) { _%>
-  currentUser: PropTypes.shape(),
-  initialLoading: PropTypes.bool,
-  <%_ } _%>
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired
-  })
 };
 
 <%_ if (features.login) { _%>

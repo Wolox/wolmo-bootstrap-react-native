@@ -69,7 +69,7 @@ module.exports.HOME = `${module.exports.HOME_PATH}/layout.js`;
 module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 // APP SCREENS - INITIAL LOADING
 module.exports.INITIAL_LOADING_PATH = `${module.exports.SCREENS_PATH}/InitialLoading`;
-module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.js`;
+module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.tsx`;
 // APP SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
