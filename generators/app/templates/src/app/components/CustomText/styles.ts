@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
-import { blue, white, green, gray, transparent } from '@constants/colors';
+import { blue, white, green, gray, transparent, red } from '@constants/colors';
 import { SIZES } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
+import { StringObject, NumberObject } from '@interfaces/globalInterfaces';
 
-const getColors = colorsObj =>
+const getColors = (colorsObj: StringObject) =>
   Object.keys(colorsObj).reduce(
     (colors, color) => ({ ...colors, ...{ [color]: { color: colorsObj[color] } } }),
     {}
   );
 
-const getSizes = sizesObj =>
+const getSizes = (sizesObj: NumberObject) =>
   Object.keys(sizesObj).reduce(
     (sizes, size) => ({ ...sizes, ...{ [size]: { fontSize: moderateScale(sizesObj[size]) } } }),
     {}
@@ -32,6 +33,9 @@ export default StyleSheet.create({
   },
   right: {
     textAlign: 'right'
+  },
+  error: {
+    color: red
   },
   // Colors
   ...getColors({ blue, gray, green, white }),
