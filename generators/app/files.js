@@ -74,13 +74,13 @@ module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.j
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
 // CONFIG
-module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.js`;
-module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
-module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
-module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.js`;
-module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
-module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.js`;
-module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.js`;
+module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.ts`;
+module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.ts`;
+module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.ts`;
+module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.ts`;
+module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.ts`;
+module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.ts`;
+module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.ts`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.ts`;
@@ -92,6 +92,7 @@ module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBa
 // INTERFACES
 module.exports.GLOBAL_INTERFACES = `${module.exports.INTERFACES_PATH}/globalInterfaces.ts`;
 module.exports.NAVIGATION_INTERFACES = `${module.exports.INTERFACES_PATH}/navigation.ts`;
+module.exports.REACTOTRON_INTERFACES = `${module.exports.INTERFACES_PATH}/reactotron.ts`;
 module.exports.AUTH_INTERFACES = `${module.exports.INTERFACES_PATH}/authInterfaces.ts`;
 
 // REDUX

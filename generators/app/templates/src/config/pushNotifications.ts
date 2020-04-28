@@ -43,7 +43,7 @@ export const registerAppWithFCM = async () => {
 
 export const configPushNotifications = () => {
   PushNotification.configure({
-    onRegister: async token => {
+    onRegister: async (token: string) => {
       if (token) await AsyncStorage.setItem('gcmToken', JSON.stringify(token));
     },
     senderID: senderId,
@@ -73,4 +73,4 @@ export const setLocalNotifications = () => {
   });
 };
 
-export const checkNotificationPermission = cbk => PushNotification.checkPermissions(cbk);
+export const checkNotificationPermission = (cbk: any) => PushNotification.checkPermissions(cbk);
