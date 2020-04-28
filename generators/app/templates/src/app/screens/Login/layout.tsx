@@ -7,9 +7,10 @@ import withLoadable from '@components/Loadable';
 import CustomTextInput from '@components/CustomTextInput';
 import CustomButton from '@components/CustomButton';
 
+import { LoginProps } from './interface';
 import styles from './styles';
 
-export function Login({ onLogin }) {
+export function Login({ onLogin }: LoginProps) {
   return (
     <View style={styles.container}>
       <View style={styles.formElementContainer}>
