@@ -3,14 +3,13 @@ const runCommand = require('./runCommand');
 const fastlaneMobileHTTPS = 'https://github.com/Wolox/fastlane-mobile.git';
 const fastlaneAndroidFolderOrigin = 'fastlane-mobile/android/fastlane';
 const fastlaneIosFolderOrigin = 'fastlane-mobile/ios/fastlane';
-const fastlaneFolderDestination = 'fastlane';
 const fastlaneMobileRoot = 'fastlane-mobile';
 
 function configureIosFastlane() {
   return runCommand({
     command: [
       'mv',
-      [`${fastlaneIosFolderOrigin}`, `ios/${fastlaneFolderDestination}`],
+      [`${fastlaneIosFolderOrigin}`, `ios/fastlane`],
       { cwd: `${process.cwd()}/${this.projectName}` }
     ],
     successMessage: 'Moved ios lanes!',
@@ -28,6 +27,30 @@ function configureIosFastlane() {
       });
     })
     .then(() => {
+      // This copies are temporary saved to be replaced later in editBundleIdentifier/revertActionModifications
+      runCommand({
+        command: [
+          'cp',
+          [`.env`, `.envCopy`],
+          { cwd: `${process.cwd()}/${this.projectName}/ios/fastlane/config` }
+        ],
+        successMessage: 'Copied original .env!',
+        context: this.options
+      });
+    })
+    .then(() => {
+      runCommand({
+        command: [
+          'cp',
+          [`project_name.rb`, `project_name_copy`],
+          { cwd: `${process.cwd()}/${this.projectName}/ios/fastlane/actions/` }
+        ],
+        successMessage: 'Copied original project_name.rb!',
+        context: this.options
+      });
+    })
+    .then(() => {
+      // This changes are temporal and are removed in editBundleIdentifier/revertActionModifications function
       const fastlaneEnv = this.fs.read(`${this.projectName}/ios/fastlane/config/.env`);
       const updateFastlaneEnv = fastlaneEnv.concat(
         `PROJECT_FILE_NAME="${this.projectName}"\nXCODE_PROJECT_PATH="${process.cwd()}/${
@@ -53,16 +76,14 @@ function configureAndroidFastlane() {
   return runCommand({
     command: [
       'mv',
-      [`${fastlaneAndroidFolderOrigin}`, `android/${fastlaneFolderDestination}`],
+      [`${fastlaneAndroidFolderOrigin}`, `android/fastlane`],
       { cwd: `${process.cwd()}/${this.projectName}` }
     ],
     successMessage: 'Moved android lanes!',
     context: this.options
   })
     .then(() => {
-      const fastfile = this.fs.read(
-        `${this.projectName}/android/${fastlaneFolderDestination}/Fastfile.private`
-      );
+      const fastfile = this.fs.read(`${this.projectName}/android/fastlane/Fastfile.private`);
       // Modifying task to set build number and version code using version.gradle functions
       const updateFastfile = fastfile.replace(
         'buid_task = get_build_task(environment: environment, aab: create_aab)',
@@ -72,10 +93,7 @@ function configureAndroidFastlane() {
           'gradle(task: "bumperVersionCode", properties: { versionCode: build_num }) if build_num != nil\n\n' +
           '\n\t\tbuid_task = get_build_task(environment: environment, aab: create_aab)'
       );
-      this.fs.write(
-        `${this.projectName}/android/${fastlaneFolderDestination}/Fastfile.private`,
-        updateFastfile
-      );
+      this.fs.write(`${this.projectName}/android/fastlane/Fastfile.private`, updateFastfile);
     })
     .then(() => {
       // Copy version.gradle from template folder
