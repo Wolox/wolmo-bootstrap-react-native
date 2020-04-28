@@ -30,6 +30,6 @@ export const login = () =>
   // TODO: Implement call to authentication API here
   new Promise(resolve => {
     setTimeout(() => {
-      resolve({ ok: true, data: { sessionToken: 'token' } });
+      resolve({ ok: true, problem: null, originalError: null, data: { sessionToken: 'token' } });
     }, 750);
   });
