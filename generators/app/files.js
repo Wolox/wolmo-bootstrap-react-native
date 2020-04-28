@@ -93,6 +93,7 @@ module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBa
 module.exports.GLOBAL_INTERFACES = `${module.exports.INTERFACES_PATH}/globalInterfaces.ts`;
 module.exports.NAVIGATION_INTERFACES = `${module.exports.INTERFACES_PATH}/navigation.ts`;
 module.exports.REACTOTRON_INTERFACES = `${module.exports.INTERFACES_PATH}/reactotron.ts`;
+module.exports.AUTH_INTERFACES = `${module.exports.INTERFACES_PATH}/authInterfaces.ts`;
 
 // REDUX
 module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
@@ -104,5 +105,5 @@ module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.js`;
 module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
 
 // SERVICES
-module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
-module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.js`;
+module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.ts`;
+module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.ts`;
