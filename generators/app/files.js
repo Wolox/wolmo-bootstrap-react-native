@@ -15,7 +15,7 @@ module.exports.UTILS_PATH = 'src/utils';
 // BASE FILES
 module.exports.ESLINT_IGNORE_FILE = '.eslintignore';
 module.exports.ESLINTRC_FILE = '.eslintrc.js';
-module.exports.MAIN = 'App.js';
+module.exports.MAIN = 'App.tsx';
 module.exports.BITRISE_YML = 'bitrise.yml';
 module.exports.INDEX_D_FILE = 'index.d.ts';
 module.exports.INDEX = 'index.js';
@@ -45,8 +45,8 @@ module.exports.CI_CONFIG_FILE = `${module.exports.CI_PATH}/config.yml`;
 // APP
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
-module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.js`;
-module.exports.APP = `${module.exports.APP_PATH}/index.js`;
+module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.ts`;
+module.exports.APP = `${module.exports.APP_PATH}/index.tsx`;
 
 // APP COMPONENTS - APP NAVIGATOR
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
