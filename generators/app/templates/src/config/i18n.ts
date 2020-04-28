@@ -1,8 +1,8 @@
-import i18next from 'i18next';
+import i18next, { Module } from 'i18next';
 import { getLocales } from 'react-native-localize';
 
 const getLanguage = {
-  type: 'languageDetector',
+  type: 'languageDetector' as Module['type'],
   init: () => null,
   detect: () => {
     const locales = getLocales();
