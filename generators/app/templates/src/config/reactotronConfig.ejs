@@ -22,7 +22,6 @@ if (__DEV__) {
       reactotronRedux({
         onRestore: state =>
           Object.entries(state).reduce(
-            // eslint-disable-next-line new-cap
             (prev, [key, value]) => ({ ...prev, [key]: key === 'nav' ? value : Immutable(value) }),
             {}
           )
