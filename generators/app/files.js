@@ -72,6 +72,9 @@ module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
 module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
 module.exports.NAVIGATION_HELPER = `${module.exports.APP_NAVIGATOR_PATH}/helper.js`;
 
+// COMPONENTS - CUSTOM STATUS BAR
+module.exports.CUSTOM_STATUS_BAR = `${module.exports.COMPONENTS_PATH}/CustomStatusBar`;
+
 // COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
 

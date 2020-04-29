@@ -1,0 +1,41 @@
+import React, { useEffect, useState } from 'react';
+<%_ if(features.firebaseanalytics) { _%>
+import analytics from '@react-native-firebase/analytics';
+<%_ } _%>
+import { useSelector } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef, getActiveRoute, getRoute } from '@navigation';
+import CustomStatusBar from '@components/CustomStatusBar';
+import withLoadable from '@components/Loadable';
+
+import Navigator from './navigator';
+
+const initialLoadingSelector = state => state.auth.initialLoading;
+
+const AppNavigator = () => {
+  const [routeName, setRouteName] = useState(null);
+  useEffect(() => {
+    setRouteName(getActiveRoute()?.name);
+  }, []);
+
+  return (
+    <NavigationContainer
+      ref={navigationRef}
+      onStateChange={state => {
+        const previousRouteName = routeName;
+        const currentRouteName = getRoute(state)?.name;
+        if (previousRouteName !== currentRouteName) {
+          <%_ if(features.firebaseanalytics) { _%>
+          analytics().setCurrentScreen(currentRouteName, currentRouteName);
+          <%_ } _%>
+
+          setRouteName(currentRouteName);
+        }
+      }}>
+      <CustomStatusBar routeName={routeName} />
+      <Navigator />
+    </NavigationContainer>
+  );
+};
+
+export default withLoadable(() => useSelector(initialLoadingSelector))(AppNavigator);
