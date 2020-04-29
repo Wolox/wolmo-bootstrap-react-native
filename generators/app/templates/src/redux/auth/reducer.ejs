@@ -26,12 +26,6 @@ const reducerDescription = {
 
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
 
-export const propTypes = {
-  currentUser: PropTypes.shape({
-    email: PropTypes.string.isRequired
-    // TODO: Extend user model definition
-  })
-};
 <%_ } _%>
 <%_ if(!features.login && features.onboarding) { _%>
 import { createReducer, onReadValue } from 'redux-recompose';
