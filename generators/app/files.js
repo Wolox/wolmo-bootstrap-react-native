@@ -63,8 +63,8 @@ module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
 
 // APP SCREENS - HOME
 module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
+module.exports.HOME = `${module.exports.HOME_PATH}/index.tsx`;
 module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.ts`;
-module.exports.HOME = `${module.exports.HOME_PATH}/layout.tsx`;
 // APP SCREENS - LOGIN
 module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
 // APP SCREENS - INITIAL LOADING

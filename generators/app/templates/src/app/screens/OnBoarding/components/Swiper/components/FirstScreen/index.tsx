@@ -5,10 +5,12 @@ import CustomText from '@components/CustomText';
 
 import styles from './styles';
 
-export default function FirstScreen() {
+function FirstScreen() {
   return (
     <View style={styles.container}>
       <CustomText>{i18next.t('ONBOARDING:FIRST_SCREEN')}</CustomText>
     </View>
   );
 }
+
+export default FirstScreen;

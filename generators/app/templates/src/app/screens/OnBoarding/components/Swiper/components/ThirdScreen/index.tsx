@@ -5,10 +5,12 @@ import CustomText from '@components/CustomText';
 
 import styles from './styles';
 
-export default function ThirdScreen() {
+function ThirdScreen() {
   return (
     <View style={styles.container}>
       <CustomText>{i18next.t('ONBOARDING:THIRD_SCREEN')}</CustomText>
     </View>
   );
 }
+
+export default ThirdScreen;

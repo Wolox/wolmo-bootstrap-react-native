@@ -3,11 +3,11 @@ import { View } from 'react-native';
 import CustomButton from '@components/CustomButton';
 
 import { FooterProps } from './interface';
-import { screensButtonInfo } from './buttonsInfo';
+import { getScreensButtonsInfo } from './buttonsInfo';
 import styles from './styles';
 
-export default function Footer(props: FooterProps) {
-  const { firstButton, secondButton } = screensButtonInfo(props);
+function Footer(props: FooterProps) {
+  const { firstButton, secondButton } = getScreensButtonsInfo(props);
   return (
     <View style={styles.buttons}>
       {firstButton && <CustomButton {...firstButton} style={styles.buttonContainer} activeOpacity={0.7} />}
@@ -15,3 +15,5 @@ export default function Footer(props: FooterProps) {
     </View>
   );
 }
+
+export default Footer;

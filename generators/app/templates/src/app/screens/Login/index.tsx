@@ -12,7 +12,7 @@ import { actionCreators as authActions } from '@redux/auth/actions';
 import './i18n';
 import styles from './styles';
 
-const Login = () => {
+function Login() {
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>(state => state.auth.currentUserLoading);
   const handleLogin = useCallback(() => dispatch(authActions.login()), [dispatch]);
@@ -48,6 +48,6 @@ const Login = () => {
       )}
     </View>
   );
-};
+}
 
 export default memo(Login);

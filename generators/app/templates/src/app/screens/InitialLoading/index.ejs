@@ -1,28 +1,27 @@
 <%_ if (features.onboarding && !features.login) { _%>import { useEffect } from 'react';<%_ } _%>
-import PropTypes from 'prop-types';
 <%_ if (features.login) { _%>
 import { useSelector } from 'react-redux';
 import withLoadable from '@components/Loadable';
+import { CurrentUser } from '@interfaces/authInterfaces';
+import { State } from '@interfaces/reduxInterfaces';
 <%_ } _%>
 import Routes from '@constants/routes';
+import { Navigation } from '@interfaces/navigation';
 <%_ if (features.onboarding && !features.login) { _%>
 import { setOnBoardingAccess, getOnBoardingAccess } from '@services/OnBoardingService';
-import { Navigation } from '@interfaces/navigation';
-import { State } from '@interfaces/reduxInterfaces';
-import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
 
 <%_ if (features.login) { _%>
-const initialLoadingSelector = state => state.auth.initialLoading;
+const initialLoadingSelector = (state: State) => state.auth.initialLoading;
 <%_ } _%>
 
-const InitialLoading = ({ navigation }: Navigation) => {
+function InitialLoading({ navigation }: Navigation) {
   <%_ if (features.login) { _%>
-  const initialLoading = useSelector<State,boolean>(initialLoadingSelector);
-  const currentUser = useSelector<State,CurrentUser >(state => state.auth.currentUser);
+  const initialLoading = useSelector<State, boolean>(initialLoadingSelector);
+  const currentUser = useSelector<State, CurrentUser>(state => state.auth.currentUser);
   if (!initialLoading) {
-    <%_ } _%>
-    <%_ if (features.onboarding && !features.login) { _%>
+  <%_ } _%>
+  <%_ if (features.onboarding && !features.login) { _%>
   useEffect(() => {
     (async () => {
       const access = await getOnBoardingAccess();
@@ -31,18 +30,17 @@ const InitialLoading = ({ navigation }: Navigation) => {
     })();
   }, [navigation]);
   <%_ } _%>
-    <%_ 
-    if(!features.onboarding || features.login){ _%>navigation.navigate(<%_
+  <%_ if(!features.onboarding || features.login){ _%>navigation.navigate(<%_
     } if (features.login) { _%>currentUser ? Routes.App : Routes.Auth<%_ } 
     if(!features.onboarding && !features.login){ _%>Routes.App<%_ } if(!features.onboarding || features.login){_%>);<%_ } _%>
-    <%_ if (features.login) { _%>
+  <%_ if (features.login) { _%>
   }
   <%_ } _%>
   return null;
 };
 
 <%_ if (features.login) { _%>
-  export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
-  <%_ } else{_%>
-  export default InitialLoading;
-  <%_ } _%>
+export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
+<%_ } else{_%>
+export default InitialLoading;
+<%_ } _%>

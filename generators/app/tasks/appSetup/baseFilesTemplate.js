@@ -25,6 +25,7 @@ const {
   FONTS_CONSTANTS,
   STATUS_BAR_CONSTANTS,
   FONTS_CONFIG,
+  HOME,
   HOME_STYLES,
   README,
   REDUX_STORE,
@@ -88,6 +89,7 @@ const TEMPLATE_FILES = [
   INDEX,
   APP,
   APP_NAVIGATOR_NAVIGATOR,
+  HOME,
   NAVIGATION_CONFIG,
   APP_I18N,
   CI_CONFIG_FILE,
@@ -101,10 +103,4 @@ const TEMPLATE_FILES = [
 module.exports = function baseFilesTemplate() {
   TEMPLATE_FILES.forEach(copyTemplateFile.bind(this));
   FILES.forEach(copyFile.bind(this));
-
-  this.fs.copyTpl(
-    this.templatePath('src', 'app', 'screens', 'Home', this.features.login ? 'index.js' : 'layout.ejs'),
-    this.destinationPath(this.projectName, 'src', 'app', 'screens', 'Home', 'index.js'),
-    { projectName: this.projectName, features: this.features }
-  );
 };
