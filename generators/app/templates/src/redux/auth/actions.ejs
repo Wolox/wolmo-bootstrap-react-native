@@ -51,7 +51,7 @@ export const actionCreators = {
 import { createTypes } from 'redux-recompose';
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 
-export const actions = createTypes(['HAS_ACCESS'], '@@AUTH');
+export const actions = createTypes(['AUTH_INIT', 'HAS_ACCESS'], '@@AUTH');
 
 const onBoardingTarget = 'hasAccessOnBoarding';
 export const actionCreators = {
