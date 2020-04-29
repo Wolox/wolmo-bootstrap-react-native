@@ -1,0 +1,48 @@
+def String generateVersionName() {
+    if (project.hasProperty('versionName')) {
+        return project.property('versionName');
+    }
+    String versionName = VERSION_NAME
+    versionName
+}
+
+def Integer generateVersionCode() {
+    if (project.hasProperty('versionCode')) {
+        return project.property('versionCode') as int;
+    }
+    String versionCode = VERSION_CODE
+    versionCode.toInteger()
+}
+
+private void save(keyName, keyValue) {
+    ant.propertyfile(file: "../gradle.properties") {
+        entry(key: keyName, value: keyValue)
+    }
+}
+
+private void saveVersionName(major, minor, patch) {
+    save("VERSION_NAME", "${major}.${minor}.${patch}".toString())
+}
+
+private void saveVersionCode(versionCode) {
+    save("VERSION_CODE", versionCode)
+}
+
+task bumperVersionCode {
+    group = 'bumper'
+    doLast {
+        saveVersionCode(versionCode)
+    }
+}
+
+task bumperVersionName {
+    group = 'bumper'
+    doLast {
+        save("VERSION_NAME" ,versionName)
+    }
+}
+
+ext {
+    generateVersionCode = this.&generateVersionCode
+    generateVersionName = this.&generateVersionName
+}
