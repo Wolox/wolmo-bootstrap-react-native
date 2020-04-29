@@ -4,6 +4,7 @@ import { blue, black, green } from '@constants/colors';
 const DOT_SIZE = 12;
 const ACTIVE_DOT_SIZE = 15;
 const BORDER_RADIUS = 10;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

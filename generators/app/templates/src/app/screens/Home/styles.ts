@@ -7,7 +7,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  mainButton: {
+  home: {
     backgroundColor: green,
     padding: 10,
     borderRadius: 3

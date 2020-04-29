@@ -1,6 +1,8 @@
 import i18next from 'i18next';
 
-export const screensButtonInfo = ({ onNextScreen, onSkip, onPreviousScreen, screenIndex }) =>
+import { FooterProps } from './interface';
+
+export const getScreensButtonsInfo = ({ onNextScreen, onSkip, onPreviousScreen, screenIndex }: FooterProps) =>
   [
     {
       firstButton: {
