@@ -52,6 +52,7 @@ The boilerplate includes
 - [Font Customization](/generators/app/templates/src/config/fonts.js)
 - [Bitrise config](/generators/app/tasks/createBitriseApp.js)
 - [TypeScript configuration](/generators/app/templates/tsconfig.json)
+- [Fastlane-mobile](https://github.com/Wolox/fastlane-mobile)
 
 ### Tech Stack
 

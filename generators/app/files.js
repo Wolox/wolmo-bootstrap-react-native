@@ -3,7 +3,6 @@ module.exports.MOCKS = '__mocks__';
 module.exports.TESTS = '__tests__';
 module.exports.CI_PATH = '.woloxci';
 module.exports.FONTS = 'assets/fonts';
-module.exports.IOS_PATH = 'ios';
 module.exports.APP_PATH = 'src/app';
 module.exports.CONFIG_PATH = 'src/config';
 module.exports.CONSTANTS_PATH = 'src/constants';
