@@ -3,7 +3,13 @@ import { VariantsInterface } from '@components/CustomText/constants';
 
 export const VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
 
-export interface CustomButtonProps extends VariantsInterface {
+interface CustomButtonVariants {
+  borderless?: boolean;
+  radial?: boolean;
+  black?: boolean;
+}
+
+export interface CustomButtonProps extends VariantsInterface, CustomButtonVariants {
   onPress: TouchableOpacityProps['onPress'];
   activeOpacity?: number;
   disabled?: boolean;
@@ -12,9 +18,4 @@ export interface CustomButtonProps extends VariantsInterface {
   style?: ViewStyle;
   textStyle?: TextStyle;
   title?: string;
-  secondary?: boolean;
-  isLoading?: boolean;
-  borderless?: boolean;
-  isRegularText?: boolean;
-  isTransparentButton?: boolean;
 }

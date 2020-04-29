@@ -7,7 +7,6 @@ import styles from './styles';
 
 const CustomText = (props: CustomTextProps) => {
   const customStyles = useCallback(() => getCustomStyles(VARIANTS, props, styles), [props]);
-
   const { textProps, style, children } = props;
   return (
     <Text {...textProps} style={[styles.base, customStyles(), style]}>

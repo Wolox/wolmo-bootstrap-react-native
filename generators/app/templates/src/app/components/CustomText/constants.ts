@@ -27,7 +27,7 @@ export const VARIANTS = [
   'error'
 ];
 
-interface VariantsInterface {
+export interface VariantsInterface {
   semiBold?: boolean;
   bold?: boolean;
   italic?: boolean;
