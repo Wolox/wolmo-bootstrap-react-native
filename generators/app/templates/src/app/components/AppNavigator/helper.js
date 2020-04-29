@@ -6,7 +6,7 @@ export default function useNavigation() {
   return navigationRef.current;
 }
 
-function getRoute(state) {
+export function getRoute(state) {
   const route = state.routes[state.index];
 
   if (route.state) {
