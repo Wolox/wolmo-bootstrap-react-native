@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, NavigationNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 <%_ if(features.tabs) { _%> 
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -89,6 +89,6 @@ const SwitchNavigator = createAnimatedSwitchNavigator(
     <%_ } _%>
   },
   mainSwitchNavConfig
-);
+) as NavigationNavigator<any, {}>;
 
 export default createAppContainer(SwitchNavigator);

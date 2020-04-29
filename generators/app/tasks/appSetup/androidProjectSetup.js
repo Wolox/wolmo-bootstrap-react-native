@@ -2,15 +2,15 @@ function addDotenvPluginAndRNScreen() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\nproject.ext.envConfigFiles = [\n\tqadebug: ".dev.env",\n\tqarelease: ".dev.env",\n\tstagedebug: ".stage.env",\n\tstagerelease: ".stage.env",\n\tproductiondebug: ".production.env",\n\tproductionrelease: ".production.env"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
+    'apply plugin: "com.android.application"\n\nproject.ext.envConfigFiles = [\n\tqadebug: ".dev.env",\n\tqarelease: ".dev.env",\n\tstagedebug: ".stage.env",\n\tstagerelease: ".stage.env",\n\tproductiondebug: ".production.env",\n\tproductionrelease: ".production.env"\n]\napply from: project(\':react-native-config\').projectDir.getPath() + "/dotenv.gradle"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'enableHermes: false,',
     'enableHermes: true,'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
-    'versionName "1.0"',
-    'versionName "1.0"\n\t\tmultiDexEnabled true'
+    'versionName generateVersionName()',
+    'versionName generateVersionName()\n\t\tmultiDexEnabled true'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'if (enableHermes) {',
@@ -25,8 +25,8 @@ function addDotenvPluginAndRNScreen() {
     "productFlavors {\n\t\tqa {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".qa\"\n\t\t}\n\t\tstage {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".stage\"\n\t\t}\n\t\tproduction {\n\t\t\tdimension 'buildtype'\n\t\t}\n\t}\n// applicationVariants are e.g. debug, release"
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
-    'versionName "1.0"',
-    `versionName "1.0"\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
+    'versionName generateVersionName()',
+    `versionName generateVersionName()\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }

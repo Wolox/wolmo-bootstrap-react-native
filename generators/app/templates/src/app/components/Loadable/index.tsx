@@ -10,8 +10,10 @@ export const Loading = () => (
   </View>
 );
 
-const LoadableWrapper = shouldLoad => WrappedComponent => {
-  const Loadable = props => (shouldLoad(props) ? <Loading /> : <WrappedComponent {...props} />);
+const LoadableWrapper = (shouldLoad: (props: any) => boolean) => (
+  WrappedComponent: React.ComponentType<any>
+) => {
+  const Loadable = (props: any) => (shouldLoad(props) ? <Loading /> : <WrappedComponent {...props} />);
   return Loadable;
 };
 
