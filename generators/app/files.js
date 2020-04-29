@@ -74,13 +74,13 @@ module.exports.INITIAL_LOADING = `${module.exports.INITIAL_LOADING_PATH}/index.j
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
 // CONFIG
-module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.js`;
-module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.js`;
-module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.js`;
-module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.js`;
-module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.js`;
-module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.js`;
-module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.js`;
+module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.ts`;
+module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.ts`;
+module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.ts`;
+module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.ts`;
+module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.ts`;
+module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.ts`;
+module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.ts`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.ts`;
@@ -90,18 +90,21 @@ module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.ts`;
 module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBar.ts`;
 
 // INTERFACES
+module.exports.AUTH_INTERFACES = `${module.exports.INTERFACES_PATH}/authInterfaces.ts`;
 module.exports.GLOBAL_INTERFACES = `${module.exports.INTERFACES_PATH}/globalInterfaces.ts`;
 module.exports.NAVIGATION_INTERFACES = `${module.exports.INTERFACES_PATH}/navigation.ts`;
+module.exports.REACTOTRON_INTERFACES = `${module.exports.INTERFACES_PATH}/reactotron.ts`;
+module.exports.REDUX_INTERFACES = `${module.exports.INTERFACES_PATH}/reduxInterfaces.ts`;
 
 // REDUX
-module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.js`;
+module.exports.REDUX_STORE = `${module.exports.REDUX_PATH}/store.ts`;
 // REDUX - AUTH
 module.exports.AUTH_REDUX_PATH = `${module.exports.REDUX_PATH}/auth`;
-module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.js`;
-module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.js`;
+module.exports.AUTH_ACTIONS = `${module.exports.AUTH_REDUX_PATH}/actions.ts`;
+module.exports.AUTH_REDUCER = `${module.exports.AUTH_REDUX_PATH}/reducer.ts`;
 // REDUX - MIDDLEWARES
-module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.js`;
+module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/analyticsMiddleware.ts`;
 
 // SERVICES
-module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.js`;
-module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.js`;
+module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.ts`;
+module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.ts`;

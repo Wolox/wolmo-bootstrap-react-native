@@ -1,29 +1,34 @@
-import { SwitchActions } from 'react-navigation';
+import { ApiOkResponse } from 'apisauce';
+import { Dispatch } from 'react';
+import { SwitchActions, NavigationJumpToAction } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
-import * as AuthService from '@services/AuthService';
 import Routes from '@constants/routes';
+import { CurrentUser } from '@interfaces/authInterfaces';
+import { Action } from '@interfaces/reduxInterfaces';
+import * as AuthService from '@services/AuthService';
 
 export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT']), '@@AUTH');
 
-const loginTarget = 'currentUser';
+const TARGETS = {
+  CURRENT_USER: 'currentUser'
+};
 
 export const actionCreators = {
-  init: user => ({ type: actions.AUTH_INIT, target: loginTarget, payload: user }),
-  login: authData => ({
+  init: (user: CurrentUser) => ({ type: actions.AUTH_INIT, target: TARGETS.CURRENT_USER, payload: user }),
+  login: () => ({
     type: actions.LOGIN,
-    target: loginTarget,
+    target: TARGETS.CURRENT_USER,
     service: AuthService.login,
-    payload: authData,
     injections: [
-      withPostSuccess((dispatch, response) => {
+      withPostSuccess((dispatch: Dispatch<NavigationJumpToAction>, response: ApiOkResponse<CurrentUser>) => {
         dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));
         AuthService.setCurrentUser(response.data);
       })
     ]
   }),
-  logout: () => async dispatch => {
+  logout: () => async (dispatch: Dispatch<NavigationJumpToAction | Action<{}>>) => {
     await AuthService.removeCurrentUser();
-    dispatch({ type: actions.LOGOUT, target: loginTarget });
+    dispatch({ type: actions.LOGOUT, target: TARGETS.CURRENT_USER });
     dispatch(SwitchActions.jumpTo({ routeName: Routes.Auth }));
   }
 };

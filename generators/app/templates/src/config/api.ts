@@ -13,7 +13,7 @@ const api = create({
   timeout: 5000
 });
 
-api.addMonitor(Reactotron.apisauce);
+api.addMonitor(((Reactotron as unknown) as { apisauce: any }).apisauce);
 
 export const apiSetup = (/* dispatch */) => {
   if (baseURL === 'http://wolox.com') {
