@@ -49,8 +49,8 @@ module.exports.APP = `${module.exports.APP_PATH}/index.js`;
 
 // APP COMPONENTS - APP NAVIGATOR
 module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNavigator`;
-module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.js`;
-module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.js`;
+module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.tsx`;
+module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.ts`;
 // APP COMPONENTS - CUSTOM BUTTON
 module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
 // APPCOMPONENTS - CUSTOM TEXT

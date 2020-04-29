@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { BackHandler, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, NavigationState } from 'react-navigation';
 import { createReduxContainer } from 'react-navigation-redux-helpers';
 import { ROOT } from '@constants/platform';
 import { statusBarStyles } from '@config/navigation';
+import { State } from '@interfaces/reduxInterfaces';
 import { getCurrentRouteName } from '@utils/navUtils';
 
 import Navigator from './navigator';
@@ -12,7 +13,7 @@ import Navigator from './navigator';
 const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 
 const AppNavigator = () => {
-  const state = useSelector(store => store.nav);
+  const state = useSelector<State, NavigationState>(store => store.nav);
   const dispatch = useDispatch();
   const statusBarProps = statusBarStyles[getCurrentRouteName(state)] || statusBarStyles.default;
 
