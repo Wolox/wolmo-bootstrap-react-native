@@ -14,7 +14,7 @@ function Home() {
   <%_ if(features.login) { _%>
   const dispatch = useDispatch();
   const handleLogout = useCallback(() => dispatch(AuthActions.logout()), [dispatch]);
-  <%_ } } { _%>
+  <%_ } _%>
   return (
     <View style={styles.container}>
     <%_ if(features.login) { _%>
