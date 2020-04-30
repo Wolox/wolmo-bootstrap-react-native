@@ -37,3 +37,7 @@ export interface State {
   <%_ } _%>
   nav: NavigationState;
 }
+
+export interface ReduxObject {
+  getState: () => State;
+}

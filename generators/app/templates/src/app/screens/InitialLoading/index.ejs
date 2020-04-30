@@ -18,7 +18,7 @@ const initialLoadingSelector = (state: State) => state.auth.initialLoading;
 function InitialLoading({ navigation }: Navigation) {
   <%_ if (features.login) { _%>
   const initialLoading = useSelector<State, boolean>(initialLoadingSelector);
-  const currentUser = useSelector<State, CurrentUser>(state => state.auth.currentUser);
+  const currentUser = useSelector<State, CurrentUser | null>(state => state.auth.currentUser);
   if (!initialLoading) {
   <%_ } _%>
   <%_ if (features.onboarding && !features.login) { _%>

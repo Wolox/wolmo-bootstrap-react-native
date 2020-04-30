@@ -15,7 +15,7 @@ const api = create({
 
 api.addMonitor(((Reactotron as unknown) as { apisauce: any }).apisauce);
 
-export const apiSetup = (/* dispatch */) => {
+export const apiSetup = (/* dispatch you should modified in the index root file too*/) => {
   if (baseURL === 'http://wolox.com') {
     console.warn('API baseURL has not been properly initialized');
   }

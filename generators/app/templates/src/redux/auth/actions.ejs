@@ -22,7 +22,7 @@ export const actionCreators = {
     injections: [
       withPostSuccess((dispatch: Dispatch<NavigationJumpToAction>, response: ApiOkResponse<CurrentUser>) => {
         dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));
-        AuthService.setCurrentUser(response.data);
+        AuthService.setCurrentUser(response.data!);
       })
     ]
   }),
