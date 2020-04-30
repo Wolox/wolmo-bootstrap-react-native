@@ -44,16 +44,16 @@ export const fontMaker = (options: FontMakerOptions = {}): TextStyle => {
   const { weights, styles } = fonts[family];
 
   if (isAndroid) {
-    weight = weight !== REGULAR && weights?.[weight] ? weight : '';
-    style = style !== NORMAL && styles?.[style] ? style : '';
+    weight = weight !== REGULAR && weights?.[weight!] ? weight : '';
+    style = style !== NORMAL && styles?.[style!] ? style : '';
 
     family = family.split(' ').join('');
-    const suffix = weight + style;
+    const suffix = weight! + style!;
 
     font = { fontFamily: family + (suffix.length ? `-${suffix}` : '') };
   } else {
-    weight = weights?.[weight] || weights?.[REGULAR] || REGULAR_WEIGHT;
-    style = styles?.[style] || styles?.[NORMAL] || NORMAL_STYLE;
+    weight = weights?.[weight!] || weights?.[REGULAR] || REGULAR_WEIGHT;
+    style = styles?.[style!] || styles?.[NORMAL] || NORMAL_STYLE;
 
     font = { fontFamily: family, fontWeight: weight, fontStyle: style };
   }
