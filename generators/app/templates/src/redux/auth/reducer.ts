@@ -16,7 +16,7 @@ const reducerDescription = {
   primaryActions: [actions.LOGIN],
   override: {
     [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: Action<CurrentUser>) =>
-      state.merge({ initialLoading: false, [action.target]: action.payload }),
+      state.merge({ initialLoading: false, [action.target!]: action.payload }),
     [actions.LOGOUT]: onSuccess()
   }
 };

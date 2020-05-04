@@ -47,8 +47,8 @@ const AppStack = createStackNavigator(
       <%_ if (features.tabs) { _%>
       screen: createBottomTabNavigator(
         {
-          ...inferRoute({ Tab1: Home }),
-          ...inferRoute({ Tab2: Home })
+          [Routes.Tab1]: Home,
+          [Routes.Tab2]: Home
         },
         appTabNavConfig
       ),

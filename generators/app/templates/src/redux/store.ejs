@@ -14,6 +14,7 @@ import {
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
+import { ImmutableObject } from 'seamless-immutable';
 import Navigator from '@components/AppNavigator/navigator';
 import { State } from '@interfaces/reduxInterfaces';
 <%_ if(features.firebaseanalytics) { _%>
@@ -46,7 +47,7 @@ const persistConfig = {
 
 const nav = createNavigationReducer(Navigator);
 
-configureMergeState((state: any, diff: any) => state.merge(diff));
+configureMergeState((state: ImmutableObject<State>, diff: State) => state.merge(diff));
 
 const reducers = combineReducers({
 <%_ if(features.login) { _%>

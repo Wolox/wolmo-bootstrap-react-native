@@ -1,5 +1,5 @@
 import { TouchableOpacityProps, ViewStyle, ImageStyle, TextStyle } from 'react-native';
-import { VariantsInterface } from '@components/CustomText/constants';
+import { VariantsInterface as CustomTextVariants } from '@components/CustomText/constants';
 
 export const VARIANTS = ['borderless', 'radial', 'black', 'green', 'white', 'gray'];
 
@@ -9,7 +9,7 @@ interface CustomButtonVariants {
   black?: boolean;
 }
 
-export interface CustomButtonProps extends VariantsInterface, CustomButtonVariants {
+export interface CustomButtonProps extends CustomTextVariants, CustomButtonVariants {
   onPress: TouchableOpacityProps['onPress'];
   activeOpacity?: number;
   disabled?: boolean;

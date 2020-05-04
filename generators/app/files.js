@@ -14,7 +14,7 @@ module.exports.UTILS_PATH = 'src/utils';
 // BASE FILES
 module.exports.ESLINT_IGNORE_FILE = '.eslintignore';
 module.exports.ESLINTRC_FILE = '.eslintrc.js';
-module.exports.MAIN = 'App.tsx';
+module.exports.MAIN = 'App.js';
 module.exports.BITRISE_YML = 'bitrise.yml';
 module.exports.INDEX_D_FILE = 'index.d.ts';
 module.exports.INDEX = 'index.js';
