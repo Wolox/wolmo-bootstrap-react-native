@@ -14,7 +14,9 @@ import {
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
 <%_ } _%>
+import { ImmutableObject } from 'seamless-immutable';
 import Navigator from '@components/AppNavigator/navigator';
+import { State } from '@interfaces/reduxInterfaces';
 <%_ if(features.firebaseanalytics) { _%>
 
 import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
@@ -45,7 +47,7 @@ const persistConfig = {
 
 const nav = createNavigationReducer(Navigator);
 
-configureMergeState((state, diff) => state.merge(diff));
+configureMergeState((state: ImmutableObject<State>, diff: State) => state.merge(diff));
 
 const reducers = combineReducers({
 <%_ if(features.login) { _%>
@@ -62,7 +64,7 @@ const middlewares = [];
 const enhancers = [];
 
 /* ------------- React Navigation Middleware ------------- */
-middlewares.push(createReactNavigationReduxMiddleware(state => state.nav));
+middlewares.push(createReactNavigationReduxMiddleware((state: State) => state.nav));
 
 /* ------------- Thunk Middleware ------------- */
 middlewares.push(thunk);
@@ -78,11 +80,11 @@ middlewares.push(AnalyticsMiddleware);
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
-if (__DEV__) enhancers.push(Reactotron.createEnhancer(true));
+if (__DEV__ && Reactotron.createEnhancer) enhancers.push(Reactotron.createEnhancer(true));
 
 // In DEV mode, we'll create the store through Reactotron
 const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
 
-if (__DEV__) Reactotron.setReduxStore(store);
+if (__DEV__ && Reactotron.setReduxStore) Reactotron.setReduxStore(store);
 
 export default store;

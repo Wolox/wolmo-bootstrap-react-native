@@ -3,13 +3,20 @@ import Reactotron, { asyncStorage, overlay, trackGlobalErrors } from 'reactotron
 import apisaucePlugin from 'reactotron-apisauce';
 import { reactotronRedux } from 'reactotron-redux';
 import { NativeModules } from 'react-native';
+import { Tron } from '@interfaces/reactotron';
+// Console augmentation
+declare global {
+  interface Console {
+    tron: Tron;
+  }
+}
 
 // If you want to use a physical device and connect it to reactotron, execute first `adb reverse tcp:9090 tcp:9090`
 if (__DEV__) {
   const { scriptURL } = NativeModules.SourceCode;
   const scriptHostname = scriptURL.split('://')[1].split(':')[0];
   Reactotron.configure({ name: '<%= projectName %>', host: scriptHostname })
-    .use(trackGlobalErrors())
+    .use(trackGlobalErrors({}))
     .use(apisaucePlugin())
     .use(
       reactotronRedux({
@@ -20,28 +27,16 @@ if (__DEV__) {
           )
       })
     )
-    .use(asyncStorage())
+    .use(asyncStorage({}))
     .use(overlay())
     .connect();
+
   // eslint-disable-next-line no-console
   console.tron = {
-    log: (...args) => Reactotron.logImportant(...args),
-    clear: () => Reactotron.clear(),
-    customCommand: ({ command, description, handler, title }) =>
-      Reactotron.onCustomCommand({
-        command,
-        description,
-        handler,
-        title
-      }),
-    display: ({ image, name, preview, value }) =>
-      Reactotron.display({
-        name: name || 'DISPLAY',
-        value,
-        preview: preview || 'Click to show value',
-        important: true,
-        image
-      })
+    log: Reactotron.logImportant,
+    clear: Reactotron.clear,
+    customCommand: Reactotron.onCustomCommand,
+    display: Reactotron.display
   };
 }
 

@@ -94,7 +94,7 @@ You will have to complete the `bitriseInfo.json` with the next Info:
 
 ```
     "repositoryUrlSsh": "", // What's your repository url? (ssh only)
-    "publicApp": "", // If true then the app visibility setting will be public, in case of false it will be private (boolean value)
+    "publicApp": false, // If true then the app visibility setting will be public, in case of false it will be private (boolean value)
     "repositorySlug": "", // Write the repo slug (The name of your repo not the url)
     "repoOwner": "", // Who is the owner of the repo?
     "gitProvider": "", // The git provider you are using, it can be 'github', 'bitbucket', 'gitlab', 'gitlab-self-hosted' or 'custom'

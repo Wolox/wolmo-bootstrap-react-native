@@ -1,0 +1,43 @@
+import { Dispatch } from 'react';
+import { NavigationState } from 'react-navigation';
+import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
+<%_ if(features.login) { _%>
+import { CurrentUser } from '@interfaces/authInterfaces';
+<%_ } _%>
+
+export interface Action<T = null, P = null, K = null> {
+  type: string;
+  target?: string;
+  payload?: T;
+  key?: string;
+  index?: number;
+  service?: Function;
+  injections?: any[];
+  successSelector?: (response: ApiOkResponse<P>) => K;
+  failureSelector?: (response: ApiErrorResponse<P>) => K;
+}
+
+export type DispatcheableAction<T = null, P = null, K = null> = (
+  dispatch: Dispatch<Action<T, P, K>>,
+  getState: () => State
+) => void;
+<%_ if(features.login) { _%>
+
+export interface AuthState {
+  currentUser: CurrentUser | null;
+  currentUserLoading: boolean;
+  currentUserError: string | null;
+  initialLoading: boolean;
+}
+<%_ } _%>
+
+export interface State {
+  <%_ if(features.login) { _%>
+  auth: AuthState;
+  <%_ } _%>
+  nav: NavigationState;
+}
+
+export interface ReduxObject {
+  getState: () => State;
+}
