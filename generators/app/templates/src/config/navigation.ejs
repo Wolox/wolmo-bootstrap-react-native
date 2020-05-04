@@ -3,12 +3,11 @@ import i18next from 'i18next';
 import React from 'react';
 import { Button } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
-import { NavigationStackOptions } from 'react-navigation-stack';
 <%_ } _%>
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
-import {<%_ if (features.tabs) { _%> AppTabOptions, <%_ } _%> Navigation, AppScreensNavOptions } from '@interfaces/navigation';
+import { <%_ if (features.tabs) { _%> AppTabOptions, <%_ } _%> Navigation, AppScreensNavOptions } from '@interfaces/navigation';
 
 import fonts from './fonts';
 
@@ -66,7 +65,7 @@ export const appScreensNavOptions: AppScreensNavOptions = {
   <%_ if (features.drawer) { _%>
   },
   */
-  [Routes.Home]: ({ navigation }: NavigationStackOptions) => ({
+  [Routes.Home]: ({ navigation }: Navigation) => ({
     headerRight: () => (
       <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} title="Drawer" />
     )
