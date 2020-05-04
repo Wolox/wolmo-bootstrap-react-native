@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2020-05-04
+
+- Re-uploaded bootstrap version due to internet connection error
+
 ## [1.0.0] - 2020-05-04
 
 - Migrated bootstrap generated project configuration and files to `TypeScript (TS and TSX)`
