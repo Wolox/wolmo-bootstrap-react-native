@@ -14,7 +14,7 @@ module.exports.UTILS_PATH = 'src/utils';
 // BASE FILES
 module.exports.ESLINT_IGNORE_FILE = '.eslintignore';
 module.exports.ESLINTRC_FILE = '.eslintrc.js';
-module.exports.MAIN = 'App.tsx';
+module.exports.MAIN = 'App.js';
 module.exports.BITRISE_YML = 'bitrise.yml';
 module.exports.INDEX_D_FILE = 'index.d.ts';
 module.exports.INDEX = 'index.js';
@@ -78,7 +78,7 @@ module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.ts`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.ts`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.ts`;
 module.exports.I18N_CONFIG = `${module.exports.CONFIG_PATH}/i18n.ts`;
-module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.ts`;
+module.exports.NAVIGATION_CONFIG = `${module.exports.CONFIG_PATH}/navigation.tsx`;
 module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.ts`;
 
 // CONSTANTS

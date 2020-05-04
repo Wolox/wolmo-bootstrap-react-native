@@ -44,7 +44,8 @@ const {
   INDEX_D_FILE,
   ESLINTRC_FILE,
   ESLINT_IGNORE_FILE,
-  JEST_CONFIG_FILE
+  JEST_CONFIG_FILE,
+  REDUX_INTERFACES
 } = require('../../files');
 
 const FILES = [
@@ -95,7 +96,8 @@ const TEMPLATE_FILES = [
   INITIAL_LOADING,
   INDEX_D_FILE,
   ESLINTRC_FILE,
-  NAVIGATION_INTERFACES
+  NAVIGATION_INTERFACES,
+  REDUX_INTERFACES
 ];
 
 module.exports = function baseFilesTemplate() {

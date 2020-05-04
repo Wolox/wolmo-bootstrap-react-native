@@ -16,7 +16,9 @@ function Login() {
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>(state => state.auth.currentUserLoading);
   const handleLogin = useCallback(() => dispatch(authActions.login()), [dispatch]);
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <View style={styles.container}>
       <View style={styles.formElementContainer}>
         <CustomTextInput
@@ -35,17 +37,13 @@ function Login() {
           showEye
         />
       </View>
-      {loading ? (
-        <Loading />
-      ) : (
-        <CustomButton
-          green
-          onPress={handleLogin}
-          style={styles.formButton}
-          title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Wolox' })}
-          activeOpacity={0.7}
-        />
-      )}
+      <CustomButton
+        green
+        onPress={handleLogin}
+        style={styles.formButton}
+        title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Wolox' })}
+        activeOpacity={0.7}
+      />
     </View>
   );
 }

@@ -15,7 +15,8 @@ const AppWithNavigationState = createReduxContainer(Navigator, ROOT);
 const AppNavigator = () => {
   const state = useSelector<State, NavigationState>(store => store.nav);
   const dispatch = useDispatch();
-  const statusBarProps = statusBarStyles[getCurrentRouteName(state)] || statusBarStyles.default;
+  const routeName = getCurrentRouteName(state);
+  const statusBarProps = routeName ? statusBarStyles[routeName] : statusBarStyles.default;
 
   useEffect(() => {
     const onBackPress = () => {

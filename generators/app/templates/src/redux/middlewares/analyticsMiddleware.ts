@@ -1,16 +1,14 @@
 import { Dispatch } from 'react';
 import { NavigationActions, StackActions } from 'react-navigation';
 import analytics from '@react-native-firebase/analytics';
-import { Action, State } from '@interfaces/reduxInterfaces';
+import { ReduxObject } from '@interfaces/reduxInterfaces';
 import { getPreviousRouteName } from '@utils/navUtils';
 
-const trackNavigation = (routeName: string) => {
+const trackNavigation = (routeName: string | null) => {
   if (routeName) analytics().setCurrentScreen(routeName, `${routeName}.js`);
 };
 
-const eventsTrackingMiddleware = ({ getState }: () => State) => (next: Dispatch<any>) => (
-  action: Action<any>
-) => {
+const eventsTrackingMiddleware = ({ getState }: ReduxObject) => (next: Dispatch<any>) => (action: any) => {
   switch (action.type) {
     case NavigationActions.NAVIGATE:
     case StackActions.REPLACE:

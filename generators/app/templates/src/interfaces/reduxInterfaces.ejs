@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { NavigationState } from 'react-navigation';
-import { ApiResponse, ApiOkResponse, ApiErrorResponse } from 'apisauce';
+import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
 <%_ if(features.login) { _%>
 import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
@@ -36,4 +36,8 @@ export interface State {
   auth: AuthState;
   <%_ } _%>
   nav: NavigationState;
+}
+
+export interface ReduxObject {
+  getState: () => State;
 }

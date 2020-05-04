@@ -1,7 +1,7 @@
 import { createReducer, completeReducer, completeState, onSuccess } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
 import { CurrentUser } from '@interfaces/authInterfaces';
-import { Auth, Action } from '@interfaces/reduxInterfaces';
+import { AuthState, Action } from '@interfaces/reduxInterfaces';
 
 import { actions } from './actions';
 
@@ -10,13 +10,13 @@ const stateDescription = {
   initialLoading: true
 };
 
-export const initialState: Auth = completeState(stateDescription, ['initialLoading']);
+export const initialState: AuthState = completeState(stateDescription, ['initialLoading']);
 
 const reducerDescription = {
   primaryActions: [actions.LOGIN],
   override: {
-    [actions.AUTH_INIT]: (state: ImmutableObject<Auth>, action: Action<CurrentUser>) =>
-      state.merge({ initialLoading: false, [action.target]: action.payload }),
+    [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: Action<CurrentUser>) =>
+      state.merge({ initialLoading: false, [action.target!]: action.payload }),
     [actions.LOGOUT]: onSuccess()
   }
 };
