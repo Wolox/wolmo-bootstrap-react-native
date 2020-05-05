@@ -1,5 +1,7 @@
 const ora = require('ora');
 
+const { isMacSystem } = require('../../utils');
+
 const packageJsonScripts = require('./packageJsonScripts');
 const baseFilesTemplate = require('./baseFilesTemplate');
 const appIcons = require('./appIcons');
@@ -50,8 +52,8 @@ module.exports = function index() {
   androidProjectSetup.bind(this)();
 
   // ----------------     add iOS project configuration and clean unused targets    ----------------
-  iosProjectSetup.bind(this)();
-  cleanTargetsFromPods.bind(this)();
+  if (isMacSystem()) iosProjectSetup.bind(this)();
+  if (isMacSystem()) cleanTargetsFromPods.bind(this)();
 
   // ----------------     disable landscape orientiation for both android and ios     ----------------
   if (this.features.landscape) {
