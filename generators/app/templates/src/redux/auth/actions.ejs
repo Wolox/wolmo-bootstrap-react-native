@@ -24,7 +24,7 @@ export const actionCreators = {
     hasAccessOnBoarding
     <%_ } _%>
   }),
-  login: authData => ({
+  login: () => ({
     type: actions.LOGIN,
     target: TARGETS.CURRENT_USER,
     service: AuthService.login,
