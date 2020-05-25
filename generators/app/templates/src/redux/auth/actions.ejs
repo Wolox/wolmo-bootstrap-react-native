@@ -30,11 +30,11 @@ export const actionCreators = {
     service: AuthService.login,
     injections: [
       withPostSuccess((dispatch: Dispatch<any>, response: ApiOkResponse<CurrentUser>) => {
-        AuthService.setCurrentUser(response.data);
+        AuthService.setCurrentUser(response.data!);
       })
     ]
   }),
-  logout: () => async (dispatch: Dispatch<NavigationJumpToAction | Action<{}>>) => {
+  logout: () => async (dispatch: Dispatch<any>) => {
     await AuthService.removeCurrentUser();
     <%_ if(features.onboarding) { _%>
     dispatch(actionCreators.setHasAccessOnBoarding(false));

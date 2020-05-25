@@ -1,6 +1,8 @@
+import { Dispatch } from 'redux';
 <%_ if(features.login) { _%>
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
+import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
 import { actionCreators as authActions } from '@redux/auth/actions';
 <%_ if(features.onboarding) { _%>
@@ -24,9 +26,9 @@ export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUse
   <%_ } _%>
 
 <%_ if(features.login || features.onboarding) { _%>
-export const authSetup = async dispatch => {
+export const authSetup = async (dispatch: Dispatch<any>) => {
 <%_ }else{ _%>
-export const authSetup = dispatch => {
+export const authSetup = (dispatch: Dispatch<any>) => {
 <%_ } _%>
   <%_ if(features.login) { _%>
   const currentUser = await getCurrentUser();

@@ -2,12 +2,12 @@ import i18next from 'i18next';
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
-import { <%_ if (features.tabs) { _%> AppTabOptions, <%_ } _%> AppScreensNavOptions } from '@interfaces/navigation';
+import { <%_ if (features.tabs) { _%> AppTabOptions, <%_ } _%> DefaultNavOptions } from '@interfaces/navigation';
 
 import fonts from './fonts';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ route }) => {
+const defaultNavOptions = ({ route }: DefaultNavOptions) => {
   return {
     // Change screen title from i18n traslates files
     headerTitle: i18next.t(`app:${route.name}`),

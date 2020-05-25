@@ -5,12 +5,13 @@ import analytics from '@react-native-firebase/analytics';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef, getActiveRoute, getRoute } from '@navigationHelper';
+import { State } from '@interfaces/reduxInterfaces';
 import CustomStatusBar from '@components/CustomStatusBar';
 import withLoadable from '@components/Loadable';
 
 import Navigator from './navigator';
 
-const initialLoadingSelector = state => state.auth.initialLoading;
+const initialLoadingSelector = (state: State) => state.auth.initialLoading;
 
 const AppNavigator = () => {
   const [routeName, setRouteName] = useState(null);

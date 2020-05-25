@@ -22,6 +22,8 @@ import OnBoarding from '@screens/OnBoarding';
 <%_ } _%>
 import Home from '@screens/Home';
 
+import { State } from '@interfaces/reduxInterfaces';
+
 const Stack = createStackNavigator();
 <%_ if(features.tabs) { _%>
 const Tab = createBottomTabNavigator();
@@ -70,8 +72,8 @@ function AppStack() {
 
 <%_ if(features.onboarding && features.login) { _%>
 const Navigator = () => {
-  const hasAccessOnBoarding = useSelector(state => state.auth.hasAccessOnBoarding);
-  const currentUser = useSelector(state => state.auth.currentUser);
+  const hasAccessOnBoarding = useSelector((state: State) => state.auth.hasAccessOnBoarding);
+  const currentUser = useSelector((state: State) => state.auth.currentUser);
   const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
   return (
     <Stack.Navigator {...defaultStackConfig}>
@@ -82,7 +84,7 @@ const Navigator = () => {
 <%_ }_%>
 <%_ if(features.onboarding && !features.login) { _%>
 const Navigator = () => {
-  const hasAccessOnBoarding = useSelector(state => state.auth.hasAccessOnBoarding);
+  const hasAccessOnBoarding = useSelector((state: State) => state.auth.hasAccessOnBoarding);
   return (
     <Stack.Navigator {...appStackNavConfig}>
       {hasAccessOnBoarding ? AppStack() : inferRoute(Stack)({ OnBoarding })}
@@ -92,7 +94,7 @@ const Navigator = () => {
 <%_ }_%>
 <%_ if(!features.onboarding && features.login) { _%>
 const Navigator = () => {
-  const currentUser = useSelector(state => state.auth.currentUser);
+  const currentUser = useSelector((state: State) => state.auth.currentUser);
   const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
   return <Stack.Navigator {...defaultStackConfig}>{currentUser ? AppStack() : AuthStack()}</Stack.Navigator>;
 };

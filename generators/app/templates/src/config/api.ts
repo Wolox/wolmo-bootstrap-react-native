@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { create, NETWORK_ERROR } from 'apisauce';
 import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
 import Config from 'react-native-config';
 import Reactotron from 'reactotron-react-native';
+import { Dispatch } from 'redux';
 
 const snakeCaseSerializer = new SnakecaseSerializer();
 const camelCaseSerializer = new CamelcaseSerializer();
@@ -15,7 +17,7 @@ const api = create({
 
 api.addMonitor(((Reactotron as unknown) as { apisauce: any }).apisauce);
 
-export const apiSetup = (/* dispatch you should modified in the index root file too*/) => {
+export const apiSetup = (dispatch: Dispatch<any>) => {
   if (baseURL === 'http://wolox.com') {
     console.warn('API baseURL has not been properly initialized');
   }

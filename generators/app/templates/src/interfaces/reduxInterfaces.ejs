@@ -1,5 +1,4 @@
 import { Dispatch } from 'react';
-import { NavigationState } from 'react-navigation';
 import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
 <%_ if(features.login) { _%>
 import { CurrentUser } from '@interfaces/authInterfaces';
@@ -28,6 +27,9 @@ export interface AuthState {
   currentUserLoading: boolean;
   currentUserError: string | null;
   initialLoading: boolean;
+  <%_ if(features.login && features.onboarding) { _%>
+  hasAccessOnBoarding: boolean;
+  <%_ } _%>
 }
 <%_ } _%>
 
@@ -35,7 +37,6 @@ export interface State {
   <%_ if(features.login) { _%>
   auth: AuthState;
   <%_ } _%>
-  nav: NavigationState;
 }
 
 export interface ReduxObject {
