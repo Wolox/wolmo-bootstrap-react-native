@@ -4,7 +4,6 @@ import { Dispatch } from 'react';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import * as AuthService from '@services/AuthService';
 import { CurrentUser } from '@interfaces/authInterfaces';
-import { Action } from '@interfaces/reduxInterfaces';
 <%_ if(features.onboarding) { _%>
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 <%_ } _%>
