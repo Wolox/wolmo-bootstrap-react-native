@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2020-05-04
+
+- Re-uploaded bootstrap version due to internet connection error
+
+## [1.0.0] - 2020-05-04
+
+- Migrated bootstrap generated project configuration and files to `TypeScript (TS and TSX)`
+- Added `AnimatedCustomTextInput` as a new bootstrap project Component
+- Added `jest.config.js` file to handle all the `Jest` configuration
+- Added `OnBoarding` as a new bootstrap project feature
+- Deleted `npm` as package manager and used `yarn` instead
+- Refactored [files](generators/app/files.js) manage and declaration
+- Added `Fastlane` for `Android`
+
 ## [0.8.0] - 2020-04-08
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects

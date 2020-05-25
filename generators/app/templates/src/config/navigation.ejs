@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
+import { <%_ if (features.tabs) { _%> AppTabOptions, <%_ } _%> Navigation, AppScreensNavOptions } from '@interfaces/navigation';
 
 import fonts from './fonts';
 
@@ -51,7 +52,7 @@ export const drawerStackNavConfig = {
 };
 <%_ } _%>
 // Default nav options for all screens
-export const appScreensNavOptions = {
+export const appScreensNavOptions: AppScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
 

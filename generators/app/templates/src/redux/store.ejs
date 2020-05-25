@@ -63,11 +63,11 @@ middlewares.push(AnalyticsMiddleware);
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
-if (__DEV__) enhancers.push(Reactotron.createEnhancer(true));
+if (__DEV__ && Reactotron.createEnhancer) enhancers.push(Reactotron.createEnhancer(true));
 
 // In DEV mode, we'll create the store through Reactotron
 const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
 
-if (__DEV__) Reactotron.setReduxStore(store);
+if (__DEV__ && Reactotron.setReduxStore) Reactotron.setReduxStore(store);
 
 export default store;

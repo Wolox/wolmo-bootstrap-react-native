@@ -10,8 +10,8 @@ import store from '@redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 <%_} _%>
 import App from './src/app';
-
 <%_ if(features.reduxpersist) { _%>
+
 const persistor = persistStore(store);
 <%_} _%>
 
