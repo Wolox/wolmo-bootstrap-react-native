@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { SwitchActions, NavigationJumpToAction } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import Routes from '@constants/routes';
-import { CurrentUser } from '@interfaces/authInterfaces';
+import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
 import { Action } from '@interfaces/reduxInterfaces';
 import * as AuthService from '@services/AuthService';
 
@@ -14,11 +14,16 @@ const TARGETS = {
 };
 
 export const actionCreators = {
-  init: (user: CurrentUser) => ({ type: actions.AUTH_INIT, target: TARGETS.CURRENT_USER, payload: user }),
-  login: () => ({
+  init: (user: CurrentUser) => ({
+    type: actions.AUTH_INIT,
+    target: TARGETS.CURRENT_USER,
+    payload: user
+  }),
+  login: (authData: AuthData) => ({
     type: actions.LOGIN,
     target: TARGETS.CURRENT_USER,
     service: AuthService.login,
+    payload: authData,
     injections: [
       withPostSuccess((dispatch: Dispatch<NavigationJumpToAction>, response: ApiOkResponse<CurrentUser>) => {
         dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));

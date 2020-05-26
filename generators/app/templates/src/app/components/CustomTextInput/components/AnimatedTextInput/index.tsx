@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { View, TextInput, Animated } from 'react-native';
 import CustomText from '@components/CustomText';
 import { transparent, gray, black } from '@constants/colors';
 
-import ShowPassword from '../components/ShowPassword';
+import ShowPassword from '../ShowPassword';
+import { AnimatedTextInputProps } from '../../interface';
 
 import {
   TOP_DEGRADE,
@@ -13,34 +14,29 @@ import {
   LEFT_SMALL_DEGRADE,
   ANIMATION_DURATION
 } from './constants';
-import { AnimatedCustomTextInputProps } from './interface';
 import styles from './styles';
 
-/* If you want to integrate this component with some Form handler you will have to delete the handle of value's state and the handleChange function
-You will also have to send the value and the onChange by props */
-const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
-  const {
-    initialValue,
-    placeholderTextColor,
-    multiline,
-    bottomBorder,
-    style,
-    textStyles,
-    secureTextEntry,
-    showEye,
-    label,
-    labelStyle,
-    placeholder,
-    error,
-    disabled,
-    onFocus,
-    onBlur,
-    onChange,
-    autoCompleteType,
-    ...rest
-  } = props;
+const AnimatedTextInput = ({
+  placeholderTextColor,
+  multiline,
+  bottomBorder,
+  style,
+  textStyles,
+  secureTextEntry,
+  showEye,
+  label,
+  labelStyle,
+  placeholder,
+  error,
+  disabled,
+  onFocus,
+  onBlur,
+  onChange,
+  autoCompleteType,
+  value,
+  ...props
+}: AnimatedTextInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
   const animatedIsFocused = useRef(new Animated.Value(value ? 1 : 0)).current;
   useEffect(() => {
@@ -51,11 +47,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
       useNativeDriver: false
     }).start();
   }, [animatedIsFocused, isFocused, value]);
-
   const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
-
-  const handleChange = (text: string) => setValue(text);
-
   const handleFocus = useCallback(
     e => {
       setIsFocused(true);
@@ -63,7 +55,6 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     },
     [onFocus]
   );
-
   const animatedLabelStyle = {
     top: animatedIsFocused.interpolate({
       inputRange: [0, 1],
@@ -82,7 +73,6 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
       outputRange: [gray, black]
     })
   };
-
   const handleBlur = useCallback(
     e => {
       setIsFocused(false);
@@ -90,7 +80,6 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     },
     [onBlur]
   );
-
   const placeholderColor = value ? transparent : placeholderTextColor;
   const borderColor = () => {
     if (disabled) return styles.bottomBorderLightGray;
@@ -111,10 +100,10 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
           bottomBorder && { ...borderColor(), ...styles.borderWidth }
         ]}>
         <TextInput
-          {...rest}
+          {...props}
           value={value}
           allowFontScaling={false}
-          onChangeText={onChange || handleChange}
+          onChangeText={onChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           style={[
@@ -143,7 +132,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   );
 };
 
-AnimatedCustomTextInput.defaultProps = {
+AnimatedTextInput.defaultProps = {
   initialValue: '',
   autoCapitalize: 'none',
   autoCompleteType: 'off',
@@ -159,4 +148,4 @@ AnimatedCustomTextInput.defaultProps = {
   underlineColorAndroid: transparent
 };
 
-export default memo(AnimatedCustomTextInput);
+export default AnimatedTextInput;

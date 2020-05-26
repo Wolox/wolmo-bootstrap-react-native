@@ -16,4 +16,11 @@ export interface CustomTextInputProps extends TextInputProps, TextProps {
   title?: string;
   titleStyles?: TextStyle;
   error?: boolean | string;
+  disabled?: boolean;
+}
+
+export interface AnimatedTextInputProps extends CustomTextInputProps {
+  placeholder?: string;
+  label?: string;
+  labelStyle?: TextProps['style'];
 }

@@ -119,6 +119,7 @@ function yarnInstall(projectName, deps, options, dev) {
 module.exports = function installDependencies() {
   if (this.features.login) {
     DEPENDENCIES.push('recompose');
+    DEPENDENCIES.push('formik');
   }
   if (this.features.tabs) {
     DEPENDENCIES.push('react-navigation-tabs');

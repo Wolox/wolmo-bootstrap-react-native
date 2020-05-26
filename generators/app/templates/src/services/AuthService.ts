@@ -1,8 +1,9 @@
 import { Dispatch } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import { ApiResponse } from 'apisauce';
 import api from '@config/api';
+import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
 import { actionCreators as authActions } from '@redux/auth/actions';
-import { CurrentUser } from '@interfaces/authInterfaces';
 
 // TODO: Adapt returned object to:
 //   sessionToken: usually currentUser.access_token
@@ -26,10 +27,23 @@ export const authSetup = async (dispatch: Dispatch<any>) => {
   dispatch(authActions.init(currentUser));
 };
 
-export const login = () =>
+export const login = (authData: AuthData) => {
   // TODO: Implement call to authentication API here
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ ok: true, problem: null, originalError: null, data: { sessionToken: 'token' } });
-    }, 750);
-  });
+  // TODO: If you want to test the error
+  // return Promise.resolve({
+  //   ok: false,
+  //   problem: CLIENT_ERROR,
+  //   originalError: e.message
+  // }) as Promise<ApiErrorResponse<any>>;
+  console.log(JSON.stringify(authData));
+  return setTimeout(
+    () =>
+      Promise.resolve({
+        ok: true,
+        problem: null,
+        originalError: null,
+        data: { sessionToken: 'token' }
+      }) as Promise<ApiResponse<any, any>>,
+    750
+  );
+};
