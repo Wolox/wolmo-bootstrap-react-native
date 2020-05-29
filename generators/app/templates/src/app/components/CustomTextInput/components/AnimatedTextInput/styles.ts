@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
-import { black, blue, transparent, gray, darkGray, red } from '@constants/colors';
+import { transparent, darkGray } from '@constants/colors';
 import { SIZES } from '@constants/fonts';
 
 const INPUT_PADDING = 5;
 
 export default StyleSheet.create({
   containerWithLabel: {
-    marginTop: 10,
+    marginTop: 35,
     alignSelf: 'stretch'
   },
   inputContainer: {
@@ -34,21 +34,6 @@ export default StyleSheet.create({
   },
   singleInput: {
     flex: 1
-  },
-  borderWidth: {
-    borderBottomWidth: 1
-  },
-  bottomBorderGray: {
-    borderBottomColor: black
-  },
-  bottomBorderBlue: {
-    borderBottomColor: blue
-  },
-  bottomBorderRed: {
-    borderBottomColor: red
-  },
-  bottomBorderLightGray: {
-    borderBottomColor: gray
   },
   offset: {
     height: 80

@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { View, TextInput } from 'react-native';
 import CustomText from '@components/CustomText';
-import { transparent } from '@constants/colors';
 
 import ShowPassword from '../ShowPassword';
 import { CustomTextInputProps } from '../../interface';
@@ -10,11 +9,12 @@ import styles from './styles';
 
 const CustomTextInput = ({
   value,
-  placeholderTextColor,
-  title,
-  titleStyles,
+  placeholderColor,
+  borderColorStyle,
+  label,
+  labelStyle,
   multiline,
-  bottomBorder,
+  onShowPassword,
   style,
   onChange,
   onBlur,
@@ -22,26 +22,19 @@ const CustomTextInput = ({
   textStyles,
   secureTextEntry,
   showEye,
+  showPassword,
   autoCompleteType,
   error,
   ...props
 }: CustomTextInputProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
-  const placeholderColor = value ? transparent : placeholderTextColor;
   return (
     <>
-      {title && (
-        <CustomText gray small style={[styles.title, titleStyles]}>
-          {title}
+      {label && (
+        <CustomText gray small style={[styles.label, labelStyle]}>
+          {label}
         </CustomText>
       )}
-      <View
-        style={[
-          multiline ? styles.multilineContainer : styles.container,
-          bottomBorder && styles.bottomBorder,
-          style
-        ]}>
+      <View style={[multiline ? styles.multilineContainer : styles.container, borderColorStyle, style]}>
         <TextInput
           {...props}
           allowFontScaling={false}
@@ -55,7 +48,7 @@ const CustomTextInput = ({
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
         />
         {secureTextEntry && showEye && (
-          <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
+          <ShowPassword onShowPassword={onShowPassword!} passwordVisible={showPassword!} />
         )}
       </View>
       {error && (
@@ -65,18 +58,6 @@ const CustomTextInput = ({
       )}
     </>
   );
-};
-
-CustomTextInput.defaultProps = {
-  autoCapitalize: 'sentences',
-  autoCorrect: false,
-  bottomBorder: false,
-  clearButtonMode: 'never',
-  keyboardType: 'default',
-  maxHeight: 200,
-  multiline: false,
-  returnKeyType: 'done',
-  underlineColorAndroid: transparent
 };
 
 export default CustomTextInput;

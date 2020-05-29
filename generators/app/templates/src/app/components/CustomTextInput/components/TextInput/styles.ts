@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
-import { gray, transparent } from '@constants/colors';
+import { transparent } from '@constants/colors';
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 42,
+    height: 40,
     justifyContent: 'space-between',
     alignItems: 'center'
   },
@@ -25,11 +25,7 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 0
   },
-  bottomBorder: {
-    borderBottomWidth: 1,
-    borderBottomColor: gray
-  },
-  title: {
+  label: {
     marginTop: 5,
     backgroundColor: transparent
   },

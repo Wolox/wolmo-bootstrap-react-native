@@ -6,7 +6,6 @@ import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
 import { CustomTextInputField } from '@components/CustomTextInput';
-import withLoadable from '@components/Loadable';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
@@ -14,8 +13,6 @@ import { validationsWrapper, validateRequired, validateEmail } from '@utils/vali
 import { FIELDS, INITIAL_VALUES } from './constants';
 import './i18n';
 import styles from './styles';
-
-const loadingSelector = (state: State) => state.auth.currentUserLoading;
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,6 +29,7 @@ function Login() {
           <View style={styles.container}>
             <View style={styles.form}>
               <CustomTextInputField
+                animated
                 label={i18next.t('LOGIN:MAIL')}
                 name={FIELDS.email}
                 error={!!hasLoginError || emailError}
@@ -39,6 +37,7 @@ function Login() {
                 validate={validationsWrapper([validateRequired, validateEmail])}
               />
               <CustomTextInputField
+                animated
                 showEye
                 secureTextEntry
                 label={i18next.t('LOGIN:PASSWORD')}
@@ -65,4 +64,4 @@ function Login() {
   );
 }
 
-export default withLoadable(() => useSelector(loadingSelector))(Login);
+export default Login;
