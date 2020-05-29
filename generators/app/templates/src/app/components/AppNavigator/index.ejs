@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import analytics from '@react-native-firebase/analytics';
 <%_ } _%>
 import { useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import { navigationRef, getActiveRoute, getRoute } from '@navigationHelper';
 import { State } from '@interfaces/reduxInterfaces';
 import CustomStatusBar from '@components/CustomStatusBar';
@@ -18,7 +18,7 @@ const AppNavigator = () => {
   useEffect(() => {
     setRouteName(getActiveRoute()?.name);
   }, []);
-  const onStateChange = (state) => {
+  const onStateChange = (state?: NavigationState) => {
     const previousRouteName = routeName;
     const currentRouteName = getRoute(state)?.name;
     if (previousRouteName !== currentRouteName) {
