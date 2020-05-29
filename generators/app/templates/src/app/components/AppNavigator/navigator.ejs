@@ -34,7 +34,6 @@ const Drawer = createDrawerNavigator();
 <%_ if(features.login) { _%>
 const AuthStack = () => <>{inferRoute(Stack)({ Login })}</>;
 <%_ } _%>
-
 <%_ if(features.tabs) { _%>
 function HomeTabs() {
   return (
@@ -51,8 +50,6 @@ function AppDrawerNavigator() {
     <Drawer.Navigator {...defaultDrawerNavOptions}>{inferRoute(Drawer)({ Home: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%> })}</Drawer.Navigator>
   );
 }
-<%_ } _%>
-<%_ if(features.drawer) { _%>
 function AppStack() {
   return <>{inferRoute(Stack)({ [Routes.Home]: AppDrawerNavigator })}</>;
 }

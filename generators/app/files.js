@@ -37,20 +37,6 @@ module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
 // TESTING - SCREENS - LOGIN
 module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/Login`;
 
-// SCREENS
-module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
-module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.ts`;
-
-// SCREENS - HOME
-module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
-module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.ts`;
-
-// SCREENS - LOGIN
-module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
-
-// SCREENS - ONBOARDING
-module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
-
 //  Wolox CI
 module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;
 module.exports.CI_CONFIG_FILE = `${module.exports.CI_PATH}/config.yml`;

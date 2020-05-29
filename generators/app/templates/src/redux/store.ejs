@@ -38,7 +38,7 @@ const persistConfig = {
 };
 <%_ } _%>
 
-configureMergeState((state: ImmutableObject<State>, diff: any) => state.merge(diff));
+configureMergeState((state: ImmutableObject<State>, diff: State) => state.merge(diff));
 
 const reducers = combineReducers({
   auth

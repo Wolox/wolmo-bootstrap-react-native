@@ -18,21 +18,21 @@ const AppNavigator = () => {
   useEffect(() => {
     setRouteName(getActiveRoute()?.name);
   }, []);
+  const onStateChange = (state) => {
+    const previousRouteName = routeName;
+    const currentRouteName = getRoute(state)?.name;
+    if (previousRouteName !== currentRouteName) {
+      <%_ if(features.firebaseanalytics) { _%>
+      analytics().setCurrentScreen(currentRouteName, currentRouteName);
+      <%_ } _%>
+    setRouteName(currentRouteName);
+    }
+  };
 
   return (
     <NavigationContainer
       ref={navigationRef}
-      onStateChange={state => {
-        const previousRouteName = routeName;
-        const currentRouteName = getRoute(state)?.name;
-        if (previousRouteName !== currentRouteName) {
-          <%_ if(features.firebaseanalytics) { _%>
-          analytics().setCurrentScreen(currentRouteName, currentRouteName);
-          <%_ } _%>
-
-          setRouteName(currentRouteName);
-        }
-      }}>
+      onStateChange={onStateChange}>
       <CustomStatusBar routeName={routeName} />
       <Navigator />
     </NavigationContainer>

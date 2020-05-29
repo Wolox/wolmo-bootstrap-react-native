@@ -7,8 +7,7 @@ import { DefaultNavOptions } from '@interfaces/navigation';
 import fonts from './fonts';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ route }: DefaultNavOptions) => {
-  return {
+const defaultNavOptions = ({ route }: DefaultNavOptions) => ({
     // Change screen title from i18n traslates files
     headerTitle: i18next.t(`app:${route.name}`),
     // TODO: The following options are examples. Change them to your need
@@ -23,8 +22,7 @@ const defaultNavOptions = ({ route }: DefaultNavOptions) => {
       color: white
     },
     headerTintColor: white
-  };
-};
+});
 <%_ if(features.login) { _%>
 export const authStackNavConfig = {
   screenOptions: defaultNavOptions,
@@ -33,8 +31,7 @@ export const authStackNavConfig = {
 <%_ } _%>
 
 export const appStackNavConfig = {
-  screenOptions: defaultNavOptions,
-  initialRouteName: Routes.OnBoarding
+  screenOptions: defaultNavOptions
 };
 <%_ if(features.tabs) { _%>
 export const tabNavConfig = {
@@ -66,10 +63,13 @@ export const appScreensNavOptions = {
 
 export const statusBarStyles = {
   // TODO: Change these styles to customize the status bar
+  <%_ if (features.login) { _%>
   [Routes.Login]: statusBarConfig.blueStatusBar,
-  [Routes.InitialLoading]: statusBarConfig.whiteStatusBar,
+  <%_ } _%>
+  <%_ if (features.tabs) { _%>
   [Routes.Tab1]: statusBarConfig.blueStatusBar,
   [Routes.Tab2]: statusBarConfig.blueStatusBar,
+  <%_ } _%>
   [Routes.Home]: statusBarConfig.blueStatusBar,
   default: statusBarConfig.transparentStatusBar
 };

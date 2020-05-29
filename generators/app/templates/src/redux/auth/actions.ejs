@@ -11,9 +11,10 @@ import { setOnBoardingAccess } from '@services/OnBoardingService';
 export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
 const TARGETS = {
-  CURRENT_USER: 'currentUser'
+  CURRENT_USER: 'currentUser'<%_ if(features.onboarding) { _%>,
+  ONBOARDING: 'hasAccessOnBoarding'
+  <%_ } _%>
 };
-<%_ if(features.onboarding) { _%>const onBoardingTarget = 'hasAccessOnBoarding';<%_ } _%>
 
 export const actionCreators = {
   init: (user: CurrentUser<%_ if(features.onboarding) { _%>, hasAccessOnBoarding: boolean<%_ } _%>) => ({
@@ -28,7 +29,7 @@ export const actionCreators = {
     target: TARGETS.CURRENT_USER,
     service: AuthService.login,
     injections: [
-      withPostSuccess((dispatch: Dispatch<any>, response: ApiOkResponse<CurrentUser>) => {
+      withPostSuccess((_: any, response: ApiOkResponse<CurrentUser>) => {
         AuthService.setCurrentUser(response.data!);
       })
     ]
@@ -44,7 +45,7 @@ export const actionCreators = {
     await setOnBoardingAccess(value);
     dispatch({
       type: actions.HAS_ACCESS,
-      target: onBoardingTarget,
+      target: TARGETS.ONBOARDING,
       payload: value
     });
   }
@@ -57,18 +58,21 @@ import { setOnBoardingAccess } from '@services/OnBoardingService';
 
 export const actions = createTypes(['AUTH_INIT', 'HAS_ACCESS'], '@@AUTH');
 
-const onBoardingTarget = 'hasAccessOnBoarding';
+const TARGETS = {
+  ONBOARDING: 'hasAccessOnBoarding'
+};
+
 export const actionCreators = {
-  init: hasAccessOnBoarding => ({
+  init: (hasAccessOnBoarding: boolean) => ({
     type: actions.AUTH_INIT,
-    target: onBoardingTarget,
+    target: TARGETS.ONBOARDING,
     payload: hasAccessOnBoarding
   }),
   setHasAccessOnBoarding: value => async dispatch => {
     await setOnBoardingAccess(value);
     dispatch({
       type: actions.HAS_ACCESS,
-      target: onBoardingTarget,
+      target: TARGETS.ONBOARDING,
       payload: value
     });
   }

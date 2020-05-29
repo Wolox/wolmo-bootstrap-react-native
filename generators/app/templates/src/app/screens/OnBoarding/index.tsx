@@ -8,7 +8,6 @@ import Swiper from './components/Swiper';
 function OnBoardingContainer() {
   const dispatch = useDispatch();
   const skipOnBoarding = () => dispatch(actionCreators.setHasAccessOnBoarding(true));
-
   return <Swiper onSkip={skipOnBoarding} />;
 }
 
