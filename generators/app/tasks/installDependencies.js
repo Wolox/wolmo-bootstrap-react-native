@@ -19,16 +19,14 @@ const DEPENDENCIES = [
   'react-native-config',
   // Delete when react-native-gesture-handler fix this issue on Android
   // https://github.com/software-mansion/react-native-gesture-handler/issues/950
-  'react-native-gesture-handler@1.5.3',
+  'react-native-gesture-handler',
   'react-native-localize',
   'react-native-reanimated',
   'react-native-safe-area-context',
   'react-native-screens',
   'react-native-splash-screen',
-  'react-navigation',
-  'react-navigation-animated-switch',
-  'react-navigation-redux-helpers',
-  'react-navigation-stack',
+  '@react-navigation/native',
+  '@react-navigation/stack',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
@@ -121,7 +119,7 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('recompose');
   }
   if (this.features.tabs) {
-    DEPENDENCIES.push('react-navigation-tabs');
+    DEPENDENCIES.push('@react-navigation/bottom-tabs');
   }
 
   if (this.features.crashlytics || this.features.firebaseanalytics || this.features.pushnotifications) {
@@ -148,7 +146,7 @@ module.exports = function installDependencies() {
   }
 
   if (this.features.drawer) {
-    DEPENDENCIES.push('react-navigation-drawer');
+    DEPENDENCIES.push('@react-navigation/drawer');
   }
 
   if (this.features.reduxpersist) {

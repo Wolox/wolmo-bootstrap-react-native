@@ -1,25 +1,13 @@
+// TODO: Uncomment lines when you start using them
+// import analytics from '@react-native-firebase/analytics'; TODO: Use later when you want to catch some redux actions here in this middleware
 import { Dispatch } from 'react';
-import { NavigationActions, StackActions } from 'react-navigation';
-import analytics from '@react-native-firebase/analytics';
-import { ReduxObject } from '@interfaces/reduxInterfaces';
-import { getPreviousRouteName } from '@utils/navUtils';
+// import { ReduxObject } from '@interfaces/reduxInterfaces';
 
-const trackNavigation = (routeName: string | null) => {
-  if (routeName) analytics().setCurrentScreen(routeName, `${routeName}.js`);
-};
-
-const eventsTrackingMiddleware = ({ getState }: ReduxObject) => (next: Dispatch<any>) => (action: any) => {
+const eventsTrackingMiddleware = (/* TODO: { getState }: ReduxObject in the future*/) => (
+  next: Dispatch<any>
+) => (action: any) => {
   switch (action.type) {
-    case NavigationActions.NAVIGATE:
-    case StackActions.REPLACE:
-      trackNavigation(action.routeName);
-      break;
-    case NavigationActions.BACK:
-      trackNavigation(getPreviousRouteName(getState().nav));
-      break;
-    case StackActions.RESET:
-      trackNavigation(action.actions[action.index].routeName);
-      break;
+    // TODO: Here catch redux actions and use analytics
     default:
       break;
   }

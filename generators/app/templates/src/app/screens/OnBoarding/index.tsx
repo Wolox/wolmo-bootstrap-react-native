@@ -1,13 +1,14 @@
 import React, { memo } from 'react';
-import Routes from '@constants/routes';
-import { Navigation } from '@interfaces/navigation';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '@redux/auth/actions';
 
 import './i18n';
 import Swiper from './components/Swiper';
 
-function OnBoarding({ navigation }: Navigation) {
-  const handleSkipOnBoarding = () => navigation.navigate(Routes.App);
+function OnBoardingContainer() {
+  const dispatch = useDispatch();
+  const handleSkipOnBoarding = () => dispatch(actionCreators.setHasAccessOnBoarding(true));
   return <Swiper onSkip={handleSkipOnBoarding} />;
 }
 
-export default memo(OnBoarding);
+export default memo(OnBoardingContainer);

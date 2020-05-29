@@ -21,7 +21,8 @@
       "@redux/*": ["src/redux/*"],
       "@utils/*": ["src/utils/*"],
       "@interfaces/*": ["src/interfaces/*"],
-      "@screens/*": ["./src/app/screens/*"]
+      "@screens/*": ["./src/app/screens/*"],
+      "@navigationHelper": ["src/app/components/AppNavigator/helper.ts"]
     },
     "skipLibCheck": true
   },

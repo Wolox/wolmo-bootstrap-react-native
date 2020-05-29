@@ -1,7 +1,3 @@
-import { NavigationScreenComponent } from 'react-navigation';
-
-import { NavOptionsType } from './navigation';
-
 type Key = string | number;
 
 export type GenericObjectInterface<T> = {
@@ -15,14 +11,3 @@ export interface Loadable {
 export type StringObject = GenericObjectInterface<string>;
 
 export type NumberObject = GenericObjectInterface<number>;
-
-export type ScreenObj = {
-  [key: string]: NavigationScreenComponent<{}, {}>;
-};
-
-export type ScreenRoute = {
-  [x: string]: {
-    screen: NavigationScreenComponent<{}, {}>;
-    navigationOptions: NavOptionsType;
-  };
-};

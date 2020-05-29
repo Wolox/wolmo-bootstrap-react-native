@@ -75,6 +75,7 @@ module.exports = function index() {
   if (this.features.onboarding) {
     onBoardingFeatureFiles.bind(this)();
   }
+
   // ----------------     Features: Firebase    ----------------
   if (
     this.features.crashlytics ||
