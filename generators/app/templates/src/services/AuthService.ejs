@@ -1,10 +1,16 @@
 import { Dispatch } from 'react';
+<%_ if(features.login) { _%>
 import AsyncStorage from '@react-native-community/async-storage';
 import { ApiResponse } from 'apisauce';
 import api from '@config/api';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
+<%_ } _%>
 import { actionCreators as authActions } from '@redux/auth/actions';
+<%_ if(features.onboarding) { _%>
+import { getOnBoardingAccess } from '@services/OnBoardingService';
+<%_ } _%>
 
+<%_ if(features.login) { _%>
 // TODO: Adapt returned object to:
 //   sessionToken: usually currentUser.access_token
 //   renewId: usually currentUser.renew_id
@@ -18,15 +24,28 @@ export const setCurrentUser = (currentUser: CurrentUser) => {
 export const getCurrentUser = () =>
   AsyncStorage.getItem('@Auth:currentUser').then(value => JSON.parse(`${value}`));
 export const removeCurrentUser = () => AsyncStorage.removeItem('@Auth:currentUser');
+  <%_ } _%>
 
+<%_ if(features.login || features.onboarding) { _%>
 export const authSetup = async (dispatch: Dispatch<any>) => {
+<%_ }else{ _%>
+export const authSetup = (dispatch: Dispatch<any>) => {
+<%_ } _%>
+  <%_ if(features.login) { _%>
   const currentUser = await getCurrentUser();
+  <%_ } _%>
+  <%_ if(features.onboarding) { _%>
+  const hasAccess = await getOnBoardingAccess();
+  <%_ } _%>
+  <%_ if(features.login) { _%>
   if (currentUser) {
     api.setHeader('Authorization', currentUser.sessionToken);
   }
-  dispatch(authActions.init(currentUser));
+  <%_ } _%>
+  dispatch(authActions.init(<%_ if(features.login) { _%>currentUser<%_ } _%><%_ if(features.onboarding) { _%><%_ if(features.login) { _%>,   <%_ } _%>hasAccess<%_ } _%>));
 };
 
+<%_ if(features.login) { _%>
 export const login = (authData: AuthData) => {
   // TODO: Implement call to authentication API here
   // TODO: If you want to test the error
@@ -36,14 +55,10 @@ export const login = (authData: AuthData) => {
   //   originalError: e.message
   // }) as Promise<ApiErrorResponse<any>>;
   console.log(JSON.stringify(authData));
-  return setTimeout(
-    () =>
-      Promise.resolve({
-        ok: true,
-        problem: null,
-        originalError: null,
-        data: { sessionToken: 'token' }
-      }) as Promise<ApiResponse<any, any>>,
-    750
-  );
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ ok: true, problem: null, originalError: null, data: { sessionToken: 'token' } }) as Promise<ApiResponse<any, any>>;
+    }, 750);
+  });
 };
+<%_ } _%>

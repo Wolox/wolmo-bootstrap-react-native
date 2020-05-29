@@ -1,13 +1,17 @@
 import i18next from 'i18next';
 import Routes from '@constants/routes';
 
-i18next.addResources('es', 'APP', {
-  <%_ if(features.login) { _%>
-  [Routes.Login]: 'Login',
-  <%_ } _%>
-  <%_ if(features.tabs) { _%>
-  [Routes.Tab1]: 'Tab 1',
-  [Routes.Tab2]: 'Tab 2',
-  <%_ } _%>
-  [Routes.Home]: 'Home'
+// TODO: Replace here the screens titles
+
+i18next.addResources('es', 'app', {
+    <%_ if(features.login) { _%>
+    [Routes.Login]: 'Login',
+    <%_ } _%>
+    <%_ if(features.tabs) { _%>
+    [Routes.Tab1]: 'Tab 1',
+    [Routes.Tab2]: 'Tab 2',
+    <%_ } _%>
+    [Routes.Home]: 'Home'<%_ if(features.onboarding) { _%>,
+    [Routes.OnBoarding]: 'OnBoarding'
+    <%_ } _%>
 });

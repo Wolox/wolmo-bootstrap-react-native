@@ -7,7 +7,6 @@ addAssignees: true
 # A list of reviewers to be added to pull requests (GitHub user name)
 reviewers:
   - sfernandez11
-  - ignaciosantise
   - guidoprinc
   - felire
 
@@ -18,7 +17,6 @@ numberOfReviewers: 0
 # A list of assignees, overrides reviewers if set
 assignees:
   - sfernandez11
-  - ignaciosantise
   - guidoprinc
   - felire
 

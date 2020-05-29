@@ -1,23 +1,28 @@
+<%_ if(features.login) { _%>
 import { ApiOkResponse } from 'apisauce';
 import { Dispatch } from 'react';
-import { SwitchActions, NavigationJumpToAction } from 'react-navigation';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
-import Routes from '@constants/routes';
-import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
-import { Action } from '@interfaces/reduxInterfaces';
 import * as AuthService from '@services/AuthService';
+import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
+<%_ if(features.onboarding) { _%>
+import { setOnBoardingAccess } from '@services/OnBoardingService';
+<%_ } _%>
 
-export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT']), '@@AUTH');
+export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
 const TARGETS = {
-  CURRENT_USER: 'currentUser'
+  CURRENT_USER: 'currentUser'<%_ if(features.onboarding) { _%>,
+  ONBOARDING: 'hasAccessOnBoarding'
+  <%_ } _%>
 };
 
 export const actionCreators = {
-  init: (user: CurrentUser) => ({
+  init: (user: CurrentUser<%_ if(features.onboarding) { _%>, hasAccessOnBoarding: boolean<%_ } _%>) => ({
     type: actions.AUTH_INIT,
     target: TARGETS.CURRENT_USER,
-    payload: user
+    payload: user<%_ if(features.onboarding) { _%>,
+    hasAccessOnBoarding
+    <%_ } _%>
   }),
   login: (authData: AuthData) => ({
     type: actions.LOGIN,
@@ -25,15 +30,65 @@ export const actionCreators = {
     service: AuthService.login,
     payload: authData,
     injections: [
-      withPostSuccess((dispatch: Dispatch<NavigationJumpToAction>, response: ApiOkResponse<CurrentUser>) => {
-        dispatch(SwitchActions.jumpTo({ routeName: <%_ if(features.onboarding) { _%> Routes.OnBoarding <%_}else{ _%> Routes.App <%_}_%> }));
+      withPostSuccess((_: any, response: ApiOkResponse<CurrentUser>) => {
         AuthService.setCurrentUser(response.data!);
       })
     ]
   }),
-  logout: () => async (dispatch: Dispatch<NavigationJumpToAction | Action<{}>>) => {
+  logout: () => async (dispatch: Dispatch<any>) => {
     await AuthService.removeCurrentUser();
+    <%_ if(features.onboarding) { _%>
+    dispatch(actionCreators.setHasAccessOnBoarding(false));
+    <%_ } _%>
     dispatch({ type: actions.LOGOUT, target: TARGETS.CURRENT_USER });
-    dispatch(SwitchActions.jumpTo({ routeName: Routes.Auth }));
+  }<%_ if(features.onboarding) { _%>,
+  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
+    await setOnBoardingAccess(value);
+    dispatch({
+      type: actions.HAS_ACCESS,
+      target: TARGETS.ONBOARDING,
+      payload: value
+    });
+  }
+  <%_ }_%>
+};
+<%_ } _%>
+<%_ if(!features.login && features.onboarding) { _%>
+import { Dispatch } from 'react';
+import { createTypes } from 'redux-recompose';
+import { setOnBoardingAccess } from '@services/OnBoardingService';
+
+export const actions = createTypes(['AUTH_INIT', 'HAS_ACCESS'], '@@AUTH');
+
+const TARGETS = {
+  ONBOARDING: 'hasAccessOnBoarding'
+};
+
+export const actionCreators = {
+  init: (hasAccessOnBoarding: boolean) => ({
+    type: actions.AUTH_INIT,
+    target: TARGETS.ONBOARDING,
+    payload: hasAccessOnBoarding
+  }),
+  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
+    await setOnBoardingAccess(value);
+    dispatch({
+      type: actions.HAS_ACCESS,
+      target: TARGETS.ONBOARDING,
+      payload: value
+    });
   }
 };
+<%_ } _%>
+<%_ if(!features.login && !features.onboarding) { _%>
+import { createTypes } from 'redux-recompose';
+
+export const actions = createTypes(['AUTH_INIT'], '@@AUTH');
+
+export const actionCreators = {
+  init: () => ({
+    type: actions.AUTH_INIT
+  })
+};
+
+<%_ } _%>
