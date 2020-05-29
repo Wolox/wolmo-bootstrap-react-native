@@ -122,7 +122,6 @@ This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by
 <a href="https://github.com/sfernandez11"><img src="https://avatars3.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
 <a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
 <a href="https://github.com/felire"><img src="https://avatars3.githubusercontent.com/u/11776795?s=460&v=4" title="felire" width="80" height="80"></a>
-<a href="https://github.com/ignaciosantise"><img src="https://avatars3.githubusercontent.com/u/25931366?s=460&v=4" title="ignaciosantise" width="80" height="80"></a>
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
 
