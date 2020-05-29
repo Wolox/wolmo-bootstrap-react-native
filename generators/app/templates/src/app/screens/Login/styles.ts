@@ -1,23 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { green, blue, transparent } from '@constants/colors';
+import { green } from '@constants/colors';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%'
   },
-  formElementContainer: {
-    backgroundColor: transparent,
-    borderBottomColor: blue,
-    borderBottomWidth: 1
-  },
-  formElement: {
-    padding: 3,
-    margin: 5,
-    backgroundColor: transparent,
-    height: 30,
-    width: 200
+  form: {
+    alignSelf: 'center',
+    width: 250
   },
   formButton: {
     backgroundColor: green,
