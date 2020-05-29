@@ -53,6 +53,7 @@ export const actionCreators = {
 };
 <%_ } _%>
 <%_ if(!features.login && features.onboarding) { _%>
+import { Dispatch } from 'react';
 import { createTypes } from 'redux-recompose';
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 
@@ -68,7 +69,7 @@ export const actionCreators = {
     target: TARGETS.ONBOARDING,
     payload: hasAccessOnBoarding
   }),
-  setHasAccessOnBoarding: value => async dispatch => {
+  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
     await setOnBoardingAccess(value);
     dispatch({
       type: actions.HAS_ACCESS,

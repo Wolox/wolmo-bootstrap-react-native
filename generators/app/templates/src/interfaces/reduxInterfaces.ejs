@@ -20,21 +20,23 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
   dispatch: Dispatch<Action<T, P, K>>,
   getState: () => State
 ) => void;
-<%_ if(features.login) { _%>
+<%_ if(features.login || features.onboarding) { _%>
 
 export interface AuthState {
+  <%_ if(features.login) { _%>
   currentUser: CurrentUser | null;
   currentUserLoading: boolean;
   currentUserError: string | null;
+  <%_ } _%>
   initialLoading: boolean;
-  <%_ if(features.login && features.onboarding) { _%>
+  <%_ if(features.onboarding) { _%>
   hasAccessOnBoarding: boolean;
   <%_ } _%>
 }
 <%_ } _%>
 
 export interface State {
-  <%_ if(features.login) { _%>
+  <%_ if(features.login || features.onboarding) { _%>
   auth: AuthState;
   <%_ } _%>
 }

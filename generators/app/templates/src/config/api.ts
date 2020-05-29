@@ -3,7 +3,7 @@ import { create, NETWORK_ERROR } from 'apisauce';
 import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
 import Config from 'react-native-config';
 import Reactotron from 'reactotron-react-native';
-import { Dispatch } from 'redux';
+import { Dispatch } from 'react';
 
 const snakeCaseSerializer = new SnakecaseSerializer();
 const camelCaseSerializer = new CamelcaseSerializer();

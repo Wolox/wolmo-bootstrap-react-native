@@ -30,8 +30,9 @@ export default createReducer(Immutable(initialState), completeReducer(reducerDes
 <%_ } _%>
 <%_ if(!features.login && features.onboarding) { _%>
 import { createReducer, onReadValue } from 'redux-recompose';
-import Immutable from 'seamless-immutable';
+import Immutable, { ImmutableObject } from 'seamless-immutable';
 
+import { AuthState } from '@interfaces/reduxInterfaces';
 import { actions } from './actions';
 
 const initialState = {
@@ -52,8 +53,9 @@ export default createReducer(Immutable(initialState), reducerDescription);
 <%_ } _%>
 <%_ if(!features.login && !features.onboarding) { _%>
 import { createReducer } from 'redux-recompose';
-import Immutable from 'seamless-immutable';
+import Immutable, { ImmutableObject } from 'seamless-immutable';
 
+import { AuthState } from '@interfaces/reduxInterfaces';
 import { actions } from './actions';
 
 const initialState = {
