@@ -31,8 +31,6 @@ const AnimatedTextInput = ({
   error,
   disabled,
   isFocused,
-  onFocus,
-  onBlur,
   onShowPassword,
   onChange,
   autoCompleteType,
@@ -67,7 +65,7 @@ const AnimatedTextInput = ({
     })
   };
   return (
-    <View style={[(label && styles.containerWithLabel) as undefined | Record<string, any>, style]}>
+    <View style={[styles.container, !!label && styles.withLabel, style]}>
       {label && (
         <Animated.Text allowFontScaling={false} style={[styles.label, animatedLabelStyle, labelStyle]}>
           {label}
@@ -79,14 +77,7 @@ const AnimatedTextInput = ({
           value={value}
           allowFontScaling={false}
           onChangeText={onChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          style={[
-            styles.inputStyle,
-            !multiline && styles.singleInput,
-            !multiline && styles.offset,
-            textStyles
-          ]}
+          style={[styles.inputStyle, !multiline && styles.singleInput, textStyles]}
           multiline={multiline}
           placeholderTextColor={placeholderColor}
           secureTextEntry={secureTextEntry && !showPassword}

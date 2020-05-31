@@ -3,12 +3,13 @@ import fonts from '@config/fonts';
 import { transparent, darkGray } from '@constants/colors';
 import { SIZES } from '@constants/fonts';
 
-const INPUT_PADDING = 5;
-
 export default StyleSheet.create({
-  containerWithLabel: {
-    marginTop: 35,
-    alignSelf: 'stretch'
+  container: {
+    height: 30
+  },
+  withLabel: {
+    marginBottom: 10,
+    marginTop: 35
   },
   inputContainer: {
     flexDirection: 'row',
@@ -21,7 +22,7 @@ export default StyleSheet.create({
     backgroundColor: transparent,
     fontSize: SIZES.XSMALL,
     position: 'absolute',
-    left: INPUT_PADDING,
+    left: 5,
     marginTop: 3
   },
   inputStyle: {
@@ -34,9 +35,6 @@ export default StyleSheet.create({
   },
   singleInput: {
     flex: 1
-  },
-  offset: {
-    height: 80
   },
   errorMessage: {
     marginTop: 3

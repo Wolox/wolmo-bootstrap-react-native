@@ -16,10 +16,7 @@ const CustomTextInput = ({
   animated,
   bottomBorder = true,
   disabled,
-  error,
   isFocused,
-  onBlur,
-  onFocus,
   placeholderColor,
   showError,
   value,
@@ -39,10 +36,7 @@ const CustomTextInput = ({
     <InputComponent
       {...props}
       borderColorStyle={borderColorStyle()}
-      error={error}
       isFocused={isFocused}
-      onBlur={onBlur}
-      onFocus={onFocus}
       onShowPassword={handleShowPassword}
       placeholderColor={value ? transparent : placeholderColor}
       showPassword={showPassword}
