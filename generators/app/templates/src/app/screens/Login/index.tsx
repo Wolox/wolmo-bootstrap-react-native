@@ -25,44 +25,41 @@ function Login() {
   return (
     <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
       <Formik onSubmit={handleLogin} initialValues={INITIAL_VALUES}>
-        {({ handleSubmit, errors, touched }) => {
-          const hasEmailError = !!errors[FIELDS.email] && touched[FIELDS.email];
-          const hasPasswordError = !!errors[FIELDS.password] && touched[FIELDS.password];
-          return (
-            <>
-              <View style={styles.form}>
-                <CustomTextInputField
-                  animated
-                  keyboardType="email-address"
-                  label={i18next.t('LOGIN:MAIL')}
-                  name={FIELDS.email}
-                  showError={hasLoginError}
-                  validate={validationsWrapper([validateRequired, validateEmail])}
-                />
-                <CustomTextInputField
-                  animated
-                  showEye
-                  secureTextEntry
-                  label={i18next.t('LOGIN:PASSWORD')}
-                  name={FIELDS.password}
-                  showError={hasLoginError}
-                  validate={validateRequired}
-                />
-                {hasLoginError && (
-                  <CustomText error center>
-                    {i18next.t('LOGIN:LOGIN_FAILURE')}
-                  </CustomText>
-                )}
-              </View>
-              <CustomButton
-                onPress={handleSubmit}
-                style={styles.formButton}
-                title={i18next.t('LOGIN:LOG_IN')}
-                disabled={hasLoginError || hasEmailError || hasPasswordError}
+        {({ handleSubmit, isValid }) => (
+          <>
+            <View style={styles.form}>
+              <CustomTextInputField
+                animated
+                keyboardType="email-address"
+                label={i18next.t('LOGIN:MAIL')}
+                name={FIELDS.email}
+                placeholder={i18next.t('LOGIN:MAIL_PLACEHOLDER')}
+                showError={hasLoginError}
+                validate={validationsWrapper([validateRequired, validateEmail])}
               />
-            </>
-          );
-        }}
+              <CustomTextInputField
+                animated
+                showEye
+                secureTextEntry
+                label={i18next.t('LOGIN:PASSWORD')}
+                name={FIELDS.password}
+                showError={hasLoginError}
+                validate={validateRequired}
+              />
+              {hasLoginError && (
+                <CustomText error center>
+                  {i18next.t('LOGIN:LOGIN_FAILURE')}
+                </CustomText>
+              )}
+            </View>
+            <CustomButton
+              onPress={handleSubmit}
+              style={styles.formButton}
+              title={i18next.t('LOGIN:LOG_IN')}
+              disabled={hasLoginError || !isValid}
+            />
+          </>
+        )}
       </Formik>
     </TouchableOpacity>
   );

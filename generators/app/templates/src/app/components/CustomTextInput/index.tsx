@@ -1,47 +1,87 @@
 import React, { useState, memo } from 'react';
+import { TextInput, View } from 'react-native';
+import CustomText from '@components/CustomText';
 import withForm from '@components/withForm';
 import { transparent } from '@constants/colors';
 
-import AnimatedTextInput from './components/AnimatedTextInput';
-import TextInput from './components/TextInput';
-import { CustomTextInputProps } from './interface';
+import InputLabel from './components/InputLabel';
+import ShowPassword from './components/ShowPassword';
+import { CustomTextInputProps as Props } from './interface';
 import styles from './styles';
-
-interface Props extends CustomTextInputProps {
-  animated?: boolean;
-  bottomBorder?: boolean;
-}
 
 const CustomTextInput = ({
   animated,
-  bottomBorder = true,
+  autoCompleteType,
   disabled,
+  error,
+  errorContainerStyle,
+  errorStyle,
+  inputContainerStyle,
+  inputTextStyles,
   isFocused,
+  label,
+  labelStyle,
+  multiline,
+  onChange,
+  placeholder,
   placeholderColor,
+  secureTextEntry,
   showError,
+  showEye,
+  style,
   value,
   ...props
 }: Props) => {
-  const InputComponent = animated ? AnimatedTextInput : TextInput;
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
   const borderColorStyle = () => {
-    if (!bottomBorder) return {};
     if (disabled) return styles.bottomBorderLightGray;
     if (isFocused) return styles.bottomBorderBlue;
     if (showError) return styles.bottomBorderRed;
-    return styles.bottomBorderGray;
+    return {};
   };
   return (
-    <InputComponent
-      {...props}
-      borderColorStyle={borderColorStyle()}
-      isFocused={isFocused}
-      onShowPassword={handleShowPassword}
-      placeholderColor={value ? transparent : placeholderColor}
-      showPassword={showPassword}
-      value={value}
-    />
+    <View style={[styles.container, animated && !!label && styles.withAnimatedLabel, style]}>
+      {label && (
+        <InputLabel
+          animated={animated}
+          hasValue={!!value}
+          isFocused={isFocused}
+          label={label}
+          labelStyle={labelStyle}
+        />
+      )}
+      <View
+        style={[
+          multiline ? styles.multilineContainer : styles.inputContainer,
+          borderColorStyle(),
+          inputContainerStyle
+        ]}>
+        <TextInput
+          {...props}
+          allowFontScaling={false}
+          autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
+          editable={!disabled}
+          multiline={multiline}
+          onChangeText={onChange}
+          placeholder={(isFocused || !animated) && value === '' ? placeholder : ''}
+          placeholderTextColor={placeholderColor}
+          secureTextEntry={secureTextEntry && !showPassword}
+          style={[styles.inputStyle, !multiline && styles.singleInput, inputTextStyles]}
+          value={value}
+        />
+        {secureTextEntry && showEye && (
+          <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
+        )}
+      </View>
+      <View style={[!disabled && styles.errorContainer, errorContainerStyle]}>
+        {!isFocused && error && (
+          <CustomText error xsmall style={errorStyle}>
+            {error}
+          </CustomText>
+        )}
+      </View>
+    </View>
   );
 };
 

@@ -9,13 +9,12 @@ export default StyleSheet.create({
     width: '100%'
   },
   form: {
-    alignSelf: 'center',
     width: 250
   },
   formButton: {
     backgroundColor: green,
     padding: 10,
     borderRadius: 3,
-    margin: 20
+    marginTop: 15
   }
 });

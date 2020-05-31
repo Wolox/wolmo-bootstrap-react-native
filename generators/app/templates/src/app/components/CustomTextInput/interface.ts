@@ -1,25 +1,26 @@
-import { TextProps, TextInputProps, TextStyle, TouchableOpacityProps, ViewProps } from 'react-native';
+import { TextProps, TextInputProps, TextStyle, ViewProps } from 'react-native';
 
 export interface CustomTextInputProps extends TextInputProps, TextProps {
-  borderColorStyle?: any;
-  isFocused?: boolean;
+  animated?: boolean;
+  autoCompleteType?: TextInputProps['autoCompleteType'];
+  disabled?: boolean;
+  error?: boolean | string;
+  errorContainerStyle?: ViewProps['style'];
+  errorStyle?: TextStyle;
+  inputContainerStyle?: ViewProps['style'];
+  inputTextStyles?: TextStyle;
+  isFocused: boolean;
+  label?: string;
+  labelStyle?: TextStyle;
   multiline?: boolean;
-  showPassword?: boolean;
-  textStyles?: TextStyle;
   onBlur?: TextInputProps['onBlur'];
   onChange?(e: any): any;
   onFocus?: TextInputProps['onFocus'];
-  onShowPassword?: TouchableOpacityProps['onPress'];
-  value?: string;
+  placeholder?: string;
   placeholderColor?: string;
-  showEye?: boolean;
   secureTextEntry?: boolean;
   showError?: boolean;
+  showEye?: boolean;
   style?: ViewProps['style'];
-  autoCompleteType?: TextInputProps['autoCompleteType'];
-  error?: boolean | string;
-  disabled?: boolean;
-  placeholder?: string;
-  label?: string;
-  labelStyle?: TextStyle;
+  value?: string;
 }
