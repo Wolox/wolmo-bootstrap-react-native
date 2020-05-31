@@ -14,6 +14,7 @@ export interface CustomTextInputProps extends TextInputProps, TextProps {
   placeholderColor?: string;
   showEye?: boolean;
   secureTextEntry?: boolean;
+  showError?: boolean;
   style?: ViewProps['style'];
   autoCompleteType?: TextInputProps['autoCompleteType'];
   error?: boolean | string;

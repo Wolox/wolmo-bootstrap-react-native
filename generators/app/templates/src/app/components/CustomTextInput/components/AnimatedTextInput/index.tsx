@@ -98,7 +98,7 @@ const AnimatedTextInput = ({
           <ShowPassword onShowPassword={onShowPassword!} passwordVisible={showPassword!} />
         )}
       </View>
-      {error && (
+      {!isFocused && error && (
         <CustomText error xsmall style={styles.errorMessage}>
           {error}
         </CustomText>

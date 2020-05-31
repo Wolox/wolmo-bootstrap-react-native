@@ -8,18 +8,16 @@ const alphanumericRegex = /^[a-zA-Z0-9]*$/g;
 const onlyTextRegex = /^[a-zA-Z\s]*$/;
 const onlyNumberRegex = /^[0-9]*$/g;
 
-// Validations Wrapper. For example: validate={validationsWrapper(validateRequired, validateEmail)}
+// Validations Wrapper. For example: validate={validationsWrapper([validateRequired, validateEmail])}
 export const validationsWrapper = (validations: Array<(value: string) => string | undefined>) => (
   value: string
 ) => {
   // eslint-disable-next-line init-declarations
   let finalError: string | undefined;
-  validations.forEach(validation => {
+  validations.some(validation => {
     const result = validation(value);
-    if (result) {
-      if (finalError) finalError = `${finalError}, ${result}`;
-      else finalError = result;
-    }
+    if (result) finalError = result;
+    return !!result;
   });
   return finalError;
 };

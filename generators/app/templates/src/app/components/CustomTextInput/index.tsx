@@ -1,5 +1,4 @@
 import React, { useState, memo } from 'react';
-import { NativeSyntheticEvent } from 'react-native';
 import withForm from '@components/withForm';
 import { transparent } from '@constants/colors';
 
@@ -18,29 +17,22 @@ const CustomTextInput = ({
   bottomBorder = true,
   disabled,
   error,
+  isFocused,
   onBlur,
   onFocus,
   placeholderColor,
+  showError,
   value,
   ...props
 }: Props) => {
   const InputComponent = animated ? AnimatedTextInput : TextInput;
   const [showPassword, setShowPassword] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
-  const handleBlur = (e: NativeSyntheticEvent<any>) => {
-    setIsFocused(false);
-    if (onBlur) onBlur(e);
-  };
-  const handleFocus = (e: NativeSyntheticEvent<any>) => {
-    setIsFocused(true);
-    if (onFocus) onFocus(e);
-  };
   const borderColorStyle = () => {
     if (!bottomBorder) return {};
     if (disabled) return styles.bottomBorderLightGray;
     if (isFocused) return styles.bottomBorderBlue;
-    if (error) return styles.bottomBorderRed;
+    if (showError) return styles.bottomBorderRed;
     return styles.bottomBorderGray;
   };
   return (
@@ -49,8 +41,8 @@ const CustomTextInput = ({
       borderColorStyle={borderColorStyle()}
       error={error}
       isFocused={isFocused}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
+      onBlur={onBlur}
+      onFocus={onFocus}
       onShowPassword={handleShowPassword}
       placeholderColor={value ? transparent : placeholderColor}
       showPassword={showPassword}

@@ -13,6 +13,7 @@ const CustomTextInput = ({
   borderColorStyle,
   label,
   labelStyle,
+  isFocused,
   multiline,
   onShowPassword,
   style,
@@ -51,7 +52,7 @@ const CustomTextInput = ({
           <ShowPassword onShowPassword={onShowPassword!} passwordVisible={showPassword!} />
         )}
       </View>
-      {error && (
+      {!isFocused && error && (
         <CustomText error xsmall style={styles.errorMessage}>
           {error}
         </CustomText>
