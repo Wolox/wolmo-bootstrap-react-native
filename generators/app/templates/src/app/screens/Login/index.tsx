@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
-import { CustomTextInputField } from '@components/CustomTextInput';
+import { CustomTextInputFormikField } from '@components/CustomTextInput';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
@@ -28,7 +28,7 @@ function Login() {
         {({ handleSubmit, isValid }) => (
           <>
             <View style={styles.form}>
-              <CustomTextInputField
+              <CustomTextInputFormikField
                 animated
                 keyboardType="email-address"
                 label={i18next.t('LOGIN:MAIL')}
@@ -37,7 +37,7 @@ function Login() {
                 showError={hasLoginError}
                 validate={validationsWrapper([validateRequired, validateEmail])}
               />
-              <CustomTextInputField
+              <CustomTextInputFormikField
                 animated
                 showEye
                 secureTextEntry

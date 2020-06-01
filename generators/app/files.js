@@ -62,8 +62,8 @@ module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
 // APP COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
-// APP COMPONENTS - WITHFORM
-module.exports.WITH_FORM_PATH = `${module.exports.COMPONENTS_PATH}/withForm`;
+// APP COMPONENTS - WITH FORMIK FIELD
+module.exports.WITH_FORMIK_FIELD_PATH = `${module.exports.COMPONENTS_PATH}/withFormikField`;
 
 // APP SCREENS - HOME
 module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
