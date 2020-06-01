@@ -52,14 +52,11 @@ module.exports.APP_NAVIGATOR_PATH = `${module.exports.COMPONENTS_PATH}/AppNaviga
 module.exports.APP_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/index.tsx`;
 module.exports.APP_NAVIGATOR_NAVIGATOR = `${module.exports.APP_NAVIGATOR_PATH}/navigator.tsx`;
 module.exports.NAVIGATION_HELPER = `${module.exports.APP_NAVIGATOR_PATH}/helper.ts`;
-
-// COMPONENTS - CUSTOM STATUS BAR
-module.exports.CUSTOM_STATUS_BAR = `${module.exports.COMPONENTS_PATH}/CustomStatusBar`;
-
 // APP COMPONENTS - CUSTOM BUTTON
 module.exports.CUSTOM_BUTTON_PATH = `${module.exports.COMPONENTS_PATH}/CustomButton`;
-
-// COMPONENTS - CUSTOM TEXT
+// APP COMPONENTS - CUSTOM STATUS BAR
+module.exports.CUSTOM_STATUS_BAR = `${module.exports.COMPONENTS_PATH}/CustomStatusBar`;
+// APP COMPONENTS - CUSTOM TEXT
 module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`;
 // APP COMPONENTS - CUSTOM TEXT INPUT
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
@@ -74,7 +71,6 @@ module.exports.HOME = `${module.exports.HOME_PATH}/index.tsx`;
 module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.ts`;
 // APP SCREENS - LOGIN
 module.exports.LOGIN_PATH = `${module.exports.SCREENS_PATH}/Login`;
-
 // APP SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
