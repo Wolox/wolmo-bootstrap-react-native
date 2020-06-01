@@ -6,27 +6,19 @@ const runCommand = require('./runCommand');
 const DEPENDENCIES = [
   '@react-native-community/async-storage',
   '@react-native-community/masked-view',
-  '@types/jest',
-  '@types/react',
-  '@types/react-native',
-  '@types/react-redux',
-  '@types/react-test-renderer',
-  '@types/seamless-immutable',
+  '@react-navigation/native',
+  '@react-navigation/stack',
   'apisauce',
   'cerealizr',
+  'formik',
   'i18next',
-  'prop-types',
   'react-native-config',
-  // Delete when react-native-gesture-handler fix this issue on Android
-  // https://github.com/software-mansion/react-native-gesture-handler/issues/950
   'react-native-gesture-handler',
   'react-native-localize',
   'react-native-reanimated',
   'react-native-safe-area-context',
   'react-native-screens',
   'react-native-splash-screen',
-  '@react-navigation/native',
-  '@react-navigation/stack',
   'react-redux',
   'reactotron-apisauce',
   'reactotron-react-native',
@@ -40,13 +32,19 @@ const DEPENDENCIES = [
 ];
 
 const DEV_DEPENDENCIES = [
+  '@react-native-community/eslint-config',
+  '@types/jest',
+  '@types/react',
+  '@types/react-native',
+  '@types/react-redux',
+  '@types/react-test-renderer',
+  '@types/seamless-immutable',
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
   'enzyme-adapter-react-16',
   'enzyme-to-json',
   'enzyme',
-  '@react-native-community/eslint-config',
   'eslint-config-wolox-react-native',
   'eslint-config-airbnb',
   'eslint-config-prettier',
@@ -115,34 +113,28 @@ function yarnInstall(projectName, deps, options, dev) {
 }
 
 module.exports = function installDependencies() {
-  if (this.features.login) {
-    DEPENDENCIES.push('recompose');
-  }
   if (this.features.tabs) {
     DEPENDENCIES.push('@react-navigation/bottom-tabs');
   }
 
   if (this.features.crashlytics || this.features.firebaseanalytics || this.features.pushnotifications) {
     DEPENDENCIES.push('@react-native-firebase/app');
-  }
 
-  if (this.features.crashlytics) {
-    DEPENDENCIES.push('@react-native-firebase/crashlytics');
-  }
-
-  if (this.features.firebaseanalytics) {
-    DEPENDENCIES.push('@react-native-firebase/analytics');
-  }
-
-  if (this.features.pushnotifications) {
-    DEPENDENCIES.push('react-native-push-notification');
-    DEPENDENCIES.push('@react-native-firebase/messaging');
-    DEPENDENCIES.push('@types/react-native-push-notification');
-    DEPENDENCIES.push('@react-native-community/push-notification-ios');
-  }
-
-  if (this.features.firebaseperformance) {
-    DEPENDENCIES.push('@react-native-firebase/perf');
+    if (this.features.crashlytics) {
+      DEPENDENCIES.push('@react-native-firebase/crashlytics');
+    }
+    if (this.features.firebaseanalytics) {
+      DEPENDENCIES.push('@react-native-firebase/analytics');
+    }
+    if (this.features.pushnotifications) {
+      DEPENDENCIES.push('react-native-push-notification');
+      DEPENDENCIES.push('@react-native-firebase/messaging');
+      DEPENDENCIES.push('@react-native-community/push-notification-ios');
+      DEV_DEPENDENCIES.push('@types/react-native-push-notification');
+    }
+    if (this.features.firebaseperformance) {
+      DEPENDENCIES.push('@react-native-firebase/perf');
+    }
   }
 
   if (this.features.drawer) {
@@ -153,9 +145,11 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('redux-persist');
     DEPENDENCIES.push('redux-persist-seamless-immutable');
   }
+
   if (this.features.onboarding) {
     DEPENDENCIES.push('react-native-swiper');
   }
+
   return getLinterPluginVersions(this.projectName, this.options).then(plugins => {
     const pluginNames = Object.keys(plugins);
     const fixedDevDeps = DEV_DEPENDENCIES.map(

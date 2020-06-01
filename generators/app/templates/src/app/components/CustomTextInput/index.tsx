@@ -1,85 +1,107 @@
-import React, { useState, useCallback, memo } from 'react';
-import { View, TextInput } from 'react-native';
+import React, { useState, memo } from 'react';
+import { TextInput, View } from 'react-native';
 import CustomText from '@components/CustomText';
+import withFormikField from '@components/withFormikField';
 import { transparent } from '@constants/colors';
 
+import InputLabel from './components/InputLabel';
 import ShowPassword from './components/ShowPassword';
-import { CustomTextInputProps } from './interface';
+import { CustomTextInputProps as Props } from './interface';
 import styles from './styles';
 
-const CustomTextInput = (props: CustomTextInputProps) => {
+const CustomTextInput = ({
+  animated,
+  autoCompleteType,
+  disabled,
+  error,
+  errorContainerStyle,
+  errorStyle,
+  inputContainerStyle,
+  inputTextStyles,
+  isFocused,
+  label,
+  labelStyle,
+  multiline,
+  onChange,
+  placeholder,
+  placeholderColor,
+  secureTextEntry,
+  showError,
+  showEye,
+  style,
+  value,
+  ...props
+}: Props) => {
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
-
-  const {
-    value,
-    placeholderTextColor,
-    title,
-    titleStyles,
-    multiline,
-    bottomBorder,
-    style,
-    onChange,
-    onBlur,
-    onFocus,
-    textStyles,
-    secureTextEntry,
-    showEye,
-    autoCompleteType,
-    error
-  } = props;
-
-  const placeholderColor = value ? transparent : placeholderTextColor;
-
+  const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
+  const borderColorStyle = () => {
+    if (disabled) return styles.bottomBorderLightGray;
+    if (isFocused) return styles.bottomBorderBlue;
+    if (showError) return styles.bottomBorderRed;
+    return {};
+  };
   return (
-    <>
-      {title && (
-        <CustomText gray small style={[styles.title, titleStyles]}>
-          {title}
-        </CustomText>
+    <View style={[styles.container, animated && !!label && styles.withAnimatedLabel, style]}>
+      {label && (
+        <InputLabel
+          animated={animated}
+          hasValue={!!value}
+          isFocused={isFocused}
+          label={label}
+          labelStyle={labelStyle}
+        />
       )}
       <View
         style={[
-          multiline ? styles.multilineContainer : styles.container,
-          bottomBorder && styles.bottomBorder,
-          style
+          multiline ? styles.multilineContainer : styles.inputContainer,
+          borderColorStyle(),
+          inputContainerStyle
         ]}>
         <TextInput
           {...props}
           allowFontScaling={false}
+          autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
+          editable={!disabled}
+          multiline={multiline}
           onChangeText={onChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          value={value}
-          style={[styles.inputStyle, multiline ? styles.multilineInput : styles.singleInput, textStyles]}
+          placeholder={(isFocused || !animated) && value === '' ? placeholder : ''}
           placeholderTextColor={placeholderColor}
           secureTextEntry={secureTextEntry && !showPassword}
-          autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
+          style={[styles.inputStyle, !multiline && styles.singleInput, inputTextStyles]}
+          value={value}
         />
         {secureTextEntry && showEye && (
           <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
         )}
       </View>
-      {error && (
-        <CustomText error xsmall style={styles.errorMessage}>
-          {error}
-        </CustomText>
-      )}
-    </>
+      <View style={[!disabled && styles.errorContainer, errorContainerStyle]}>
+        {!isFocused && error && (
+          <CustomText error xsmall style={errorStyle}>
+            {error}
+          </CustomText>
+        )}
+      </View>
+    </View>
   );
 };
 
 CustomTextInput.defaultProps = {
-  autoCapitalize: 'sentences',
+  animated: false,
+  autoCapitalize: 'none',
+  autoCompleteType: 'off',
   autoCorrect: false,
-  bottomBorder: false,
   clearButtonMode: 'never',
+  disabled: false,
   keyboardType: 'default',
   maxHeight: 200,
   multiline: false,
+  placeholder: '',
   returnKeyType: 'done',
   underlineColorAndroid: transparent
 };
 
-export default memo(CustomTextInput);
+const MyCustomTextInput = memo(CustomTextInput);
+
+export const CustomTextInputFormikField = withFormikField(MyCustomTextInput);
+
+export default MyCustomTextInput;

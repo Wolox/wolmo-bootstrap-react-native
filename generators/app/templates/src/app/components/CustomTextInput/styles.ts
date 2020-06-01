@@ -1,39 +1,50 @@
 import { StyleSheet } from 'react-native';
 import fonts from '@config/fonts';
-import { gray, transparent } from '@constants/colors';
+import { blue, gray, darkGray, red } from '@constants/colors';
+import { SIZES } from '@constants/fonts';
 
 export default StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    height: 42,
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    marginBottom: 5
+  },
+  withAnimatedLabel: {
+    marginTop: 20
   },
   multilineContainer: {
-    flex: 1
+    borderColor: darkGray,
+    borderWidth: 1,
+    height: 75,
+    paddingHorizontal: 5
+  },
+  inputContainer: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: darkGray,
+    flexDirection: 'row',
+    height: 25,
+    justifyContent: 'space-between'
+  },
+  bottomBorderBlue: {
+    borderColor: blue
+  },
+  bottomBorderRed: {
+    borderColor: red
+  },
+  bottomBorderLightGray: {
+    borderColor: gray
   },
   inputStyle: {
     ...fonts.baseFont,
+    fontSize: SIZES.SMALL,
+    color: darkGray,
     padding: 0,
-    marginHorizontal: 0,
-    marginBottom: 0
+    margin: 0
   },
   singleInput: {
     flex: 1
   },
-  multilineInput: {
-    paddingTop: 10,
-    paddingLeft: 0
-  },
-  bottomBorder: {
-    borderBottomWidth: 1,
-    borderBottomColor: gray
-  },
-  title: {
-    marginTop: 5,
-    backgroundColor: transparent
-  },
-  errorMessage: {
+  errorContainer: {
+    height: 15,
     marginTop: 3
   }
 });

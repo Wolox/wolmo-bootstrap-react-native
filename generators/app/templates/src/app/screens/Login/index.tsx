@@ -1,51 +1,68 @@
-import React, { useCallback, memo } from 'react';
-import { View } from 'react-native';
+import React, { useCallback } from 'react';
+import { Keyboard, TouchableOpacity, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import i18next from 'i18next';
+import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
-import CustomTextInput from '@components/CustomTextInput';
-import { Loading } from '@components/Loadable';
-import { transparent } from '@constants/colors';
+import CustomText from '@components/CustomText';
+import { CustomTextInputFormikField } from '@components/CustomTextInput';
 import { State } from '@interfaces/reduxInterfaces';
-import { actionCreators as authActions } from '@redux/auth/actions';
+import { actionCreators as AuthActions } from '@redux/auth/actions';
+import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
 
+import { FIELDS, INITIAL_VALUES } from './constants';
 import './i18n';
 import styles from './styles';
 
+const WITHOUT_OPACITY = 1;
+
 function Login() {
   const dispatch = useDispatch();
-  const loading = useSelector<State, boolean>(state => state.auth.currentUserLoading);
-  const handleLogin = useCallback(() => dispatch(authActions.login()), [dispatch]);
-  return loading ? (
-    <Loading />
-  ) : (
-    <View style={styles.container}>
-      <View style={styles.formElementContainer}>
-        <CustomTextInput
-          underlineColorAndroid={transparent}
-          placeholder={i18next.t('LOGIN:USER')}
-          style={styles.formElement}
-        />
-      </View>
-      <View style={styles.formElementContainer}>
-        <CustomTextInput
-          underlineColorAndroid={transparent}
-          placeholder={i18next.t('LOGIN:PASSWORD')}
-          style={styles.formElement}
-          secureTextEntry
-          autoCapitalize="none"
-          showEye
-        />
-      </View>
-      <CustomButton
-        green
-        onPress={handleLogin}
-        style={styles.formButton}
-        title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Wolox' })}
-        activeOpacity={0.7}
-      />
-    </View>
+  const hasLoginError = useSelector<State, boolean>(store => !!store.auth.currentUserError);
+  const handleLogin: (values: any) => void = useCallback(values => dispatch(AuthActions.login(values)), [
+    dispatch
+  ]);
+  return (
+    <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
+      <Formik onSubmit={handleLogin} initialValues={INITIAL_VALUES}>
+        {({ handleSubmit, isValid }) => (
+          <>
+            <View style={styles.form}>
+              <CustomTextInputFormikField
+                animated
+                keyboardType="email-address"
+                label={i18next.t('LOGIN:MAIL')}
+                name={FIELDS.email}
+                placeholder={i18next.t('LOGIN:MAIL_PLACEHOLDER')}
+                showError={hasLoginError}
+                validate={validationsWrapper([validateRequired, validateEmail])}
+              />
+              <CustomTextInputFormikField
+                animated
+                showEye
+                secureTextEntry
+                label={i18next.t('LOGIN:PASSWORD')}
+                name={FIELDS.password}
+                showError={hasLoginError}
+                validate={validateRequired}
+              />
+              {hasLoginError && (
+                <CustomText error center>
+                  {i18next.t('LOGIN:LOGIN_FAILURE')}
+                </CustomText>
+              )}
+            </View>
+            <CustomButton
+              onPress={handleSubmit}
+              style={styles.formButton}
+              title={i18next.t('LOGIN:LOG_IN')}
+              disabled={hasLoginError || !isValid}
+            />
+          </>
+        )}
+      </Formik>
+    </TouchableOpacity>
   );
 }
 
-export default memo(Login);
+export default Login;

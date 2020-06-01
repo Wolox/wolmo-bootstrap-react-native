@@ -20,7 +20,7 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts.lint = 'eslint src --ext .js,.ts,.jsx,.tsx';
   packageJson.scripts['lint-fix'] = 'eslint src --ext .js,.ts,.jsx,.tsx --fix';
   packageJson.scripts['lint-diff'] =
-    'git diff --name-only --cached --relative | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
+    'git diff --name-only --cached --no-error-on-unmatched-pattern --relative | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
   packageJson.scripts.tsc = 'tsc';
 
   packageJson.husky = packageJson.husky || {};
