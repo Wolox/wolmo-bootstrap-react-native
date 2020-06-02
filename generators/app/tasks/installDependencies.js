@@ -13,6 +13,7 @@ const DEPENDENCIES = [
   'formik',
   'i18next',
   'react-native-config',
+  'react-native-flipper',
   'react-native-gesture-handler',
   'react-native-localize',
   'react-native-reanimated',
