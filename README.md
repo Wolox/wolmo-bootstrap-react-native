@@ -6,11 +6,11 @@
 
 ## Prerequisites
 
-- React native dev environment: https://facebook.github.io/react-native/docs/getting-started.html
-- node: https://github.com/creationix/nvm#install-script
-- yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
-- ruby (for Fastlane): https://rvm.io/rvm/install
 - CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
+- Node: https://github.com/creationix/nvm#install-script
+- React Native Environment: https://facebook.github.io/react-native/docs/getting-started.html
+- Ruby (for Fastlane): https://rvm.io/rvm/install
+- Yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
 
 ## TL;DR
 
@@ -25,53 +25,68 @@ bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-nat
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-- Login
-- Tabs
+- Bitrise
 - Drawer
-- Redux Persist
 - Firebase Analytics
 - Firebase Crashlytics
 - Firebase Performance
 - Firebase Push Notifications
-- Bitrise
+- Login
 - OnBoarding
+- Redux Persist
+- Tabs
 
 ### Boilerplate
 
 The boilerplate includes
 
-- [Basic routes configuration for React Navigation](/generators/app/templates/src/app/components/AppNavigator/navigator.ejs)
-- [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
-- [Reactotron config](/generators/app/templates/src/config/reactotronConfig.ejs)
-- [Basic constants](/generators/app/templates/src/constants)
-- [Http client config](/generators/app/templates/src/config/api.js)
-- [i18next config](/generators/app/templates/src/config/i18n.js)
 - [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
+- [Basic constants](/generators/app/templates/src/constants)
+- [Basic utils](/generators/app/templates/src/utils)
+- [Bitrise configuration](/generators/app/tasks/createBitriseApp.js)
+- [Deploy configuration with Fastlane Mobile (Android and iOS)](https://github.com/Wolox/fastlane-mobile)
+- [Font customization](/generators/app/templates/src/config/fonts.js)
+- [Formik: HOC to create Custom Fields](/generators/app/templates/src/app/components/withFormikField/index.tsx)
+- [Http client configuration](/generators/app/templates/src/config/api.js)
+- [i18next configuration](/generators/app/templates/src/config/i18n.js)
 - [Push Notifications configuration](/generators/app/templates/src/config/pushNotifications.js)
+- [React Navigation: Routes configuration](/generators/app/templates/src/app/components/AppNavigator/navigator.ejs)
+- [Reactotron configuration](/generators/app/templates/src/config/reactotronConfig.ejs)
+- [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
 - [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
-- [Font Customization](/generators/app/templates/src/config/fonts.js)
-- [Bitrise config](/generators/app/tasks/createBitriseApp.js)
+- [TypeScript basic interfaces](/generators/app/templates/src/interfaces)
 - [TypeScript configuration](/generators/app/templates/tsconfig.json)
-- [Fastlane-mobile](https://github.com/Wolox/fastlane-mobile)
 
 ### Tech Stack
 
-- [React](https://facebook.github.io/react/)
-- [React Native](https://facebook.github.io/react-native/)
-- [React Navigation](https://reactnavigation.org/)
-- [Redux](http://redux.js.org/)
-- [Redux Thunk](https://github.com/gaearon/redux-thunk)
-- [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
 - [Apisauce](https://github.com/skellock/apisauce)
-- [Reselect](https://github.com/reactjs/reselect)
-- [React Native Config](https://github.com/luggit/react-native-config)
+- [Cerealizr](https://github.com/damfinkel/cerealizr)
+- [Formik](https://jaredpalmer.com/formik/)
 - [i18next](https://www.i18next.com/)
-- [Bitrise](https://devcenter.bitrise.io/)
+- [React](https://reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Firebase](https://invertase.io/oss/react-native-firebase)
+- [React Native Push Notifications](https://github.com/zo0r/react-native-push-notification)
+- [React Native Swiper](https://github.com/leecade/react-native-swiper)
+- [React Navigation](https://reactnavigation.org/)
+- [React Redux](https://react-redux.js.org/)
+- [Redux](http://redux.js.org/)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [Redux Recompose](https://github.com/Wolox/redux-recompose)
+- [Redux Thunk](https://github.com/gaearon/redux-thunk)
+- [Reselect](https://github.com/reactjs/reselect)
+- [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
 
 ### Tooling
 
+- [Babel](https://babeljs.io/)
+- [Bitrise](https://devcenter.bitrise.io/)
+- [Enzyme](https://github.com/enzymejs/enzyme)
 - [Eslint](http://eslint.org/)
+- [Fastlane Mobile](https://github.com/Wolox/fastlane-mobile)
+- [Flipper](https://fbflipper.com/)
+- [Jest](https://jestjs.io/)
 - [Prettier](https://github.com/prettier/prettier)
 - [Reactotron](https://github.com/infinitered/reactotron)
 - [TypeScript](https://www.typescriptlang.org/)

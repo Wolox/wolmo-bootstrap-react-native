@@ -2,9 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.X.X] - 2020-XX-XX
+
+- Added [Formik](https://jaredpalmer.com/formik/) + [withFormikField (HOC)](/generators/app/templates/src/app/components/withFormikField/index.tsx) to create Custom Fields
+- Added some field validations
+- Updated `Login` screen and refactored authentication flow
+- Added [Flipper](https://fbflipper.com/) to [Reactotron Configuration](/generators/app/templates/src/config/reactotronConfig.ejs)
+
 ## [1.1.0] - 2020-05-29
 
-- Migrated React Navigation configuration to [v5](https://reactnavigation.org/)
+- Migrated [React Navigation](https://reactnavigation.org/) configuration to v5
 
 ## [1.0.1] - 2020-05-04
 

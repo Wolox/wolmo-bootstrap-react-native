@@ -1,9 +1,11 @@
 import Immutable from 'seamless-immutable';
 import Reactotron, { asyncStorage, overlay, trackGlobalErrors } from 'reactotron-react-native';
+import ReactotronFlipper from 'reactotron-react-native/dist/flipper';
 import apisaucePlugin from 'reactotron-apisauce';
 import { reactotronRedux } from 'reactotron-redux';
 import { NativeModules } from 'react-native';
 import { Tron } from '@interfaces/reactotron';
+
 // Console augmentation
 declare global {
   interface Console {
@@ -11,11 +13,15 @@ declare global {
   }
 }
 
-// If you want to use a physical device and connect it to reactotron, execute first `adb reverse tcp:9090 tcp:9090`
+// If you want to use a physical device and connect it to reactotron, execute first 'adb reverse tcp:9090 tcp:9090'
 if (__DEV__) {
   const { scriptURL } = NativeModules.SourceCode;
   const scriptHostname = scriptURL.split('://')[1].split(':')[0];
-  Reactotron.configure({ name: '<%= projectName %>', host: scriptHostname })
+  Reactotron.configure({
+    name: '<%= projectName %>',
+    host: scriptHostname,
+    createSocket: path => new ReactotronFlipper(path)
+  })
     .use(trackGlobalErrors({}))
     .use(apisaucePlugin())
     .use(
