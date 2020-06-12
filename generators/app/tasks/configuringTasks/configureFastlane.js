@@ -1,4 +1,4 @@
-const runCommand = require('./runCommand');
+const runCommand = require('../runCommand');
 
 const fastlaneMobileHTTPS = 'https://github.com/Wolox/fastlane-mobile.git';
 const fastlaneAndroidFolderOrigin = 'fastlane-mobile/android/fastlane';

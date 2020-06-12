@@ -1,5 +1,5 @@
-const { copyFile } = require('../../utils');
-const { PUSH_NOTIFICATIONS_CONFIG } = require('../../files');
+const { copyFile } = require('../utils');
+const { PUSH_NOTIFICATIONS_CONFIG } = require('../files');
 
 const FILES = [PUSH_NOTIFICATIONS_CONFIG];
 

@@ -1,4 +1,4 @@
-const { copyFile, copyTemplateFile } = require('../../utils');
+const { copyFile, copyTemplateFile } = require('../utils');
 const {
   UTILS_PATH,
   GLOBAL_INTERFACES,
@@ -51,7 +51,7 @@ const {
   CUSTOM_STATUS_BAR,
   REDUX_INTERFACES,
   WITH_FORMIK_FIELD_PATH
-} = require('../../files');
+} = require('../files');
 
 const FILES = [
   UTILS_PATH,

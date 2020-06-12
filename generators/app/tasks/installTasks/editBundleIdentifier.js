@@ -1,4 +1,4 @@
-const runCommand = require('./runCommand');
+const runCommand = require('../runCommand');
 
 function revertActionModifications() {
   return runCommand({

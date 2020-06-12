@@ -53,7 +53,7 @@ The boilerplate includes
 - [React Navigation: Routes configuration](/generators/app/templates/src/app/components/AppNavigator/navigator.ejs)
 - [Reactotron configuration](/generators/app/templates/src/config/reactotronConfig.ejs)
 - [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
-- [Splash Screen](/generators/app/tasks/appSetup/splashScreenSetup.js)
+- [Splash Screen](/generators/app/tasks/appSetup/coreFiles/splashScreenSetup.js)
 - [TypeScript basic interfaces](/generators/app/templates/src/interfaces)
 - [TypeScript configuration](/generators/app/templates/tsconfig.json)
 

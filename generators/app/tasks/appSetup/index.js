@@ -1,26 +1,28 @@
 const ora = require('ora');
 
-const packageJsonScripts = require('./packageJsonScripts');
-const baseFilesTemplate = require('./baseFilesTemplate');
-const appIcons = require('./appIcons');
-const androidProjectSetup = require('./androidProjectSetup');
-const createDotEnvFilesLocally = require('./createDotEnvFilesLocally');
-const iosProjectSetup = require('./iosProjectSetup');
-const disableLandscapeOrientation = require('./disableLandscapeOrientation');
-const pushNotificationsFeatureFiles = require('./pushNotificationsFeatureFiles');
-const pushNotificationsSetup = require('./pushNotificationsSetup');
-const firebaseCoreFeatureFiles = require('./firebaseCoreFeatureFiles');
-const crashlyticsFeatureFiles = require('./crashlyticsFeatureFiles');
-const firebaseAnalyticsFeatureFiles = require('./firebaseAnalyticsFeatureFiles');
-const loginFeatureFiles = require('./loginFeatureFiles');
-const bitriseFeatureFiles = require('./bitriseFeatureFiles');
-const onBoardingFeatureFiles = require('./onBoardingFeatureFiles');
-const enableFullscreen = require('./tabletSetup');
-const babelConfigSetup = require('./babelConfigSetup');
-const cleanTargetsFromPods = require('./cleanTargetsFromPods');
-const prettierrcConfigSetup = require('./prettierrcConfigSetup');
-const splashScreenSetup = require('./splashScreenSetup');
-const firebasePerformanceSetup = require('./firebasePerformanceSetup');
+// CORE FILES
+const androidProjectSetup = require('./coreFiles/androidProjectSetup');
+const appIcons = require('./coreFiles/appIcons');
+const babelConfigSetup = require('./coreFiles/babelConfigSetup');
+const baseFilesTemplate = require('./coreFiles/baseFilesTemplate');
+const cleanTargetsFromPods = require('./coreFiles/cleanTargetsFromPods');
+const createDotEnvFilesLocally = require('./coreFiles/createDotEnvFilesLocally');
+const enableFullscreen = require('./coreFiles/tabletSetup');
+const iosProjectSetup = require('./coreFiles/iosProjectSetup');
+const packageJsonScripts = require('./coreFiles/packageJsonScripts');
+const prettierrcConfigSetup = require('./coreFiles/prettierrcConfigSetup');
+const splashScreenSetup = require('./coreFiles/splashScreenSetup');
+// FEATURES FILES
+const bitriseFeatureFiles = require('./featuresFiles/bitriseFeatureFiles');
+const crashlyticsFeatureFiles = require('./featuresFiles/crashlyticsFeatureFiles');
+const disableLandscapeOrientation = require('./featuresFiles/disableLandscapeOrientation');
+const firebaseAnalyticsFeatureFiles = require('./featuresFiles/firebaseAnalyticsFeatureFiles');
+const firebaseCoreFeatureFiles = require('./featuresFiles/firebaseCoreFeatureFiles');
+const firebasePerformanceSetup = require('./featuresFiles/firebasePerformanceSetup');
+const loginFeatureFiles = require('./featuresFiles/loginFeatureFiles');
+const onBoardingFeatureFiles = require('./featuresFiles/onBoardingFeatureFiles');
+const pushNotificationsFeatureFiles = require('./featuresFiles/pushNotificationsFeatureFiles');
+const pushNotificationsSetup = require('./featuresFiles/pushNotificationsSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -28,55 +30,46 @@ module.exports = function index() {
     text: 'Creating project boilerplate'
   }).start();
 
-  // ----------------     add envs files     ----------------
+  // --------------------    APP CORE FILES    ---------------------
   createDotEnvFilesLocally.bind(this)();
-
-  // ----------------     add package.json scripts     ----------------
   packageJsonScripts.bind(this)();
-
-  // ----------------     base app files     ----------------
   baseFilesTemplate.bind(this)();
-
-  // ----------------     app icons     ----------------
   appIcons.bind(this)();
-
-  // ----------------     babelrc setup     ----------------
   babelConfigSetup.bind(this)();
-
-  // ----------------     prettierrc setup     ----------------
   prettierrcConfigSetup.bind(this)();
 
-  // ----------------     add Android project configurationn    ----------------
+  // ----------------    Android project configurationn    ----------------
   androidProjectSetup.bind(this)();
 
-  // ----------------     add iOS project configuration and clean unused targets    ----------------
+  // ----------------     iOS project configuration    ----------------
   iosProjectSetup.bind(this)();
   cleanTargetsFromPods.bind(this)();
 
-  // ----------------     disable landscape orientiation for both android and ios     ----------------
+  // ----------------    Disable Landscape orientiation    ----------------
   if (this.features.landscape) {
+    console.log('Deberia haber entrado!!!!!!!!!!!!!!!!!!!!!FKDNFKDNF');
     disableLandscapeOrientation.bind(this)();
   }
 
-  // ----------------     Splash Screen    ----------------
+  // ----------------    Splash Screen    ----------------
   splashScreenSetup.bind(this)();
 
-  // ----------------     Features: Login    ----------------
+  // ----------------    Features: Login    ----------------
   if (this.features.loginandsignup) {
     loginFeatureFiles.bind(this)();
   }
 
-  // ----------------     Features: Bitrise    ----------------
+  // ----------------    Features: Bitrise    ----------------
   if (this.features.bitrise) {
     bitriseFeatureFiles.bind(this)();
   }
 
-  // ----------------     Features: OnBoarding    ----------------
+  // ----------------    Features: OnBoarding    ----------------
   if (this.features.onboarding) {
     onBoardingFeatureFiles.bind(this)();
   }
 
-  // ----------------     Features: Firebase    ----------------
+  // ----------------    Features: Firebase    ----------------
   if (
     this.features.crashlytics ||
     this.features.firebaseanalytics ||
@@ -95,13 +88,12 @@ module.exports = function index() {
       pushNotificationsFeatureFiles.bind(this)();
       pushNotificationsSetup.bind(this)();
     }
-
     if (this.features.firebaseperformance) {
       firebasePerformanceSetup.bind(this)();
     }
   }
 
-  // --------------- Enables fullscreen on iPad ----------------------------
+  // ---------------    Enables fullscreen on iPad    ----------------------------
   enableFullscreen.bind(this)();
 
   spinner.succeed('Boilerplate ready!');

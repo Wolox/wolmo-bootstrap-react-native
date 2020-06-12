@@ -1,34 +1,38 @@
 const Generator = require('yeoman-generator');
 
+// BITRISE
 const bitriseInitialization = require('../bitrise/tasks/bitriseInitialization');
 
-const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
-const reactNativeInit = require('./tasks/reactNativeInit');
-const installDependencies = require('./tasks/installDependencies');
+// CONFIGURING
+const reactNativeCliInstall = require('./tasks/configuringTasks/reactNativeCliInstall');
+const reactNativeInit = require('./tasks/configuringTasks/reactNativeInit');
+const installDependencies = require('./tasks/configuringTasks/installDependencies');
+const configureFastlane = require('./tasks/configuringTasks/configureFastlane');
+const addFilesToGitIgnore = require('./tasks/configuringTasks/addFilesToGitIgnore');
+// WRITING
 const appSetup = require('./tasks/appSetup');
-const gitInitialization = require('./tasks/gitInitialization');
+// INSTALL
+const bundleInstall = require('./tasks/installTasks/bundleInstall');
+const configureIosProject = require('./tasks/installTasks/configureIosProject');
+const installPods = require('./tasks/installTasks/installPods');
+const linkAppAssets = require('./tasks/installTasks/linkAppAssets');
+const editBundleIdentifier = require('./tasks/installTasks/editBundleIdentifier');
+const lintFixProject = require('./tasks/installTasks/lintFixProject');
+const chmodFirebaseScript = require('./tasks/installTasks/chmodFirebaseScript');
+const gitInitialization = require('./tasks/installTasks/gitInitialization');
+// END
 const nextSteps = require('./tasks/nextSteps');
-const bundleInstall = require('./tasks/bundleInstall');
-const configureFastlane = require('./tasks/configureFastlane');
-const installPods = require('./tasks/installPods');
-const linkAppAssets = require('./tasks/linkAppAssets');
-const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
-const editBundleIdentifier = require('./tasks/editBundleIdentifier');
-const configureIosProject = require('./tasks/configureIosProject');
-const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
-const lintFixProject = require('./tasks/lintFixProject');
+const { GENERATOR_FEATURES } = require('./constants');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
     this.option('verbose', {
       desc: 'Turns on verbose logging',
       alias: 'v',
       type: Boolean,
       default: false
     });
-
     this.conflicter.force = true;
   }
 
@@ -47,18 +51,7 @@ class ReactNativeBootstrap extends Generator {
         type: 'checkbox',
         name: 'features',
         message: "What's features should this project include?",
-        choices: [
-          'Bitrise',
-          'Crashlytics',
-          'Drawer',
-          'Firebase Analytics',
-          'Firebase Performance',
-          'Login and SignUp',
-          'OnBoarding',
-          'Push Notifications',
-          'Redux Persist',
-          'Tabs'
-        ],
+        choices: GENERATOR_FEATURES,
         filter: values =>
           values.reduce((answer, val) => {
             answer[val.replace(/ /g, '').toLowerCase()] = true;
@@ -75,7 +68,6 @@ class ReactNativeBootstrap extends Generator {
       this.projectName = answers.name;
       this.features = answers.features;
       this.features.landscape = answers.landscape;
-
       return this.prompt([
         {
           type: 'input',

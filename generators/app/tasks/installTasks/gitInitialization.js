@@ -1,5 +1,5 @@
 /* eslint-disable max-nested-callbacks */
-const runCommand = require('./runCommand');
+const runCommand = require('../runCommand');
 
 module.exports = function gitInitialization() {
   // git init

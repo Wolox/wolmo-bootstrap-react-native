@@ -1,11 +1,11 @@
-const { copyFile } = require('../../utils');
+const { copyFile } = require('../utils');
 const {
   AUTH_INTERFACES,
   LOGIN_PATH,
   TESTS_AUTH_PATH,
   TESTS_LOGIN_SCREEN_PATH,
   TESTS_UTILS
-} = require('../../files');
+} = require('../files');
 
 const FILES = [AUTH_INTERFACES, LOGIN_PATH, TESTS_AUTH_PATH, TESTS_LOGIN_SCREEN_PATH, TESTS_UTILS];
 

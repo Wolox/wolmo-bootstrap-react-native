@@ -1,4 +1,4 @@
-const runCommand = require('./runCommand');
+const runCommand = require('../runCommand');
 
 module.exports = function lintFixProject() {
   return runCommand({

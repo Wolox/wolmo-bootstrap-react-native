@@ -1,5 +1,5 @@
-const { copyTemplateFile } = require('../../utils');
-const { BITRISE_YML } = require('../../files');
+const { copyTemplateFile } = require('../utils');
+const { BITRISE_YML } = require('../files');
 
 const TEMPLATE_FILES = [BITRISE_YML];
 

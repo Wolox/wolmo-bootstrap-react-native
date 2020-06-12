@@ -1,7 +1,7 @@
 const latestSemver = require('latest-semver');
 const semverRegex = require('semver-regex');
 
-const runCommand = require('./runCommand');
+const runCommand = require('../runCommand');
 
 const DEPENDENCIES = [
   '@react-native-community/async-storage',

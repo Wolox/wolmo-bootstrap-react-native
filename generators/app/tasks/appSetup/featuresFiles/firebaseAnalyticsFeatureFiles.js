@@ -1,5 +1,5 @@
-const { copyFile } = require('../../utils');
-const { ANALYTICS_MIDDLEWARE } = require('../../files');
+const { copyFile } = require('../utils');
+const { ANALYTICS_MIDDLEWARE } = require('../files');
 
 const FILES = [ANALYTICS_MIDDLEWARE];
 
