@@ -53,7 +53,7 @@ const finishBitrise = ({ slug, bitriseOrganizationSlug }) =>
     envs: {},
     mode: 'manual',
     project_type: 'react-native',
-    stack_id: 'osx-xcode-10.2.x',
+    stack_id: 'osx-xcode-11.4.x',
     organization_slug: bitriseOrganizationSlug
   });
 

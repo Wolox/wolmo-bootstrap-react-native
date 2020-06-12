@@ -1,8 +1,8 @@
 const fs = require('fs');
 
+const runCommand = require('../../app/tasks/runCommand');
 const loadBitriseInfo = require('../bitriseUtils');
 
-const runCommand = require('./runCommand');
 const createBitriseApp = require('./createBitriseApp');
 
 module.exports = function bitriseInitialization() {
@@ -14,7 +14,7 @@ module.exports = function bitriseInitialization() {
     spinner.stop();
     const privateSshKey = fs.readFileSync('./bitrise-ssh').toString();
     const publicSshKey = fs.readFileSync('./bitrise-ssh.pub').toString();
-    const bitriseYml = fs.readFileSync(`${this.templatePath()}/../defaultBitrise.yml`).toString();
+    const bitriseYml = fs.readFileSync(`${this.templatePath()}/../../bitrise/defaultBitrise.yml`).toString();
     let configInfo = null;
     if (this.configInfo) {
       const { configInfo: info } = this;

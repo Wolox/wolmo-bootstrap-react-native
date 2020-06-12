@@ -8,6 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 <%_ } _%>
 <%_ if(features.onboarding || features.login) { _%>
 import { useSelector } from 'react-redux';
+import { State } from '@interfaces/reduxInterfaces';
 <%_ } _%>
 <%_ if(features.drawer || features.tabs) { _%>
 import Routes from '@constants/routes';
@@ -21,8 +22,6 @@ import Login from '@screens/Login';
 import OnBoarding from '@screens/OnBoarding';
 <%_ } _%>
 import Home from '@screens/Home';
-
-import { State } from '@interfaces/reduxInterfaces';
 
 const Stack = createStackNavigator();
 <%_ if(features.tabs) { _%>

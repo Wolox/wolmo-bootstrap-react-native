@@ -63,7 +63,7 @@ const initialState = {
 };
 
 const reducerDescription = {
-  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: any) =>
+  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>) =>
     state.merge({
       initialLoading: false
     })

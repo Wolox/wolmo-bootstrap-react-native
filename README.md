@@ -43,7 +43,7 @@ The boilerplate includes
 - [Analytics Tracking](/generators/app/templates/src/redux/middlewares/analyticsMiddleware.js)
 - [Basic constants](/generators/app/templates/src/constants)
 - [Basic utils](/generators/app/templates/src/utils)
-- [Bitrise configuration](/generators/app/tasks/createBitriseApp.js)
+- [Bitrise configuration](/generators/bitrise/tasks/createBitriseApp.js)
 - [Deploy configuration with Fastlane Mobile (Android and iOS)](https://github.com/Wolox/fastlane-mobile)
 - [Font customization](/generators/app/templates/src/config/fonts.js)
 - [Formik: HOC to create Custom Fields](/generators/app/templates/src/app/components/withFormikField/index.tsx)
@@ -105,7 +105,7 @@ For bootstraping your own project using the template generator script you'll nee
 
 ### How do you have to configure Bitrise?
 
-You will have to complete the `bitriseInfo.json` with the next Info:
+You will have to complete the [`bitriseInfo.json`](/generators/bitrise/bitriseInfo.json) with the next Info:
 
 ```
     "repositoryUrlSsh": "", // What's your repository url? (ssh only)
@@ -120,7 +120,7 @@ You will have to complete the `bitriseInfo.json` with the next Info:
     "projectName": "" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
 ```
 
-To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/app/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html)
+To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/bitrise/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html)
 
 ## Contributing
 

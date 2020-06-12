@@ -1,11 +1,12 @@
 const Generator = require('yeoman-generator');
 
+const bitriseInitialization = require('../bitrise/tasks/bitriseInitialization');
+
 const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
 const reactNativeInit = require('./tasks/reactNativeInit');
 const installDependencies = require('./tasks/installDependencies');
 const appSetup = require('./tasks/appSetup');
 const gitInitialization = require('./tasks/gitInitialization');
-const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const bundleInstall = require('./tasks/bundleInstall');
 const configureFastlane = require('./tasks/configureFastlane');
@@ -47,16 +48,17 @@ class ReactNativeBootstrap extends Generator {
         name: 'features',
         message: "What's features should this project include?",
         choices: [
-          'Login',
-          'Tabs',
-          'Drawer',
-          'Redux Persist',
-          'Firebase Analytics',
-          'Crashlytics',
-          'Firebase Performance',
-          'Push Notifications',
           'Bitrise',
-          'OnBoarding'
+          'Crashlytics',
+          'Drawer',
+          'Firebase Analytics',
+          'Firebase Performance',
+          // TODO replace this.features.login => loginandsignup
+          'Login and SignUp',
+          'OnBoarding',
+          'Push Notifications',
+          'Redux Persist',
+          'Tabs'
         ],
         filter: values =>
           values.reduce((answer, val) => {
@@ -114,9 +116,9 @@ class ReactNativeBootstrap extends Generator {
       .then(() => linkAppAssets.bind(this)())
       .then(() => editBundleIdentifier.bind(this)())
       .then(() => lintFixProject.bind(this)())
+      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)())
       .then(() => gitInitialization.bind(this)())
-      .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
-      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());
+      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
   }
 
   end() {
