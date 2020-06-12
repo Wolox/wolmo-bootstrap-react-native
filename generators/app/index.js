@@ -53,7 +53,6 @@ class ReactNativeBootstrap extends Generator {
           'Drawer',
           'Firebase Analytics',
           'Firebase Performance',
-          // TODO replace this.features.login => loginandsignup
           'Login and SignUp',
           'OnBoarding',
           'Push Notifications',

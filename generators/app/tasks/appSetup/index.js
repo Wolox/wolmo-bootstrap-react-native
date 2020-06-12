@@ -62,7 +62,7 @@ module.exports = function index() {
   splashScreenSetup.bind(this)();
 
   // ----------------     Features: Login    ----------------
-  if (this.features.login) {
+  if (this.features.loginandsignup) {
     loginFeatureFiles.bind(this)();
   }
 

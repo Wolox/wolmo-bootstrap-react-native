@@ -23,7 +23,7 @@ const defaultNavOptions = ({ route }: DefaultNavOptions) => ({
     },
     headerTintColor: white
 });
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 export const authStackNavConfig = {
   screenOptions: defaultNavOptions,
   initialRouteName: Routes.Login
@@ -63,7 +63,7 @@ export const appScreensNavOptions = {
 
 export const statusBarStyles = {
   // TODO: Change these styles to customize the status bar
-  <%_ if (features.login) { _%>
+  <%_ if (features.loginandsignup) { _%>
   [Routes.Login]: statusBarConfig.blueStatusBar,
   <%_ } _%>
   <%_ if (features.tabs) { _%>

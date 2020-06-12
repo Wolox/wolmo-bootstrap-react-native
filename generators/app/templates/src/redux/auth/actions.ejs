@@ -1,4 +1,4 @@
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 import { ApiOkResponse } from 'apisauce';
 import { Dispatch } from 'react';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
@@ -53,7 +53,7 @@ export const actionCreators = {
   <%_ }_%>
 };
 <%_ } _%>
-<%_ if(!features.login && features.onboarding) { _%>
+<%_ if(!features.loginandsignup && features.onboarding) { _%>
 import { Dispatch } from 'react';
 import { createTypes } from 'redux-recompose';
 import { setOnBoardingAccess } from '@services/OnBoardingService';
@@ -80,7 +80,7 @@ export const actionCreators = {
   }
 };
 <%_ } _%>
-<%_ if(!features.login && !features.onboarding) { _%>
+<%_ if(!features.loginandsignup && !features.onboarding) { _%>
 import { createTypes } from 'redux-recompose';
 
 export const actions = createTypes(['AUTH_INIT'], '@@AUTH');

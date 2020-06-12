@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
 
@@ -23,7 +23,7 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
 
 export interface AuthState {
   initialLoading: boolean;
-  <%_ if(features.login) { _%>
+  <%_ if(features.loginandsignup) { _%>
   currentUser: CurrentUser | null;
   currentUserLoading: boolean;
   currentUserError: string | null;
