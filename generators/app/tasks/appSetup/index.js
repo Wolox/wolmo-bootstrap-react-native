@@ -46,8 +46,7 @@ module.exports = function index() {
   cleanTargetsFromPods.bind(this)();
 
   // ----------------    Disable Landscape orientiation    ----------------
-  if (this.features.landscape) {
-    console.log('Deberia haber entrado!!!!!!!!!!!!!!!!!!!!!FKDNFKDNF');
+  if (!this.features.landscape) {
     disableLandscapeOrientation.bind(this)();
   }
 
