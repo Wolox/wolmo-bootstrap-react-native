@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, TextStyle } from 'react-native';
+import i18next from 'i18next';
 import CustomText from '@components/CustomText';
 import { gray, black } from '@constants/colors';
 
@@ -11,17 +12,19 @@ import {
   LEFT_SMALL_DEGRADE,
   TOP_DEGRADE
 } from './constants';
+import './i18n';
 import styles from './styles';
 
 export interface Props {
   animated?: boolean;
   hasValue: boolean;
   isFocused: boolean;
+  isOptional?: boolean;
   label: string;
   labelStyle?: TextStyle;
 }
 
-const InputLabel = ({ animated, hasValue, isFocused, label, labelStyle }: Props) => {
+const InputLabel = ({ animated, hasValue, isFocused, isOptional, label, labelStyle }: Props) => {
   const animatedIsFocused = useRef(new Animated.Value(hasValue ? 1 : 0)).current;
   useEffect(() => {
     if (animated) {
@@ -51,15 +54,16 @@ const InputLabel = ({ animated, hasValue, isFocused, label, labelStyle }: Props)
       outputRange: [gray, black]
     })
   };
+  const formattedLabel = `${label}${isOptional ? ` (${i18next.t('INPUT_LABEl:OPTIONAL')})` : ''}`;
   return animated ? (
     <Animated.Text
       allowFontScaling={false}
       style={[styles.label, styles.animatedlabel, animatedLabelStyle, labelStyle]}>
-      {label}
+      {formattedLabel}
     </Animated.Text>
   ) : (
     <CustomText gray small style={[styles.label, labelStyle]}>
-      {label}
+      {formattedLabel}
     </CustomText>
   );
 };

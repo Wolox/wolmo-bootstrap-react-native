@@ -31,7 +31,7 @@ The following optional features can be added out of the box to the new projects:
 - Firebase Crashlytics
 - Firebase Performance
 - Firebase Push Notifications
-- Login
+- Login and SignUp
 - OnBoarding
 - Redux Persist
 - Tabs

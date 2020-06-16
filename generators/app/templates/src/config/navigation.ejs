@@ -23,24 +23,35 @@ const defaultNavOptions = ({ route }: DefaultNavOptions) => ({
     },
     headerTintColor: white
 });
+
+export const appStackNavConfig = {
+  screenOptions: defaultNavOptions
+};
 <%_ if(features.loginandsignup) { _%>
+
 export const authStackNavConfig = {
   screenOptions: defaultNavOptions,
   initialRouteName: Routes.Login
 };
 <%_ } _%>
-
-export const appStackNavConfig = {
-  screenOptions: defaultNavOptions
-};
 <%_ if(features.tabs) { _%>
+
+const defaultTabNavOptions = {
+  // TODO: Change them to your need
+}
+
 export const tabNavConfig = {
   // TODO: Change them to your need
+  // tabBarOptions: {
+  //   activeTintColor: 'blue',
+  //   inactiveTintColor: 'gray',
+  // }
+  screenOptions: defaultTabNavOptions
 };
 <%_ } _%>
-
 <%_ if(features.drawer) { _%>
-export const defaultDrawerNavOptions = {
+
+const defaultDrawerNavOptions = {
   // TODO: Change them to your need
 };
 
@@ -48,23 +59,34 @@ export const drawerStackNavConfig = {
   screenOptions: defaultDrawerNavOptions
 };
 <%_ } _%>
+
 // Default nav options for all screens
 export const appScreensNavOptions = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
-
-  [Routes.Home]: {
-    headerTitle: 'Home'
-  }<%_ if(features.onboarding) { _%>,
+  <%_ if(features.loginandsignup) { _%>
+  [Routes.Login]: {
+    headerShown: false
+  },
+  [Routes.SignUp]: {
+    headerShown: false
+  },
+  <%_ } _%>
+  <%_ if(features.onboarding) { _%>
   [Routes.OnBoarding]: {
     headerShown: false
-  }<%_ } _%>
+  },
+  <%_ } _%>
+  [Routes.Home]: {
+    headerTitle: 'Home'
+  }
 };
 
 export const statusBarStyles = {
   // TODO: Change these styles to customize the status bar
   <%_ if (features.loginandsignup) { _%>
   [Routes.Login]: statusBarConfig.blueStatusBar,
+  [Routes.SignUp]: statusBarConfig.blueStatusBar,
   <%_ } _%>
   <%_ if (features.tabs) { _%>
   [Routes.Tab1]: statusBarConfig.blueStatusBar,

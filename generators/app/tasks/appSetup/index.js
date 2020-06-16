@@ -19,7 +19,7 @@ const disableLandscapeOrientation = require('./featuresFiles/disableLandscapeOri
 const firebaseAnalyticsFeatureFiles = require('./featuresFiles/firebaseAnalyticsFeatureFiles');
 const firebaseCoreFeatureFiles = require('./featuresFiles/firebaseCoreFeatureFiles');
 const firebasePerformanceSetup = require('./featuresFiles/firebasePerformanceSetup');
-const loginFeatureFiles = require('./featuresFiles/loginFeatureFiles');
+const loginAndSignUpFeatureFiles = require('./featuresFiles/loginAndSignUpFeatureFiles');
 const onBoardingFeatureFiles = require('./featuresFiles/onBoardingFeatureFiles');
 const pushNotificationsFeatureFiles = require('./featuresFiles/pushNotificationsFeatureFiles');
 const pushNotificationsSetup = require('./featuresFiles/pushNotificationsSetup');
@@ -53,9 +53,9 @@ module.exports = function index() {
   // ----------------    Splash Screen    ----------------
   splashScreenSetup.bind(this)();
 
-  // ----------------    Features: Login    ----------------
+  // ----------------    Features: Login and SignUp    ----------------
   if (this.features.loginandsignup) {
-    loginFeatureFiles.bind(this)();
+    loginAndSignUpFeatureFiles.bind(this)();
   }
 
   // ----------------    Features: Bitrise    ----------------

@@ -19,6 +19,7 @@ const CustomTextInput = ({
   inputContainerStyle,
   inputTextStyles,
   isFocused,
+  isOptional,
   label,
   labelStyle,
   multiline,
@@ -47,6 +48,7 @@ const CustomTextInput = ({
           animated={animated}
           hasValue={!!value}
           isFocused={isFocused}
+          isOptional={isOptional}
           label={label}
           labelStyle={labelStyle}
         />
@@ -59,7 +61,6 @@ const CustomTextInput = ({
         ]}>
         <TextInput
           {...props}
-          allowFontScaling={false}
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
           editable={!disabled}
           multiline={multiline}
@@ -86,6 +87,7 @@ const CustomTextInput = ({
 };
 
 CustomTextInput.defaultProps = {
+  allowFontScaling: false,
   animated: false,
   autoCapitalize: 'none',
   autoCompleteType: 'off',

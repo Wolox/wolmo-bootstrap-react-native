@@ -10,11 +10,10 @@ import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
 
-import { FIELDS, INITIAL_VALUES } from './constants';
+import { FIELDS, LOGIN_INITIAL_VALUES, WITHOUT_OPACITY } from '../../constants';
+
 import './i18n';
 import styles from './styles';
-
-const WITHOUT_OPACITY = 1;
 
 function Login() {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ function Login() {
   ]);
   return (
     <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
-      <Formik onSubmit={handleLogin} initialValues={INITIAL_VALUES}>
+      <Formik onSubmit={handleLogin} initialValues={LOGIN_INITIAL_VALUES}>
         {({ handleSubmit, isValid }) => (
           <>
             <View style={styles.form}>

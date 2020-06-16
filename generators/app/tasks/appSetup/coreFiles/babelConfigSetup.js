@@ -10,15 +10,16 @@ module.exports = function babelConfigSetup() {
         extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.ts', '.tsx', '.json'],
         alias: {
           '@app': './src/app',
+          '@authScreens': './src/app/screens/Auth/screens',
           '@components': './src/app/components',
           '@config': './src/config',
           '@constants': './src/constants',
           '@interfaces': './src/interfaces',
+          '@navigationHelper': './src/app/components/AppNavigator/helper',
+          '@redux': './src/redux',
           '@screens': './src/app/screens',
           '@services': './src/services',
-          '@redux': './src/redux',
-          '@utils': './src/utils',
-          '@navigationHelper': './src/app/components/AppNavigator/helper'
+          '@utils': './src/utils'
         }
       }
     ]
