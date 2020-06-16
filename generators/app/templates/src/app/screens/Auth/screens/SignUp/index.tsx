@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { Keyboard, TouchableOpacity, View } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import i18next from 'i18next';
 import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
 import { CustomTextInputFormikField } from '@components/CustomTextInput';
-import { State } from '@interfaces/reduxInterfaces';
-import { actionCreators as AuthActions } from '@redux/auth/actions';
+import { useAsyncRequest } from '@hooks/useRequest';
+import * as AuthService from '@services/AuthService';
 import {
   validationsWrapper,
   validateRequired,
@@ -23,13 +23,20 @@ import './i18n';
 import styles from './styles';
 
 function SignUp() {
-  const dispatch = useDispatch();
-  // TODO: SignUp Redux and Service
-  // TODO: Add AsyncRequest hook too for case like this
-  const hasSignUpError = useSelector<State, boolean>(store => !!store.auth.signupError);
-  const handleSignUp: (values: any) => void = useCallback(values => dispatch(AuthActions.signup(values)), [
-    dispatch
-  ]);
+  // TODO: Use navigation param
+  const navigation = useNavigation();
+  const [, , error, signUp] = useAsyncRequest({
+    request: AuthService.signup,
+    withPostSuccess: () => navigation.goBack()
+  });
+  const hasSignUpError = !!error;
+  const handleSignUp: (values: any) => void = useCallback(
+    values => {
+      Keyboard.dismiss();
+      signUp(values);
+    },
+    [signUp]
+  );
   return (
     <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
       <Formik onSubmit={handleSignUp} initialValues={SIGNUP_INITIAL_VALUES}>

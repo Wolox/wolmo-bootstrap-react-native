@@ -14,6 +14,7 @@ module.exports = function babelConfigSetup() {
           '@components': './src/app/components',
           '@config': './src/config',
           '@constants': './src/constants',
+          '@hooks': './src/app/hooks',
           '@interfaces': './src/interfaces',
           '@navigationHelper': './src/app/components/AppNavigator/helper',
           '@redux': './src/redux',

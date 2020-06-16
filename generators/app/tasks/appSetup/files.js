@@ -43,6 +43,7 @@ module.exports.CI_CONFIG_FILE = `${module.exports.CI_PATH}/config.yml`;
 
 // APP
 module.exports.COMPONENTS_PATH = `${module.exports.APP_PATH}/components`;
+module.exports.HOOKS_PATH = `${module.exports.APP_PATH}/hooks`;
 module.exports.SCREENS_PATH = `${module.exports.APP_PATH}/screens`;
 module.exports.APP_I18N = `${module.exports.APP_PATH}/i18n.ts`;
 module.exports.APP = `${module.exports.APP_PATH}/index.tsx`;

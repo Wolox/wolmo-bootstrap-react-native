@@ -59,4 +59,20 @@ export const login = (authData: AuthData) => {
     data: { sessionToken: 'token' }
   });
 };
+
+export const signup = (signUpData: any) => {
+  // TODO: Implement call to registration API here
+  // TODO: If you want to test the error
+  console.log(JSON.stringify(signUpData));
+  // return Promise.resolve({
+  //   ok: false,
+  //   problem: 'CLIENT_ERROR',
+  //   data: 'Error en el signup!'
+  // });
+  return Promise.resolve({
+    ok: true,
+    problem: null,
+    data: {}
+  });
+};
 <%_ } _%>
