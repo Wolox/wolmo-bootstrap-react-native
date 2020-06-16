@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { Keyboard, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import i18next from 'i18next';
 import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
 import { CustomTextInputFormikField } from '@components/CustomTextInput';
+import { Navigation } from '@interfaces/navigation';
 import { useAsyncRequest } from '@hooks/useRequest';
 import * as AuthService from '@services/AuthService';
 import {
@@ -22,15 +22,13 @@ import { FIELDS, SIGNUP_INITIAL_VALUES, WITHOUT_OPACITY } from '../../constants'
 import './i18n';
 import styles from './styles';
 
-function SignUp() {
-  // TODO: Use navigation param
-  const navigation = useNavigation();
+function SignUp({ navigation }: Navigation) {
   const [, , error, signUp] = useAsyncRequest({
     request: AuthService.signup,
     withPostSuccess: () => navigation.goBack()
   });
   const hasSignUpError = !!error;
-  const handleSignUp: (values: any) => void = useCallback(
+  const handleSignUp = useCallback(
     values => {
       Keyboard.dismiss();
       signUp(values);

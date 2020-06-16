@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 <%_ if(features.loginandsignup) { _%>
+import { ApiResponse } from 'apisauce';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
@@ -51,11 +52,12 @@ export const login = (authData: AuthData) => {
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
-  //   originalError: 'Error!'
+  //   originalError: {}
   // });
   return Promise.resolve({
     ok: true,
     problem: null,
+    originalError: null,
     data: { sessionToken: 'token' }
   });
 };
@@ -67,12 +69,14 @@ export const signup = (signUpData: any) => {
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
+  //   originalError: {},
   //   data: 'Error en el signup!'
-  // });
+  // }) as Promise<ApiResponse<any, any>>;
   return Promise.resolve({
     ok: true,
     problem: null,
+    originalError: null,
     data: {}
-  });
+  }) as Promise<ApiResponse<any, any>>;
 };
 <%_ } _%>

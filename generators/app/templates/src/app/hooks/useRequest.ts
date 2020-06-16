@@ -71,7 +71,7 @@ export const useAsyncRequest = <P, D, E>({
         request,
         onPrefetch: () => setLoading(true),
         onSuccess: data => {
-          setState(data);
+          setState(data!);
           setError(null);
           if (withPostSuccess) withPostSuccess(data);
         },
@@ -83,7 +83,7 @@ export const useAsyncRequest = <P, D, E>({
         failureSelector: withFailureSelector,
         onPostFetch: response => {
           setLoading(false);
-          if (withPostFetch && response.data) withPostFetch(response.data);
+          if (withPostFetch) withPostFetch(response);
         }
       });
     },

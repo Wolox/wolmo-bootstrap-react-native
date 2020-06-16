@@ -2,12 +2,12 @@ import i18next from 'i18next';
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
 import statusBarConfig from '@constants/statusBar';
-import { DefaultNavOptions } from '@interfaces/navigation';
+import { Navigation } from '@interfaces/navigation';
 
 import fonts from './fonts';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ route }: DefaultNavOptions) => ({
+const defaultNavOptions = ({ route }: Navigation) => ({
     // Change screen title from i18n traslates files
     headerTitle: i18next.t(`app:${route.name}`),
     // TODO: The following options are examples. Change them to your need
