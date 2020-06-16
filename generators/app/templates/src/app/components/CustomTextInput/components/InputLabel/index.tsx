@@ -54,7 +54,7 @@ const InputLabel = ({ animated, hasValue, isFocused, isOptional, label, labelSty
       outputRange: [gray, black]
     })
   };
-  const formattedLabel = `${label}${isOptional ? ` (${i18next.t('INPUT_LABEl:OPTIONAL')})` : ''}`;
+  const formattedLabel = `${label}${isOptional ? ` (${i18next.t('INPUT_LABEL:OPTIONAL')})` : ''}`;
   return animated ? (
     <Animated.Text
       allowFontScaling={false}

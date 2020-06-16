@@ -114,6 +114,9 @@ function yarnInstall(projectName, deps, options, dev) {
 }
 
 module.exports = function installDependencies() {
+  if (this.features.loginandsignup) {
+    DEPENDENCIES.push('react-native-keyboard-spacer');
+  }
   if (this.features.tabs) {
     DEPENDENCIES.push('@react-navigation/bottom-tabs');
   }

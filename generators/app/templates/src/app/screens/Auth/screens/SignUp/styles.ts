@@ -3,13 +3,16 @@ import { green } from '@constants/colors';
 
 export default StyleSheet.create({
   container: {
+    width: '100%',
     alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%'
+    justifyContent: 'center'
+  },
+  stretchAndFlex: {
+    alignSelf: 'stretch'
   },
   form: {
-    width: 250
+    paddingHorizontal: 60,
+    paddingBottom: 20
   },
   formButton: {
     backgroundColor: green,

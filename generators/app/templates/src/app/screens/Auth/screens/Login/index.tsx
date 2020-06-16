@@ -6,6 +6,8 @@ import { Formik } from 'formik';
 import CustomButton from '@components/CustomButton';
 import CustomText from '@components/CustomText';
 import { CustomTextInputFormikField } from '@components/CustomTextInput';
+import Routes from '@constants/routes';
+import { Navigation } from '@interfaces/navigation';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
@@ -15,12 +17,13 @@ import { FIELDS, LOGIN_INITIAL_VALUES, WITHOUT_OPACITY } from '../../constants';
 import './i18n';
 import styles from './styles';
 
-function Login() {
+function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
   const hasLoginError = useSelector<State, boolean>(store => !!store.auth.currentUserError);
   const handleLogin: (values: any) => void = useCallback(values => dispatch(AuthActions.login(values)), [
     dispatch
   ]);
+  const handleGoToSignUp = () => navigation.navigate(Routes.SignUp);
   return (
     <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
       <Formik onSubmit={handleLogin} initialValues={LOGIN_INITIAL_VALUES}>
@@ -56,6 +59,11 @@ function Login() {
               style={styles.formButton}
               title={i18next.t('LOGIN:LOG_IN')}
               disabled={hasLoginError || !isValid}
+            />
+            <CustomButton
+              onPress={handleGoToSignUp}
+              style={styles.formButton}
+              title={i18next.t('LOGIN:SIGN_UP')}
             />
           </>
         )}
