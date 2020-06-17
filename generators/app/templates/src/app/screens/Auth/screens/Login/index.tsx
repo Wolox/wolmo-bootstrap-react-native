@@ -10,9 +10,8 @@ import Routes from '@constants/routes';
 import { Navigation } from '@interfaces/navigation';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
+import { FIELDS, LOGIN_INITIAL_VALUES, WITHOUT_OPACITY } from '@screens/Auth/constants';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
-
-import { FIELDS, LOGIN_INITIAL_VALUES, WITHOUT_OPACITY } from '../../constants';
 
 import './i18n';
 import styles from './styles';

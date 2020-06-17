@@ -70,7 +70,7 @@ module.exports.WITH_FORMIK_FIELD_PATH = `${module.exports.COMPONENTS_PATH}/withF
 module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
 module.exports.HOME = `${module.exports.HOME_PATH}/index.tsx`;
 module.exports.HOME_STYLES = `${module.exports.HOME_PATH}/styles.ts`;
-// AUTH SCREENS - Login and SignUp
+// AUTH SCREENS - LOGIN AND SIGNUP
 module.exports.AUTH_PATH = `${module.exports.SCREENS_PATH}/Auth`;
 // APP SCREENS - ONBOARDING
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
