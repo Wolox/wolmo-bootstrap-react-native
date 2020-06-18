@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CustomTextInput from '@components/CustomTextInput';
 import CustomButton from '@components/CustomButton';
-import { Login } from '@screens/Login/layout';
+import Login from '@authScreens/Login';
 import renderer from 'react-test-renderer';
 
 describe('<Login />', () => {

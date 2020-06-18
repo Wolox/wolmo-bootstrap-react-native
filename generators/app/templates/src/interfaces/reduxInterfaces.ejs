@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 import { CurrentUser } from '@interfaces/authInterfaces';
 <%_ } _%>
 
@@ -20,25 +20,21 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
   dispatch: Dispatch<Action<T, P, K>>,
   getState: () => State
 ) => void;
-<%_ if(features.login || features.onboarding) { _%>
 
 export interface AuthState {
-  <%_ if(features.login) { _%>
+  initialLoading: boolean;
+  <%_ if(features.loginandsignup) { _%>
   currentUser: CurrentUser | null;
   currentUserLoading: boolean;
   currentUserError: string | null;
   <%_ } _%>
-  initialLoading: boolean;
   <%_ if(features.onboarding) { _%>
   hasAccessOnBoarding: boolean;
   <%_ } _%>
 }
-<%_ } _%>
 
 export interface State {
-  <%_ if(features.login || features.onboarding) { _%>
   auth: AuthState;
-  <%_ } _%>
 }
 
 export interface ReduxObject {

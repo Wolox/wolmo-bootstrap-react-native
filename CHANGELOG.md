@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file.
 ## [0.8.0] - 2020-04-08
 
 - Added multiple env configuration (Debug, QA, Stage and Production) for Android and iOS projects
-- Removed unused targets from iOS project and Podfile ([Ruby script](generators/app/tasks/scriptIosConfig.rb))
+- Removed unused targets from iOS project and Podfile ([Ruby script](generators/app/tasks/installTasks/scriptIosConfig.rb))
 - Added configuration to use [firebaseFilesScript](generators/app/templates/googleServicesConfig/firebaseFilesScript.sh) script for Android and iOS projects to automatically copy Google services files
 - Added secret files to `.gitignore`
 - Added new Wolmo RN icons for Android and iOS projects
@@ -38,7 +38,7 @@ All notable changes to this project will be documented in this file.
 ## [0.7.3] - 2020-04-03
 
 - Fixed Push Notifications config on `AndroidManifest`
-- Added again (temporary) the lane to change the `bundleId (update_bundle_identifier)` and a `TODO` in [editBundleIdentifier](generators/app/tasks/editBundleIdentifier.js) task
+- Added again (temporary) the lane to change the `bundleId (update_bundle_identifier)` and a `TODO` in [editBundleIdentifier](generators/app/tasks/installTasks/editBundleIdentifier.js) task
 
 ## [0.7.2] - 2020-04-03
 

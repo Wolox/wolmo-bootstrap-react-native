@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
+import { ApiResponse } from 'apisauce';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
@@ -9,7 +10,7 @@ import { actionCreators as authActions } from '@redux/auth/actions';
 import { getOnBoardingAccess } from '@services/OnBoardingService';
 <%_ } _%>
 
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 const CURRENT_USER_KEY = '@Auth:currentUser';
 
 // TODO: Adapt returned object to:
@@ -26,12 +27,12 @@ export const getCurrentUser = () =>
 export const removeCurrentUser = () => AsyncStorage.removeItem(CURRENT_USER_KEY);
   <%_ } _%>
 
-<%_ if(features.login || features.onboarding) { _%>
+<%_ if(features.loginandsignup || features.onboarding) { _%>
 export const authSetup = async (dispatch: Dispatch<any>) => {
 <%_ }else{ _%>
 export const authSetup = (dispatch: Dispatch<any>) => {
 <%_ } _%>
-  <%_ if(features.login) { _%>
+  <%_ if(features.loginandsignup) { _%>
   const currentUser = await getCurrentUser();
   if (currentUser) {
     api.setHeader('Authorization', `Bearer ${currentUser.sessionToken}`);
@@ -40,10 +41,10 @@ export const authSetup = (dispatch: Dispatch<any>) => {
   <%_ if(features.onboarding) { _%>
   const hasAccess = await getOnBoardingAccess();
   <%_ } _%>
-  dispatch(authActions.init(<%_ if(features.login) { _%>currentUser<%_ } _%><%_ if(features.onboarding) { _%><%_ if(features.login) { _%>,   <%_ } _%>hasAccess<%_ } _%>));
+  dispatch(authActions.init(<%_ if(features.loginandsignup) { _%>currentUser<%_ } _%><%_ if(features.onboarding) { _%><%_ if(features.loginandsignup) { _%>,   <%_ } _%>hasAccess<%_ } _%>));
 };
 
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 export const login = (authData: AuthData) => {
   // TODO: Implement call to authentication API here
   // TODO: If you want to test the error
@@ -51,12 +52,31 @@ export const login = (authData: AuthData) => {
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
-  //   originalError: 'Error!'
+  //   originalError: {}
   // });
   return Promise.resolve({
     ok: true,
     problem: null,
+    originalError: null,
     data: { sessionToken: 'token' }
   });
+};
+
+export const signup = (signUpData: any) => {
+  // TODO: Implement call to registration API here
+  // TODO: If you want to test the error
+  console.log(JSON.stringify(signUpData));
+  // return Promise.resolve({
+  //   ok: false,
+  //   problem: 'CLIENT_ERROR',
+  //   originalError: {},
+  //   data: 'Error en el signup!'
+  // }) as Promise<ApiResponse<any, any>>;
+  return Promise.resolve({
+    ok: true,
+    problem: null,
+    originalError: null,
+    data: {}
+  }) as Promise<ApiResponse<any, any>>;
 };
 <%_ } _%>

@@ -14,15 +14,17 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["src/app/*"],
+      "@authScreens/*": ["./src/app/screens/Auth/screens/*"],
       "@components/*": ["src/app/components/*"],
       "@config/*": ["src/config/*"],
       "@constants/*": ["src/constants/*"],
-      "@services/*": ["src/services/*"],
-      "@redux/*": ["src/redux/*"],
-      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/app/hooks/*"],
       "@interfaces/*": ["src/interfaces/*"],
+      "@navigationHelper": ["src/app/components/AppNavigator/helper.ts"],
+      "@redux/*": ["src/redux/*"],
       "@screens/*": ["./src/app/screens/*"],
-      "@navigationHelper": ["src/app/components/AppNavigator/helper.ts"]
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "skipLibCheck": true
   },

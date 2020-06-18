@@ -3,9 +3,10 @@ declare module '*.json';
 declare module '*.png';
 declare module 'cerealizr';
 declare module 'reactotron-apisauce';
+declare module 'reactotron-react-native/dist/flipper';
 declare module 'redux-recompose';
-<%_ if(features.login) { _%>
-declare module 'recompose';
+<%_ if(features.loginandsignup) { _%>
+declare module 'react-native-keyboard-spacer';
 <%_ } _%>
 <%_ if(features.pushnotifications) { _%>
 declare module '@react-native-firebase/messaging';

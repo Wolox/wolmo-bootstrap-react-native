@@ -1,6 +1,6 @@
-import React, { <%_ if(features.login) { _%>useCallback, <%_ } _%>memo } from 'react';
+import React, { <%_ if(features.loginandsignup) { _%>useCallback, <%_ } _%>memo } from 'react';
 import { View } from 'react-native';
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 import { useDispatch } from 'react-redux';
 import CustomButton from '@components/CustomButton';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
@@ -11,13 +11,13 @@ import CustomText from '@components/CustomText';
 import styles from './styles';
 
 function Home() {
-  <%_ if(features.login) { _%>
+  <%_ if(features.loginandsignup) { _%>
   const dispatch = useDispatch();
   const handleLogout = useCallback(() => dispatch(AuthActions.logout()), [dispatch]);
   <%_ } _%>
   return (
     <View style={styles.container}>
-    <%_ if(features.login) { _%>
+    <%_ if(features.loginandsignup) { _%>
       <CustomButton onPress={handleLogout} green title="Logout!" style={styles.home} />
     <%_ } else { _%>
       <CustomText style={styles.home}><%= projectName %></CustomText>

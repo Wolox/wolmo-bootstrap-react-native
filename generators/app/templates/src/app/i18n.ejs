@@ -4,8 +4,9 @@ import Routes from '@constants/routes';
 // TODO: Replace here the screens titles
 
 i18next.addResources('es', 'app', {
-    <%_ if(features.login) { _%>
+    <%_ if(features.loginandsignup) { _%>
     [Routes.Login]: 'Login',
+    [Routes.SignUp]: 'SignUp',
     <%_ } _%>
     <%_ if(features.tabs) { _%>
     [Routes.Tab1]: 'Tab 1',

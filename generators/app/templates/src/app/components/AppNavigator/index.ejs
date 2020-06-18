@@ -11,8 +11,6 @@ import withLoadable from '@components/Loadable';
 
 import Navigator from './navigator';
 
-const initialLoadingSelector = (state: State) => state.auth.initialLoading;
-
 const AppNavigator = () => {
   const [routeName, setRouteName] = useState(null);
   useEffect(() => {
@@ -25,10 +23,9 @@ const AppNavigator = () => {
       <%_ if(features.firebaseanalytics) { _%>
       analytics().setCurrentScreen(currentRouteName, currentRouteName);
       <%_ } _%>
-    setRouteName(currentRouteName);
+      setRouteName(currentRouteName);
     }
   };
-
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -39,4 +36,4 @@ const AppNavigator = () => {
   );
 };
 
-export default withLoadable(() => useSelector(initialLoadingSelector))(AppNavigator);
+export default withLoadable(() => useSelector((state: State) => state.auth.initialLoading))(AppNavigator);

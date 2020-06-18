@@ -23,7 +23,7 @@ import auth from './auth/reducer';
 
 const transformerConfig = {
   whitelistPerReducer: {
-  <%_ if(features.login) { _%>
+  <%_ if(features.loginandsignup) { _%>
     auth: ['currentUser']
   <%_ } _%>
   }
@@ -32,7 +32,7 @@ const transformerConfig = {
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: [<%_ if(features.login) { _%>'auth'<%_ } _%>],
+  whitelist: [<%_ if(features.loginandsignup) { _%>'auth'<%_ } _%>],
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)]
 };

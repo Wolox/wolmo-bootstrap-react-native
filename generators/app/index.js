@@ -1,33 +1,38 @@
 const Generator = require('yeoman-generator');
 
-const reactNativeCliInstall = require('./tasks/reactNativeCliInstall');
-const reactNativeInit = require('./tasks/reactNativeInit');
-const installDependencies = require('./tasks/installDependencies');
+// BITRISE
+const bitriseInitialization = require('../bitrise/tasks/bitriseInitialization');
+
+// CONFIGURING
+const reactNativeCliInstall = require('./tasks/configuringTasks/reactNativeCliInstall');
+const reactNativeInit = require('./tasks/configuringTasks/reactNativeInit');
+const installDependencies = require('./tasks/configuringTasks/installDependencies');
+const configureFastlane = require('./tasks/configuringTasks/configureFastlane');
+const addFilesToGitIgnore = require('./tasks/configuringTasks/addFilesToGitIgnore');
+// WRITING
 const appSetup = require('./tasks/appSetup');
-const gitInitialization = require('./tasks/gitInitialization');
-const bitriseInitialization = require('./tasks/bitriseInitialization');
+// INSTALL
+const bundleInstall = require('./tasks/installTasks/bundleInstall');
+const configureIosProject = require('./tasks/installTasks/configureIosProject');
+const installPods = require('./tasks/installTasks/installPods');
+const linkAppAssets = require('./tasks/installTasks/linkAppAssets');
+const editBundleIdentifier = require('./tasks/installTasks/editBundleIdentifier');
+const lintFixProject = require('./tasks/installTasks/lintFixProject');
+const chmodFirebaseScript = require('./tasks/installTasks/chmodFirebaseScript');
+const gitInitialization = require('./tasks/installTasks/gitInitialization');
+// END
 const nextSteps = require('./tasks/nextSteps');
-const bundleInstall = require('./tasks/bundleInstall');
-const configureFastlane = require('./tasks/configureFastlane');
-const installPods = require('./tasks/installPods');
-const linkAppAssets = require('./tasks/linkAppAssets');
-const chmodFirebaseScript = require('./tasks/chmodFirebaseScript');
-const editBundleIdentifier = require('./tasks/editBundleIdentifier');
-const configureIosProject = require('./tasks/configureIosProject');
-const addFilesToGitIgnore = require('./tasks/addFilesToGitIgnore');
-const lintFixProject = require('./tasks/lintFixProject');
+const { GENERATOR_FEATURES } = require('./constants');
 
 class ReactNativeBootstrap extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
     this.option('verbose', {
       desc: 'Turns on verbose logging',
       alias: 'v',
       type: Boolean,
       default: false
     });
-
     this.conflicter.force = true;
   }
 
@@ -46,18 +51,7 @@ class ReactNativeBootstrap extends Generator {
         type: 'checkbox',
         name: 'features',
         message: "What's features should this project include?",
-        choices: [
-          'Login',
-          'Tabs',
-          'Drawer',
-          'Redux Persist',
-          'Firebase Analytics',
-          'Crashlytics',
-          'Firebase Performance',
-          'Push Notifications',
-          'Bitrise',
-          'OnBoarding'
-        ],
+        choices: GENERATOR_FEATURES,
         filter: values =>
           values.reduce((answer, val) => {
             answer[val.replace(/ /g, '').toLowerCase()] = true;
@@ -74,7 +68,6 @@ class ReactNativeBootstrap extends Generator {
       this.projectName = answers.name;
       this.features = answers.features;
       this.features.landscape = answers.landscape;
-
       return this.prompt([
         {
           type: 'input',
@@ -114,9 +107,9 @@ class ReactNativeBootstrap extends Generator {
       .then(() => linkAppAssets.bind(this)())
       .then(() => editBundleIdentifier.bind(this)())
       .then(() => lintFixProject.bind(this)())
+      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)())
       .then(() => gitInitialization.bind(this)())
-      .then(() => this.features.bitrise && bitriseInitialization.bind(this)())
-      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)());
+      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
   }
 
   end() {

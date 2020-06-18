@@ -6,35 +6,35 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 <%_ if(features.drawer) { _%>
 import { createDrawerNavigator } from '@react-navigation/drawer';
 <%_ } _%>
-<%_ if(features.onboarding || features.login) { _%>
+<%_ if(features.onboarding || features.loginandsignup) { _%>
 import { useSelector } from 'react-redux';
+import { State } from '@interfaces/reduxInterfaces';
 <%_ } _%>
-<%_ if(features.drawer || features.tabs) { _%>
 import Routes from '@constants/routes';
-<%_ } _%>
-import { <%_ if(features.login) { _%>authStackNavConfig,<%_ } _%> appStackNavConfig<%_ if(features.drawer) { _%>, defaultDrawerNavOptions <%_ }_%><%_ if(features.tabs) { _%>, tabNavConfig <%_ }_%>} from '@config/navigation';
+import { <%_ if(features.loginandsignup) { _%>authStackNavConfig,<%_ } _%> appStackNavConfig<%_ if(features.drawer) { _%>, drawerStackNavConfig <%_ }_%><%_ if(features.tabs) { _%>, tabNavConfig <%_ }_%>} from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
-<%_ if(features.login) { _%>
-import Login from '@screens/Login';
+<%_ if(features.loginandsignup) { _%>
+import Login from '@authScreens/Login';
+import SignUp from '@authScreens/SignUp';
 <%_ } _%>
 <%_ if(features.onboarding) { _%>
 import OnBoarding from '@screens/OnBoarding';
 <%_ } _%>
 import Home from '@screens/Home';
 
-import { State } from '@interfaces/reduxInterfaces';
-
 const Stack = createStackNavigator();
+<%_ if(features.loginandsignup) { _%>
+
+const AuthStack = () => (
+  <>
+    {inferRoute(Stack)({ [Routes.Login]: Login })}
+    {inferRoute(Stack)({ [Routes.SignUp]: SignUp })}
+  </>
+);
+<%_ } _%>
 <%_ if(features.tabs) { _%>
+
 const Tab = createBottomTabNavigator();
-<%_ } _%>
-<%_ if(features.drawer) { _%>
-const Drawer = createDrawerNavigator();
-<%_ } _%>
-<%_ if(features.login) { _%>
-const AuthStack = () => <>{inferRoute(Stack)({ Login })}</>;
-<%_ } _%>
-<%_ if(features.tabs) { _%>
 function HomeTabs() {
   return (
     <Tab.Navigator {...tabNavConfig}>
@@ -45,60 +45,55 @@ function HomeTabs() {
 }
 <%_ } _%>
 <%_ if(features.drawer) { _%>
-function AppDrawerNavigator() {
+
+const Drawer = createDrawerNavigator();
+function DrawerNavigator() {
   return (
-    <Drawer.Navigator {...defaultDrawerNavOptions}>{inferRoute(Drawer)({ Home: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%> })}</Drawer.Navigator>
+    <Drawer.Navigator {...drawerStackNavConfig}>{inferRoute(Drawer)({ [Routes.Home]: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%> })}</Drawer.Navigator>
   );
 }
-function AppStack() {
-  return <>{inferRoute(Stack)({ [Routes.Home]: AppDrawerNavigator })}</>;
-}
-<%_ }_%>
 
-<%_ if(!features.drawer && features.tabs) { _%>
 function AppStack() {
-  return <>{inferRoute(Stack)({ [Routes.Home]: HomeTabs })}</>;
+  return <>{inferRoute(Stack)({ [Routes.Home]: DrawerNavigator })}</>;
 }
-<%_ }_%>
+<%_ } else { _%>
 
-<%_ if(!features.drawer && !features.tabs) { _%>
 function AppStack() {
-  return <>{inferRoute(Stack)({ Home })}</>;
+  return <>{inferRoute(Stack)({ [Routes.Home]: <%_ if(features.tabs) { _%>HomeTabs<%_ } else { _%>Home <%_ } _%> })}</>;
 }
-<%_ }_%>
+<%_ } _%>
 
-<%_ if(features.onboarding && features.login) { _%>
+<%_ if(features.onboarding) { _%>
+const OnBoardingStack = () => (<>{inferRoute(Stack)({ [Routes.OnBoarding]: OnBoarding })}</>);
+
 const Navigator = () => {
   const hasAccessOnBoarding = useSelector((state: State) => state.auth.hasAccessOnBoarding);
+  <%_ if(features.loginandsignup) { _%>
   const currentUser = useSelector((state: State) => state.auth.currentUser);
   const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
   return (
     <Stack.Navigator {...defaultStackConfig}>
-      {currentUser ? (hasAccessOnBoarding ? AppStack() : inferRoute(Stack)({ OnBoarding })) : AuthStack()}
+      {currentUser ? (hasAccessOnBoarding ? AppStack() : OnBoardingStack() : AuthStack()}
     </Stack.Navigator>
   );
-};
-<%_ }_%>
-<%_ if(features.onboarding && !features.login) { _%>
-const Navigator = () => {
-  const hasAccessOnBoarding = useSelector((state: State) => state.auth.hasAccessOnBoarding);
+  <%_ } else { _%>
   return (
     <Stack.Navigator {...appStackNavConfig}>
-      {hasAccessOnBoarding ? AppStack() : inferRoute(Stack)({ OnBoarding })}
+      {hasAccessOnBoarding ? AppStack() : OnBoardingStack()}
     </Stack.Navigator>
   );
+  <%_ }_%>
 };
-<%_ }_%>
-<%_ if(!features.onboarding && features.login) { _%>
+<%_ } else { _%>
 const Navigator = () => {
+  <%_ if(features.loginandsignup) { _%>
   const currentUser = useSelector((state: State) => state.auth.currentUser);
   const defaultStackConfig = currentUser ? appStackNavConfig : authStackNavConfig;
   return <Stack.Navigator {...defaultStackConfig}>{currentUser ? AppStack() : AuthStack()}</Stack.Navigator>;
-};
-<%_ }_%>
-<%_ if(!features.onboarding && !features.login) { _%>
-const Navigator = () => {
+  <%_ } else { _%>
   return <Stack.Navigator {...appStackNavConfig}>{AppStack()}</Stack.Navigator>;
+  <%_ } _%>
 };
-<%_ }_%>
+<%_ } _%>
+
 export default Navigator;

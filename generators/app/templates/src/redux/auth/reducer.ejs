@@ -1,4 +1,4 @@
-<%_ if(features.login) { _%>
+<%_ if(features.loginandsignup) { _%>
 import { createReducer, completeReducer, completeState, onSuccess<%_ if(features.onboarding) { _%>, onReadValue<%_ } _%> } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
 
@@ -28,7 +28,7 @@ const reducerDescription = {
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
 
 <%_ } _%>
-<%_ if(!features.login && features.onboarding) { _%>
+<%_ if(!features.loginandsignup && features.onboarding) { _%>
 import { createReducer, onReadValue } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
 
@@ -51,7 +51,7 @@ const reducerDescription = {
 
 export default createReducer(Immutable(initialState), reducerDescription);
 <%_ } _%>
-<%_ if(!features.login && !features.onboarding) { _%>
+<%_ if(!features.loginandsignup && !features.onboarding) { _%>
 import { createReducer } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
 
@@ -63,7 +63,7 @@ const initialState = {
 };
 
 const reducerDescription = {
-  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: any) =>
+  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>) =>
     state.merge({
       initialLoading: false
     })
