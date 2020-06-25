@@ -1,4 +1,4 @@
-function addDotenvPluginAndRNScreen() {
+function updateAppBuildGradle() {
   const buildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   let updatedBuildGradleContent = buildGradleContent.replace(
     'apply plugin: "com.android.application"',
@@ -9,24 +9,28 @@ function addDotenvPluginAndRNScreen() {
     'enableHermes: true,'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
-    'versionName generateVersionName()',
-    'versionName generateVersionName()\n\t\tmultiDexEnabled true'
-  );
-  updatedBuildGradleContent = updatedBuildGradleContent.replace(
-    'if (enableHermes) {',
-    "implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'\n\timplementation 'androidx.multidex:multidex:2.0.1'\n\tif (enableHermes) {"
+    'def enableProguardInReleaseBuilds = false',
+    'def enableProguardInReleaseBuilds = true'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
     'compileSdkVersion rootProject.ext.compileSdkVersion',
     'compileSdkVersion rootProject.ext.compileSdkVersion\n\tflavorDimensions "buildtype"'
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'versionName generateVersionName()',
+    `versionName generateVersionName()\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"\n\t\tmultiDexEnabled true`
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
+    'minifyEnabled enableProguardInReleaseBuilds',
+    'shrinkResources true\n\t\t\tminifyEnabled enableProguardInReleaseBuilds'
+  );
+  updatedBuildGradleContent = updatedBuildGradleContent.replace(
     '// applicationVariants are e.g. debug, release',
     "productFlavors {\n\t\tqa {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".qa\"\n\t\t}\n\t\tstage {\n\t\t\tdimension 'buildtype'\n\t\t\tapplicationIdSuffix \".stage\"\n\t\t}\n\t\tproduction {\n\t\t\tdimension 'buildtype'\n\t\t}\n\t}\n// applicationVariants are e.g. debug, release"
   );
   updatedBuildGradleContent = updatedBuildGradleContent.replace(
-    'versionName generateVersionName()',
-    `versionName generateVersionName()\n\t\tresValue "string", "build_config_package", "com.${this.projectName.toLowerCase()}"`
+    'if (enableHermes) {',
+    "implementation 'androidx.appcompat:appcompat:1.2.0-alpha03'\n\timplementation 'androidx.multidex:multidex:2.0.1'\n\tif (enableHermes) {"
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, updatedBuildGradleContent);
 }
@@ -49,7 +53,17 @@ function addRNGestureHandlerConfig() {
   );
 }
 
+function updateAppProguardRules() {
+  const proguardRulesContent = this.fs.read(`${this.projectName}/android/app/proguard-rules.pro`);
+  const updatedProguardRulesContent = proguardRulesContent.replace(
+    '# Add any project specific keep options here:',
+    `# Add any project specific keep options here:\n# Hermes\n-keep class com.facebook.hermes.unicode.** { *; }\n\n# react-native-config\n-keep class ${this.projectName.toLowerCase()}.BuildConfig { *; }`
+  );
+  this.fs.write(`${this.projectName}/android/app/proguard-rules.pro`, updatedProguardRulesContent);
+}
+
 module.exports = function androidProjectSetup() {
-  addDotenvPluginAndRNScreen.bind(this)();
+  updateAppBuildGradle.bind(this)();
   addRNGestureHandlerConfig.bind(this)();
+  updateAppProguardRules.bind(this)();
 };
