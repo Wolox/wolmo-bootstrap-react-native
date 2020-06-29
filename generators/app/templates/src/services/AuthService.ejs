@@ -1,16 +1,14 @@
-import { Dispatch } from 'react';
 <%_ if(features.loginandsignup) { _%>
 import { ApiResponse } from 'apisauce';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
 <%_ } _%>
-import { actionCreators as authActions } from '@redux/auth/actions';
 <%_ if(features.onboarding) { _%>
 import { getOnBoardingAccess } from '@services/OnBoardingService';
 <%_ } _%>
-
 <%_ if(features.loginandsignup) { _%>
+
 const CURRENT_USER_KEY = '@Auth:currentUser';
 
 // TODO: Adapt returned object to:
@@ -25,26 +23,29 @@ export const setCurrentUser = (currentUser: CurrentUser) => {
 export const getCurrentUser = () =>
   AsyncStorage.getItem(CURRENT_USER_KEY).then(value => JSON.parse(`${value}`));
 export const removeCurrentUser = () => AsyncStorage.removeItem(CURRENT_USER_KEY);
-  <%_ } _%>
-
-<%_ if(features.loginandsignup || features.onboarding) { _%>
-export const authSetup = async (dispatch: Dispatch<any>) => {
-<%_ }else{ _%>
-export const authSetup = (dispatch: Dispatch<any>) => {
 <%_ } _%>
-  <%_ if(features.loginandsignup) { _%>
+
+export const authSetup = async () => {
+<%_ if(features.loginandsignup) { _%>
   const currentUser = await getCurrentUser();
   if (currentUser) {
     api.setHeader('Authorization', `Bearer ${currentUser.sessionToken}`);
   }
+  <%_ if(!features.onboarding) { _%>
+  return currentUser;
   <%_ } _%>
-  <%_ if(features.onboarding) { _%>
+<%_ } _%>
+<%_ if(features.onboarding) { _%>
   const hasAccess = await getOnBoardingAccess();
+  <%_ if(!features.loginandsignup) { _%>
+  return hasAccess;
   <%_ } _%>
-  dispatch(authActions.init(<%_ if(features.loginandsignup) { _%>currentUser<%_ } _%><%_ if(features.onboarding) { _%><%_ if(features.loginandsignup) { _%>,   <%_ } _%>hasAccess<%_ } _%>));
+<%_ } _%>
+<%_ if(features.loginandsignup && features.onboarding) { _%>
+  return { currentUser, hasAccess };
 };
-
 <%_ if(features.loginandsignup) { _%>
+
 export const login = (authData: AuthData) => {
   // TODO: Implement call to authentication API here
   // TODO: If you want to test the error
@@ -59,6 +60,22 @@ export const login = (authData: AuthData) => {
     problem: null,
     originalError: null,
     data: { sessionToken: 'token' }
+  });
+};
+
+export const logout = () => {
+  // TODO: Implement call to authentication API here
+  // TODO: If you want to test the error
+  // return Promise.resolve({
+  //   ok: false,
+  //   problem: 'CLIENT_ERROR',
+  //   originalError: {}
+  // });
+  return Promise.resolve({
+    ok: true,
+    problem: null,
+    originalError: null,
+    data: null
   });
 };
 
