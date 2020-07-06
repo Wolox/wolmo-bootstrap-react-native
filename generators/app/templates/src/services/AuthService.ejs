@@ -2,7 +2,7 @@
 import { ApiResponse } from 'apisauce';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '@config/api';
-import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
+import { CurrentUser, AuthData, SignUpData } from '@interfaces/authInterfaces';
 <%_ } _%>
 <%_ if(features.onboarding) { _%>
 import { getOnBoardingAccess } from '@services/OnBoardingService';
@@ -43,13 +43,13 @@ export const authSetup = async () => {
 <%_ } _%>
 <%_ if(features.loginandsignup && features.onboarding) { _%>
   return { currentUser, hasAccess };
+<%_ } _%>
 };
 <%_ if(features.loginandsignup) { _%>
 
-export const login = (authData: AuthData) => {
+export const login = (_: AuthData) => {
   // TODO: Implement call to authentication API here
   // TODO: If you want to test the error
-  console.log(JSON.stringify(authData));
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
@@ -79,10 +79,9 @@ export const logout = () => {
   });
 };
 
-export const signup = (signUpData: any) => {
+export const signup = (_: SignUpData) => {
   // TODO: Implement call to registration API here
   // TODO: If you want to test the error
-  console.log(JSON.stringify(signUpData));
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
