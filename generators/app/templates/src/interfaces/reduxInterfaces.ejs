@@ -2,9 +2,11 @@ import { Dispatch } from 'react';
 import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
 <%_ if(features.loginandsignup) { _%>
 import { CurrentUser } from '@interfaces/authInterfaces';
+import { Nullable } from '@interfaces/globalInterfaces';
 <%_ } _%>
 
 export interface Action<T = null, P = null, K = null> {
+  [key: string]: any;
   type: string;
   target?: string;
   payload?: T;
@@ -24,9 +26,9 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
 export interface AuthState {
   initialLoading: boolean;
   <%_ if(features.loginandsignup) { _%>
-  currentUser: CurrentUser | null;
+  currentUser: Nullable<CurrentUser>;
   currentUserLoading: boolean;
-  currentUserError: string | null;
+  currentUserError: Nullable<string>;
   <%_ } _%>
   <%_ if(features.onboarding) { _%>
   hasAccessOnBoarding: boolean;

@@ -1,38 +1,39 @@
 <%_ if(features.loginandsignup) { _%>
-import { createReducer, completeReducer, completeState, onSuccess<%_ if(features.onboarding) { _%>, onReadValue<%_ } _%> } from 'redux-recompose';
+import { createReducer, completeReducer, completeState<%_ if(features.onboarding) { _%>, onReadValue<%_ } _%> } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
-
-import { AuthState } from '@interfaces/reduxInterfaces';
+import { CurrentUser } from '@interfaces/authInterfaces';
+import { Nullable } from '@interfaces/globalInterfaces';
+import { Action, AuthState } from '@interfaces/reduxInterfaces';
 
 import { actions } from './actions';
 
 const stateDescription = {
   currentUser: null,
-  initialLoading: true<%_ if(features.onboarding) { _%>,
-  hasAccessOnBoarding: false
-  <%_ }_%>
+<%_ if(features.onboarding) { _%>
+  hasAccessOnBoarding: false,
+<%_ }_%>
+  initialLoading: true
 };
 
 export const initialState = completeState(stateDescription, ['initialLoading'<%_ if(features.onboarding) { _%>, 'hasAccessOnBoarding'<%_ } _%>]);
 
 const reducerDescription = {
-  primaryActions: [actions.LOGIN],
+  primaryActions: [actions.LOGIN, actions.LOGOUT],
   override: {
-    [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: any) =>
-      state.merge({ initialLoading: false, [action.target]: action.payload<%_ if(features.onboarding) { _%>, hasAccessOnBoarding: action.hasAccessOnBoarding <%_ }_%> }),
-    [actions.LOGOUT]: onSuccess()<%_ if(features.onboarding) { _%>,
-    [actions.HAS_ACCESS]: onReadValue()<%_ } _%>
+  <%_ if(features.onboarding) { _%>
+    [actions.HAS_ACCESS]: onReadValue(),
+  <%_ } _%>
+    [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: Action<Nullable<CurrentUser>>) =>
+      state.merge({ initialLoading: false, [action.target as string]: action.payload<%_ if(features.onboarding) { _%>, hasAccessOnBoarding: action.hasAccessOnBoarding <%_ }_%> })
   }
 };
 
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
-
-<%_ } _%>
-<%_ if(!features.loginandsignup && features.onboarding) { _%>
+<%_ } else if (features.onboarding) { _%>
 import { createReducer, onReadValue } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
+import { Action, AuthState } from '@interfaces/reduxInterfaces';
 
-import { AuthState } from '@interfaces/reduxInterfaces';
 import { actions } from './actions';
 
 const initialState = {
@@ -41,21 +42,17 @@ const initialState = {
 };
 
 const reducerDescription = {
-  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: any) =>
-    state.merge({
-      initialLoading: false,
-      [action.target]: action.payload
-    }),
+  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>, action: Action<boolean>) =>
+    state.merge({ initialLoading: false, [action.target as string]: action.payload }),
   [actions.HAS_ACCESS]: onReadValue()
 };
 
 export default createReducer(Immutable(initialState), reducerDescription);
-<%_ } _%>
-<%_ if(!features.loginandsignup && !features.onboarding) { _%>
+<%_ } else { _%>
 import { createReducer } from 'redux-recompose';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
-
 import { AuthState } from '@interfaces/reduxInterfaces';
+
 import { actions } from './actions';
 
 const initialState = {
@@ -63,12 +60,8 @@ const initialState = {
 };
 
 const reducerDescription = {
-  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>) =>
-    state.merge({
-      initialLoading: false
-    })
+  [actions.AUTH_INIT]: (state: ImmutableObject<AuthState>) => state.merge({ initialLoading: false })
 };
 
 export default createReducer(Immutable(initialState), reducerDescription);
-
 <%_ } _%>

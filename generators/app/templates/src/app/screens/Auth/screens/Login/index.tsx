@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Keyboard, TouchableOpacity, View } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import i18next from 'i18next';
 import { Formik } from 'formik';
@@ -10,7 +10,7 @@ import Routes from '@constants/routes';
 import { Navigation } from '@interfaces/navigation';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
-import { FIELDS, LOGIN_INITIAL_VALUES, WITHOUT_OPACITY } from '@screens/Auth/constants';
+import { FIELDS, LOGIN_INITIAL_VALUES } from '@screens/Auth/constants';
 import { validationsWrapper, validateRequired, validateEmail } from '@utils/validations/validateUtils';
 
 import './i18n';
@@ -24,7 +24,7 @@ function Login({ navigation }: Navigation) {
   ]);
   const handleGoToSignUp = () => navigation.navigate(Routes.SignUp);
   return (
-    <TouchableOpacity activeOpacity={WITHOUT_OPACITY} onPress={Keyboard.dismiss} style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
       <Formik onSubmit={handleLogin} initialValues={LOGIN_INITIAL_VALUES}>
         {({ handleSubmit, isValid }) => (
           <>
@@ -67,7 +67,7 @@ function Login({ navigation }: Navigation) {
           </>
         )}
       </Formik>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 }
 
