@@ -2,12 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.X.X] - 2020-XX-XX
+## [1.2.0] - 2020-07-07
 
 - Added [Formik](https://jaredpalmer.com/formik/) + [withFormikField (HOC)](/generators/app/templates/src/app/components/withFormikField/index.tsx) to create Custom Fields
 - Added some field validations
 - Updated `Login` screen and refactored authentication flow
 - Added [Flipper](https://fbflipper.com/) to [Reactotron Configuration](/generators/app/templates/src/config/reactotronConfig.ejs)
+- Added `SignUp` screen. Now the feature is `Login and SignUp` (`Auth` screen)
+- Restructured Bootstrap's folders. Split into two different generators (App and Bitrise)
+- Fixed disable landscape orientation feature logic
+- Added `useAsyncRequest` hook (also hook alias and folder) for requests without redux
+- Added proguard-rules on Android Release build configuration
+- Solved Cyclic dependency between AuthActions and AuthService
 
 ## [1.1.0] - 2020-05-29
 
