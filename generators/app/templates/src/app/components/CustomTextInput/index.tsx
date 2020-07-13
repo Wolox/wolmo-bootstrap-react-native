@@ -70,6 +70,7 @@ const CustomTextInput = ({
           secureTextEntry={secureTextEntry && !showPassword}
           style={[styles.inputStyle, !multiline && styles.singleInput, inputTextStyles]}
           value={value}
+          testID={label || placeholder}
         />
         {secureTextEntry && showEye && (
           <ShowPassword onShowPassword={handleShowPassword} passwordVisible={showPassword} />
