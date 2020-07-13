@@ -35,6 +35,7 @@ const DEPENDENCIES = [
 const DEV_DEPENDENCIES = [
   '@react-native-community/eslint-config',
   '@types/jest',
+  '@testing-library/jest-native',
   '@types/react',
   '@types/react-native',
   '@types/react-redux',
@@ -43,9 +44,6 @@ const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
-  'enzyme-adapter-react-16',
-  'enzyme-to-json',
-  'enzyme',
   'eslint-config-wolox-react-native',
   'eslint-config-airbnb',
   'eslint-config-prettier',
@@ -66,7 +64,8 @@ const DEV_DEPENDENCIES = [
   'prettier-eslint',
   'prettier',
   'react-native-mock-render',
-  'redux-mock-store'
+  'redux-mock-store',
+  'react-native-testing-library'
 ];
 
 // eslint-disable-next-line valid-jsdoc

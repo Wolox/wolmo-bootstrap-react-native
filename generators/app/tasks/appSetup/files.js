@@ -29,13 +29,10 @@ module.exports.TSCONFIG_FILE = 'tsconfig.json';
 module.exports.TESTS_REDUX_PATH = `${module.exports.TESTS}/redux`;
 module.exports.TESTS_RESPONSES_PATH = `${module.exports.TESTS}/responses`;
 module.exports.TESTS_SCREENS_PATH = `${module.exports.TESTS}/screens`;
-module.exports.TESTS_SETUP_PATH = `${module.exports.TESTS}/setup`;
 // TESTS - REDUX
 module.exports.TESTS_STORE = `${module.exports.TESTS_REDUX_PATH}/store.js`;
 module.exports.TESTS_UTILS = `${module.exports.TESTS_REDUX_PATH}/utils.js`;
 module.exports.TESTS_AUTH_PATH = `${module.exports.TESTS_REDUX_PATH}/auth`;
-// TESTING - SCREENS - LOGIN
-module.exports.TESTS_LOGIN_SCREEN_PATH = `${module.exports.TESTS_SCREENS_PATH}/Login`;
 
 //  Wolox CI
 module.exports.DOCKER_FILE = `${module.exports.CI_PATH}/Dockerfile`;
