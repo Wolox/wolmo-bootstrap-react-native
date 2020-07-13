@@ -15,10 +15,11 @@ import { validationsWrapper, validateRequired, validateEmail } from '@utils/vali
 
 import './i18n';
 import styles from './styles';
+import Selectors from './selectors';
 
 function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
-  const hasLoginError = useSelector<State, boolean>(store => !!store.auth.currentUserError);
+  const hasLoginError = useSelector<State, boolean>(Selectors.hasError);
   const handleLogin: (values: any) => void = useCallback(values => dispatch(AuthActions.login(values)), [
     dispatch
   ]);
