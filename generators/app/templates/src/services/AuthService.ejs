@@ -45,10 +45,9 @@ export const authSetup = (dispatch: Dispatch<any>) => {
 };
 
 <%_ if(features.loginandsignup) { _%>
-export const login = (authData: AuthData) => {
+export const login = (_: AuthData) => {
   // TODO: Implement call to authentication API here
   // TODO: If you want to test the error
-  console.log(JSON.stringify(authData));
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
@@ -62,10 +61,9 @@ export const login = (authData: AuthData) => {
   });
 };
 
-export const signup = (signUpData: any) => {
+export const signup = (_: any) => {
   // TODO: Implement call to registration API here
   // TODO: If you want to test the error
-  console.log(JSON.stringify(signUpData));
   // return Promise.resolve({
   //   ok: false,
   //   problem: 'CLIENT_ERROR',
