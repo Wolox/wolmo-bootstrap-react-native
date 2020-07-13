@@ -26,6 +26,6 @@
 
 #### iPhone XS Max
 
-## Trello Card
+## Jira Card
 
-[Change!] Link to the associated Trello card.
+[Change!] Link to the associated Jira card.

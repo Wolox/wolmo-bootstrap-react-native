@@ -4,26 +4,36 @@ import { Dispatch } from 'react';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 import * as AuthService from '@services/AuthService';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
+import { Action } from '@interfaces/reduxInterfaces';
 <%_ if(features.onboarding) { _%>
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 <%_ } _%>
 
-export const actions = createTypes(completeTypes(['LOGIN'], ['AUTH_INIT', 'LOGOUT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
+export const actions = createTypes(completeTypes(['LOGIN', 'LOGOUT'], ['AUTH_INIT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
 const TARGETS = {
-  CURRENT_USER: 'currentUser'<%_ if(features.onboarding) { _%>,
-  ONBOARDING: 'hasAccessOnBoarding'
-  <%_ } _%>
+<%_ if(features.onboarding) { _%>
+  ONBOARDING: 'hasAccessOnBoarding',
+<%_ } _%>
+  CURRENT_USER: 'currentUser'
 };
 
 export const actionCreators = {
-  init: (user: CurrentUser<%_ if(features.onboarding) { _%>, hasAccessOnBoarding: boolean<%_ } _%>) => ({
-    type: actions.AUTH_INIT,
-    target: TARGETS.CURRENT_USER,
-    payload: user<%_ if(features.onboarding) { _%>,
-    hasAccessOnBoarding
-    <%_ } _%>
-  }),
+  init: () => async (dispatch: Dispatch<Action>) => {
+  <%_ if(features.onboarding) { _%>
+    const { currentUser, hasAccess } = await AuthService.authSetup();
+  <%_ } else { _%>
+    const currentUser = await AuthService.authSetup();
+  <%_ } _%>
+    dispatch({
+      type: actions.AUTH_INIT,
+      target: TARGETS.CURRENT_USER,
+      <%_ if(features.onboarding) { _%>
+      hasAccessOnBoarding: hasAccess,
+      <%_ } _%>
+      payload: currentUser
+    });
+  },
   login: (authData: AuthData) => ({
     type: actions.LOGIN,
     target: TARGETS.CURRENT_USER,
@@ -35,13 +45,19 @@ export const actionCreators = {
       })
     ]
   }),
-  logout: () => async (dispatch: Dispatch<any>) => {
-    await AuthService.removeCurrentUser();
-    <%_ if(features.onboarding) { _%>
-    dispatch(actionCreators.setHasAccessOnBoarding(false));
-    <%_ } _%>
-    dispatch({ type: actions.LOGOUT, target: TARGETS.CURRENT_USER });
-  }<%_ if(features.onboarding) { _%>,
+  logout: () => ({
+    type: actions.LOGOUT,
+    target: TARGETS.CURRENT_USER,
+    service: AuthService.logout,
+    injections: [
+      withPostSuccess(async () => {
+        await AuthService.removeCurrentUser();
+      <%_ if(features.onboarding) { _%>
+        dispatch(actionCreators.setHasAccessOnBoarding(false));
+      <%_ } _%>
+      })
+    ]
+  })<%_ if(features.onboarding) { _%>,
   setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
     await setOnBoardingAccess(value);
     dispatch({
@@ -52,10 +68,11 @@ export const actionCreators = {
   }
   <%_ }_%>
 };
-<%_ } _%>
-<%_ if(!features.loginandsignup && features.onboarding) { _%>
+<%_ } else if (features.onboarding) { _%>
 import { Dispatch } from 'react';
 import { createTypes } from 'redux-recompose';
+import { Action } from '@interfaces/reduxInterfaces';
+import * as AuthService from '@services/AuthService';
 import { setOnBoardingAccess } from '@services/OnBoardingService';
 
 export const actions = createTypes(['AUTH_INIT', 'HAS_ACCESS'], '@@AUTH');
@@ -65,12 +82,15 @@ const TARGETS = {
 };
 
 export const actionCreators = {
-  init: (hasAccessOnBoarding: boolean) => ({
-    type: actions.AUTH_INIT,
-    target: TARGETS.ONBOARDING,
-    payload: hasAccessOnBoarding
-  }),
-  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
+  init: () => async (dispatch: Dispatch<Action>) => {
+    const hasAccess = await AuthService.authSetup();
+    dispatch({
+      type: actions.AUTH_INIT,
+      target: TARGETS.ONBOARDING,
+      payload: hasAccess
+    });
+  },
+  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<Action>) => {
     await setOnBoardingAccess(value);
     dispatch({
       type: actions.HAS_ACCESS,
@@ -79,16 +99,12 @@ export const actionCreators = {
     });
   }
 };
-<%_ } _%>
-<%_ if(!features.loginandsignup && !features.onboarding) { _%>
+<%_ } else { _%>
 import { createTypes } from 'redux-recompose';
 
 export const actions = createTypes(['AUTH_INIT'], '@@AUTH');
 
 export const actionCreators = {
-  init: () => ({
-    type: actions.AUTH_INIT
-  })
+  init: () => ({ type: actions.AUTH_INIT })
 };
-
 <%_ } _%>

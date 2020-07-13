@@ -16,7 +16,7 @@ describe('testing reducers', () => {
   });
   test('test reducer with LOGOUT action', async () => {
     const action = {
-      type: actions.LOGOUT,
+      type: actions.LOGOUT_SUCCESS,
       target: 'currentUser'
     };
     await expect(authReducer(undefined, action)).toEqual({

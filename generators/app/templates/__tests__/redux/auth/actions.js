@@ -25,7 +25,7 @@ describe('testing auth actions', () => {
   });
   test('test LOGOUT', async () => {
     AsyncStorage.removeItem = jest.fn().mockReturnValue(null);
-    const expectedActions = [actions.LOGOUT];
+    const expectedActions = [actions.LOGOUT, actions.LOGOUT_SUCCESS];
     await store.dispatch(actionCreators.logout({}));
     expect(mapActionsToTypes(store.getActions())).toEqual(expectedActions);
     expect(AsyncStorage.removeItem.mock.calls).toHaveLength(1);

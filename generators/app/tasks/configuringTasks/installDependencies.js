@@ -13,7 +13,8 @@ const DEPENDENCIES = [
   'formik',
   'i18next',
   'react-native-config',
-  'react-native-flipper',
+  // Delete '@0.47.0' when react-native-flipper fix a build issue on Android Release mode
+  'react-native-flipper@0.47.0',
   'react-native-gesture-handler',
   'react-native-localize',
   'react-native-reanimated',

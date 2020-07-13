@@ -1,5 +1,3 @@
-export const WITHOUT_OPACITY = 1;
-
 export const FIELDS = {
   name: 'name',
   surname: 'surname',
