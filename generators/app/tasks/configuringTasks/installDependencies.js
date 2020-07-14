@@ -35,8 +35,8 @@ const DEPENDENCIES = [
 
 const DEV_DEPENDENCIES = [
   '@react-native-community/eslint-config',
-  '@types/jest',
   '@testing-library/jest-native',
+  '@types/jest',
   '@types/react',
   '@types/react-native',
   '@types/react-redux',
@@ -65,8 +65,8 @@ const DEV_DEPENDENCIES = [
   'prettier-eslint',
   'prettier',
   'react-native-mock-render',
-  'redux-mock-store',
-  'react-native-testing-library'
+  'react-native-testing-library',
+  'redux-mock-store'
 ];
 
 // eslint-disable-next-line valid-jsdoc
