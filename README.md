@@ -82,12 +82,12 @@ The boilerplate includes
 
 - [Babel](https://babeljs.io/)
 - [Bitrise](https://devcenter.bitrise.io/)
-- [Enzyme](https://github.com/enzymejs/enzyme)
 - [Eslint](http://eslint.org/)
 - [Fastlane Mobile](https://github.com/Wolox/fastlane-mobile)
 - [Flipper](https://fbflipper.com/)
 - [Jest](https://jestjs.io/)
 - [Prettier](https://github.com/prettier/prettier)
+- [React Native Testing Library](https://github.com/callstack/react-native-testing-library)
 - [Reactotron](https://github.com/infinitered/reactotron)
 - [TypeScript](https://www.typescriptlang.org/)
 

@@ -35,6 +35,7 @@ const DEPENDENCIES = [
 
 const DEV_DEPENDENCIES = [
   '@react-native-community/eslint-config',
+  '@testing-library/jest-native',
   '@types/jest',
   '@types/react',
   '@types/react-native',
@@ -44,9 +45,6 @@ const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
-  'enzyme-adapter-react-16',
-  'enzyme-to-json',
-  'enzyme',
   'eslint-config-wolox-react-native',
   'eslint-config-airbnb',
   'eslint-config-prettier',
@@ -67,6 +65,7 @@ const DEV_DEPENDENCIES = [
   'prettier-eslint',
   'prettier',
   'react-native-mock-render',
+  'react-native-testing-library',
   'redux-mock-store'
 ];
 

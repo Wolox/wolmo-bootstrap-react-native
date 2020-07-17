@@ -18,7 +18,7 @@ import styles from './styles';
 
 function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
-  const hasLoginError = useSelector<State, boolean>(store => !!store.auth.currentUserError);
+  const hasLoginError = useSelector<State, boolean>((state: State) => !!state.auth.currentUserError);
   const handleLogin: (values: any) => void = useCallback(values => dispatch(AuthActions.login(values)), [
     dispatch
   ]);

@@ -17,7 +17,7 @@ describe('testing auth actions', () => {
   test('test LOGIN SUCCESS AND INJECTIONS', async () => {
     api.setHeader = jest.fn();
     AsyncStorage.setItem = jest.fn().mockReturnValue(null);
-    const expectedActions = [actions.LOGIN, actions.LOGIN_SUCCESS, 'Navigation/JUMP_TO'];
+    const expectedActions = [actions.LOGIN, actions.LOGIN_SUCCESS];
     await store.dispatch(actionCreators.login({}));
     expect(mapActionsToTypes(store.getActions())).toEqual(expectedActions);
     expect(api.setHeader.mock.calls).toHaveLength(1);
@@ -25,7 +25,7 @@ describe('testing auth actions', () => {
   });
   test('test LOGOUT', async () => {
     AsyncStorage.removeItem = jest.fn().mockReturnValue(null);
-    const expectedActions = [actions.LOGOUT, 'Navigation/JUMP_TO'];
+    const expectedActions = [actions.LOGOUT, actions.LOGOUT_SUCCESS];
     await store.dispatch(actionCreators.logout({}));
     expect(mapActionsToTypes(store.getActions())).toEqual(expectedActions);
     expect(AsyncStorage.removeItem.mock.calls).toHaveLength(1);

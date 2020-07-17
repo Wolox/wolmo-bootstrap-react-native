@@ -28,7 +28,7 @@ const CustomButton = (props: CustomButtonProps) => {
 };
 
 CustomButton.defaultProps = {
-  activeOpacity: 1
+  activeOpacity: 0.8
 };
 
 export default memo(CustomButton);
