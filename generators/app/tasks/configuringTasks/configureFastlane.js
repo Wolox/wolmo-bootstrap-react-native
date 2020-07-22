@@ -125,7 +125,7 @@ function configureAndroidFastlane() {
 
       const gradleProps = this.fs.read(`${this.projectName}/android/gradle.properties`);
       const updateGradleProps = gradleProps.concat(
-        '# Version of the application\nVERSION_CODE=1\nVERSION_NAME=1.0'
+        '\n# Version of the application\nVERSION_CODE=1\nVERSION_NAME=1.0\n'
       );
       this.fs.write(`${this.projectName}/android/gradle.properties`, updateGradleProps);
     });

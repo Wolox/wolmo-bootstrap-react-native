@@ -1,8 +1,7 @@
 require 'xcodeproj'
 project_name = ARGV[0]
 total_path = ARGV[1]
-crashlytics = ARGV[2] == 'true'
-googleServices = ARGV[3] == 'true'
+googleServices = ARGV[2] == 'true'
 project_path = total_path + '/' + project_name + '/ios/' + project_name + '.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 release_base_config_file = nil
@@ -78,17 +77,6 @@ if googleServices
        end
     end
    end
-end
-
-if crashlytics
- project.targets.each do |target|
-  if target.name == project_name
-     if  !target.shell_script_build_phases.find { |bp| bp.name == 'Crashlytics' }
-        phase=target.new_shell_script_build_phase("Crashlytics")
-        phase.shell_script="\"${PODS_ROOT}/Fabric/run\"\n"
-     end
-  end
- end
 end
 
 project.save
