@@ -8,8 +8,8 @@ module.exports = function firebasePerformanceSetup() {
 
   let appBuildGradleContent = this.fs.read(`${this.projectName}/android/app/build.gradle`);
   appBuildGradleContent = appBuildGradleContent.replace(
-    'apply plugin: "com.android.application"',
-    'apply plugin: "com.android.application"\napply plugin: "com.google.firebase.firebase-perf"'
+    "apply plugin: 'com.google.gms.google-services'",
+    "apply plugin: 'com.google.gms.google-services'\napply plugin: 'com.google.firebase.firebase-perf'"
   );
   this.fs.write(`${this.projectName}/android/app/build.gradle`, appBuildGradleContent);
 };

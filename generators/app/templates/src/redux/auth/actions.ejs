@@ -50,7 +50,7 @@ export const actionCreators = {
     target: TARGETS.CURRENT_USER,
     service: AuthService.logout,
     injections: [
-      withPostSuccess(async () => {
+      withPostSuccess(async (<%_ if(features.onboarding) { _%>dispatch: Dispatch<any><%_ } _%>) => {
         await AuthService.removeCurrentUser();
       <%_ if(features.onboarding) { _%>
         dispatch(actionCreators.setHasAccessOnBoarding(false));

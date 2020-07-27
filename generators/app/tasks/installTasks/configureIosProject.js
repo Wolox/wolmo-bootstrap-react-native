@@ -8,7 +8,6 @@ module.exports = function configureIosProject() {
         'scriptIosConfig.rb',
         this.projectName,
         process.cwd(),
-        this.features.crashlytics,
         this.features.crashlytics ||
           this.features.firebaseanalytics ||
           this.features.pushnotifications ||
