@@ -3,21 +3,21 @@ import { green } from '@constants/colors';
 
 export default StyleSheet.create({
   container: {
-    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '100%'
   },
   stretchAndFlex: {
     alignSelf: 'stretch'
   },
   form: {
-    paddingHorizontal: 60,
-    paddingBottom: 20
+    paddingBottom: 20,
+    paddingHorizontal: 60
   },
   formButton: {
     backgroundColor: green,
-    padding: 10,
     borderRadius: 3,
-    marginTop: 15
+    marginTop: 15,
+    padding: 10
   }
 });
