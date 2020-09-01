@@ -57,7 +57,7 @@ function updateAppProguardRules() {
   const proguardRulesContent = this.fs.read(`${this.projectName}/android/app/proguard-rules.pro`);
   const updatedProguardRulesContent = proguardRulesContent.replace(
     '# Add any project specific keep options here:',
-    `# Add any project specific keep options here:\n# Hermes\n-keep class com.facebook.hermes.unicode.** { *; }\n\n# react-native-config\n-keep class ${this.projectName.toLowerCase()}.BuildConfig { *; }`
+    `# Add any project specific keep options here:\n# Hermes\n-keep class com.facebook.hermes.unicode.** { *; }\n\n# react-native-config\n-keep class com.${this.projectName.toLowerCase()}.BuildConfig { *; }`
   );
   this.fs.write(`${this.projectName}/android/app/proguard-rules.pro`, updatedProguardRulesContent);
 }
