@@ -121,7 +121,7 @@ module.exports = function installDependencies() {
     DEPENDENCIES.push('@react-navigation/bottom-tabs');
   }
 
-  if (this.features.crashlytics || this.features.firebaseanalytics || this.features.pushnotifications) {
+  if (this.features.hasFirebase) {
     DEPENDENCIES.push('@react-native-firebase/app');
 
     if (this.features.crashlytics) {

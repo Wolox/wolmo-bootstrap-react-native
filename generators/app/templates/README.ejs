@@ -11,30 +11,56 @@ We highly recommend using [nvm](https://github.com/creationix/nvm) instead of br
 
 ## One time setup
 
+<%_ if(features.hasFirebase) { _%>
+### Google Services files setup
+
+You must create a folder with the google-services.json files into the corresponding platform like this:
+
+#### Android
+
+`android/app/google-services`
+
+#### IOS
+
+`ios/GoogleServices`
+
+then put the corresponding google services files on each one.
+
+this folders are ignored by default.
+
+The `firebaseFilesScript.sh` will get the build environment and setup the needed google service file for it.
+<%_ } _%>
+
 ### ENV setup
-------------
-create the `.env` file on the root.
+
+---
+
+Each environment has its env file with the following filename format:
+`.[environment].env`
+
+You must create the following env files corresponding to each environment.
+
+`.dev.env`
+`.stage.env`
+`.production.env`
+
+Create all the env files in the root with the following vars corresponding to the environment that belongs:
+
 ```
 API_BASE_URL=https://XXXXXXXX
 
 <%_ if(features.pushnotifications) { _%>
-  NOTIFICATIONS_SENDER_ID=XXXXXXXX
+NOTIFICATIONS_SENDER_ID=XXXXXXXX
 <%_ } _%>
 
 OTHER_ENV_VARs=XXXXXXXXXX
-
 ```
 
-Where the `API_BASE_URL` is the debug url api.
-
-Then create the `.env.production` file on the root too, with the same data that the last,
-but the `API_BASE_URL` must be the production url api.
-
------------
+---
 
 ### Android
 
----------------
+---
 
 Set the following variables in `~/.gradle/gradle.properties`
 ```
@@ -76,13 +102,14 @@ Re-enter new password: xxxxx
 [Storing my_proyect-key.keystore]
 ```
 
---------------
+---
 
 ### iOS
 
---------------
+---
 
 We use [FastLane](https://github.com/Wolox/fastlane-mobile) and few of its plugins to automate many ios tasks:
+
 - Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
 - Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
@@ -103,7 +130,6 @@ The last step is installing Fastlane gems:
 gem install bundler
 bundle install
 ```
-
 
 # Running aplication
 
@@ -171,6 +197,19 @@ yarn run android:build.qa
 
 It will generate the apk file in the path `android/app/build/outputs/apk/[environment]/release/app-[environment]-release.apk`
 
+### Uploading build to Firebase App Distribution
+
+Use the following commands inside android folder:
+
+1. Install gems with: `bundle install`
+2. Authenticate with Firebase using Firebase-CLI: `firebase login`. If you don't have `Firebase-CLI` installed you can do it with the following command: `npm install -g firebase-tools`.
+3. Run: `bundle exec fastlane android distribute_qa`.
+
+#### Available Lanes
+
+There is a lot of fastlane lanes that will help you to make deploys to Firebase App Distribution and Google Play Console too.
+
+Follow the instructions in the [Fastlane README](android/fastlane/README.md) to see all available lanes.
 
 ## iOS
 
@@ -183,9 +222,10 @@ Use the following commands from <%= projectName %>/ios:
 
 Follow the instructions in the [Fastlane README](ios/README.md) that will help you to create apps, certificates, make deploys and more.
 
---------------------
+---
 
 #### Available Lanes
+
 There is a lot of fastlane lanes that will help you to create apps, certificates, make deploys and more.
 
-Follow the instructions in the [Fastlane README](ios/README.md) to see all available lanes.
+Follow the instructions in the [Fastlane README](ios/fastlane/README.md) to see all available lanes.

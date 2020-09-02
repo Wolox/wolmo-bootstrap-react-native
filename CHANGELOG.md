@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2020-09-02
+
+- XXXXX
+
 ## [1.2.0] - 2020-07-07
 
 - Added [Formik](https://jaredpalmer.com/formik/) + [withFormikField (HOC)](/generators/app/templates/src/app/components/withFormikField/index.tsx) to create Custom Fields

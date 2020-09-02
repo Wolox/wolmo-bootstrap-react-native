@@ -64,10 +64,15 @@ class ReactNativeBootstrap extends Generator {
         message: "Would you like to enable landscape orientation? Psst! You probably don't want this!",
         default: false
       }
-    ]).then(answers => {
-      this.projectName = answers.name;
-      this.features = answers.features;
-      this.features.landscape = answers.landscape;
+    ]).then(({ features, landscape, name }) => {
+      this.projectName = name;
+      this.features = features;
+      this.features.landscape = landscape;
+      this.features.hasFirebase =
+        features.crashlytics ||
+        features.firebaseanalytics ||
+        features.pushnotifications ||
+        features.firebaseperformance;
       return this.prompt([
         {
           type: 'input',
@@ -95,11 +100,6 @@ class ReactNativeBootstrap extends Generator {
   }
 
   install() {
-    const hasFirebaseConfiguration =
-      this.features.crashlytics ||
-      this.features.firebaseanalytics ||
-      this.features.pushnotifications ||
-      this.features.firebaseperformance;
     return Promise.resolve()
       .then(() => bundleInstall.bind(this)())
       .then(() => configureIosProject.bind(this)())
@@ -107,7 +107,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => linkAppAssets.bind(this)())
       .then(() => editBundleIdentifier.bind(this)())
       .then(() => lintFixProject.bind(this)())
-      .then(() => hasFirebaseConfiguration && chmodFirebaseScript.bind(this)())
+      .then(() => this.features.hasFirebase && chmodFirebaseScript.bind(this)())
       .then(() => gitInitialization.bind(this)())
       .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
   }
