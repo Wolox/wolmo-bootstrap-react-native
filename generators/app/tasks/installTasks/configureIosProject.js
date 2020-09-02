@@ -4,15 +4,7 @@ module.exports = function configureIosProject() {
   return runCommand({
     command: [
       'ruby',
-      [
-        'scriptIosConfig.rb',
-        this.projectName,
-        process.cwd(),
-        this.features.crashlytics ||
-          this.features.firebaseanalytics ||
-          this.features.pushnotifications ||
-          this.features.firebaseperformance
-      ],
+      ['scriptIosConfig.rb', this.projectName, process.cwd(), this.features.hasFirebase],
       { cwd: `${this.templatePath()}/../tasks/installTasks` }
     ],
     loadingMessage: 'Deleting targets and generating build configurations...',

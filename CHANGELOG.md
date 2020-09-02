@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2020-09-02
+
+- Replaced Enzyme with [RNTL](https://github.com/callstack/react-native-testing-library)
+- Fixed Auth tests
+- Updated some Firebase configuration (App, Crashlytics and Performance) in Android and iOS projects
+- Disabled R8 for Android releases (multidex overhead memory issue)
+- Updated [README](/generators/app/templates/README.ejs) with Firebase configuration and deployment sections
+
 ## [1.2.0] - 2020-07-07
 
 - Added [Formik](https://jaredpalmer.com/formik/) + [withFormikField (HOC)](/generators/app/templates/src/app/components/withFormikField/index.tsx) to create Custom Fields

@@ -69,12 +69,7 @@ module.exports = function index() {
   }
 
   // ----------------    Features: Firebase    ----------------
-  if (
-    this.features.crashlytics ||
-    this.features.firebaseanalytics ||
-    this.features.pushnotifications ||
-    this.features.firebaseperformance
-  ) {
+  if (this.features.hasFirebase) {
     firebaseCoreFeatureFiles.bind(this)();
 
     if (this.features.crashlytics) {
