@@ -100,7 +100,7 @@ For bootstraping your own project using the template generator script you'll nee
 3. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
 4. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
 5. Start budler using `yarn start`.
-6. Run `react-native run-ios --scheme qa` or `yarn ios` for iOS and `react-native run-android --variant=qaDebug` or `yarn android` for Android.
+6. Run `npx react-native run-ios --scheme qa` or `yarn ios` for iOS and `npx react-native run-android --variant=qaDebug` or `yarn android` for Android.
 7. Start working on your project!
 
 ### How do you have to configure Bitrise?

@@ -1,8 +1,9 @@
 module.exports = function packgeJsonScripts() {
   const packageJson = this.fs.readJSON(this.destinationPath(this.projectName, 'package.json'));
   packageJson.scripts = packageJson.scripts || {};
-  packageJson.scripts.android = 'react-native run-android --variant=qaDebug';
-  packageJson.scripts.ios = 'react-native run-ios --scheme qa';
+  packageJson.scripts.start = 'npx react-native start';
+  packageJson.scripts.android = 'npx react-native run-android --variant=qaDebug';
+  packageJson.scripts.ios = 'npx react-native run-ios --scheme qa';
   packageJson.scripts.test = 'jest --passWithNoTests';
   packageJson.scripts.coverage = 'jest --coverage --passWithNoTests';
   packageJson.scripts.clean = 'rm -rf $TMPDIR/react-* && watchman watch-del-all && yarn cache clean';
