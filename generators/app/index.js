@@ -4,7 +4,6 @@ const Generator = require('yeoman-generator');
 const bitriseInitialization = require('../bitrise/tasks/bitriseInitialization');
 
 // CONFIGURING
-const reactNativeCliInstall = require('./tasks/configuringTasks/reactNativeCliInstall');
 const reactNativeInit = require('./tasks/configuringTasks/reactNativeInit');
 const installDependencies = require('./tasks/configuringTasks/installDependencies');
 const configureFastlane = require('./tasks/configuringTasks/configureFastlane');
@@ -88,7 +87,6 @@ class ReactNativeBootstrap extends Generator {
 
   configuring() {
     return Promise.resolve()
-      .then(() => reactNativeCliInstall.bind(this)())
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
       .then(() => configureFastlane.bind(this)())

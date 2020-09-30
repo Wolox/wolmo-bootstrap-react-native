@@ -39,7 +39,7 @@ function addConfigToAndroidFiles() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
     '// NOTE: Do not place your application dependencies here; they belong',
-    "classpath 'com.google.gms:google-services:4.2.0'\n\t\t// NOTE: Do not place your application dependencies here; they belong"
+    "classpath 'com.google.gms:google-services:4.3.3'\n\t\t// NOTE: Do not place your application dependencies here; they belong"
   );
   this.fs.write(`${this.projectName}/android/build.gradle`, buildGradleContent);
 

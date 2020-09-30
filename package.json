@@ -1,6 +1,6 @@
 {
   "name": "generator-wolmo-bootstrap-rn",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A project generator for react native applications with some boilerplates already configured and ready to use.",
   "files": [
     "generators"
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Wolox/wolmo-bootstrap-react-native#readme",
   "scripts": {
     "lint": "eslint .",
-    "lint-diff": "git diff --name-only --cached --no-error-on-unmatched-pattern --relative | grep -E \"\\.(ts|tsx|js|jsx)$\" | xargs eslint",
+    "lint-diff": "git diff --name-only --relative --diff-filter=ACM | grep -E \"\\.(ts|tsx|js|jsx)$\" | xargs eslint",
     "lint-fix": "eslint . --fix"
   },
   "dependencies": {

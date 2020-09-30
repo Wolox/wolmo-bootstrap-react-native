@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2020-09-30
+
+- Removed global dependency of `react-native-cli` and `reactNativeCliInstall` step.
+- Replaced `react-native` command with `npx react-native ...` (RN community indication)
+- Updated again some Firebase configuration (App, Crashlytics and Performance)
+- Fixed `lint-diff` script in Generator and Bootstraped Project
+- Updated `androidx.appcompat` dependency in Android project configuration
+
 ## [1.3.0] - 2020-09-02
 
 - Replaced Enzyme with [RNTL](https://github.com/callstack/react-native-testing-library)
