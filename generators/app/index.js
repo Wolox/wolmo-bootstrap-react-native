@@ -86,7 +86,7 @@ class ReactNativeBootstrap extends Generator {
   }
 
   configuring() {
-    return Promise.resolve()
+    return Proise.resolve()
       .then(() => reactNativeInit.bind(this)())
       .then(() => installDependencies.bind(this)())
       .then(() => configureFastlane.bind(this)())
