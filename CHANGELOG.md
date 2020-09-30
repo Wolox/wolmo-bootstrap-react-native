@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Removed global dependency of `react-native-cli` and `reactNativeCliInstall` step.
 - Replaced `react-native` command with `npx react-native ...` (RN community indication)
 - Updated again some Firebase configuration (App, Crashlytics and Performance)
+- Fixed `lint-diff` script in Generator and Bootstraped Project
 
 ## [1.3.0] - 2020-09-02
 
