@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Wolox/wolmo-bootstrap-react-native#readme",
   "scripts": {
     "lint": "eslint .",
-    "lint-diff": "git diff --name-only --cached --no-error-on-unmatched-pattern --relative | grep -E \"\\.(ts|tsx|js|jsx)$\" | xargs eslint",
+    "lint-diff": "git diff --name-only --cached --relative | grep -E \"\\.(ts|tsx|js|jsx)$\" | xargs eslint",
     "lint-fix": "eslint . --fix"
   },
   "dependencies": {
