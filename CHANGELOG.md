@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2020-10-XX
+- Replaced `@react-native-community/async-storage` with `@react-native-async-storage/async-storage`
+- Firebase Analytics: Replaced `setCurrentScreen` with `logScreenView`
+- Used the latest version of `react-native-flipper`
+- Updated `Reactotron` configuration
+
 ## [1.4.0] - 2020-09-30
 
 - Removed global dependency of `react-native-cli` and `reactNativeCliInstall` step.
