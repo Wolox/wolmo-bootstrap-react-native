@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Replaced `@react-native-community/async-storage` with `@react-native-async-storage/async-storage`
 - Firebase Analytics: Replaced `setCurrentScreen` with `logScreenView`
 - Used the latest version of `react-native-flipper`
-- Updated `Reactotron` configuration
+- Updated `Reactotron` configuration for AsyncStorage handler
 
 ## [1.4.0] - 2020-09-30
 
