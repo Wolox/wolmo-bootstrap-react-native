@@ -7,7 +7,7 @@ module.exports = {
     '@testing-library/jest-native/extend-expect'
   ],
   transformIgnorePatterns: [
-    '/node_modules/@react-native-community/async-storage/(?!(lib))',
+    '/node_modules/@react-native-async-storage/async-storage/(?!(lib))',
     'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@react-native-firebase/app)'
   ],
   moduleNameMapper: {

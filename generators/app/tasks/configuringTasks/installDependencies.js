@@ -4,7 +4,7 @@ const semverRegex = require('semver-regex');
 const runCommand = require('../runCommand');
 
 const DEPENDENCIES = [
-  '@react-native-community/async-storage',
+  '@react-native-async-storage/async-storage',
   '@react-native-community/masked-view',
   '@react-navigation/native',
   '@react-navigation/stack',
@@ -13,8 +13,7 @@ const DEPENDENCIES = [
   'formik',
   'i18next',
   'react-native-config',
-  // Delete '@0.47.0' when react-native-flipper fix a build issue on Android Release mode
-  'react-native-flipper@0.47.0',
+  'react-native-flipper',
   'react-native-gesture-handler',
   'react-native-localize',
   'react-native-reanimated',

@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
-import Reactotron, { asyncStorage, overlay, trackGlobalErrors } from 'reactotron-react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Reactotron, { overlay, trackGlobalErrors } from 'reactotron-react-native';
 import ReactotronFlipper from 'reactotron-react-native/dist/flipper';
 import apisaucePlugin from 'reactotron-apisauce';
 import { reactotronRedux } from 'reactotron-redux';
@@ -33,7 +34,7 @@ if (__DEV__) {
           )
       })
     )
-    .use(asyncStorage({}))
+    .setAsyncStorageHandler(AsyncStorage)
     .use(overlay())
     .connect();
 
