@@ -34,8 +34,8 @@ if (__DEV__) {
           )
       })
     )
-    .setAsyncStorageHandler(AsyncStorage)
     .use(overlay())
+    .setAsyncStorageHandler?.(AsyncStorage)
     .connect();
 
   // eslint-disable-next-line no-console
