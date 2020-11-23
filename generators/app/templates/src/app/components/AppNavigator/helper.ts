@@ -1,17 +1,14 @@
-import { RefObject, createRef } from 'react';
-import { RouteProp } from '@react-navigation/native';
+import { createRef } from 'react';
+import { RouteProp, NavigationContainerRef } from '@react-navigation/native';
 
-export const navigationRef: RefObject<any> = createRef();
+export const navigationRef = createRef<NavigationContainerRef>();
 
-export default function useNavigation() {
-  return navigationRef.current;
-}
-
-export function getRoute(state: any): RouteProp<any, any> {
+export const getRoute = (state: any): RouteProp<any, any> => {
   const route = state.routes[state.index];
   return route.state ? getRoute(route.state) : route;
-}
+};
 
-export function getActiveRoute() {
-  return getRoute(navigationRef.current.getRootState());
-}
+export const getActiveRoute = () => getRoute(navigationRef.current!.getRootState());
+
+const useNavigation = () => navigationRef.current;
+export default useNavigation;

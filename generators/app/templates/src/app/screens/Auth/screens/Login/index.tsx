@@ -24,9 +24,9 @@ function Login({ navigation }: Navigation) {
   ]);
   const handleGoToSignUp = () => navigation.navigate(Routes.SignUp);
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Formik onSubmit={handleLogin} initialValues={LOGIN_INITIAL_VALUES}>
-        {({ handleSubmit, isValid }) => (
+    <Formik onSubmit={handleLogin} initialValues={LOGIN_INITIAL_VALUES}>
+      {({ handleSubmit, isValid }) => (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             <View style={styles.form}>
               <CustomTextInputFormikField
@@ -65,9 +65,9 @@ function Login({ navigation }: Navigation) {
               title={i18next.t('LOGIN:SIGN_UP')}
             />
           </View>
-        )}
-      </Formik>
-    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      )}
+    </Formik>
   );
 }
 

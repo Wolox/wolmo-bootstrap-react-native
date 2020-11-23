@@ -22,10 +22,10 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['lint-fix'] = 'eslint src --ext .js,.ts,.jsx,.tsx --fix';
   packageJson.scripts['lint-diff'] =
     'git diff --staged --name-only --relative --diff-filter=ACM | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
-  packageJson.scripts.tsc = 'tsc';
+  packageJson.scripts['check-types'] = 'tsc';
   packageJson.husky = packageJson.husky || {};
   packageJson.husky.hooks = packageJson.husky.hooks || {};
-  packageJson.husky.hooks['pre-commit'] = 'yarn run lint-diff && yarn run tsc';
+  packageJson.husky.hooks['pre-commit'] = 'yarn run lint-diff && yarn run check-types';
 
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };

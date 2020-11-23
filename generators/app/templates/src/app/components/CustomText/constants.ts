@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TextProps } from 'react-native';
+import { TextProps, TextStyle, StyleProp } from 'react-native';
 
 /*
  ** TODO: You can add styles to Base like Family Font to be the Text styles base!
@@ -51,5 +51,5 @@ export interface VariantsInterface {
 export interface CustomTextProps extends VariantsInterface {
   children: ReactNode;
   textProps?: TextProps;
-  style?: any;
+  style?: StyleProp<TextStyle>;
 }

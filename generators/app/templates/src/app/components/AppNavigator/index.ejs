@@ -13,13 +13,13 @@ import withLoadable from '@components/Loadable';
 import Navigator from './navigator';
 
 const AppNavigator = () => {
-  const [routeName, setRouteName] = useState(null);
+  const [routeName, setRouteName] = useState<string | null>(null);
   useEffect(() => {
-    setRouteName(getActiveRoute()?.name);
+    setRouteName(getActiveRoute().name);
   }, []);
   const onStateChange = (state?: NavigationState) => {
     const previousRouteName = routeName;
-    const currentRouteName = getRoute(state)?.name;
+    const currentRouteName = getRoute(state).name;
     if (previousRouteName !== currentRouteName) {
       <%_ if(features.firebaseanalytics) { _%>
       analytics().logScreenView({ screen_class: currentRouteName, screen_name: currentRouteName });
