@@ -46,7 +46,6 @@ The boilerplate includes
 - [Bitrise configuration](/generators/bitrise/tasks/createBitriseApp.js)
 - [Deploy configuration with Fastlane Mobile (Android and iOS)](https://github.com/Wolox/fastlane-mobile)
 - [Font customization](/generators/app/templates/src/config/fonts.js)
-- [Formik: HOC to create Custom Fields](/generators/app/templates/src/app/components/withFormikField/index.tsx)
 - [Http client configuration](/generators/app/templates/src/config/api.js)
 - [i18next configuration](/generators/app/templates/src/config/i18n.js)
 - [Push Notifications configuration](/generators/app/templates/src/config/pushNotifications.js)
@@ -61,7 +60,7 @@ The boilerplate includes
 
 - [Apisauce](https://github.com/skellock/apisauce)
 - [Cerealizr](https://github.com/damfinkel/cerealizr)
-- [Formik](https://jaredpalmer.com/formik/)
+- [React Hook Form](https://react-hook-form.com/)
 - [i18next](https://www.i18next.com/)
 - [React](https://reactjs.org/)
 - [React Native](https://reactnative.dev/)
