@@ -6,12 +6,7 @@ export const FIELDS = {
   email: 'email',
   password: 'password',
   phoneNumber: 'phoneNumber'
-};
-
-export const LOGIN_INITIAL_VALUES = {
-  [FIELDS.email]: '',
-  [FIELDS.password]: ''
-};
+} as const;
 
 export const SIGNUP_INITIAL_VALUES = {
   [FIELDS.name]: '',
@@ -22,3 +17,8 @@ export const SIGNUP_INITIAL_VALUES = {
   [FIELDS.password]: '',
   [FIELDS.phoneNumber]: ''
 };
+
+export interface LoginFormValues {
+  [FIELDS.email]: string;
+  [FIELDS.password]: string;
+}
