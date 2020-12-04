@@ -9,8 +9,9 @@ import ControlledCustomTextInput from '@components/CustomTextInput/controller';
 import { isIos } from '@constants/platform';
 import { useAsyncRequest } from '@hooks/useRequest';
 import { Navigation } from '@interfaces/navigation';
-import { FIELDS, SignupFormValues } from '@screens/Auth/constants';
+import { FIELDS } from '@screens/Auth/constants';
 import * as AuthService from '@services/AuthService';
+import { SignUpData } from '@interfaces/authInterfaces';
 import {
   validateRequired,
   validateEmail,
@@ -32,10 +33,10 @@ function SignUp({ navigation }: Navigation) {
     errors,
     formState: { isValid },
     handleSubmit
-  } = useForm<SignupFormValues>();
+  } = useForm<SignUpData>();
 
   const hasSignUpError = !!error;
-  const handleSignUp = values => {
+  const handleSignUp = (values: SignUpData) => {
     Keyboard.dismiss();
     signUp(values);
   };
