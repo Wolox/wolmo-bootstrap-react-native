@@ -1,7 +1,6 @@
 import React, { useState, memo } from 'react';
 import { TextInput, View } from 'react-native';
 import CustomText from '@components/CustomText';
-import withFormikField from '@components/withFormikField';
 import { transparent } from '@constants/colors';
 
 import InputLabel from './components/InputLabel';
@@ -104,7 +103,5 @@ CustomTextInput.defaultProps = {
 };
 
 const MyCustomTextInput = memo(CustomTextInput);
-
-export const CustomTextInputFormikField = withFormikField(MyCustomTextInput);
 
 export default MyCustomTextInput;
