@@ -20,7 +20,12 @@ function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
   const hasLoginError = useSelector<State, boolean>((state: State) => !!state.auth.currentUserError);
 
-  const { handleSubmit, control, formState, errors } = useForm<LoginFormValues>();
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+    errors
+  } = useForm<LoginFormValues>();
 
   const handleLogin = (values: any) => dispatch(AuthActions.login(values));
 
@@ -61,7 +66,7 @@ function Login({ navigation }: Navigation) {
           onPress={handleSubmit(handleLogin)}
           style={styles.formButton}
           title={i18next.t('LOGIN:LOG_IN')}
-          disabled={hasLoginError || !formState.isValid}
+          disabled={hasLoginError || !isValid}
         />
         <CustomButton
           onPress={handleGoToSignUp}

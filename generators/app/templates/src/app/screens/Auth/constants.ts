@@ -8,15 +8,15 @@ export const FIELDS = {
   phoneNumber: 'phoneNumber'
 } as const;
 
-export const SIGNUP_INITIAL_VALUES = {
-  [FIELDS.name]: '',
-  [FIELDS.surname]: '',
-  [FIELDS.birthDate]: '',
-  [FIELDS.sex]: '',
-  [FIELDS.email]: '',
-  [FIELDS.password]: '',
-  [FIELDS.phoneNumber]: ''
-};
+export interface SignupFormValues {
+  [FIELDS.name]: string;
+  [FIELDS.surname]: string;
+  [FIELDS.birthDate]: string;
+  [FIELDS.sex]: string;
+  [FIELDS.email]: string;
+  [FIELDS.password]: string;
+  [FIELDS.phoneNumber]: string;
+}
 
 export interface LoginFormValues {
   [FIELDS.email]: string;
