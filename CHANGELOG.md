@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0] - 2020-12-XX
+- Replaced `formik` with `react-hook-form`
+
 ## [1.5.0] - 2020-10-XX
 - Replaced `@react-native-community/async-storage` with `@react-native-async-storage/async-storage`
 - Firebase Analytics: Replaced `setCurrentScreen` with `logScreenView`
