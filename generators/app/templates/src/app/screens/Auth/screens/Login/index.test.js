@@ -15,8 +15,8 @@ describe('<Login />', () => {
     const emailInput = getByTestId('Email');
 
     fireEvent.press(submitButton);
-    await waitFor(() => getAllByText('Este campo es obligatorio'));
-    expect(getAllByText('Este campo es obligatorio')).toHaveLength(2);
+
+    await waitFor(() => expect(getAllByText('Este campo es obligatorio')).toHaveLength(2));
 
     fireEvent.changeText(emailInput, INVALID_EMAIL);
     fireEvent.press(submitButton);
@@ -40,15 +40,9 @@ describe('<Login />', () => {
     const emailInput = getByTestId('Email');
     const passwordInput = getByTestId('Contraseña');
     const submitButton = getByText('Iniciar sesión');
-    await waitFor(async () => {
-      await fireEvent.changeText(emailInput, VALID_EMAIL);
-    });
-    await waitFor(async () => {
-      await fireEvent.changeText(passwordInput, VALID_PASSWORD);
-    });
-    await waitFor(async () => {
-      await fireEvent.press(submitButton);
-    });
+    fireEvent.changeText(emailInput, VALID_EMAIL);
+    fireEvent.changeText(passwordInput, VALID_PASSWORD);
+    await waitFor(() => fireEvent.press(submitButton));
     expect(dispatch).toHaveBeenCalled();
     useDispatchSpy.mockClear();
   });
