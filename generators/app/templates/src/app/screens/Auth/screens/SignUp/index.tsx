@@ -32,7 +32,7 @@ function SignUp({ navigation }: Navigation) {
     errors,
     formState: { isValid },
     handleSubmit
-  } = useForm<SignupFormValues>();
+  } = useForm<SignupFormValues>({ mode: 'onTouched' });
 
   const hasSignUpError = !!error;
   const handleSignUp = (values: SignupFormValues) => {
