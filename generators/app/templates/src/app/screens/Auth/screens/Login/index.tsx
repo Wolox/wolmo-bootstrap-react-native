@@ -10,9 +10,8 @@ import Routes from '@constants/routes';
 import { Navigation } from '@interfaces/navigation';
 import { State } from '@interfaces/reduxInterfaces';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
-import { FIELDS } from '@screens/Auth/constants';
+import { FIELDS, LoginFormValues } from '@screens/Auth/constants';
 import { validateRequired, validateEmail } from '@utils/validations/validateUtils';
-import { AuthData } from '@interfaces/authInterfaces';
 
 import './i18n';
 import styles from './styles';
@@ -21,9 +20,9 @@ function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
   const hasLoginError = useSelector<State, boolean>((state: State) => !!state.auth.currentUserError);
 
-  const { handleSubmit, control, errors } = useForm<AuthData>();
+  const { handleSubmit, control, errors } = useForm<LoginFormValues>();
 
-  const handleLogin = (values: AuthData) => dispatch(AuthActions.login(values));
+  const handleLogin = (values: LoginFormValues) => dispatch(AuthActions.login(values));
 
   const handleGoToSignUp = () => navigation.navigate(Routes.SignUp);
   return (

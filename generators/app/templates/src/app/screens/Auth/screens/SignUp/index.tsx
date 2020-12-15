@@ -9,9 +9,8 @@ import ControlledCustomTextInput from '@components/CustomTextInput/controller';
 import { isIos } from '@constants/platform';
 import { useAsyncRequest } from '@hooks/useRequest';
 import { Navigation } from '@interfaces/navigation';
-import { FIELDS } from '@screens/Auth/constants';
+import { FIELDS, SignupFormValues } from '@screens/Auth/constants';
 import * as AuthService from '@services/AuthService';
-import { SignUpData } from '@interfaces/authInterfaces';
 import {
   validateRequired,
   validateEmail,
@@ -33,10 +32,10 @@ function SignUp({ navigation }: Navigation) {
     errors,
     formState: { isValid },
     handleSubmit
-  } = useForm<SignUpData>();
+  } = useForm<SignupFormValues>();
 
   const hasSignUpError = !!error;
-  const handleSignUp = (values: SignUpData) => {
+  const handleSignUp = (values: SignupFormValues) => {
     Keyboard.dismiss();
     signUp(values);
   };
@@ -61,6 +60,7 @@ function SignUp({ navigation }: Navigation) {
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               label={i18next.t('SIGNUP:SURNAME')}
               name={FIELDS.surname}
@@ -69,15 +69,17 @@ function SignUp({ navigation }: Navigation) {
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               label={i18next.t('SIGNUP:BIRTH_DATE')}
               name={FIELDS.birthDate}
               placeholder={i18next.t('SIGNUP:BIRTH_DATE_PLACEHOLDER')}
               showError={hasSignUpError}
               error={errors[FIELDS.birthDate]?.message}
-              validate={validateRequired}
+              rules={validateRequired}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               label={i18next.t('SIGNUP:SEX')}
               name={FIELDS.sex}
@@ -87,6 +89,7 @@ function SignUp({ navigation }: Navigation) {
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               keyboardType="email-address"
               label={i18next.t('SIGNUP:MAIL')}
@@ -97,6 +100,7 @@ function SignUp({ navigation }: Navigation) {
               rules={{ ...validateRequired, ...validateEmail }}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               showEye
               secureTextEntry
@@ -107,6 +111,7 @@ function SignUp({ navigation }: Navigation) {
               rules={{ ...validateRequired, ...validateMinLength(8) }}
             />
             <ControlledCustomTextInput
+              control={control}
               animated
               isOptional
               keyboardType="phone-pad"
