@@ -60,7 +60,7 @@ workflows:
             - command: run lint
       - yarn:
           inputs:
-            - command: run tsc
+            - command: run check-types
       - yarn:
           inputs:
             - command: test

@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-template-curly-in-string
+const PROJECT_DIR = '${PROJECT_DIR}';
+
 module.exports = function schemeBase(envName, buildConfig) {
   return `<?xml version="1.0" encoding="UTF-8"?>
  <Scheme
@@ -11,7 +14,7 @@ module.exports = function schemeBase(envName, buildConfig) {
              ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
              <ActionContent
                 title = "Run Script"
-                scriptText = "echo &quot;.${envName}.env&quot; &gt; /tmp/envfile &#10;">
+                scriptText = "cp &quot;${PROJECT_DIR}/../.${envName}.env&quot; &quot;${PROJECT_DIR}/../.env&quot;&#10;">
              </ActionContent>
           </ExecutionAction>
        </PreActions>

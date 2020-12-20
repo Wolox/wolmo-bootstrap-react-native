@@ -1,6 +1,6 @@
 import { TextStyle } from 'react-native';
 import { isAndroid } from '@constants/platform';
-import { MONTSERRAT, REGULAR, SEMIBOLD, BOLD, NORMAL, ITALIC } from '@constants/fonts';
+import { NUNITO, REGULAR, SEMIBOLD, BOLD, NORMAL, ITALIC } from '@constants/fonts';
 import { moderateScale } from '@utils/scalingUtils';
 import { StringObject } from '@interfaces/globalInterfaces';
 
@@ -20,10 +20,10 @@ interface Types {
   styles: StringObject;
 }
 
-// Here you can replace MONTSERRAT with your custom font.
+// Here you can replace NUNITO with your custom font.
 // Also, you can add or remove some weights or styles that don't apply with your custom font.
 const fonts: Record<string, Types> = {
-  [MONTSERRAT]: {
+  [NUNITO]: {
     weights: {
       [REGULAR]: REGULAR_WEIGHT,
       [SEMIBOLD]: '600',
@@ -38,7 +38,7 @@ const fonts: Record<string, Types> = {
 
 export const fontMaker = (options: FontMakerOptions = {}): TextStyle => {
   const { size = null, color = null } = options;
-  let { weight = null, style = null, family = MONTSERRAT } = options;
+  let { weight = null, style = null, family = NUNITO } = options;
 
   let font = {};
   const { weights, styles } = fonts[family];

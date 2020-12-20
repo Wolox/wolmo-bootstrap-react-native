@@ -6,6 +6,8 @@ steps:
   lint:
     - ln -sfn /home/node/node_modules node_modules
     - yarn run lint
+    - yarn run check-types
+    - yarn run test
 
 environment:
   GIT_COMMITTER_NAME: a

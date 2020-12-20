@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { create, NETWORK_ERROR } from 'apisauce';
-import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
 import Config from 'react-native-config';
 import Reactotron from 'reactotron-react-native';
-import { Dispatch } from 'react';
+import { camelCaseSerializer, snakeCaseSerializer } from '@constants/serializers';
 
-const snakeCaseSerializer = new SnakecaseSerializer();
-const camelCaseSerializer = new CamelcaseSerializer();
-
+const AUTHORIZATION_HEADER = 'Authorization';
+const BEARER = 'Bearer';
 const baseURL = Config.API_BASE_URL || 'http://wolox.com';
 
 const api = create({
@@ -15,9 +12,15 @@ const api = create({
   timeout: 5000
 });
 
-api.addMonitor(((Reactotron as unknown) as { apisauce: any }).apisauce);
+export const setApiHeaders = (token: string) => {
+  api.setHeader(AUTHORIZATION_HEADER, `${BEARER} ${token}`);
+};
 
-export const apiSetup = (dispatch: Dispatch<any>) => {
+export const removeApiHeaders = () => {
+  api.deleteHeader(AUTHORIZATION_HEADER);
+};
+
+export const apiSetup = () => {
   if (baseURL === 'http://wolox.com') {
     console.warn('API baseURL has not been properly initialized');
   }
@@ -40,6 +43,7 @@ export const apiSetup = (dispatch: Dispatch<any>) => {
       console.warn('Unhandled request without connection');
     }
   });
+  api.addMonitor(((Reactotron as unknown) as { apisauce: any }).apisauce);
 };
 
 export default api;

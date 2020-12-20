@@ -19,5 +19,5 @@ const waitForInjectionsMiddleware = createWaitForInjections();
 const middlewares = [waitForInjectionsMiddleware, thunk, fetchMiddleware];
 
 export const mockStore = configureStore(middlewares);
-const initialState = {};
+const initialState = { auth: { currentUser: null } };
 export const store = mockStore(initialState);
