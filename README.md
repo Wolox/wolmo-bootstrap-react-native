@@ -84,7 +84,7 @@ For bootstraping your own project using the template generator script you'll nee
 
 1. Clone this repo
 2. Run `yarn install` inside the repository folder
-3. run `yo yourPathToWolmo/generators/app/index.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
+3. Run `yo yourPathToWolmo/generators/app/index.js` outside the repository folder, you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
 4. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
 5. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
 6. Start budler using `yarn start`.

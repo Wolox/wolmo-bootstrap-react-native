@@ -66,7 +66,7 @@ function updateGradleProperties() {
   const gradleProperties = this.fs.read(`${this.projectName}/android/gradle.properties`);
   let updatedGradleProperties = gradleProperties.replace(
     '# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8',
-    '# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8\norg.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
+    'org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8'
   );
   updatedGradleProperties = updatedGradleProperties.replace(
     'android.enableJetifier=true',
