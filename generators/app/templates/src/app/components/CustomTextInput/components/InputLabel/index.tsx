@@ -18,7 +18,7 @@ import styles from './styles';
 export interface Props {
   animated?: boolean;
   hasValue: boolean;
-  isFocused: boolean;
+  isFocused?: boolean;
   isOptional?: boolean;
   label: string;
   labelStyle?: TextStyle;

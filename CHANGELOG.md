@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 - Updated the `Auth` tests
 - Removed the `OnBoardingService` file (replaced with `redux-persist`)
 - Updated `auth` actions with `redux-persist` configuration
+- Replaced `Formik` with `react-hook-form`
+- Deleted `withFormikField` HOC
 
 ## [1.5.0] - 2020-10-27
 - Replaced `@react-native-community/async-storage` with `@react-native-async-storage/async-storage`

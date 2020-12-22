@@ -9,14 +9,18 @@ const VALID_PASSWORD = 'HelloWord1234';
 
 describe('<Login />', () => {
   test('Invalid inputs', async () => {
+    const useDispatchSpy = jest.spyOn(redux, 'useDispatch');
+    const dispatch = jest.fn();
+    useDispatchSpy.mockReturnValue(dispatch);
+
     const { getByText, getAllByText, getByTestId } = render(<Login />);
 
     const submitButton = getByText('Iniciar sesión');
     const emailInput = getByTestId('Email');
 
     fireEvent.press(submitButton);
-    await waitFor(() => getAllByText('Este campo es obligatorio'));
-    expect(getAllByText('Este campo es obligatorio')).toHaveLength(2);
+
+    await waitFor(() => expect(getAllByText('Este campo es obligatorio')).toHaveLength(2));
 
     fireEvent.changeText(emailInput, INVALID_EMAIL);
     fireEvent.press(submitButton);
@@ -27,6 +31,7 @@ describe('<Login />', () => {
     fireEvent.press(submitButton);
 
     await waitForElementToBeRemoved(() => getByText('El formato del mail es inválido'));
+    expect(dispatch).toHaveBeenCalledTimes(0);
   });
 
   test('Log in', async () => {
@@ -40,15 +45,9 @@ describe('<Login />', () => {
     const emailInput = getByTestId('Email');
     const passwordInput = getByTestId('Contraseña');
     const submitButton = getByText('Iniciar sesión');
-    await waitFor(async () => {
-      await fireEvent.changeText(emailInput, VALID_EMAIL);
-    });
-    await waitFor(async () => {
-      await fireEvent.changeText(passwordInput, VALID_PASSWORD);
-    });
-    await waitFor(async () => {
-      await fireEvent.press(submitButton);
-    });
+    fireEvent.changeText(emailInput, VALID_EMAIL);
+    fireEvent.changeText(passwordInput, VALID_PASSWORD);
+    await waitFor(() => fireEvent.press(submitButton));
     expect(dispatch).toHaveBeenCalled();
     useDispatchSpy.mockClear();
   });

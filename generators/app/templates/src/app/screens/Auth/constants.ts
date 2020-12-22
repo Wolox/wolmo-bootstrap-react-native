@@ -6,19 +6,19 @@ export const FIELDS = {
   email: 'email',
   password: 'password',
   phoneNumber: 'phoneNumber'
-};
+} as const;
 
-export const LOGIN_INITIAL_VALUES = {
-  [FIELDS.email]: '',
-  [FIELDS.password]: ''
-};
+export interface SignupFormValues {
+  [FIELDS.name]: string;
+  [FIELDS.surname]: string;
+  [FIELDS.birthDate]: string;
+  [FIELDS.sex]: string;
+  [FIELDS.email]: string;
+  [FIELDS.password]: string;
+  [FIELDS.phoneNumber]: string;
+}
 
-export const SIGNUP_INITIAL_VALUES = {
-  [FIELDS.name]: '',
-  [FIELDS.surname]: '',
-  [FIELDS.birthDate]: '',
-  [FIELDS.sex]: '',
-  [FIELDS.email]: '',
-  [FIELDS.password]: '',
-  [FIELDS.phoneNumber]: ''
-};
+export interface LoginFormValues {
+  [FIELDS.email]: string;
+  [FIELDS.password]: string;
+}
