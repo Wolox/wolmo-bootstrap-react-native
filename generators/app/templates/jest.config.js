@@ -1,6 +1,8 @@
+const { defaults } = require('jest-config');
+
 module.exports = {
   preset: 'react-native',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'png', 'jpg'],
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'png', 'jpg'],
   setupFilesAfterEnv: [
     '<rootDir>/__mocks__/setup.js',
     './node_modules/react-native-gesture-handler/jestSetup.js',
@@ -20,5 +22,30 @@ module.exports = {
     '<rootDir>/__tests__/redux/store.js',
     '<rootDir>/__tests__/redux/utils.js',
     '<rootDir>/__tests__/responses/'
+  ],
+  collectCoverage: true,
+  coverageThreshold: {
+    global: {
+      branches: 40,
+      functions: 35,
+      lines: 50,
+      statements: 45
+    }
+  },
+  collectCoverageFrom: [
+    '**/*.{js,jsx,ts,tsx}',
+    '!**/console.js',
+    '!**/node_modules/**',
+    '!**/build/**',
+    '!**/migrations/**',
+    '!**/config/**',
+    '!**/scripts/**',
+    '!**/app/models/**',
+    '!**/test/**',
+    '!**/__tests__/**',
+    '!**/__mocks__/**',
+    '!**/coverage/**',
+    '!**/server.js',
+    '!**/app/middlewares/apiInfo**'
   ]
 };

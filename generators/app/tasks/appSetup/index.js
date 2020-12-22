@@ -21,8 +21,6 @@ const firebaseCoreFeatureFiles = require('./featuresFiles/firebaseCoreFeatureFil
 const firebasePerformanceSetup = require('./featuresFiles/firebasePerformanceSetup');
 const loginAndSignUpFeatureFiles = require('./featuresFiles/loginAndSignUpFeatureFiles');
 const onBoardingFeatureFiles = require('./featuresFiles/onBoardingFeatureFiles');
-const pushNotificationsFeatureFiles = require('./featuresFiles/pushNotificationsFeatureFiles');
-const pushNotificationsSetup = require('./featuresFiles/pushNotificationsSetup');
 
 module.exports = function index() {
   const spinner = ora({
@@ -72,15 +70,11 @@ module.exports = function index() {
   if (this.features.hasFirebase) {
     firebaseCoreFeatureFiles.bind(this)();
 
-    if (this.features.crashlytics) {
+    if (this.features.firebasecrashlytics) {
       crashlyticsFeatureFiles.bind(this)();
     }
     if (this.features.firebaseanalytics) {
       firebaseAnalyticsFeatureFiles.bind(this)();
-    }
-    if (this.features.pushnotifications) {
-      pushNotificationsFeatureFiles.bind(this)();
-      pushNotificationsSetup.bind(this)();
     }
     if (this.features.firebaseperformance) {
       firebasePerformanceSetup.bind(this)();

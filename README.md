@@ -12,14 +12,6 @@
 - Ruby (for Fastlane): https://rvm.io/rvm/install
 - Yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
 
-## TL;DR
-
-You don't need to clone this repository. Just run the following in your terminal:
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/Wolox/wolmo-bootstrap-react-native/master/run.sh)
-```
-
 ## Description
 
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
@@ -30,10 +22,8 @@ The following optional features can be added out of the box to the new projects:
 - Firebase Analytics
 - Firebase Crashlytics
 - Firebase Performance
-- Firebase Push Notifications
 - Login and SignUp
 - OnBoarding
-- Redux Persist
 - Tabs
 
 ### Boilerplate
@@ -48,7 +38,6 @@ The boilerplate includes
 - [Font customization](/generators/app/templates/src/config/fonts.js)
 - [Http client configuration](/generators/app/templates/src/config/api.js)
 - [i18next configuration](/generators/app/templates/src/config/i18n.js)
-- [Push Notifications configuration](/generators/app/templates/src/config/pushNotifications.js)
 - [React Navigation: Routes configuration](/generators/app/templates/src/app/components/AppNavigator/navigator.ejs)
 - [Reactotron configuration](/generators/app/templates/src/config/reactotronConfig.ejs)
 - [Redux store intialization](/generators/app/templates/src/redux/store.ejs)
@@ -66,7 +55,6 @@ The boilerplate includes
 - [React Native](https://reactnative.dev/)
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Firebase](https://invertase.io/oss/react-native-firebase)
-- [React Native Push Notifications](https://github.com/zo0r/react-native-push-notification)
 - [React Native Swiper](https://github.com/leecade/react-native-swiper)
 - [React Navigation](https://reactnavigation.org/)
 - [React Redux](https://react-redux.js.org/)
@@ -74,7 +62,6 @@ The boilerplate includes
 - [Redux Persist](https://github.com/rt2zz/redux-persist)
 - [Redux Recompose](https://github.com/Wolox/redux-recompose)
 - [Redux Thunk](https://github.com/gaearon/redux-thunk)
-- [Reselect](https://github.com/reactjs/reselect)
 - [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
 
 ### Tooling
@@ -94,13 +81,14 @@ The boilerplate includes
 
 For bootstraping your own project using the template generator script you'll need to follow these steps:
 
-1. Run `yarn install`.
-2. run `yo yourPathToWolmo/generators/app/index.js` you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
-3. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
-4. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
-5. Start budler using `yarn start`.
-6. Run `npx react-native run-ios --scheme qa` or `yarn ios` for iOS and `npx react-native run-android --variant=qaDebug` or `yarn android` for Android.
-7. Start working on your project!
+1. Clone this repo
+2. Run `yarn install` inside the repository folder
+3. Run `yo yourPathToWolmo/generators/app/index.js` outside the repository folder, you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
+4. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
+5. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
+6. Start budler using `yarn start`.
+7. Run `npx react-native run-ios --scheme qa` or `yarn ios` for iOS and `npx react-native run-android --variant=qaDebug` or `yarn android` for Android.
+8. Start working on your project!
 
 ### How do you have to configure Bitrise?
 

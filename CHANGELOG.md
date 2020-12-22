@@ -3,9 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 ## [1.6.0] - 2020-12-XX
-- Replaced `formik` with `react-hook-form`
+- Fixed errors in the `Login` screen
+- Fixed TypeScript error in `Reactotron` config and in other TypeScript interfaces
+- Improved the `AppNavigator` component
+- Removed `Firebase Push Notifications` as a Bootstrap feature
+- Added `Redux-Persist` as an App core feature
+- Added `Nunito` as default font
+- Added `Jest` coverage for tests and coverage threshold
+- Increased the `JVM` memory for Android release build
+- Updated `react-native-config` configuration for env files in iOS project
+- Updated the `Auth` tests
+- Removed the `OnBoardingService` file (replaced with `redux-persist`)
+- Updated `auth` actions with `redux-persist` configuration
+- Replaced `Formik` with `react-hook-form`
+- Deleted `withFormikField` HOC
 
-## [1.5.0] - 2020-10-XX
+## [1.5.0] - 2020-10-27
 - Replaced `@react-native-community/async-storage` with `@react-native-async-storage/async-storage`
 - Firebase Analytics: Replaced `setCurrentScreen` with `logScreenView`
 - Used the latest version of `react-native-flipper`

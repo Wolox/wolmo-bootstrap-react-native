@@ -2,29 +2,37 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
-<%_ if(features.reduxpersist) { _%>
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer } from 'redux-persist';
 import {
   seamlessImmutableReconciler,
   seamlessImmutableTransformCreator
 } from 'redux-persist-seamless-immutable';
-<%_ } _%>
 import { ImmutableObject } from 'seamless-immutable';
 import { State } from '@interfaces/reduxInterfaces';
-<%_ if(features.firebaseanalytics) { _%>
 
-import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
-<%_ } else { _%>
-
-<%_ } _%>
 import auth from './auth/reducer';
-<%_ if(features.reduxpersist) { _%>
+<%_ if(features.firebaseanalytics) { _%>
+import AnalyticsMiddleware from './middlewares/analyticsMiddleware';
+<%_ } _%>
 
 const transformerConfig = {
   whitelistPerReducer: {
-  <%_ if(features.loginandsignup) { _%>
-    auth: ['currentUser']
+  <%_ if(features.loginandsignup || features.onboarding) { _%>
+    auth: [
+    <%_ if(features.loginandsignup && features.onboarding) { _%>
+      'currentUser', 'hasAccessOnBoarding'
+    <%_ } else { _%>
+      <%_ if(features.loginandsignup) { _%>
+        'currentUser'
+      <%_ } else { _%>
+        'hasAccessOnBoarding'
+      <%_ } _%>
+    <%_ } _%>
+    ]
+  <%_ } else { _%>
+    // TODO: Complete with reducers, for example
+    // auth: ['currentUser']
   <%_ } _%>
   }
 };
@@ -32,21 +40,24 @@ const transformerConfig = {
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: [<%_ if(features.loginandsignup) { _%>'auth'<%_ } _%>],
+<%_ if(features.loginandsignup || features.onboarding) { _%>
+  whitelist: ['auth'],
+<%_ } else { _%>
+  // TODO: Complete with reducers, for example
+  // whitelist: ['auth']
+  whitelist: [],
+<%_ } _%>
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)]
 };
-<%_ } _%>
 
 configureMergeState((state: ImmutableObject<State>, diff: State) => state.merge(diff));
 
 const reducers = combineReducers({
   auth
 });
-<%_ if(features.reduxpersist) { _%>
 
 const persistedReducer = persistReducer(persistConfig, reducers);
-<%_ } _%>
 
 const middlewares = [];
 const enhancers = [];
@@ -60,15 +71,15 @@ middlewares.push(fetchMiddleware);
 <%_ if(features.firebaseanalytics) { _%>
 /* ------------- Analytics Middleware ------------- */
 middlewares.push(AnalyticsMiddleware);
-<%_ } _%>
 
+<%_ } _%>
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));
 
 if (__DEV__ && Reactotron.createEnhancer) enhancers.push(Reactotron.createEnhancer(true));
 
 // In DEV mode, we'll create the store through Reactotron
-const store = createStore(<%_ if(features.reduxpersist) { _%>persistedReducer<%_ } else{ _%>reducers<%_ } _%>, compose(...enhancers));
+const store = createStore(persistedReducer, compose(...enhancers));
 
 if (__DEV__ && Reactotron.setReduxStore) Reactotron.setReduxStore(store);
 

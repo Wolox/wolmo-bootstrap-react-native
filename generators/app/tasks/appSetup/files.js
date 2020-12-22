@@ -71,7 +71,6 @@ module.exports.AUTH_PATH = `${module.exports.SCREENS_PATH}/Auth`;
 module.exports.ONBOARDING_PATH = `${module.exports.SCREENS_PATH}/OnBoarding`;
 
 // CONFIG
-module.exports.PUSH_NOTIFICATIONS_CONFIG = `${module.exports.CONFIG_PATH}/pushNotifications.ts`;
 module.exports.API_CONFIG = `${module.exports.CONFIG_PATH}/api.ts`;
 module.exports.CONFIG = `${module.exports.CONFIG_PATH}/index.ts`;
 module.exports.REACTOTRON_CONFIG = `${module.exports.CONFIG_PATH}/reactotronConfig.ts`;
@@ -81,6 +80,7 @@ module.exports.FONTS_CONFIG = `${module.exports.CONFIG_PATH}/fonts.ts`;
 
 // CONSTANTS
 module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.ts`;
+module.exports.SERIALIZERS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/serializers.ts`;
 module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.ts`;
 module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.ts`;
 module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.ts`;
@@ -104,4 +104,3 @@ module.exports.ANALYTICS_MIDDLEWARE = `${module.exports.REDUX_PATH}/middlewares/
 
 // SERVICES
 module.exports.AUTH_SERVICE = `${module.exports.SERVICES_PATH}/AuthService.ts`;
-module.exports.ONBOARDING_SERVICE = `${module.exports.SERVICES_PATH}/OnBoardingService.ts`;

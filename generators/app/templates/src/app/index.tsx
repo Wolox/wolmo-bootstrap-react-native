@@ -4,9 +4,6 @@ import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from '@components/AppNavigator';
 import { apiSetup } from '@config/api';
-<%_ if(features.pushnotifications) { _%>
-import { configPushNotifications } from '@config/pushNotifications';
-<%_ } _%>
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import './i18n';
 
@@ -18,10 +15,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    <%_ if(features.pushnotifications) { _%>
-    configPushNotifications();
-    <%_ } _%>
-    apiSetup(dispatch);
+    apiSetup();
     dispatch(AuthActions.init());
   }, [dispatch]);
 

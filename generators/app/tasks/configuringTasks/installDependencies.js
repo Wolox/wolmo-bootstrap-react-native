@@ -25,18 +25,17 @@ const DEPENDENCIES = [
   'reactotron-react-native',
   'reactotron-redux',
   'redux',
+  'redux-persist',
+  'redux-persist-seamless-immutable',
   'redux-recompose',
   'redux-thunk',
-  'reselect',
-  'seamless-immutable',
-  'typescript'
+  'seamless-immutable'
 ];
 
 const DEV_DEPENDENCIES = [
   '@react-native-community/eslint-config',
   '@testing-library/jest-native',
   '@types/jest',
-  '@types/react',
   '@types/react-native',
   '@types/react-redux',
   '@types/react-test-renderer',
@@ -44,28 +43,26 @@ const DEV_DEPENDENCIES = [
   'babel-eslint',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
-  'eslint-config-wolox-react-native',
+  'eslint',
   'eslint-config-airbnb',
   'eslint-config-prettier',
+  'eslint-config-wolox-react-native',
+  'eslint-plugin-babel',
   'eslint-plugin-flowtype',
   'eslint-plugin-import',
   'eslint-plugin-jest',
   'eslint-plugin-jsx-a11y',
   'eslint-plugin-prettier',
-  'eslint-plugin-react-hooks',
   'eslint-plugin-react',
-  'eslint',
-  'eslint-plugin-babel',
+  'eslint-plugin-react-hooks',
   'eslint-plugin-react-native',
   'husky',
   'jest-react-native',
-  'jsdom-global',
-  'jsdom',
-  'prettier-eslint',
   'prettier',
-  'react-native-mock-render',
+  'prettier-eslint',
   'react-native-testing-library',
-  'redux-mock-store'
+  'redux-mock-store',
+  'typescript'
 ];
 
 // eslint-disable-next-line valid-jsdoc
@@ -123,17 +120,11 @@ module.exports = function installDependencies() {
   if (this.features.hasFirebase) {
     DEPENDENCIES.push('@react-native-firebase/app');
 
-    if (this.features.crashlytics) {
+    if (this.features.firebasecrashlytics) {
       DEPENDENCIES.push('@react-native-firebase/crashlytics');
     }
     if (this.features.firebaseanalytics) {
       DEPENDENCIES.push('@react-native-firebase/analytics');
-    }
-    if (this.features.pushnotifications) {
-      DEPENDENCIES.push('react-native-push-notification');
-      DEPENDENCIES.push('@react-native-firebase/messaging');
-      DEPENDENCIES.push('@react-native-community/push-notification-ios');
-      DEV_DEPENDENCIES.push('@types/react-native-push-notification');
     }
     if (this.features.firebaseperformance) {
       DEPENDENCIES.push('@react-native-firebase/perf');
@@ -142,11 +133,6 @@ module.exports = function installDependencies() {
 
   if (this.features.drawer) {
     DEPENDENCIES.push('@react-navigation/drawer');
-  }
-
-  if (this.features.reduxpersist) {
-    DEPENDENCIES.push('redux-persist');
-    DEPENDENCIES.push('redux-persist-seamless-immutable');
   }
 
   if (this.features.onboarding) {

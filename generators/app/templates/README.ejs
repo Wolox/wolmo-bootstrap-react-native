@@ -47,12 +47,7 @@ You must create the following env files corresponding to each environment.
 Create all the env files in the root with the following vars corresponding to the environment that belongs:
 
 ```
-API_BASE_URL=https://XXXXXXXX
-
-<%_ if(features.pushnotifications) { _%>
-NOTIFICATIONS_SENDER_ID=XXXXXXXX
-<%_ } _%>
-
+API_BASE_URL=https://XXXXXXX
 OTHER_ENV_VARs=XXXXXXXXXX
 ```
 
@@ -112,7 +107,7 @@ We use [FastLane](https://github.com/Wolox/fastlane-mobile) and few of its plugi
 
 - Interact with Apple Developer Portal and iTunes Connect.
 - Automate code signing (Certificates and provisioning profiles handling. Take a look at [match](https://github.com/fastlane/fastlane/tree/master/match))
-- Uploading builds to testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
+- Uploading builds to Testflight ([gym](https://github.com/fastlane/fastlane/tree/master/pilot))
 
 #### FastLane setup
 
@@ -212,7 +207,7 @@ Follow the instructions in the [Fastlane README](android/fastlane/README.md) to 
 
 ## iOS
 
-### Uploading build to testflight
+### Uploading build to Testflight
 Use the following commands from <%= projectName %>/ios:
 
 1) We need to create the app in the AppStore first if it isn't already created. You must be use `bundle exec fastlane ios create_development_app`. The lane depends of environment, you can use `bundle exec fastlane ios create_stage_app` or ` bundle exec fastlane ios create_production_app`

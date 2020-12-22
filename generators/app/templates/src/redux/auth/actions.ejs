@@ -2,12 +2,11 @@
 import { ApiOkResponse } from 'apisauce';
 import { Dispatch } from 'react';
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
-import * as AuthService from '@services/AuthService';
+import { setApiHeaders, removeApiHeaders } from '@config/api';
 import { CurrentUser, AuthData } from '@interfaces/authInterfaces';
-import { Action } from '@interfaces/reduxInterfaces';
-<%_ if(features.onboarding) { _%>
-import { setOnBoardingAccess } from '@services/OnBoardingService';
-<%_ } _%>
+import { Nullable } from '@interfaces/globalInterfaces';
+import { Action, State } from '@interfaces/reduxInterfaces';
+import { login, logout } from '@services/AuthService';
 
 export const actions = createTypes(completeTypes(['LOGIN', 'LOGOUT'], ['AUTH_INIT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
 
@@ -19,17 +18,18 @@ const TARGETS = {
 };
 
 export const actionCreators = {
-  init: () => async (dispatch: Dispatch<Action>) => {
+  init: () => (dispatch: Dispatch<Action<Nullable<CurrentUser>>>, getState: () => State) => {
   <%_ if(features.onboarding) { _%>
-    const { currentUser, hasAccess } = await AuthService.authSetup();
+    const { currentUser, hasAccessOnBoarding } = getState().auth;
   <%_ } else { _%>
-    const currentUser = await AuthService.authSetup();
+    const { currentUser } = getState().auth;
   <%_ } _%>
+    if (currentUser) setApiHeaders(currentUser.sessionToken);
     dispatch({
       type: actions.AUTH_INIT,
       target: TARGETS.CURRENT_USER,
       <%_ if(features.onboarding) { _%>
-      hasAccessOnBoarding: hasAccess,
+      hasAccessOnBoarding,
       <%_ } _%>
       payload: currentUser
     });
@@ -37,43 +37,39 @@ export const actionCreators = {
   login: (authData: AuthData) => ({
     type: actions.LOGIN,
     target: TARGETS.CURRENT_USER,
-    service: AuthService.login,
+    service: login,
     payload: authData,
     injections: [
       withPostSuccess((_: any, response: ApiOkResponse<CurrentUser>) => {
-        AuthService.setCurrentUser(response.data!);
+        setApiHeaders(response.data?.sessionToken!);
       })
     ]
   }),
   logout: () => ({
     type: actions.LOGOUT,
     target: TARGETS.CURRENT_USER,
-    service: AuthService.logout,
+    service: logout,
+    successSelector: () => null,
     injections: [
-      withPostSuccess(async (<%_ if(features.onboarding) { _%>dispatch: Dispatch<any><%_ } _%>) => {
-        await AuthService.removeCurrentUser();
+      withPostSuccess((<%_ if(features.onboarding) { _%>dispatch: Dispatch<any><%_ } _%>) => {
+        removeApiHeaders();
       <%_ if(features.onboarding) { _%>
         dispatch(actionCreators.setHasAccessOnBoarding(false));
       <%_ } _%>
       })
     ]
   })<%_ if(features.onboarding) { _%>,
-  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<any>) => {
-    await setOnBoardingAccess(value);
-    dispatch({
-      type: actions.HAS_ACCESS,
-      target: TARGETS.ONBOARDING,
-      payload: value
-    });
-  }
+  setHasAccessOnBoarding: (value: boolean) => ({
+    type: actions.HAS_ACCESS,
+    target: TARGETS.ONBOARDING,
+    payload: value
+  })
   <%_ }_%>
 };
 <%_ } else if (features.onboarding) { _%>
 import { Dispatch } from 'react';
 import { createTypes } from 'redux-recompose';
-import { Action } from '@interfaces/reduxInterfaces';
-import * as AuthService from '@services/AuthService';
-import { setOnBoardingAccess } from '@services/OnBoardingService';
+import { Action, State } from '@interfaces/reduxInterfaces';
 
 export const actions = createTypes(['AUTH_INIT', 'HAS_ACCESS'], '@@AUTH');
 
@@ -82,22 +78,19 @@ const TARGETS = {
 };
 
 export const actionCreators = {
-  init: () => async (dispatch: Dispatch<Action>) => {
-    const hasAccess = await AuthService.authSetup();
+  init: () => (dispatch: Dispatch<Action<boolean>>, getState: () => State) => {
+    const { hasAccessOnBoarding } = getState().auth;
     dispatch({
       type: actions.AUTH_INIT,
       target: TARGETS.ONBOARDING,
-      payload: hasAccess
+      payload: hasAccessOnBoarding
     });
   },
-  setHasAccessOnBoarding: (value: boolean) => async (dispatch: Dispatch<Action>) => {
-    await setOnBoardingAccess(value);
-    dispatch({
-      type: actions.HAS_ACCESS,
-      target: TARGETS.ONBOARDING,
-      payload: value
-    });
-  }
+  setHasAccessOnBoarding: (value: boolean) => ({
+    type: actions.HAS_ACCESS,
+    target: TARGETS.ONBOARDING,
+    payload: value
+  })
 };
 <%_ } else { _%>
 import { createTypes } from 'redux-recompose';
