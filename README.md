@@ -49,9 +49,9 @@ The boilerplate includes
 
 - [Apisauce](https://github.com/skellock/apisauce)
 - [Cerealizr](https://github.com/damfinkel/cerealizr)
-- [React Hook Form](https://react-hook-form.com/)
 - [i18next](https://www.i18next.com/)
 - [React](https://reactjs.org/)
+- [React Hook Form](https://react-hook-form.com/)
 - [React Native](https://reactnative.dev/)
 - [React Native Config](https://github.com/luggit/react-native-config)
 - [React Native Firebase](https://invertase.io/oss/react-native-firebase)

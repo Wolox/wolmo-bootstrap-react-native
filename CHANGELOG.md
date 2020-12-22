@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.6.0] - 2020-12-XX
+## [1.6.0] - 2020-12-22
 - Fixed errors in the `Login` screen
 - Fixed TypeScript error in `Reactotron` config and in other TypeScript interfaces
 - Improved the `AppNavigator` component
