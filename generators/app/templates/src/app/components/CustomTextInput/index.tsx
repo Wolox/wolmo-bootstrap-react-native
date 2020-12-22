@@ -1,7 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, forwardRef } from 'react';
 import { TextInput, View } from 'react-native';
 import CustomText from '@components/CustomText';
-import withFormikField from '@components/withFormikField';
 import { transparent } from '@constants/colors';
 
 import InputLabel from './components/InputLabel';
@@ -9,30 +8,33 @@ import ShowPassword from './components/ShowPassword';
 import { CustomTextInputProps as Props } from './interface';
 import styles from './styles';
 
-const CustomTextInput = ({
-  animated,
-  autoCompleteType,
-  disabled,
-  error,
-  errorContainerStyle,
-  errorStyle,
-  inputContainerStyle,
-  inputTextStyles,
-  isFocused,
-  isOptional,
-  label,
-  labelStyle,
-  multiline,
-  onChange,
-  placeholder,
-  placeholderColor,
-  secureTextEntry,
-  showError,
-  showEye,
-  style,
-  value,
-  ...props
-}: Props) => {
+const CustomTextInput = forwardRef<TextInput, Props>(function CustomTextInput(
+  {
+    animated,
+    autoCompleteType,
+    disabled,
+    error,
+    errorContainerStyle,
+    errorStyle,
+    inputContainerStyle,
+    inputTextStyles,
+    isFocused,
+    isOptional,
+    label,
+    labelStyle,
+    multiline,
+    onChange,
+    placeholder,
+    placeholderColor,
+    secureTextEntry,
+    showError,
+    showEye,
+    style,
+    value,
+    ...props
+  },
+  ref
+) {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
   const borderColorStyle = () => {
@@ -61,6 +63,7 @@ const CustomTextInput = ({
         ]}>
         <TextInput
           {...props}
+          ref={ref}
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
           editable={!disabled}
           multiline={multiline}
@@ -85,7 +88,7 @@ const CustomTextInput = ({
       </View>
     </View>
   );
-};
+});
 
 CustomTextInput.defaultProps = {
   allowFontScaling: false,
@@ -96,7 +99,6 @@ CustomTextInput.defaultProps = {
   clearButtonMode: 'never',
   disabled: false,
   keyboardType: 'default',
-  maxHeight: 200,
   multiline: false,
   placeholder: '',
   returnKeyType: 'done',
@@ -104,7 +106,5 @@ CustomTextInput.defaultProps = {
 };
 
 const MyCustomTextInput = memo(CustomTextInput);
-
-export const CustomTextInputFormikField = withFormikField(MyCustomTextInput);
 
 export default MyCustomTextInput;
