@@ -79,35 +79,7 @@ The boilerplate includes
 
 ### Bootstrap Kick off
 
-For bootstraping your own project using the template generator script you'll need to follow these steps:
-
-1. Clone this repo
-2. Run `yarn install` inside the repository folder
-3. Run `yo yourPathToWolmo/generators/app/index.js` outside the repository folder, you'll need [Yeoman](https://yeoman.io/learning/index.html) installed for this. Also, the argument `-v` can be used for logging.
-4. Some prompts will pop up on your terminal. Pick whatever configuration works best for your current proyect.
-5. After the script is finished, your project folder will be successfully generated with all the necessary yarn dependencies installed. Do `cd you/project/path`.
-6. Start budler using `yarn start`.
-7. Run `npx react-native run-ios --scheme qa` or `yarn ios` for iOS and `npx react-native run-android --variant=qaDebug` or `yarn android` for Android.
-8. Start working on your project!
-
-### How do you have to configure Bitrise?
-
-You will have to complete the [`bitriseInfo.json`](/generators/bitrise/bitriseInfo.json) with the next Info:
-
-```
-    "repositoryUrlSsh": "", // What's your repository url? (ssh only)
-    "publicApp": false, // If true then the app visibility setting will be public, in case of false it will be private (boolean value)
-    "repositorySlug": "", // Write the repo slug (The name of your repo not the url)
-    "repoOwner": "", // Who is the owner of the repo?
-    "gitProvider": "", // The git provider you are using, it can be 'github', 'bitbucket', 'gitlab', 'gitlab-self-hosted' or 'custom'
-    "gitToken": "", // Please, write your git token (github, gitlab ot bitbucket) with permissions to create ssh keys here (write it with the format 'token <access_token>' if it is github, 'Bearer <access_token>' if it's gitlab or bitbucket)
-    "bitriseToken": "", // Please, write your bitrise token with permissions to create ssh keys here
-    "bitriseOrganizationSlug": "", // Please, write your Bitrise organization slug
-    "projectPath": "", // projectPath in case that you want to add the bitrise.yml file to your local repository. This param is in case that you run the script without running the bootstrap
-    "projectName": "" // Project name to complete the bitrise.yml file with correct info. This param is in case that you run the script without running the bootstrap
-```
-
-To run only the bitrise script you have to run: `yo yourPathToWolmo/generators/bitrise/bitrise.js` you'll need [Yeoman](https://yeoman.io/learning/index.html)
+Follow our Kickoff guide [here](./KICKOFF.md)
 
 ## Contributing
 
