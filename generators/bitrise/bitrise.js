@@ -1,5 +1,6 @@
 const Generator = require('yeoman-generator');
 
+const completeREADME = require('./tasks/completeREADME');
 const bitriseInitialization = require('./tasks/bitriseInitialization');
 const nextSteps = require('./tasks/nextSteps');
 const loadBitriseInfo = require('./bitriseUtils');
@@ -48,6 +49,7 @@ class BitriseInit extends Generator {
   }
 
   end() {
+    completeREADME.bind(this)();
     nextSteps.bind(this)();
   }
 }
