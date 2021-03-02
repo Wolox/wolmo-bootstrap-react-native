@@ -37,5 +37,5 @@ export const validateMaxLength = (maxValue: number) => ({
 
 export const validateEqualLength = (equalValue: number) => ({
   validate: (value: string) =>
-    value.length === equalValue || i18next.t('VALIDATIONS:EQUAL_LENGTH', { count: equalValue })
+    value.length === equalValue || (i18next.t('VALIDATIONS:EQUAL_LENGTH', { count: equalValue }) as string)
 });
