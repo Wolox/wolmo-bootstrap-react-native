@@ -8,14 +8,17 @@ import { Action, AuthState } from '@interfaces/reduxInterfaces';
 import { actions } from './actions';
 
 const stateDescription = {
-  currentUser: null,
-<%_ if(features.onboarding) { _%>
-  hasAccessOnBoarding: false,
-<%_ }_%>
-  initialLoading: true
+  description: {
+    currentUser: null
+  },
+  ignoredTargets: {
+    initialLoading: true<%_ if(features.onboarding) { _%>,
+      hasAccessOnBoarding: false
+    <%_ }_%>
+  }
 };
 
-export const initialState = completeState(stateDescription, ['initialLoading'<%_ if(features.onboarding) { _%>, 'hasAccessOnBoarding'<%_ } _%>]);
+export const initialState = completeState(stateDescription);
 
 const reducerDescription = {
   primaryActions: [actions.LOGIN, actions.LOGOUT],
