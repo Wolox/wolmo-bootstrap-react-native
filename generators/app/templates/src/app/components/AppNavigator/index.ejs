@@ -1,37 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 <%_ if(features.firebaseanalytics) { _%>
 import analytics from '@react-native-firebase/analytics';
 <%_ } _%>
-import { useSelector } from 'react-redux';
 import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import { navigationRef, getActiveRoute, getRoute } from '@navigationHelper';
-import { State } from '@interfaces/reduxInterfaces';
 import CustomStatusBar from '@components/CustomStatusBar';
 import withLoadable from '@components/Loadable';
 <%_ if(features.firebaseanalytics) { _%>
 import { snakeCaseSerializer } from '@constants/serializers';
 <%_ } _%>
+import { Nullable } from '@interfaces/globalInterfaces';
+import { State } from '@interfaces/reduxInterfaces';
 
 import Navigator from './navigator';
 
 const AppNavigator = () => {
-  const [routeName, setRouteName] = useState<string | null>(null);
-  useEffect(() => {
-    setRouteName(getActiveRoute().name);
-  }, []);
+  const [routeName, setRouteName] = useState<Nullable<string>>(null);
+
+<%_ if(features.firebaseanalytics) { _%>
+  const onStateChange = async (state?: NavigationState) => {
+<%_ } else { _%>
   const onStateChange = (state?: NavigationState) => {
+<%_ } _%>
     const previousRouteName = routeName;
     const currentRouteName = getRoute(state).name;
     if (previousRouteName !== currentRouteName) {
-      <%_ if(features.firebaseanalytics) { _%>
-      analytics().logScreenView(snakeCaseSerializer.serialize({ screenClass: currentRouteName, screenName: currentRouteName }));
-      <%_ } _%>
+    <%_ if(features.firebaseanalytics) { _%>
+      await analytics().logScreenView(snakeCaseSerializer.serialize({ screenClass: currentRouteName, screenName: currentRouteName }));
+    <%_ } _%>
       setRouteName(currentRouteName);
     }
   };
+
   return (
     <NavigationContainer
       ref={navigationRef}
+      onReady={() => {
+        setRouteName(getActiveRoute().name);
+      }}
       onStateChange={onStateChange}>
       <CustomStatusBar routeName={routeName} />
       <Navigator />
