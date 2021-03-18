@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "acorn": "^7.1.1",
-    "apisauce": "^1.1.1",
+    "apisauce": "^2.0.1",
     "colors": "^1.1.2",
     "deep-extend": "^0.5.1",
     "diff": "^3.5.0",
