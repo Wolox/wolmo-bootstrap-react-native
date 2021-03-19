@@ -2,7 +2,7 @@ module.exports = function firebasePerformanceSetup() {
   let buildGradleContent = this.fs.read(`${this.projectName}/android/build.gradle`);
   buildGradleContent = buildGradleContent.replace(
     '// NOTE: Do not place your application dependencies here; they belong',
-    "classpath 'com.google.firebase:perf-plugin:1.3.1'\n\t\t// NOTE: Do not place your application dependencies here; they belong"
+    "classpath 'com.google.firebase:perf-plugin:1.3.5'\n\t\t// NOTE: Do not place your application dependencies here; they belong"
   );
   this.fs.write(`${this.projectName}/android/build.gradle`, buildGradleContent);
 

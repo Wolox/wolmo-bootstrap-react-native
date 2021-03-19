@@ -4,7 +4,8 @@ module.exports = function babelConfigSetup() {
   const beforeContentPrettier = `bracketSpacing: false,
   jsxBracketSameLine: true,
   singleQuote: true,
-  trailingComma: 'all',`;
+  trailingComma: 'all',
+  arrowParens: 'avoid',`;
 
   const newContentPrettier = `bracketSpacing: true,
   jsxBracketSameLine: true,

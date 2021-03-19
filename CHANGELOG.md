@@ -2,8 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.6.1] - 2021-03-11
+## [1.7.0] - 2021-03-19
 - Update to `redux-recompose` v3
+- Updated some files and libs to support React Native 0.64
+- Fixed iOS base schema
+- Updated some files to support React Native Reanimated v2 (`babel.config.js` and `MainApplication`)
+- Fixed React Hook Form validations
+- Deleted `android.enableR8=false` (deprecated)
+- Updated Firebase dependencies
+- Updated `installPods` task with `npx pod-install` command
+- Refactored some files
 
 ## [1.6.0] - 2020-12-22
 - Fixed errors in the `Login` screen
