@@ -23,10 +23,9 @@ module.exports = function nextSteps() {
 
   if (this.features.loginandsignup) {
     // Login and SignUp next steps
-    console.log('● A basic login feature has been added. The probably next steps there are:'.cyan);
+    console.log('● A basic login and signup feature has been added. The probably next steps there are:'.cyan);
     console.log('  Add proper validations and styles to the login form'.cyan);
     console.log('  Integrate login and logout with API'.cyan);
-    console.log('  Sign up?'.cyan);
   }
 
   if (this.features.bitrise) {

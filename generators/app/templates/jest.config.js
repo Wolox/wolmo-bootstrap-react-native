@@ -36,6 +36,7 @@ module.exports = {
     '**/*.{js,jsx,ts,tsx}',
     '!**/console.js',
     '!**/node_modules/**',
+    '!**/.history/**',
     '!**/build/**',
     '!**/migrations/**',
     '!**/config/**',

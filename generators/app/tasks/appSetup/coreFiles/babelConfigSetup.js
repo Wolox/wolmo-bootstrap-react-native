@@ -2,6 +2,7 @@ module.exports = function babelConfigSetup() {
   const contentBabelConfig = this.fs.read(`${this.projectName}/babel.config.js`);
   const babelContent = `presets: ['module:metro-react-native-babel-preset'],
   plugins: [
+    'react-native-reanimated/plugin',
     'import-glob',
     [
       'module-resolver',

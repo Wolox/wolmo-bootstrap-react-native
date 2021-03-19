@@ -2,7 +2,11 @@ const runCommand = require('../runCommand');
 
 module.exports = function installPods() {
   return runCommand({
-    command: ['pod', ['install', '--repo-update'], { cwd: `${process.cwd()}/${this.projectName}/ios` }],
+    command: [
+      'npx',
+      ['pod-install', 'ios', '--non-interactive'],
+      { cwd: `${process.cwd()}/${this.projectName}` }
+    ],
     loadingMessage: 'Installing Pods...',
     successMessage: 'Pods ready!',
     failureMessage: 'Pod install failed. Turn verbose mode on for detailed logging',

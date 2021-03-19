@@ -1,5 +1,6 @@
 // TODO: Uncomment lines when you start using them
-// import analytics from '@react-native-firebase/analytics'; TODO: Use later when you want to catch some redux actions here in this middleware
+// TODO: Use later when you want to catch some redux actions here in this middleware
+// import analytics from '@react-native-firebase/analytics';
 import { Dispatch } from 'react';
 // import { ReduxObject } from '@interfaces/reduxInterfaces';
 
