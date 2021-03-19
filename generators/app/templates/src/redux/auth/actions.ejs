@@ -8,7 +8,10 @@ import { Nullable } from '@interfaces/globalInterfaces';
 import { Action, State } from '@interfaces/reduxInterfaces';
 import { login, logout } from '@services/AuthService';
 
-export const actions = createTypes(completeTypes(['LOGIN', 'LOGOUT'], ['AUTH_INIT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>]), '@@AUTH');
+export const actions = createTypes(
+  completeTypes({ primaryActions: ['LOGIN', 'LOGOUT'], ignoredActions: ['AUTH_INIT'<%_ if(features.onboarding) { _%>, 'HAS_ACCESS'<%_ } _%>] }),
+  '@@AUTH'
+);
 
 const TARGETS = {
 <%_ if(features.onboarding) { _%>

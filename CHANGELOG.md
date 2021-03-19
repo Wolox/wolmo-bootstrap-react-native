@@ -2,7 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.7.0] - 2021-03-XX
+## [1.7.0] - 2021-03-19
+- Update to `redux-recompose` v3
 - Updated some files and libs to support React Native 0.64
 - Fixed iOS base schema
 - Updated some files to support React Native Reanimated v2 (`babel.config.js` and `MainApplication`)
