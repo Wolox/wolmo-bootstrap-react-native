@@ -8,7 +8,7 @@ addAssignees: true
 reviewers:
   - sfernandez11
   - guidoprinc
-  - mcavo
+  - mattgle
 
 # A number of reviewers added to the pull request
 # Set 0 to add all the reviewers (default: 0)
@@ -18,7 +18,7 @@ numberOfReviewers: 0
 assignees:
   - sfernandez11
   - guidoprinc
-  - mcavo
+  - mattgle
 
 # A number of assignees to add to the pull request
 # Set to 0 to add all of the assignees.
