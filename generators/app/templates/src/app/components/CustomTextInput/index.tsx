@@ -1,4 +1,4 @@
-import React, { useState, memo, forwardRef } from 'react';
+import React, { useCallback, useState, memo, forwardRef } from 'react';
 import { TextInput, View } from 'react-native';
 import CustomText from '@components/CustomText';
 import { transparent } from '@constants/colors';
@@ -18,12 +18,13 @@ const CustomTextInput = forwardRef<TextInput, Props>(function CustomTextInput(
     errorStyle,
     inputContainerStyle,
     inputTextStyles,
-    isFocused,
     isOptional,
     label,
     labelStyle,
     multiline,
+    onBlur,
     onChange,
+    onFocus,
     placeholder,
     placeholderColor,
     secureTextEntry,
@@ -36,13 +37,31 @@ const CustomTextInput = forwardRef<TextInput, Props>(function CustomTextInput(
   ref
 ) {
   const [showPassword, setShowPassword] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
   const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
+  const handleFocus = useCallback(
+    e => {
+      setIsFocused(true);
+      if (onFocus) onFocus(e);
+    },
+    [onFocus]
+  );
+  const handleBlur = useCallback(
+    e => {
+      setIsFocused(false);
+      if (onBlur) onBlur(e);
+    },
+    [onBlur]
+  );
+
   const borderColorStyle = () => {
     if (disabled) return styles.bottomBorderLightGray;
     if (isFocused) return styles.bottomBorderBlue;
     if (showError) return styles.bottomBorderRed;
     return {};
   };
+
   return (
     <View style={[styles.container, animated && !!label && styles.withAnimatedLabel, style]}>
       {label && (
@@ -67,6 +86,8 @@ const CustomTextInput = forwardRef<TextInput, Props>(function CustomTextInput(
           autoCompleteType={secureTextEntry ? 'off' : autoCompleteType}
           editable={!disabled}
           multiline={multiline}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
           onChangeText={onChange}
           placeholder={(isFocused || !animated) && value === '' ? placeholder : ''}
           placeholderTextColor={placeholderColor}

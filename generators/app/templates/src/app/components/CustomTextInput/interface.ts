@@ -9,7 +9,6 @@ export interface CustomTextInputProps extends TextInputProps, TextProps {
   errorStyle?: TextStyle;
   inputContainerStyle?: ViewProps['style'];
   inputTextStyles?: TextStyle;
-  isFocused?: boolean;
   isOptional?: boolean;
   label?: string;
   labelStyle?: TextStyle;

@@ -28,11 +28,10 @@ function SignUp({ navigation }: Navigation) {
   });
 
   const {
+    handleSubmit,
     control,
-    errors,
-    formState: { isValid },
-    handleSubmit
-  } = useForm<SignupFormValues>({ mode: 'onTouched' });
+    formState: { isValid }
+  } = useForm<SignupFormValues>({ mode: 'onBlur' });
 
   const hasSignUpError = !!error;
   const handleSignUp = (values: SignupFormValues) => {
@@ -56,7 +55,6 @@ function SignUp({ navigation }: Navigation) {
               label={i18next.t('SIGNUP:NAME')}
               name={FIELDS.name}
               showError={hasSignUpError}
-              error={errors[FIELDS.name]?.message}
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
@@ -65,7 +63,6 @@ function SignUp({ navigation }: Navigation) {
               label={i18next.t('SIGNUP:SURNAME')}
               name={FIELDS.surname}
               showError={hasSignUpError}
-              error={errors[FIELDS.surname]?.message}
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
@@ -75,7 +72,6 @@ function SignUp({ navigation }: Navigation) {
               name={FIELDS.birthDate}
               placeholder={i18next.t('SIGNUP:BIRTH_DATE_PLACEHOLDER')}
               showError={hasSignUpError}
-              error={errors[FIELDS.birthDate]?.message}
               rules={validateRequired}
             />
             <ControlledCustomTextInput
@@ -85,7 +81,6 @@ function SignUp({ navigation }: Navigation) {
               name={FIELDS.sex}
               placeholder={i18next.t('SIGNUP:SEX_PLACEHOLDER')}
               showError={hasSignUpError}
-              error={errors[FIELDS.sex]?.message}
               rules={{ ...validateRequired, ...validateOnlyText }}
             />
             <ControlledCustomTextInput
@@ -96,7 +91,6 @@ function SignUp({ navigation }: Navigation) {
               name={FIELDS.email}
               placeholder={i18next.t('SIGNUP:MAIL_PLACEHOLDER')}
               showError={hasSignUpError}
-              error={errors[FIELDS.email]?.message}
               rules={{ ...validateRequired, ...validateEmail }}
             />
             <ControlledCustomTextInput
@@ -107,7 +101,6 @@ function SignUp({ navigation }: Navigation) {
               label={i18next.t('SIGNUP:PASSWORD')}
               name={FIELDS.password}
               showError={hasSignUpError}
-              error={errors[FIELDS.password]?.message}
               rules={{ ...validateRequired, ...validateMinLength(8) }}
             />
             <ControlledCustomTextInput
@@ -118,7 +111,6 @@ function SignUp({ navigation }: Navigation) {
               label={i18next.t('SIGNUP:PHONE_NUMBER')}
               name={FIELDS.phoneNumber}
               placeholder={i18next.t('SIGNUP:PHONE_NUMBER_PLACEHOLDER')}
-              error={errors[FIELDS.phoneNumber]?.message}
               showError={hasSignUpError}
             />
             {hasSignUpError && (

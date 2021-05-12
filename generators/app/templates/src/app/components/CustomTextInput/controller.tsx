@@ -1,37 +1,34 @@
 import React, { forwardRef } from 'react';
 import { TextInput } from 'react-native';
-import { Controller, ControllerProps } from 'react-hook-form';
+import { Controller, ControllerProps, Control } from 'react-hook-form';
 import CustomTextInput from '@components/CustomTextInput';
 import { CustomTextInputProps } from '@components/CustomTextInput/interface';
 
-type Props = CustomTextInputProps & ControllerProps<typeof CustomTextInput>;
+type Props = CustomTextInputProps & Omit<ControllerProps, 'control' | 'render'> & { control: Control<any> };
 
 const CustomTextInputController = forwardRef<TextInput, Props>(function CustomTextInputController(
-  { name, control, defaultValue = '', rules, onFocus, ...props },
+  { name, control, defaultValue = '', rules, ...props },
   ref
 ) {
   return (
     <Controller
-      render={({ onChange, onBlur, ...renderProps }) => (
+      control={control}
+      defaultValue={defaultValue}
+      name={name}
+      rules={rules}
+      render={({ field: { onChange, onBlur, ...fieldProps }, fieldState: { error } }) => (
         <CustomTextInput
           {...props}
+          {...fieldProps}
+          error={error?.message}
+          onBlur={onBlur}
           onChange={e => {
             onChange(e);
             if (props.onChange) props.onChange(e);
           }}
-          onBlur={e => {
-            onBlur();
-            if (props.onBlur) props.onBlur(e);
-          }}
-          {...renderProps}
           ref={ref}
         />
       )}
-      defaultValue={defaultValue}
-      name={name}
-      control={control}
-      rules={rules}
-      onFocus={onFocus}
     />
   );
 });

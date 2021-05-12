@@ -12,6 +12,8 @@ const DEPENDENCIES = [
   'cerealizr',
   'i18next',
   'react-hook-form',
+  '@hookform/devtools',
+  '@hookform/resolvers',
   'react-native-config',
   'react-native-flipper',
   'react-native-gesture-handler',
