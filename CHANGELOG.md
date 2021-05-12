@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Migrated `react-hook-form` configuration from v6 to v7
 - Updated `firebaseFilesScript.sh` file
 - Updated Firebase Crashlytics configuration
+- Disabled Native DarkMode
 
 ## [1.7.0] - 2021-03-19
 - Update to `redux-recompose` v3
