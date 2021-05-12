@@ -89,10 +89,20 @@ function addRNReanimatedConfig() {
   );
 }
 
+function disableDarkMode() {
+  const projectStyles = this.fs.read(`${this.projectName}/android/app/src/main/res/values/styles.xml`);
+  const updatedProjectStyles = projectStyles.replace(
+    '<item name="android:textColor">#000000</item>',
+    '<item name="android:textColor">#000000</item>\n\t\t<item name="android:forceDarkAllowed">false</item>'
+  );
+  this.fs.write(`${this.projectName}/android/app/src/main/res/values/styles.xml`, updatedProjectStyles);
+}
+
 module.exports = function androidProjectSetup() {
   updateAppBuildGradle.bind(this)();
   addRNGestureHandlerConfig.bind(this)();
   updateAppProguardRules.bind(this)();
   updateGradleProperties.bind(this)();
   addRNReanimatedConfig.bind(this)();
+  disableDarkMode.bind(this)();
 };
