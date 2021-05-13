@@ -21,7 +21,10 @@ const CustomTextInputController = forwardRef<TextInput, Props>(function CustomTe
           {...props}
           {...fieldProps}
           error={error?.message}
-          onBlur={onBlur}
+          onBlur={e => {
+            onBlur(e);
+            if (props.onBlur) props.onBlur(e);
+          }}
           onChange={e => {
             onChange(e);
             if (props.onChange) props.onChange(e);
