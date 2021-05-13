@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.8.0] - 2021-XX-XX
+## [1.8.0] - 2021-05-13
 - Fixed `CustomTextInput` focus handler
 - Fixed `CustomTextInputController` TS interface
 - Migrated `react-hook-form` configuration from v6 to v7
