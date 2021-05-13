@@ -1,5 +1,9 @@
-echo "Platform : " $2
-echo "Variant founded : " $1 
+#!/bin/bash
+set -e
+set -x
+
+echo "Platform:" $2
+echo "Variant:" $1
 echo "Replacing google files..."
 
 # ANDROID
@@ -12,8 +16,7 @@ then
     elif [[ $1 == *"Prod"* ]]; then
         cp -f google-services/google-services-production.json ./google-services.json
     else
-        echo "Setting qa by default"
-        cp -f google-services/google-services-qa.json ./google-services.json
+        echo "No valid variant detected"
     fi
 fi
 
@@ -27,8 +30,7 @@ then
     elif [ $1 = "com.wolox.wolmorn" ]; then
         cp -f GoogleServices/GoogleServiceProduction-Info.plist GoogleService-Info.plist
     else
-        echo "Setting qa by default"
-        cp -f GoogleServices/GoogleServiceQa-Info.plist GoogleService-Info.plist
+        echo "No valid variant detected"
     fi
 fi
 

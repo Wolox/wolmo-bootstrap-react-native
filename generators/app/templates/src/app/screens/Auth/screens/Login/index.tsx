@@ -20,7 +20,7 @@ function Login({ navigation }: Navigation) {
   const dispatch = useDispatch();
   const hasLoginError = useSelector<State, boolean>((state: State) => !!state.auth.currentUserError);
 
-  const { handleSubmit, control, errors } = useForm<LoginFormValues>();
+  const { handleSubmit, control } = useForm<LoginFormValues>({ mode: 'onBlur' });
 
   const handleLogin = (values: LoginFormValues) => dispatch(AuthActions.login(values));
 
@@ -37,7 +37,6 @@ function Login({ navigation }: Navigation) {
             name={FIELDS.email}
             placeholder={i18next.t('LOGIN:MAIL_PLACEHOLDER')}
             showError={hasLoginError}
-            error={errors[FIELDS.email]?.message}
             rules={{ ...validateRequired, ...validateEmail }}
           />
           <ControlledCustomTextInput
@@ -48,7 +47,6 @@ function Login({ navigation }: Navigation) {
             label={i18next.t('LOGIN:PASSWORD')}
             name={FIELDS.password}
             showError={hasLoginError}
-            error={errors[FIELDS.password]?.message}
             rules={validateRequired}
           />
           {hasLoginError && (

@@ -1,6 +1,6 @@
 const createSchemes = require('./multipleEnvIos/createSchemes');
 
-module.exports = function fixBundleIndentifier() {
+function fixBundleIndentifier() {
   const iosProjectContent = this.fs.read(
     `${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`
   );
@@ -11,4 +11,18 @@ module.exports = function fixBundleIndentifier() {
   );
   this.fs.write(`${this.projectName}/ios/${this.projectName}.xcodeproj/project.pbxproj`, fixedProjectContent);
   createSchemes.bind(this)();
+}
+
+function disableDarkMode() {
+  const infoPlistContent = this.fs.read(`${this.projectName}/ios/${this.projectName}/Info.plist`);
+  const updatedInfoPlistContent = infoPlistContent.replace(
+    '<key>UIViewControllerBasedStatusBarAppearance</key>',
+    '<key>UIUserInterfaceStyle</key>\n\t<string>Light</string>\n\t<key>UIViewControllerBasedStatusBarAppearance</key>'
+  );
+  this.fs.write(`${this.projectName}/ios/${this.projectName}/Info.plist`, updatedInfoPlistContent);
+}
+
+module.exports = function iosProjectSetup() {
+  fixBundleIndentifier.bind(this)();
+  disableDarkMode.bind(this)();
 };

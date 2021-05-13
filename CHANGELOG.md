@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2021-XX-XX
+- Fixed `CustomTextInput` focus handler
+- Fixed `CustomTextInputController` TS interface
+- Migrated `react-hook-form` configuration from v6 to v7
+- Updated `firebaseFilesScript.sh` file
+- Updated Firebase Crashlytics configuration
+- Disabled Native DarkMode
+
 ## [1.7.0] - 2021-03-19
 - Update to `redux-recompose` v3
 - Updated some files and libs to support React Native 0.64
