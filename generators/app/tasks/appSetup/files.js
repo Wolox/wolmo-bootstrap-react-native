@@ -83,6 +83,7 @@ module.exports.PLATFORM_CONSTANTS = `${module.exports.CONSTANTS_PATH}/platform.t
 module.exports.SERIALIZERS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/serializers.ts`;
 module.exports.COLORS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/colors.ts`;
 module.exports.ROUTES_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routes.ts`;
+module.exports.ROUTES_PARAM_LIST_CONSTANTS = `${module.exports.CONSTANTS_PATH}/routesParamList.ts`;
 module.exports.FONTS_CONSTANTS = `${module.exports.CONSTANTS_PATH}/fonts.ts`;
 module.exports.STATUS_BAR_CONSTANTS = `${module.exports.CONSTANTS_PATH}/statusBar.ts`;
 

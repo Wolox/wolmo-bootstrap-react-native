@@ -1,3 +1,4 @@
+import { StackNavigationOptions } from '@react-navigation/stack';
 import i18next from 'i18next';
 import Routes from '@constants/routes';
 import { blue, white } from '@constants/colors';
@@ -61,7 +62,7 @@ export const drawerStackNavConfig = {
 <%_ } _%>
 
 // Default nav options for all screens
-export const appScreensNavOptions = {
+export const appScreensNavOptions: Partial<Record<Routes, StackNavigationOptions>> = {
   // TODO: Add here the screens nav options that changes with respect to
   // the default ones defined in defaultNavOptions, for example...
   <%_ if(features.loginandsignup) { _%>
