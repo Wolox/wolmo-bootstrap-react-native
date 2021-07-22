@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { State } from '@interfaces/reduxInterfaces';
 <%_ } _%>
 import Routes from '@constants/routes';
+import { RoutesParamList } from '@constants/routesParamList';
 import { <%_ if(features.loginandsignup) { _%>authStackNavConfig,<%_ } _%> appStackNavConfig<%_ if(features.drawer) { _%>, drawerStackNavConfig <%_ }_%><%_ if(features.tabs) { _%>, tabNavConfig <%_ }_%>} from '@config/navigation';
 import { inferRoute } from '@utils/navUtils';
 <%_ if(features.loginandsignup) { _%>
@@ -22,49 +23,49 @@ import OnBoarding from '@screens/OnBoarding';
 <%_ } _%>
 import Home from '@screens/Home';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RoutesParamList>();
 <%_ if(features.loginandsignup) { _%>
 
 const AuthStack = () => (
   <>
-    {inferRoute(Stack)({ [Routes.Login]: Login })}
-    {inferRoute(Stack)({ [Routes.SignUp]: SignUp })}
+    {inferRoute(Stack)(Routes.Login, Login)}
+    {inferRoute(Stack)(Routes.SignUp, SignUp)}
   </>
 );
 <%_ } _%>
 <%_ if(features.tabs) { _%>
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RoutesParamList>();
 function HomeTabs() {
   return (
     <Tab.Navigator {...tabNavConfig}>
-      {inferRoute(Tab)({ [Routes.Tab1]: Home })}
-      {inferRoute(Tab)({ [Routes.Tab2]: Home })}
+      {inferRoute(Tab)(Routes.Tab1, Home)}
+      {inferRoute(Tab)(Routes.Tab2, Home)}
     </Tab.Navigator>
   );
 }
 <%_ } _%>
 <%_ if(features.drawer) { _%>
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RoutesParamList>();
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator {...drawerStackNavConfig}>{inferRoute(Drawer)({ [Routes.Home]: <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%> })}</Drawer.Navigator>
+    <Drawer.Navigator {...drawerStackNavConfig}>{inferRoute(Drawer)(Routes.Home, <%_ if(features.tabs) { _%>HomeTabs<%_ }else{ _%>Home <%_ } _%>)}</Drawer.Navigator>
   );
 }
 
 function AppStack() {
-  return <>{inferRoute(Stack)({ [Routes.Home]: DrawerNavigator })}</>;
+  return <>{inferRoute(Stack)(Routes.Home, DrawerNavigator)}</>;
 }
 <%_ } else { _%>
 
 function AppStack() {
-  return <>{inferRoute(Stack)({ [Routes.Home]: <%_ if(features.tabs) { _%>HomeTabs<%_ } else { _%>Home <%_ } _%> })}</>;
+  return <>{inferRoute(Stack)(Routes.Home, <%_ if(features.tabs) { _%>HomeTabs<%_ } else { _%>Home <%_ } _%>)}</>;
 }
 <%_ } _%>
 
 <%_ if(features.onboarding) { _%>
-const OnBoardingStack = () => (<>{inferRoute(Stack)({ [Routes.OnBoarding]: OnBoarding })}</>);
+const OnBoardingStack = () => (<>{inferRoute(Stack)(Routes.OnBoarding, OnBoarding)}</>);
 
 const Navigator = () => {
   const hasAccessOnBoarding = useSelector((state: State) => state.auth.hasAccessOnBoarding);

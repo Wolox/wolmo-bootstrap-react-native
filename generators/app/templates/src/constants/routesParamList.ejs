@@ -1,0 +1,18 @@
+import Routes from '@constants/routes';
+
+export type RoutesParamList = {
+  <%_ if(features.loginandsignup) { _%>
+  [Routes.Auth]: undefined;
+  [Routes.Login]: undefined;
+  [Routes.SignUp]: undefined;
+  <%_ } _%>
+  <%_ if(features.onboarding) { _%>
+  [Routes.OnBoarding]: undefined,
+  <%_ } _%>
+  <%_ if(features.tabs) { _%>
+  [Routes.Tab1]: undefined;
+  [Routes.Tab2]: undefined;
+  <%_ } _%>
+  [Routes.App]: undefined;
+  [Routes.Home]: undefined;
+};
