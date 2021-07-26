@@ -1,20 +1,18 @@
-import { StringObject } from '@interfaces/globalInterfaces';
-
-const Routes: StringObject = {
+enum Routes {
   <%_ if(features.loginandsignup) { _%>
-  Auth: 'Auth',
-  Login: 'Login',
-  SignUp: 'SignUp',
+  Auth = 'Auth',
+  Login = 'Login',
+  SignUp = 'SignUp',
   <%_ } _%>
   <%_ if(features.onboarding) { _%>
-  OnBoarding: 'OnBoarding',
+  OnBoarding = 'OnBoarding',
   <%_ } _%>
   <%_ if(features.tabs) { _%>
-  Tab1: 'Tab1',
-  Tab2: 'Tab2',
+  Tab1 = 'Tab1',
+  Tab2 = 'Tab2',
   <%_ } _%>
-  App: 'App',
-  Home: 'Home'
+  App = 'App',
+  Home = 'Home'
 };
 
 export default Routes;
