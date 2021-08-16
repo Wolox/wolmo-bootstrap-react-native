@@ -1,28 +1,41 @@
-## Kickoff Guide
+# KickOff Guide
 
-### Create a new Project
+## Create a new Project
 
 To create a new project, you must follow these steps:
 
 1) Clone [Wolmo’s Bootstrap project](https://github.com/Wolox/wolmo-bootstrap-react-native)
 
-2) Go to the folder in which you’d like your project to be in and run:
+2) In case you have Cocoapods pre-installed, first update the repository with:
 
+```bash
+pod repo update
 ```
+
+3) Go to the folder in which you’d like your project to be in and run:
+
+```js
 yo path-to-wolmo/generators/app/index.js
 ```
 
-3) Follow the wizard. **Do not select Bitrise** as a feature, as we're going to add it later.
+In case you need to debug it, you can add the `--verbose` param:
 
-### Repository
 
-Ask an EM to provide an SSH url from the project’s repository. You’ll need it later.
+```js
+yo path-to-wolmo/generators/app/index.js --verbose
+```
 
-### Metrics DB
+4) Follow the wizard
+
+## Repository
+
+Ask an EM to provide an SSH url from the project’s repository, you’ll need it later.
+
+## Metrics DB
 
 Ask an EM to create the project inside Wolox’s project database. For that he/she will need both the **repository link** and access to the **project’s Jira**.
 
-### Bitrise Configuration
+## Bitrise Configuration
 
 **Note**: Bitrise is the default CI we use. If the project won't be using Bitrise, you must translate the bitrise configuration into the other CI's format, so you may disregard the next part except for the contents of the `bitrise.yml`
 
@@ -30,9 +43,11 @@ To configure bitrise you must follow some steps. First of all, you must complete
 
 **Important**: Once bitrise is configured, don’t forget to remove the contents of the `bitriseInfo.json`
 
-Once that file is filled with the correct data, move to `path-to-your-project` and run `path-to-wolmo/generators/bitrise/bitrise.js`. This will configure bitrise for you, and you’ll be able to go to Bitrise and see the created project.
+Once that file is filled with the correct data, move to `path-to-your-project` and run `yo path-to-wolmo/generators/bitrise/bitrise.js`. This will configure bitrise for you, and you’ll be able to go to Bitrise and see the created project.
 
-After the initial configuration, we’ll change both the `bitrise.yml` from the project as well as the bitrise.yml from Bitrise itself. From Bitrise, go to *Workflow → bitrise.yml* and replace the contents with the following:
+After the initial configuration, we’ll change both the `bitrise.yml` from the project as well as the `bitrise.yml` from Bitrise itself.
+
+From Bitrise, go to *Workflow → bitrise.yml* and replace the contents with the following:
 
 ```yml
 ---
@@ -73,10 +88,10 @@ workflows:
             bitrise run "${BITRISE_TRIGGERED_WORKFLOW_ID}"
   metrics:
     steps:
-    - activate-ssh-key@4.0.5:
+    - activate-ssh-key:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.22: {}
-    - script@1.1.6:
+    - git-clone: {}
+    - script:
         inputs:
         - content: |-
             #!/usr/bin/env bash
@@ -125,14 +140,10 @@ app:
   - opts:
       is_expand: false
     PRETTY_TITLE: <Project's display name>
-  - opts:
-      is_expand: false
-    SONAR_HOST_URL: https://sonarqube.k8s.wolox.com.ar
-
 ```
 
 **Note**: Replace all variables with `<>` with the correct values from your project.
-**Note 2**: For `ENV_TEMPLATE`, copy the contents of your env files (`.env.dev`, `.env.stage`, etc.), change the values for dummy values and run `tar -czvf /tmp/environment.tar.gz .*.env && base64 /tmp/environment.tar.gz` to get the value you need. **NEVER** use the real values.
+**Note 2**: For `ENV_TEMPLATE`, copy the contents of your env files (`.dev.env`, `.stage.env`, etc.), change the values for dummy values and run `tar -czvf /tmp/environment.tar.gz .*.env && base64 /tmp/environment.tar.gz` to get the value you need. **NEVER** use the real values.
 
 Now you must finish setting up variables for metrics configuration. For that, follow our [Metrics repository’s README](https://github.com/Wolox/mobile-project-metrics) from the point where it explains how to set Google Cloud metrics. For the github user values, ask an EM.
 
@@ -146,10 +157,10 @@ project_type: react-native
 workflows:
   android:
     steps:
-      - activate-ssh-key@4.0.3:
+      - activate-ssh-key:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.14: {}
-      - script@1.1.5:
+      - git-clone: {}
+      - script:
           inputs:
             - content: |-
                 #!/bin/bash
@@ -218,10 +229,10 @@ workflows:
                 ${ci_device} ${ci_environment} ${ci_version} ${ci_build_number}
   ios:
     steps:
-      - activate-ssh-key@4.0.3:
+      - activate-ssh-key:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.14: {}
-      - script@1.1.5:
+      - git-clone: {}
+      - script:
           inputs:
             - content: |-
                 #!/bin/bash
@@ -290,9 +301,9 @@ workflows:
                 ${ci_device} ${ci_environment} ${ci_version}
   primary:
     steps:
-      - activate-ssh-key@4.0.3:
+      - activate-ssh-key:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.14: {}
+      - git-clone: {}
       - yarn:
           inputs:
             - command: install
@@ -323,7 +334,7 @@ meta:
 
 **Note**: Replace all variables with `<>` with the correct values from your project.
 
-### Test CI and metrics
+## Test CI and metrics
 
 In order to test if the CI worked correctly, you just need to push to a remote branch and wait for it to run on Bitrise. Check that this task succeeds.
 

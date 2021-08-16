@@ -12,6 +12,10 @@
 - Ruby (for Fastlane): https://rvm.io/rvm/install
 - Yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
 
+## KickOff
+
+Follow our Kickoff guide [here](./KICKOFF.md)
+
 ## Description
 
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
@@ -77,10 +81,6 @@ The boilerplate includes
 - [Reactotron](https://github.com/infinitered/reactotron)
 - [TypeScript](https://www.typescriptlang.org/)
 
-### Bootstrap Kick off
-
-Follow our Kickoff guide [here](./KICKOFF.md)
-
 ## Contributing
 
 1. Fork it.
@@ -91,34 +91,10 @@ Follow our Kickoff guide [here](./KICKOFF.md)
 
 ## About
 
-This project was written by [Wolox](http://www.wolox.com.ar). It is mantained by:
+This project is maintained and it was written by [Wolox](https://www.wolox.com.ar).
 
-<a href="https://github.com/sfernandez11"><img src="https://avatars3.githubusercontent.com/u/8583214?s=460&v=4" title="sfernandez11" width="80" height="80"></a>
-<a href="https://github.com/guidoprinc"><img src="https://avatars3.githubusercontent.com/u/28304582?s=460&v=4" title="guidoprinc" width="80" height="80"></a>
-<a href="https://github.com/mcavo"><img src="https://avatars3.githubusercontent.com/u/7648908?s=460&v=4" title="mcavo" width="80" height="80"></a>
-
-![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png).
+![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
 
 ## License
 
-**wolmo-bootstrap-react-native** is available under the MIT [license](LICENSE).
-
-    Copyright © 2020. WOLOX. All rights reserved. <hello@wolox.co>
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
+**wolmo-bootstrap-react-native** is available under the **MIT** [license](LICENSE).
