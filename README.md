@@ -21,7 +21,6 @@ Follow our Kickoff guide [here](./KICKOFF.md)
 This codebase is meant to be used to kickoff react native projects with Wolox's [tech stack](#tech-stack), [tools](#tooling) and [basic boilerplate](#boilerplate).
 The following optional features can be added out of the box to the new projects:
 
-- Bitrise
 - Drawer
 - Firebase Analytics
 - Firebase Crashlytics

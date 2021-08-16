@@ -1,5 +1,4 @@
 module.exports.GENERATOR_FEATURES = [
-  'Bitrise',
   'Drawer',
   'Firebase Analytics',
   'Firebase Crashlytics',

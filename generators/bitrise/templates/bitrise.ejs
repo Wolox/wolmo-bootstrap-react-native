@@ -38,10 +38,10 @@ workflows:
       next change in your repository that matches any of your trigger map event will
       start **deploy** workflow.\n"
     steps:
-      - activate-ssh-key@4.0.3:
+      - activate-ssh-key:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.14: {}
-      - script@1.1.5:
+      - git-clone: {}
+      - script:
           title: Do anything with Script step
       - yarn:
           inputs:
@@ -49,15 +49,18 @@ workflows:
     before_run: []
   primary:
     steps:
-      - activate-ssh-key@4.0.3:
+      - activate-ssh-key:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.14: {}
+      - git-clone: {}
       - yarn:
           inputs:
             - command: install
       - yarn:
           inputs:
             - command: run lint
+      - yarn:
+          inputs:
+            - command: run check-types
       - yarn:
           inputs:
             - command: test

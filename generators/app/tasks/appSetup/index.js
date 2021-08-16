@@ -13,7 +13,6 @@ const packageJsonScripts = require('./coreFiles/packageJsonScripts');
 const prettierrcConfigSetup = require('./coreFiles/prettierrcConfigSetup');
 const splashScreenSetup = require('./coreFiles/splashScreenSetup');
 // FEATURES FILES
-const bitriseFeatureFiles = require('./featuresFiles/bitriseFeatureFiles');
 const crashlyticsFeatureFiles = require('./featuresFiles/crashlyticsFeatureFiles');
 const disableLandscapeOrientation = require('./featuresFiles/disableLandscapeOrientation');
 const firebaseAnalyticsFeatureFiles = require('./featuresFiles/firebaseAnalyticsFeatureFiles');
@@ -54,11 +53,6 @@ module.exports = function index() {
   // ----------------    Features: Login and SignUp    ----------------
   if (this.features.loginandsignup) {
     loginAndSignUpFeatureFiles.bind(this)();
-  }
-
-  // ----------------    Features: Bitrise    ----------------
-  if (this.features.bitrise) {
-    bitriseFeatureFiles.bind(this)();
   }
 
   // ----------------    Features: OnBoarding    ----------------
