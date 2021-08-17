@@ -1,8 +1,5 @@
 const Generator = require('yeoman-generator');
 
-// BITRISE
-const bitriseInitialization = require('../bitrise/tasks/bitriseInitialization');
-
 // CONFIGURING
 const reactNativeInit = require('./tasks/configuringTasks/reactNativeInit');
 const installDependencies = require('./tasks/configuringTasks/installDependencies');
@@ -103,8 +100,7 @@ class ReactNativeBootstrap extends Generator {
       .then(() => editBundleIdentifier.bind(this)())
       .then(() => lintFixProject.bind(this)())
       .then(() => this.features.hasFirebase && chmodFirebaseScript.bind(this)())
-      .then(() => gitInitialization.bind(this)())
-      .then(() => this.features.bitrise && bitriseInitialization.bind(this)());
+      .then(() => gitInitialization.bind(this)());
   }
 
   end() {

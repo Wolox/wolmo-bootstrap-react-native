@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2021-10-XX
+- Updated Bootstrap dependency (`yaoman-generator`) and docs (`README`, `KICKOFF`, `CHANGELOG` and `LICENSE`)
+- Updated generated project dependencies (`Firebase`, `Babel` and `RN Testing Library`)
+- `Typescript`: Fixed some errors and improved some types in Navigation params
+- Added new Navigation function for reset stacks
+- Removed `Bitrise` as bootstrap feature, keep only as generator
+
 ## [1.8.0] - 2021-05-13
 - Fixed `CustomTextInput` focus handler
 - Fixed `CustomTextInputController` TS interface

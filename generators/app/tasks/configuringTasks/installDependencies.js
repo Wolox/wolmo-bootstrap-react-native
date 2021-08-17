@@ -36,12 +36,13 @@ const DEPENDENCIES = [
 
 const DEV_DEPENDENCIES = [
   '@testing-library/jest-native',
+  '@testing-library/react-native',
   '@types/jest',
   '@types/react-native',
   '@types/react-redux',
   '@types/react-test-renderer',
   '@types/seamless-immutable',
-  'babel-eslint',
+  '@babel/eslint-parser',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
   'eslint',
@@ -61,7 +62,6 @@ const DEV_DEPENDENCIES = [
   'jest-react-native',
   'prettier',
   'prettier-eslint',
-  'react-native-testing-library',
   'redux-mock-store',
   'typescript'
 ];

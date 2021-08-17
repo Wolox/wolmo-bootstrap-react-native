@@ -27,6 +27,7 @@ function buildMessage(keys) {
   );
   return lastMessage;
 }
+
 function validateConfigObject(object, context) {
   let keys = [];
   if (!object) {

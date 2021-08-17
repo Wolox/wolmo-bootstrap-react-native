@@ -1,6 +1,6 @@
 import React from 'react';
 import * as redux from 'react-redux';
-import { render, fireEvent, waitFor, waitForElementToBeRemoved } from 'react-native-testing-library';
+import { render, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react-native';
 import Login from '@authScreens/Login';
 
 const INVALID_EMAIL = 'hello';
