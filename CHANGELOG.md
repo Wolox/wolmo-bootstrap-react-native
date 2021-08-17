@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.9.0] - 2021-10-XX
+## [1.9.0] - 2021-10-17
 - Updated Bootstrap dependency (`yaoman-generator`) and docs (`README`, `KICKOFF`, `CHANGELOG` and `LICENSE`)
 - Updated generated project dependencies (`Firebase`, `Babel` and `RN Testing Library`)
 - `Typescript`: Fixed some errors and improved some types in Navigation params
