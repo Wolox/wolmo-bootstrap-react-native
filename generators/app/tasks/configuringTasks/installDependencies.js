@@ -31,7 +31,8 @@ const DEPENDENCIES = [
   'redux-persist-seamless-immutable',
   'redux-recompose',
   'redux-thunk',
-  'seamless-immutable'
+  'seamless-immutable',
+  'react-error-boundary'
 ];
 
 const DEV_DEPENDENCIES = [
