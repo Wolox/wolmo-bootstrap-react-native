@@ -23,9 +23,13 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['lint-diff'] =
     'git diff --staged --name-only --relative --diff-filter=ACM | grep -E "\\.(ts|tsx|js|jsx)$" | xargs eslint';
   packageJson.scripts['check-types'] = 'tsc';
+  packageJson.scripts['test:generate-coverage-file'] = 'node ./node_modules/@wolox/js-test-coverage-script';
+  packageJson.scripts['test:coverage'] =
+    'yarn run test --env=jsdom --coverage --passWithNoTests --watchAll=false --silent --coverageThreshold "{}" --coverageReporters="json-summary" && yarn run test:generate-coverage-file';
   packageJson.husky = packageJson.husky || {};
   packageJson.husky.hooks = packageJson.husky.hooks || {};
-  packageJson.husky.hooks['pre-commit'] = 'yarn run lint-diff && yarn run check-types';
+  packageJson.husky.hooks['pre-commit'] =
+    'yarn run lint-diff && yarn run check-types && yarn run test:coverage';
 
   this.fs.writeJSON(this.destinationPath(this.projectName, 'package.json'), packageJson);
 };
