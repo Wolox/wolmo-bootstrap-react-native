@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Reactotron from 'reactotron-react-native';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from '@components/AppNavigator';
+import { ErrorHandler } from '@components/ErrorBoundary';
 import { apiSetup } from '@config/api';
 import { actionCreators as AuthActions } from '@redux/auth/actions';
 import './i18n';
@@ -19,7 +20,11 @@ const App = () => {
     dispatch(AuthActions.init());
   }, [dispatch]);
 
-  return <AppNavigator />;
+  return (
+    <ErrorHandler>
+      <AppNavigator />
+    </ErrorHandler>
+  );
 };
 
 const MyAppWithOverlay = __DEV__ ? Reactotron.overlay(App) : App;
