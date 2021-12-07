@@ -3,11 +3,10 @@ import { View, SafeAreaView } from 'react-native';
 import { FallbackProps } from 'react-error-boundary';
 import i18next from 'i18next';
 import CustomText from '@components/CustomText';
+import CustomButton from '@components/CustomButton';
 
 import styles from './styles';
-
 import './i18n';
-import CustomButton from '@components/CustomButton';
 
 /*
 In this functional component we have two props by FallbackProps
