@@ -26,7 +26,9 @@ const ErrorHandler = (error: Error, isFatal: boolean) => {
 };
 
 /*
-we need to use this in index app, to catch errors correctly
+we need to use this in index app, to catch errors correctly,
+setJSExceptionHandler have two calls ErrorHandler was called in error,
+in second param 'allowInDevMode' you can configure if you need or not see this handler. if false you see the classic redScreen error else return errorHandler with Alert
 */
 export const ExceptionHandler = () => {
   getJSExceptionHandler();
