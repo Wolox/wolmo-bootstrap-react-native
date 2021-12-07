@@ -19,7 +19,6 @@ export const ErrorHandler = ({
   children: ReactElement;
   component?: FunctionComponent<FallbackProps>;
 }) => {
-  console.log(typeof component);
   return (
     <ErrorBoundary
       FallbackComponent={component || ErrorFallBack}
