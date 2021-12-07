@@ -60,6 +60,8 @@ module.exports.CUSTOM_TEXT_PATH = `${module.exports.COMPONENTS_PATH}/CustomText`
 module.exports.CUSTOM_TEXT_INPUT_PATH = `${module.exports.COMPONENTS_PATH}/CustomTextInput`;
 // APP COMPONENTS - LOADABLE
 module.exports.LOADABLE_PATH = `${module.exports.COMPONENTS_PATH}/Loadable`;
+// APP COMPONENTS - ERRORBOUNDARY
+module.exports.ERROR_BOUNDARY = `${module.exports.COMPONENTS_PATH}/ErrorBoundary`;
 
 // APP SCREENS - HOME
 module.exports.HOME_PATH = `${module.exports.SCREENS_PATH}/Home`;
