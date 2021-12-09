@@ -5,7 +5,6 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts.android = 'npx react-native run-android --variant=qaDebug';
   packageJson.scripts.ios = 'npx react-native run-ios --scheme qa';
   packageJson.scripts.test = 'jest --passWithNoTests';
-  packageJson.scripts.coverage = 'jest --coverage --passWithNoTests';
   packageJson.scripts.clean = 'rm -rf $TMPDIR/react-* && watchman watch-del-all && yarn cache clean';
   packageJson.scripts['force-clean'] =
     'yarn run android:clean && yarn run clean && rm -rf ios/build && rm -rf ios/Pods && rm -rf node_modules/ && yarn install && cd ios/ && pod install';
@@ -25,7 +24,7 @@ module.exports = function packgeJsonScripts() {
   packageJson.scripts['check-types'] = 'tsc';
   packageJson.scripts['test:generate-coverage-file'] = 'node ./node_modules/@wolox/js-test-coverage-script';
   packageJson.scripts['test:coverage'] =
-    'yarn run test --env=jsdom --coverage --passWithNoTests --watchAll=false --silent --coverageThreshold "{}" --coverageReporters="json-summary" && yarn run test:generate-coverage-file';
+    'jest --env=jsdom --coverage --passWithNoTests --watchAll=false --silent --coverageThreshold "{}" --coverageReporters="json-summary" && yarn run test:generate-coverage-file';
   packageJson.husky = packageJson.husky || {};
   packageJson.husky.hooks = packageJson.husky.hooks || {};
   packageJson.husky.hooks['pre-commit'] =
