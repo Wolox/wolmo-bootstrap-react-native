@@ -13,7 +13,7 @@ In this functional component we have two props by FallbackProps
 error: String[], message with errorDetail
 resetErrorBoundary: Function => this can reset the error
 */
-export default function ErrorFallBack({
+export default function ErrorFallback({
   error,
   resetErrorBoundary
 }: FallbackProps) {
