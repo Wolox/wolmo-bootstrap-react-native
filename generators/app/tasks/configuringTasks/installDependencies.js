@@ -31,7 +31,9 @@ const DEPENDENCIES = [
   'redux-persist-seamless-immutable',
   'redux-recompose',
   'redux-thunk',
-  'seamless-immutable'
+  'seamless-immutable',
+  'react-error-boundary',
+  'react-native-exception-handler'
 ];
 
 const DEV_DEPENDENCIES = [
