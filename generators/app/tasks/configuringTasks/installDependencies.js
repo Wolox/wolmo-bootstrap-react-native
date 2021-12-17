@@ -37,6 +37,7 @@ const DEPENDENCIES = [
 ];
 
 const DEV_DEPENDENCIES = [
+  '@babel/eslint-parser',
   '@testing-library/jest-native',
   '@testing-library/react-native',
   '@types/jest',
@@ -44,7 +45,7 @@ const DEV_DEPENDENCIES = [
   '@types/react-redux',
   '@types/react-test-renderer',
   '@types/seamless-immutable',
-  '@babel/eslint-parser',
+  '@wolox/js-test-coverage-script',
   'babel-plugin-import-glob',
   'babel-plugin-module-resolver',
   'eslint',
