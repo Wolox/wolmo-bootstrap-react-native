@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
-import ErrorFallback from './ErrorFallback';
+import ErrorFallBack from './ErrorFallBack';
 
 /*
 in this function we can use or save the error on cloud with others libraries like Sentry
@@ -20,9 +20,7 @@ export const ErrorHandler = ({
   component?: FunctionComponent<FallbackProps>;
 }) => {
   return (
-    <ErrorBoundary
-      FallbackComponent={component || ErrorFallback}
-      onError={myErrorHandler}>
+    <ErrorBoundary FallbackComponent={component || ErrorFallBack} onError={myErrorHandler}>
       {children}
     </ErrorBoundary>
   );

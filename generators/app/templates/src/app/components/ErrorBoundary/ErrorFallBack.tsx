@@ -13,10 +13,7 @@ In this functional component we have two props by FallbackProps
 error: String[], message with errorDetail
 resetErrorBoundary: Function => this can reset the error
 */
-export default function ErrorFallback({
-  error,
-  resetErrorBoundary
-}: FallbackProps) {
+export default function ErrorFallBack({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -25,9 +22,7 @@ export default function ErrorFallback({
         </CustomText>
       </View>
       <View style={styles.content}>
-        <CustomText style={styles.description}>
-          {i18next.t('ERRORBOUNDARY:TRY_AGAIN')}
-        </CustomText>
+        <CustomText style={styles.description}>{i18next.t('ERRORBOUNDARY:TRY_AGAIN')}</CustomText>
         <CustomButton
           style={styles.btn}
           textStyle={styles.btn_text}
