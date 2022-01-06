@@ -6,13 +6,19 @@ To create a new project, you must follow these steps:
 
 1) Clone [Wolmo’s Bootstrap project](https://github.com/Wolox/wolmo-bootstrap-react-native)
 
-2) In case you have Cocoapods pre-installed, first update the repository with:
+2) go to the cloned repository folder and run
+
+```bash
+yarn
+```
+
+3) In case you have Cocoapods pre-installed, first update the repository with:
 
 ```bash
 pod repo update
 ```
 
-3) Go to the folder in which you’d like your project to be in and run:
+4) Go to the folder in which you’d like your project to be in and run:
 
 ```js
 yo path-to-wolmo/generators/app/index.js
@@ -25,7 +31,7 @@ In case you need to debug it, you can add the `--verbose` param:
 yo path-to-wolmo/generators/app/index.js --verbose
 ```
 
-4) Follow the wizard
+5) Follow the wizard
 
 ## Repository
 

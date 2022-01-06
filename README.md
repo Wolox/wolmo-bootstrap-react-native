@@ -8,9 +8,10 @@
 
 - CocoaPods: https://guides.cocoapods.org/using/getting-started.html#installation
 - Node: https://github.com/creationix/nvm#install-script
-- React Native Environment: https://facebook.github.io/react-native/docs/getting-started.html
-- Ruby (for Fastlane): https://rvm.io/rvm/install
+- React Native Environment: https://archive.reactnative.dev/docs/getting-started
+- Ruby (for Fastlane, RVM is recommended to avoid permission problems): https://github.com/rvm/rvm
 - Yarn: https://yarnpkg.com/lang/en/docs/install/#alternatives-tab
+- Yeoman: https://yeoman.io/learning/index.html
 
 ## KickOff
 
