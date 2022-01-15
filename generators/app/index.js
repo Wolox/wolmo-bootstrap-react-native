@@ -13,7 +13,8 @@ const configureIosProject = require('./tasks/installTasks/configureIosProject');
 const installPods = require('./tasks/installTasks/installPods');
 const linkAppAssets = require('./tasks/installTasks/linkAppAssets');
 const editBundleIdentifier = require('./tasks/installTasks/editBundleIdentifier');
-const lintFixProject = require('./tasks/installTasks/lintFixProject');
+// TODO: Removed until linter is fixed
+// const lintFixProject = require('./tasks/installTasks/lintFixProject');
 const chmodFirebaseScript = require('./tasks/installTasks/chmodFirebaseScript');
 const gitInitialization = require('./tasks/installTasks/gitInitialization');
 // END
@@ -98,7 +99,8 @@ class ReactNativeBootstrap extends Generator {
       .then(() => installPods.bind(this)())
       .then(() => linkAppAssets.bind(this)())
       .then(() => editBundleIdentifier.bind(this)())
-      .then(() => lintFixProject.bind(this)())
+      // TODO: removed until linter is fixed
+      // .then(() => lintFixProject.bind(this)())
       .then(() => this.features.hasFirebase && chmodFirebaseScript.bind(this)())
       .then(() => gitInitialization.bind(this)());
   }
